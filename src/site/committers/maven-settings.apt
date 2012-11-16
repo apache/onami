@@ -1,0 +1,75 @@
+ ------
+ Committer Settings
+ ------
+ Apache Onami Documentation Team
+ ------
+ 2012-11-16
+ ------
+
+~~ Licensed to the Apache Software Foundation (ASF) under one or more
+~~ contributor license agreements.~~ See the NOTICE file distributed with
+~~ this work for additional information regarding copyright ownership.
+~~ The ASF licenses this file to You under the Apache License, Version 2.0
+~~ (the "License"); you may not use this file except in compliance with
+~~ the License.  You may obtain a copy of the License at
+~~
+~~  http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing, software
+~~ distributed under the License is distributed on an "AS IS" BASIS,
+~~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~ See the License for the specific language governing permissions and
+~~ limitations under the License.
+
+Introduction
+
+ This document is intended to set up the Maven committer settings, i.e. the <<<$\{user.home\}/.m2/settings.xml>>>.
+
+* Enable Apache Servers
+
+ Maven uses several servers configuration to deploy snapshots, releases and documentation on the Apache servers.
+ You need to tell to Maven what your Apache username is. Please note that the servers now use your LDAP credentials,
+ which may differ from your old SVN credentials.
+
+ <<It is highly recommended to use Maven's {{{http://maven.apache.org/guides/mini/guide-encryption.html} password encryption capabilities}} for your passwords>>.
+
++-----+
+<settings>
+
+  <servers>
+    <!-- To publish a snapshot of some part of Maven -->
+    <server>
+      <id>apache.snapshots.https</id>
+      <username> <!-- YOUR APACHE LDAP USERNAME --> </username>
+      <password> <!-- YOUR APACHE LDAP PASSWORD --> </password>
+    </server>
+    <!-- To stage a release of some part of Maven -->
+    <server>
+      <id>apache.releases.https</id>
+      <username> <!-- YOUR APACHE LDAP USERNAME --> </username>
+      <password> <!-- YOUR APACHE LDAP PASSWORD --> </password>
+    </server>
+  </servers>
+
+  <profiles>
+    <profile>
+      <id>apache</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <mavenExecutorId>forked-path</mavenExecutorId>
+        <gpg.keyname>${gpg.keyname}</gpg.keyname>\
+        <!-- optional -->
+        <gpg.passphrase>${gpg.passphrase}</gpg.passphrase>
+      </properties>
+    </profile>
+  </profiles>
+
+</settings>
++-----+
+
+ You also need to be a member of the group <<<apcvs>>> and <<<maven>>> on <<<people.apache.org>>>.
+
+ A copy of a <<<settings.xml>>> emplate file can be downloaded from {{{https://svn.apache.org/repos/asf/incubator/onami/committers/maven/settings.xml}SVN}}.
+ 
