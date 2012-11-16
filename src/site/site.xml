@@ -23,18 +23,56 @@
 
   <version position="left" />
 
+  <bannerLeft>
+    <name>Apache Onami</name>
+    <src>/images/apache-onami-logo.png</src>
+    <alt>Apache Onami logo</alt>
+    <href>${project.url}/index.html</href>
+  </bannerLeft>
+
+  <bannerRight>
+    <name>Apache Incubator</name>
+    <src>http://incubator.apache.org/images/apache-incubator-logo.png</src>
+    <href>http://incubator.apache.org/</href>
+  </bannerRight>
+
   <skin>
     <groupId>org.apache.maven.skins</groupId>
     <artifactId>maven-fluido-skin</artifactId>
     <version>1.3.0</version>
   </skin>
 
-  <menu>
+  <custom>
+    <fluidoSkin>
+      <topBarEnabled>true</topBarEnabled>
+      <sideBarEnabled>false</sideBarEnabled>
+      <googleSearch>
+        <sitesearch>${project.url}</sitesearch>
+      </googleSearch>
+    </fluidoSkin>
+  </custom>
+
+  <body>
+    <menu ref="reports" />
+
     <menu name="General Information" inherit="bottom">
-      <item name="Volunteering"          href="http://incubator.apache.org/onami/volunteering.html" />
-      <item name="Contributing Patches"  href="http://incubator.apache.org/onami/patches.html" />
-      <item name="Get Involved"          href="http://incubator.apache.org/onami/getinvolved.html" />
+      <item name="Volunteering"          href="http://onami.incubator.apache.org/volunteering.html" />
+      <item name="Contributing Patches"  href="http://onami.incubator.apache.org/patches.html" />
+      <item name="Get Involved"          href="http://onami.incubator.apache.org/getinvolved.html" />
     </menu>
+
+    <menu name="ASF" inherit="bottom">
+      <item name="How the ASF works"     href="http://www.apache.org/foundation/how-it-works.html" />
+      <item name="Get Involved"          href="http://www.apache.org/foundation/getinvolved.html" />
+      <item name="Developer Resources"   href="http://www.apache.org/dev/" />
+      <item name="Sponsorship"           href="http://www.apache.org/foundation/sponsorship.html" />
+      <item name="Thanks"                href="http://www.apache.org/foundation/thanks.html" />
+    </menu>
+
+    <footer>
+      <div class="row span12">Apache Onami, Apache, the Apache feather logo, and the Apache Onami project logos are trademarks of The Apache Software Foundation.
+      All other marks mentioned may be trademarks or registered trademarks of their respective owners.</div>
+    </footer>
   </body>
 
 </project>
