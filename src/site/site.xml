@@ -53,6 +53,18 @@
   </custom>
 
   <body>
+    <head>
+      <script type="text/javascript">
+        $( document ).ready( function()
+        {
+          $( '.carousel' ).carousel(
+          {
+            interval: 3500
+          } )
+        } );
+      </script>
+    </head>
+
     <menu ref="reports" />
 
     <menu name="General Information" inherit="bottom">
