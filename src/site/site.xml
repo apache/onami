@@ -65,6 +65,14 @@
       </script>
     </head>
 
+    <menu name="Committers resources">
+      <item name="SVN conventions"             href="./committers/svn-conventions.html" />
+      <item name="Maven settings"              href="./committers/maven-settings.html" />
+      <item name="GPG keys"                    href="./committers/gpg-keys.html" />
+      <item name="JIRA conventions"            href="./committers/jira-conventions.html" />
+      <item name="Code style recommendations"  href="./committers/codestyle.html" />
+    </menu>
+
     <menu ref="reports" />
 
     <menu name="General Information" inherit="bottom">
