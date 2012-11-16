@@ -32,7 +32,7 @@
 
   <name>Apache Onami</name>
   <description>Apache Onami is a community focused on the development and maintenance of a set of Google Guice extensions.</description>
-  <url>http://incubator.apache.org/onami</url>
+  <url>http://onami.incubator.apache.org/</url>
   <inceptionYear>2011</inceptionYear>
 
   <developers>
