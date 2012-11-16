@@ -33,6 +33,84 @@
       (<i>O-nami</i>, in Japanese) Zen story.</p>
     </section>
 
+    <div id="components" class="carousel slide">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="active item">
+          <div class="hero-unit">
+            <h1>Onami-Guava</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./guava">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-Scheduler</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./scheduler">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-SPI</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./spi">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-Test</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./test">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-Lyfecycle</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./lyfecycle">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-Configuration</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./configuration">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-Logging</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./logging">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-Cache</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./cache">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Onami-Autobind</h1>
+            <p>
+              <a class="btn btn-primary pull-right" href="./autobind">Learn more</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section name="Artifacts" class="alert alert-info">
       <p>Looking for artifacts to manage with your preferred Dependencies resolver?
       Just browse Onami on <a href="http://search.maven.org/#search%7Cga%7C1%7Corg.apache.onami">Central repository</a>!</p>
