@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ | Licensed to the Apache Software Foundation (ASF) under one or more
+ | contributor license agreements.  See the NOTICE file distributed with
+ | this work for additional information regarding copyright ownership.
+ | The ASF licenses this file to You under the Apache License, Version 2.0
+ | (the "License"); you may not use this file except in compliance with
+ | the License.  You may obtain a copy of the License at
+ |
+ |  http://www.apache.org/licenses/LICENSE-2.0
+ |
+ | Unless required by applicable law or agreed to in writing, software
+ | distributed under the License is distributed on an "AS IS" BASIS,
+ | WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ | See the License for the specific language governing permissions and
+ | limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>10</version>
+  </parent>
+
+  <groupId>org.apache.onami</groupId>
+  <artifactId>onami-parent</artifactId>
+  <version>1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Apache Onami</name>
+  <description>Apache Onami is a community focused on the development and maintenance of a set of Google Guice extensions.</description>
+  <url>http://incubator.apache.org/onami</url>
+  <inceptionYear>2011</inceptionYear>
+
+  <developers>
+    <!-- developers are enlisted in alphabetical ascending order by ID -->
+    <developer>
+      <id>codyaray</id>
+      <name>Cody Ray</name>
+      <email>codyaray[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>danielmanzke</id>
+      <name>Daniel Manzke</name>
+      <email>danielmanzke[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>dpalmisano</id>
+      <name>Davide Palmisano</name>
+      <email>dpalmisano[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>grobmeier</id>
+      <name>Christian Grobmeier</name>
+      <email>grobmeier[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+        <role>Mentor</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>iocanel</id>
+      <name>Ioannis Canellos</name>
+      <email>iocanel[at]apache[dot]org</email>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>jordi</id>
+      <name>Jordi Gerona</name>
+      <email>jordi[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>mcculls</id>
+      <name>Stuart McCulloch</name>
+      <email>mcculls[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>mnour</id>
+      <name>Mohammad Nour El-Din</name>
+      <email>mnour[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+        <role>Mentor</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>marcosperanza</id>
+      <name>Marco Speranza</name>
+      <email>marcosperanza[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>nmwael</id>
+      <name>Nino Martinez Wael</name>
+      <email>nmwael[at]apache[dot]org</email>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>olamy</id>
+      <name>Olivier Lamy</name>
+      <email>olamy[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+        <role>Mentor</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <id>simonetripodi</id>
+      <name>Simone Tripodi</name>
+      <email>simonetripodi[at]apache[dot]org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+        <role>PPMC Member</role>
+        <role>Champion</role>
+      </roles>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Frank David Martinez</name>
+      <email>mnesarco at gmail dot com</email>
+      <roles>
+        <role>Apache Onami logo designer</role>
+      </roles>
+    </contributor>
+  </contributors>
+
+  <mailingLists>
+    <mailingList>
+      <name>Dev Mailing List</name>
+      <post>onami-dev[at]incubator[dot]apache[dot]org</post>
+      <subscribe>onami-dev-subscribe[at]incubator[dot]apache[dot]org</subscribe>
+      <unsubscribe>onami-dev-unsubscribe[at]incubator[dot]apache[dot]org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/onami-dev/</archive>
+      <otherArchives>
+        <otherArchive>http://onami-dev.markmail.org/</otherArchive>
+      </otherArchives>
+    </mailingList>
+    <mailingList>
+      <name>User Mailing List</name>
+      <post>onami-user[at]incubator[dot]apache[dot]org</post>
+      <subscribe>onami-user-subscribe[at]incubator[dot]apache[dot]org</subscribe>
+      <unsubscribe>onami-user-unsubscribe[at]incubator[dot]apache[dot]org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/onami-user/</archive>
+      <otherArchives>
+        <otherArchive>http://onami-user.markmail.org/</otherArchive>
+      </otherArchives>
+    </mailingList>
+    <mailingList>
+      <name>Commits Mailing List</name>
+      <post>onami-commits[at]incubator[dot]apache[dot]org</post>
+      <subscribe>onami-commits-subscribe[at]incubator[dot]apache[dot]org</subscribe>
+      <unsubscribe>onami-commits-unsubscribe[at]incubator[dot]apache[dot]org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/onami-commits/</archive>
+      <otherArchives>
+        <otherArchive>http://onami-commits.markmail.org/</otherArchive>
+      </otherArchives>
+    </mailingList>
+  </mailingLists>
+
+  <scm>
+    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/parent</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/parent</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/parent</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://issues.apache.org/jira/browse/ONAMI</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>https://builds.apache.org/job/Onami-trunk/</url>
+    <notifiers>
+      <notifier>
+        <type>mail</type>
+        <sendOnError>true</sendOnError>
+        <sendOnFailure>true</sendOnFailure>
+        <sendOnSuccess>false</sendOnSuccess>
+        <sendOnWarning>false</sendOnWarning>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+
+  <properties>
+    <!--
+     | source encoding
+    -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!--
+     | compiler stuff
+    -->
+    <javac.src.version>1.5</javac.src.version>
+    <javac.target.version>1.5</javac.target.version>
+    <!--
+     | build version
+    -->
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
+    <implementation.build>${buildNumber}; ${maven.build.timestamp}</implementation.build>
+    <project.previousVersion>${project.version}</project.previousVersion>
+    <!--
+     | OSGi stuff
+    -->
+    <osgi.symbolic-name>${project.groupId}.${project.artifactId}</osgi.symbolic-name>
+    <osgi.export>${project.groupId}.*;version=${project.version};-noimport:=true</osgi.export>
+    <osgi.import>*</osgi.import>
+    <osgi.dynamicImport />
+    <osgi.private />
+    <osgi.fragment-host />
+    <!--
+     | shared build/report plugins version
+    -->
+    <surefire.version>2.12.4</surefire.version>
+    <javadoc.version>2.9</javadoc.version>
+    <cobertura.version>2.5.2</cobertura.version>
+    <plexus-utils.version>3.0.8</plexus-utils.version>
+    <!--
+     | aux settings
+    -->
+    <site.skip>false</site.skip>
+    <javadoc.aggregate>false</javadoc.aggregate>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.6</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.4</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>${cobertura.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>2.3</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-utils</artifactId>
+              <version>${plexus-utils.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+            <useReleaseProfile>false</useReleaseProfile>
+            <preparationGoals>clean install</preparationGoals>
+            <goals>deploy</goals>
+            <arguments>-Prelease,apache</arguments>
+            <tagBase>https://svn.apache.org/repos/asf/incubator/onami/tags</tagBase>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <doCheck>false</doCheck>
+          <doUpdate>false</doUpdate>
+          <!-- Use committed revision so it does not change every time svn update is run -->
+          <useLastCommittedRevision>true</useLastCommittedRevision>
+          <!-- default revision number if unavailable -->
+          <revisionOnScmFailure>??????</revisionOnScmFailure>
+          <!-- svnjava works even if an svn command-line client is not on the path -->
+          <providerImplementations>
+            <svn>javasvn</svn>
+          </providerImplementations>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.google.code.maven-scm-provider-svnjava</groupId>
+            <artifactId>maven-scm-provider-svnjava</artifactId>
+            <version>2.0.5</version>
+          </dependency>
+          <dependency>
+            <groupId>org.tmatesoft.svnkit</groupId>
+            <artifactId>svnkit</artifactId>
+            <version>1.7.6</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <id>enforce-java</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>[1.5,)</version>
+                  <message>[ERROR] The currently supported version of Java is 1.5 or higher</message>
+                </requireJavaVersion>
+                <requireMavenVersion>
+                  <version>[3.0,)</version>
+                  <message>[ERROR] The currently supported version of Maven is 3.0 or higher</message>
+                </requireMavenVersion>
+                <requirePluginVersions>
+                  <banLatest>true</banLatest>
+                  <banRelease>true</banRelease>
+                  <banSnapshots>true</banSnapshots>
+                  <phases>clean,deploy,site</phases>
+                  <message>[ERROR] Best Practice is to always define plugin versions!</message>
+                </requirePluginVersions>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+          <source>${javac.src.version}</source>
+          <target>${javac.target.version}</target>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <optimize>true</optimize>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.3.7</version>
+        <configuration>
+          <!--
+           | dummy entry to stop bundle plugin from picking up jar config and reporting
+           | WARNING: Duplicate name in Manifest
+           | See http://markmail.org/message/mpkl24wk3jrjhhjg
+          -->
+          <archive>
+            <forced>true</forced>
+          </archive>
+          <excludeDependencies>true</excludeDependencies>
+          <manifestLocation>${project.build.directory}/osgi</manifestLocation>
+          <instructions>
+            <!--
+             | stops the "uses" clauses being added to "Export-Package" manifest entry
+            -->
+            <_nouses>true</_nouses>
+            <!--
+             | Stop the JAVA_1_n_HOME variables from being treated as headers by Bnd
+            -->
+            <_removeheaders>JAVA_1_3_HOME,JAVA_1_4_HOME,JAVA_1_5_HOME,JAVA_1_6_HOME,JAVA_1_7_HOME</_removeheaders>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+            <Bundle-Description>${project.description}</Bundle-Description>
+            <Export-Package>${osgi.export}</Export-Package>
+            <Private-Package>${osgi.private}</Private-Package>
+            <Import-Package>${osgi.import}</Import-Package>
+            <DynamicImport-Package>${osgi.dynamicImport}</DynamicImport-Package>
+            <Bundle-DocURL>${project.url}</Bundle-DocURL>
+            <Bundle-RequiredExecutionEnvironment>${osgi.requiredExecutionEnvironment}</Bundle-RequiredExecutionEnvironment>
+          </instructions>
+        </configuration>
+        <executions>
+          <execution>
+            <id>bundle-manifest</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifestFile>${project.build.directory}/osgi/MANIFEST.MF</manifestFile>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+            <manifestEntries>
+              <Implementation-Build>${implementation.build}</Implementation-Build>
+              <X-Compile-Source-JDK>${javac.src.version}</X-Compile-Source-JDK>
+              <X-Compile-Target-JDK>${javac.target.version}</X-Compile-Target-JDK>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc.version}</version>
+        <configuration>
+          <aggregate>${javadoc.aggregate}</aggregate>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <locales>en</locales>
+          <skip>${site.skip}</skip>
+          <skipDeploy>${site.skip}</skipDeploy>
+          <reportPlugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+              <version>2.6</version>
+            </plugin>
+          </reportPlugins>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-descriptor</id>
+            <goals>
+              <goal>attach-descriptor</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc.version}</version>
+        <configuration>
+          <bootclasspath>${sun.boot.class.path}</bootclasspath>
+          <doclet>com.google.doclava.Doclava</doclet>
+          <useStandardDocletOptions>false</useStandardDocletOptions>
+          <additionalJOption>-J-Xmx1024m</additionalJOption>
+          <docletArtifact>
+            <groupId>com.google.doclava</groupId>
+            <artifactId>doclava</artifactId>
+            <version>1.0.3</version>
+          </docletArtifact>
+          <additionalparam>
+            -quiet
+            -federate JDK http://download.oracle.com/javase/6/docs/api/index.html?
+            -federationxml JDK http://doclava.googlecode.com/svn/static/api/openjdk-6.xml
+            -hdf project.name "${project.name}"
+            -d ${project.reporting.outputDirectory}/apidocs
+          </additionalparam>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <id>default</id>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.9.1</version>
+        <configuration>
+          <configLocation>config/maven_checks.xml</configLocation>
+          <headerLocation>config/maven-header.txt</headerLocation>
+        </configuration>
+        <inherited>true</inherited>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>${cobertura.version}</version>
+        <configuration>
+          <formats>
+            <format>html</format>
+            <format>xml</format>
+          </formats>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>${surefire.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>2.7.1</version>
+        <configuration>
+          <linkXref>true</linkXref>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>${javac.target.version}</targetJdk>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <tagListOptions>
+            <tagClasses>
+              <tagClass>
+                <displayName>Todo Work</displayName>
+                <tags>
+                  <tag>
+                    <matchString>TODO</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>FIXME</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+            </tagClasses>
+          </tagListOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.rat</groupId>
+            <artifactId>apache-rat-plugin</artifactId>
+            <version>0.8</version>
+            <executions>
+              <execution>
+                <id>rat-verify</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <excludes>
+                <exclude>**/.gitignore</exclude>
+                <exclude>**/DISCLAIMER</exclude>
+                <exclude>**/LICENSE</exclude>
+                <exclude>**/NOTICE</exclude>
+                <exclude>**/README</exclude>
+                <exclude>**/RELEASE-NOTES</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+                <configuration>
+                  <archive>
+                    <manifest>
+                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                    </manifest>
+                    <manifestEntries>
+                      <Implementation-Build>${implementation.build}</Implementation-Build>
+                      <X-Compile-Source-JDK>${javac.src.version}</X-Compile-Source-JDK>
+                      <X-Compile-Target-JDK>${javac.target.version}</X-Compile-Target-JDK>
+                    </manifestEntries>
+                  </archive>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${javadoc.version}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <quiet>true</quiet>
+                  <archive>
+                    <manifest>
+                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                    </manifest>
+                    <manifestEntries>
+                      <Implementation-Build>${implementation.build}</Implementation-Build>
+                      <X-Compile-Source-JDK>${javac.src.version}</X-Compile-Source-JDK>
+                      <X-Compile-Target-JDK>${javac.target.version}</X-Compile-Target-JDK>
+                    </manifestEntries>
+                  </archive>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
