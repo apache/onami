@@ -38,21 +38,21 @@
       <div class="carousel-inner">
         <div class="active item">
           <div class="hero-unit">
-            <h1>Onami-Guava</h1>
+            <h1>Guava</h1>
             <p>Google Guice integration modules for Google Guava.</p>
             <p><a class="btn btn-primary pull-right" href="./guava">Learn more</a></p>
           </div>
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-Scheduler</h1>
+            <h1>Scheduler</h1>
             <p><a href="http://quartz-scheduler.org/">Quartz-Scheduler</a> integration.</p>
             <p><a class="btn btn-primary pull-right" href="./scheduler">Learn more</a></p>
           </div>
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-SPI</h1>
+            <h1>SPI</h1>
             <p>A Java5 compatible small collection of reusable tools to make easier the integration with the
               <a href="http://docs.oracle.com/javase/tutorial/sound/SPI-intro.html">Service Provider Interface</a> pattern.</p>
             <p><a class="btn btn-primary pull-right" href="./spi">Learn more</a></p>
@@ -60,42 +60,42 @@
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-Test</h1>
+            <h1>Test</h1>
             <p>Simple library to inject <a href="http://www.junit.org/">Junit4</a> test classes via Google-Guice.</p>
             <p><a class="btn btn-primary pull-right" href="./test">Learn more</a></p>
           </div>
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-Lifecycle</h1>
+            <h1>Lifecycle</h1>
             <p><code>@AfterInjection</code> and <code>@Dispose</code> Guice annotations handlers</p>
             <p><a class="btn btn-primary pull-right" href="./lyfecycle">Learn more</a></p>
           </div>
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-Configuration</h1>
+            <h1>Configuration</h1>
             <p>Expanded properties for Google Guice.</p>
             <p><a class="btn btn-primary pull-right" href="./configuration">Learn more</a></p>
           </div>
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-Logging</h1>
+            <h1>Logging</h1>
             <p>Simple Logging Injector.</p>
             <p><a class="btn btn-primary pull-right" href="./logging">Learn more</a></p>
           </div>
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-Cache</h1>
+            <h1>Cache</h1>
             <p><a href="http://jcp.org/en/jsr/detail?id=107">JSR107</a> annotations/handlers implementations.</p>
             <p><a class="btn btn-primary pull-right" href="./cache">Learn more</a></p>
           </div>
         </div>
         <div class="item">
           <div class="hero-unit">
-            <h1>Onami-Autobind</h1>
+            <h1>Autobind</h1>
             <p>Guice Automatic Binding</p>
             <p><a class="btn btn-primary pull-right" href="./autobind">Learn more</a></p>
           </div>
