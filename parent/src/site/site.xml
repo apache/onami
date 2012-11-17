@@ -77,18 +77,18 @@
       <item name="Test"           href="/test" />
     </menu>
 
+    <menu name="Community" inherit="bottom">
+      <item name="Volunteering"          href="/community/volunteering.html" />
+      <item name="Contributing Patches"  href="/community/patches.html" />
+      <item name="Get Involved"          href="/community/getinvolved.html" />
+    </menu>
+
     <menu name="Committers">
       <item name="SVN conventions"             href="/committers/svn-conventions.html" />
       <item name="Maven settings"              href="/committers/maven-settings.html" />
       <item name="GPG keys"                    href="/committers/gpg-keys.html" />
       <item name="JIRA conventions"            href="/committers/jira-conventions.html" />
       <item name="Code style recommendations"  href="/committers/codestyle.html" />
-    </menu>
-
-    <menu name="Community" inherit="bottom">
-      <item name="Volunteering"          href="/community/volunteering.html" />
-      <item name="Contributing Patches"  href="/community/patches.html" />
-      <item name="Get Involved"          href="/community/getinvolved.html" />
     </menu>
 
     <menu ref="reports" />
