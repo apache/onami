@@ -77,7 +77,7 @@
       <item name="Test" href="./test" />
     </menu>
 
-    <menu name="Committers resources">
+    <menu name="Committers">
       <item name="SVN conventions"             href="./committers/svn-conventions.html" />
       <item name="Maven settings"              href="./committers/maven-settings.html" />
       <item name="GPG keys"                    href="./committers/gpg-keys.html" />
