@@ -66,23 +66,23 @@
     </head>
 
     <menu name="Components">
-      <item name="Autoinject" href="./autoinject" />
-      <item name="Cache" href="./cache" />
-      <item name="Configuration" href="./configuration" />
-      <item name="Guava" href="./guava" />
-      <item name="Lifecycle" href="./lifecycle" />
-      <item name="Logging" href="./logging" />
-      <item name="Scheduler" href="./scheduler" />
-      <item name="SPI" href="./guava" />
-      <item name="Test" href="./test" />
+      <item name="Autoinject"     href="/autoinject" />
+      <item name="Cache"          href="/cache" />
+      <item name="Configuration"  href="/configuration" />
+      <item name="Guava"          href="/guava" />
+      <item name="Lifecycle"      href="/lifecycle" />
+      <item name="Logging"        href="/logging" />
+      <item name="Scheduler"      href="/scheduler" />
+      <item name="SPI"            href="/guava" />
+      <item name="Test"           href="/test" />
     </menu>
 
     <menu name="Committers">
-      <item name="SVN conventions"             href="./committers/svn-conventions.html" />
-      <item name="Maven settings"              href="./committers/maven-settings.html" />
-      <item name="GPG keys"                    href="./committers/gpg-keys.html" />
-      <item name="JIRA conventions"            href="./committers/jira-conventions.html" />
-      <item name="Code style recommendations"  href="./committers/codestyle.html" />
+      <item name="SVN conventions"             href="/committers/svn-conventions.html" />
+      <item name="Maven settings"              href="/committers/maven-settings.html" />
+      <item name="GPG keys"                    href="/committers/gpg-keys.html" />
+      <item name="JIRA conventions"            href="/committers/jira-conventions.html" />
+      <item name="Code style recommendations"  href="/committers/codestyle.html" />
     </menu>
 
     <menu name="Community" inherit="bottom">
