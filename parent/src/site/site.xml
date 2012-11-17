@@ -65,7 +65,7 @@
       </script>
     </head>
 
-    <menu name="Components">
+    <menu name="Components" inherit="bottom">
       <item name="Autoinject"     href="/autoinject" />
       <item name="Cache"          href="/cache" />
       <item name="Configuration"  href="/configuration" />
@@ -83,7 +83,7 @@
       <item name="Mailing lists"         href="/community/mail-lists.html" />
     </menu>
 
-    <menu name="Committers">
+    <menu name="Committers" inherit="bottom">
       <item name="SVN conventions"             href="/committers/svn-conventions.html" />
       <item name="Maven settings"              href="/committers/maven-settings.html" />
       <item name="GPG keys"                    href="/committers/gpg-keys.html" />
