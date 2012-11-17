@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ | Licensed to the Apache Software Foundation (ASF) under one or more
+ | contributor license agreements.  See the NOTICE file distributed with
+ | this work for additional information regarding copyright ownership.
+ | The ASF licenses this file to You under the Apache License, Version 2.0
+ | (the "License"); you may not use this file except in compliance with
+ | the License.  You may obtain a copy of the License at
+ |
+ |  http://www.apache.org/licenses/LICENSE-2.0
+ |
+ | Unless required by applicable law or agreed to in writing, software
+ | distributed under the License is distributed on an "AS IS" BASIS,
+ | WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ | See the License for the specific language governing permissions and
+ | limitations under the License.
+-->
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>On Contributing Patches</title>
+    <author email="onami-dev@incubator.apache.org">Apache Onami Documentation Team</author>
+  </properties>
+
+  <body>
+    <section name="On Contributing Patches">
+      <p> Apache Onami gets a fair number of submissions from developers new to contributing patches. A lot of information
+        to help you do this exists, but it can be hard to find. This document gathers up material about patches into one
+        handy reference.
+      </p>
+      <p>
+        Before you start, please find time to browse
+        <a href="http://www.apache.org/foundation/getinvolved.html">the Apache contribution guide</a>.
+      </p>
+    </section>
+
+    <section name="Respect The Original Style">
+      <p> Please respect the style of the orginal file. Make sure that your additions fit in with that style.
+      </p>
+      <p> Every component has coding conventions and every contribution is supposed to adhere to them. You might find it a
+        little difficult to discover the conventions used by a particular component but if you stick to the style of the
+        original then that'll be fine.
+      </p>
+      <p> If a patch is submitted which doesn't satisfy the component's coding conventions, then either a committer will
+        need to rewrite the submission or it will be rejected. Getting it right in this first place will save you having
+        to rewrite it.
+      </p>
+      <subsection name="Spaces Not Tabs">
+        <p>
+          <strong>PLEASE NO TABS!</strong>
+        </p>
+        <p> The source should be indented using spaces rather than tabs. The standard indentation is 4 spaces per indent -
+          but respect the number of spaces used by the original.
+        </p>
+        <p> Some IDEs include automatic source (re)formatting. If you use an IDE, please check that this feature is either
+          disabled or set to use (4) spaces.
+        </p>
+        <p>If a patch is submitted which uses tabs rather than spaces, then either a committer will have to reformat it
+          before it's applied or the patch will be rejected. Again, it's easier to get it right in the first place rather
+          than have to reformat and resubmit your patch.
+        </p>
+        <p> Please try and restrict patches to the minimum necessary to implement the change. If there are a lot of
+          irrelevant formatting or other changes, it makes it much harder to review the patch, and it may be rejected.
+        </p>
+      </subsection>
+    </section>
+
+    <section name="Test Cases">
+      <p>
+        Onami components use
+        <a href="http://www.junit.org/index.html">JUnit</a> (but <a href="http://testng.org/doc/index.html">TestNG</a>
+        is fine as well)
+        for unit testing. If you're not familiar with the principles of unit testing, then the JUnit site has some
+        <a href="http://www.junit.org/taxonomy/term/12">good articles</a>.
+      </p>
+      <p>
+        <strong>Before you submit</strong>
+        your patch, please do a clean build of the full distribution and run the unit tests (this can be done from the
+        build script). This ensures that your patch doesn't break any existing functionality.
+      </p>
+      <p> We strongly recommend that you create and submit test cases together with the rest of your contribution. Test
+        cases ensure that bugs stay fixed and features don't get broken. Test cases will probably be needed anyway so
+        submitting them saves time. If your patch is intended to fix a bug, it helps to create a unit test for the bug
+        first. Test with this before and after applying the fix.
+      </p>
+    </section>
+
+    <section name="Creating A Patch">
+      <p>
+        The Apache Onami source code repository holds the current source. A link to information about using the Apache
+        Onami source code repository is available on
+        <a href="/index.html">the main Apache Onami page</a>. Currently, Apache Onami uses the Subversion version control system.
+      </p>
+      <p>Please create your patch against the latest revision of the files in the source code repository since this makes
+        the job of applying the patch much easier. If you don't have a version checked out, then check one out. If you
+        have, then please do a fresh update before you make your changes.
+      </p>
+      <p>
+        The patch should be in unified format. You can create a patch in this format (from Subversion) by using:
+        <source>svn diff <em>File</em> > <em>patchfile</em></source>
+      </p>
+      <p> The patch should be created from the project root, i.e. the directory which contains the src/ folder and the
+        main Maven <code>pom.xml</code> file. This ensures that the proper relative path names are included, and makes it easier to
+        apply the patch to the correct file (there can be several files with the same name in a project). If using Eclipse
+        to create the patch, set "Patch Root" to "Project" - not the default "Workspace". [Workspace-relative patches are
+        not portable unless exactly the same project names are used.]
+      </p>
+      <p> Try to give your patch files meaningful names. This makes it easier for developers who need to apply a number of
+        different patches.
+      </p>
+    </section>
+    <section name="Submitting A Patch">
+      <p> Please use JIRA, patches sent to the mailing lists are harder to track and use up more bandwidth.
+      </p>
+      <p>
+        Apache Onami projects use the main
+        <a href="https://issues.apache.org/jira/browse/ONAMI">Apache JIRA Bug Tracker</a>.
+        To find a released project's JIRA page, go to its website and choose the Issue Tracking navigation link.
+      </p>
+      <p> Please give a detailed description of what your patch does and some reasons why it should be committed (if it's
+        not obvious). Add the patch as an attachment to a bug report, either a new one or if you find an existing report
+        then attach it there. Both will result in an email being sent to the issues email list.
+      </p>
+      <p> If there has already been discussion of the issue on the dev mailing list (but no JIRA entry has been created),
+        you may wish to make a note on that discussion thread that you have created a new issue.
+      </p>
+      <p>
+        All the commons documentation is in the commons version control system - including this document. If you see
+        anything that's wrong or you think that you can add something that's missing then please submit a patch to
+        <a href="https://issues.apache.org/jira/browse/ONAMI">JIRA</a>
+        !
+      </p>
+      <p>
+        <strong>TIA</strong>
+      </p>
+    </section>
+  </body>
+</document>
