@@ -42,19 +42,36 @@
         Luckily Craig R. McClanahan posted an excellent answer to this very question to the commons-dev list -
         <em>so why not get involved?!</em>
       </p>
-      <pre>Prabhat Kumar wrote: &gt;I was wondering if I could contribute in any way towards this project. I am &gt;a
-        Java programmer of moderate ability and use Struts, Ant and Log4j at my &gt;daytime job. We are currently
-        looking at using the commons pool package at &gt;work. &gt; &gt;The "How do I contribute" section on the commons
-        page says that you need any &gt;contributions. So let me know. &gt; &gt;Prabhat. 
-      </pre>
-      <pre>Hello Prabhat, The best way to contribute is to identify for yourself things that you think are broken, or
-        could be improved, and then propose a patch. A couple of ways to identify possible candidates: * Have you used a
-        commons API, and wished it would do something a little more? or a little different? In open source circles,
-        people often get involved initially by "scratching your own itch" as the saying goes. * Have you called up the
-        bug reports &gt;http://issues.apache.org/bugzilla/&lt; for the Commons project, and seen any bugs that you
-        can create a patch for? * Have you checked your favorite package's TODO or STATUS files for things that have
-        already been thought about, but just are not done yet? Craig 
-      </pre>
+      <pre>Prabhat Kumar wrote:
+
+&gt;I was wondering if I could contribute in any way towards this project. I am
+&gt;a Java programmer of moderate ability and use Struts, Ant and Log4j at my
+&gt;daytime job. We are currently looking at using the commons pool package at
+&gt;work.
+&gt;
+&gt;The "How do I contribute" section on the commons page says that you need any
+&gt;contributions. So let me know.
+&gt;
+&gt;Prabhat.
+
+Hello Prabhat,
+
+The best way to contribute is to identify for yourself things that you think are
+broken, or could be improved, and then propose a patch.
+
+A couple of ways to identify possible candidates:
+
+ * Have you used a commons API, and wished it would do something a little more?
+   or a little different? In open source circles, people often get involved
+   initially by "scratching your own itch" as the saying goes.
+
+ * Have you called up the bug reports &gt;http://issues.apache.org/bugzilla/&lt;
+   for the Commons project, and seen any bugs that you can create a patch for?
+
+ * Have you checked your favorite package's TODO or STATUS files for things that
+   have already been thought about, but just are not done yet?
+
+Craig</pre>
     </section>
   </body>
 
