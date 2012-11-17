@@ -264,12 +264,12 @@ public abstract class QuartzModule
 
  <<Comments>>:
 
-    [[1]] The \<project/\> element is always on one line.
+    [[1]] The <<<\<project/\>>>> element is always on one line.
 
     [[2]] The blocks are voluntary separated by a new line to improve the readingness.
 
-    [[3]] The dependencies in \<dependencies/\> and \<dependencyManagement/\> tags have no specific ordering. Developers
-    are free to choose the ordering, but grouping dependencies by topics (like groupId i.e. <<<org.apache.maven>>>) is a good practice.
+    [[3]] The dependencies in <<<\<dependencies /\>>>> and <<<\<dependencyManagement /\>>>> tags have no specific ordering. Developers
+    are free to choose the ordering, but grouping dependencies by topics (like groupId i.e. <<<org.apache.onami>>>) is a good practice.
 
     []
 
@@ -280,9 +280,9 @@ public abstract class QuartzModule
 
  For consistency and readability reasons, XDOC files should respect:
 
- * <<Metadata>>: Always specify metadata in the \<properties/\> tag.
+ * <<Metadata>>: Always specify metadata in the <<<\<properties /\>>>> tag.
 
- * <<Sections>>: Always use a new line with indentation for \<section/\> tags.
+ * <<Sections>>: Always use a new line with indentation for <<<\<section /\>>>> tags.
 
  []
 
@@ -290,7 +290,7 @@ public abstract class QuartzModule
 
  For readability reasons, FML files should respect:
 
- * <<FAQ>>: Always use a new line with indentation for \<faq/\> tags.
+ * <<FAQ>>: Always use a new line with indentation for <<<\<faq /\>>>> tags.
 
  []
 
