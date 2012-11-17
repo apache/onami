@@ -273,9 +273,6 @@ public abstract class QuartzModule
 
     []
 
- <<Note>>: The team plans to create a Maven plugin with reorder and reformat goals
- (See {{{http://jira.codehaus.org/browse/MOJO-928}MOJO-928}}).
-
 ** {XDOC Code Convention}
 
  For consistency and readability reasons, XDOC files should respect:
