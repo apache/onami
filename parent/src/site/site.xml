@@ -65,6 +65,18 @@
       </script>
     </head>
 
+    <menu name="Components">
+      <item name="Autoinject" href="./autoinject" />
+      <item name="Cache" href="./cache" />
+      <item name="Configuration" href="./configuration" />
+      <item name="Guava" href="./guava" />
+      <item name="Lifecycle" href="./lifecycle" />
+      <item name="Logging" href="./logging" />
+      <item name="Scheduler" href="./scheduler" />
+      <item name="SPI" href="./guava" />
+      <item name="Test" href="./test" />
+    </menu>
+
     <menu name="Committers resources">
       <item name="SVN conventions"             href="./committers/svn-conventions.html" />
       <item name="Maven settings"              href="./committers/maven-settings.html" />
