@@ -86,9 +86,9 @@
     </menu>
 
     <menu name="Community" inherit="bottom">
-      <item name="Volunteering"          href="http://onami.incubator.apache.org/volunteering.html" />
-      <item name="Contributing Patches"  href="http://onami.incubator.apache.org/patches.html" />
-      <item name="Get Involved"          href="http://onami.incubator.apache.org/getinvolved.html" />
+      <item name="Volunteering"          href="/community/volunteering.html" />
+      <item name="Contributing Patches"  href="/community/patches.html" />
+      <item name="Get Involved"          href="/community/getinvolved.html" />
     </menu>
 
     <menu ref="reports" />
