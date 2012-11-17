@@ -85,13 +85,13 @@
       <item name="Code style recommendations"  href="./committers/codestyle.html" />
     </menu>
 
-    <menu ref="reports" />
-
     <menu name="General Information" inherit="bottom">
       <item name="Volunteering"          href="http://onami.incubator.apache.org/volunteering.html" />
       <item name="Contributing Patches"  href="http://onami.incubator.apache.org/patches.html" />
       <item name="Get Involved"          href="http://onami.incubator.apache.org/getinvolved.html" />
     </menu>
+
+    <menu ref="reports" />
 
     <menu name="ASF" inherit="bottom">
       <item name="How the ASF works"     href="http://www.apache.org/foundation/how-it-works.html" />
