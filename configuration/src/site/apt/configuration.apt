@@ -1,0 +1,70 @@
+                                    ------
+                                    Home
+                                    ------
+                                    Simple Configuration
+                                    ------
+                                     2010
+
+~~
+~~   Copyright 2009-2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+The Configuration module
+
+  The <<<com.googlecode.rocoto.configuration.ConfigurationModule>>> is a dependencies-less, lightweight yet powerful
+  <Guice> module to simplify the task of loading configurations and bind them to the <Guice Binder>.
+
+  With this tool users are now ready to load properties files, creating and configuring the module:
+
++--------------------------------------+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import com.googlecode.rocoto.configuration.ConfigurationModule;
+
+...
+
+Injector injector = Guice.createInjector( new ConfigurationModule()
+{
+
+        @Override
+        protected void bindConfigurations()
+        {
+            bindEnvironmentVariables();
+            bindSystemProperties();
+
+            bindProperties( URI.create( "classpath:/org/nnsoft/guice/rocoto/configuration/ldap.properties" ) );
+            bindProperties( "proxy.xml" ).inXMLFormat();
+
+            File parentConf = new File( "src/test/data/org/nnsoft" );
+            bindProperties( new File( parentConf, "ibatis.properties" ) );
+            bindProperties( new File( parentConf, "guice/jdbc.properties" ) );
+            bindProperties( new File( parentConf, "guice/rocoto/configuration/memcached.xml" ) ).inXMLFormat();
+
+            bindProperty( "JDBC.url").toValue( "jdbc:mysql://${JDBC.host|localhost}:${JDBC.port}/${JDBC.schema}" );
+        }
+
+    },
+    ...
+);
++--------------------------------------+
+
+  Now users can access to configuration parameters through the <<<@com.google.inject.name.Named>>> annotation.
+
+  <<NOTE>> Environment Variables will be referred with the <<<env.>>> prefix.
+
+* com.google.inject.name.Names compatibility
+
+  Users can still load properties using the Google Guice {{{http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/name/Names.html}Names}}.
