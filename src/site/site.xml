@@ -73,7 +73,7 @@
       <item name="Lifecycle"      href="/lifecycle" />
       <item name="Logging"        href="/logging" />
       <item name="Scheduler"      href="/scheduler" />
-      <item name="SPI"            href="/guava" />
+      <item name="SPI"            href="/spi" />
       <item name="Test"           href="/test" />
     </menu>
 
