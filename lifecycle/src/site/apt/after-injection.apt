@@ -1,0 +1,100 @@
+                                    ------
+                                    Home
+                                    ------
+                                    After Injection callbacks
+                                    ------
+                                     2012
+
+~~
+~~   Copyright 2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+After Injection callbacks
+
+  Let's start on defining an object type that requires dependency injection and that a callback
+  has to be invoked once injection is complete:
+
++--------------------------------------+
+import org.nnsoft.guice.lifegycle.AfterInjection;
+
+@Singleton // not necessary, but let's add some spice
+public class MyServiceImpl
+{
+
+    @Inject
+    private Dependency dependency;
+
+    // setter omitted for simplicity
+
+    @AfterInjection
+    public void init()
+    {
+        ...
+    }
+
+}
++--------------------------------------+
+
+  All users have to do, is adding the <<<AfterInjectionModule>>> when creating the <<<Injector>>>:
+
++--------------------------------------+
+import static com.google.inject.Guice.createInjector;
+
+import org.nnsoft.guice.lifegycle.AfterInjectionModule;
+
+...
+
+Injector injector = createInjector( new AfterInjectionModule(), ... );
++--------------------------------------+
+
+Customization
+
+  The <<<AfterInjectionModule>>> module supports dynamic definition of the annotation has to be handled; let's replace
+  the <<<org.nnsoft.guice.lifegycle.AfterInjection>>> with the <<<javax.annotation.PostConstruct>>>:
+
++--------------------------------------+
+import javax.annotation.PostConstruct;
+
+@Singleton // not necessary, but let's add some spice
+public class MyServiceImpl
+{
+
+    @Inject
+    private Dependency dependency;
+
+    // setter omitted for simplicity
+
+    @PostConstruct
+    public void init()
+    {
+        ...
+    }
+
+}
++--------------------------------------+
+
+  then, create the <<<Injector>>>:
+
++--------------------------------------+
+import static com.google.inject.Guice.createInjector;
+
+import javax.annotation.PostConstruct;
+import org.nnsoft.guice.lifegycle.AfterInjectionModule;
+
+...
+
+Injector injector = createInjector( new AfterInjectionModule( PostConstruct.class, Matchers.any() ), ... );
++--------------------------------------+
+  
