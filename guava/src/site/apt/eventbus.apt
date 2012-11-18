@@ -1,0 +1,107 @@
+                                    ------
+                                    Home
+                                    ------
+                                    EventBus
+                                    ------
+                                     2012
+
+~~
+~~   Copyright 2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+EventBus
+
+  The <EventBus> module was originally developed by {{{http://spin.atomicobject.com/author/dewind/}Justin DeWind}}
+  on {{{http://spin.atomicobject.com/2012/01/13/the-guava-eventbus-on-guice/}Atomicobject}} blog, under the
+  terms of the {{{http://opensource.org/comment/935}MIT License}}.
+
+  This variation allows configuring more than one <<<EventBus>>> for each Injector; let's define first an event:
+
++--------------------------------------+
+public final class ApplicationEvent
+{
+
+}
++--------------------------------------+
+
+  And an event handler
+
++--------------------------------------+
+public interface ApplicationEventHandler
+{
+
+    void when( ApplicationEvent applicationEvent );
+
+}
++--------------------------------------+
+
+  with related implementation
+
++--------------------------------------+
+public final class DefaultApplicationEventHandler
+    implements ApplicationEventHandler
+{
+
+    @javax.inject.Inject
+    private Dependency myDependency;
+
+    // setters omitted for brevity
+
+    @Override
+    @com.google.common.eventbus.Subscribe
+    public void when( ApplicationEvent applicationEvent )
+    {
+        // do something you need
+    }
+
+}
++--------------------------------------+
+
+  then you can create the Injector
+
++--------------------------------------+
+public final class MySystem
+{
+
+    @javax.inject.Inject
+    @javax.inject.Named( "eventbus.test" )
+    private EventBus eventBus;
+
+    // setters omitted for brevity
+
+    public void start()
+    {
+        com.google.inject.Guice.createInjector(  new EventBusModule()
+        {
+
+            @Override
+            protected void configure()
+            {
+                bind( ApplicationEventHandler.class ).to( DefaultApplicationEventHandler.class );
+                bindBus( "eventbus.test" ).toAnyBoundClass();
+            }
+    
+        } ).injectMembers( this );
+    }
+
+    public void notify()
+    {
+        eventBus.post( new ApplicationEvent() );
+    }
+
+}
++--------------------------------------+
+
+  That's all, have fun!
