@@ -1,0 +1,70 @@
+                                    ------
+                                    Home
+                                    ------
+                                    Simple Configuration
+                                    ------
+                                     2012
+
+~~
+~~   Copyright 2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+Loading Modules
+
+  GSPI allows loading <<<com.google.inject.Module>>>s from the SPI in an easy way:
+  define first which <<<Module>>>s you intend to load in the <<<META-INF/services/com.google.inject.Module>>> file(s):
+
+----------------------------------------
+# created by Jack Bauer in less than 24h
+
+com.acme.FooModule
+com.acme.BarModule
+com.acme.FooTestCase$AcmeModule   # EOL comment
+
+# comments and blank lines supported
+
+
+#
+----------------------------------------
+
+  then, load modules invoking <<<org.nnsoft.guice.gspi.GuiceServiceLoader.*>>> APIs:
+
++--------------------------------------+
+import static org.nnsoft.guice.gspi.GuiceServiceLoader.loadModules;
+import static com.google.inject.Guice.createInjector;
+
+import com.google.inject.Injector;
+
+...
+
+Injector injector = createInjector( loadModules() );
++--------------------------------------+
+
+  Eh?!? Just that?!? YES!!! :)
+
+Loading modules from SystemProperties
+
+  Alternatively, SPIs can be specified via <Java System properties>:
+
+----------------------------------------
+java -Dcom.google.inject.Module=com.acme.FooModule,com.acme.BarModule,com.acme.FooTestCase$AcmeModule
+----------------------------------------
+
+  Where <<,>> is the separator character between Providers.
+
+* Note
+
+  If SPIs will be found in <Java System properties>, <<<META-INF/services/com.google.inject.Module>>>
+  file(s) will be ignored
