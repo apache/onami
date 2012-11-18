@@ -1,0 +1,145 @@
+ ------
+ Guice Integration
+ ------
+ The 99 Software Foundation
+ ------
+ 2010
+ ------
+~~
+~~   Copyright 2010-2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+Guice integration!
+
+  <JUnice> provides a couple of annotations to allow user reusing google-guice
+  modules in test classes.
+
+  <<<@org.nnsoft.guice.junice.annotation.GuiceModule>>> is a class annotation usefull to
+  indicate a list of google-guice modules class.
+
+  <<<@org.nnsoft.guice.junice.annotation.GuiceProvidedModules>>> is a method annotation
+  usefull to indicate a provider method to create a custom google-guice module.
+
+* GuiceModule annotation
+
+  This example shows a typical use for this annotation; given the following
+  module:
+
++----------------------------------------+
+public class SimpleModule extends AbstractModule {
+
+    @Override
+    protected void configure() {
+        bind(Hello.class).to(HelloWorld.class);
+    }
+
+}
++----------------------------------------+
+
+  then users can reuse it specifying
+
++----------------------------------------+
+@RunWith(JUniceRunner.class)
+@GuiceModules(modules={ SimpleModule.class,
+                        AnotherAcmeModule.class })
+public class SimpleTest {
+
+ @com.google.inject.Inject
+  private Hello helloWorld;
+
+  @org.junit.Test
+  public void testInjectNotStatic() {
+    assertNotNull(helloWorld);
+    assertEquals("Hello World!!!!", helloWorld.sayHallo());
+  }
+
+}
++----------------------------------------+
+
+
+* GuiceProvidedModule annotation
+
+  GuiceProvidedModule is usefull when your test needs a module that not have a default costructor.
+  So in you testcase you have to declare a <<public static>> method with the return type is <com.google.inject.Module>
+  or <Iterable\<com.google.inject.Module\>> or or <com.google.inject.Module[]>
+
+
++----------------------------------------+
+public class ComplexModule extends AbstractModule {
+
+    private String name;
+
+    public ComplexModule(String name) {
+        this.name = name;
+    }
+
+    @Override
+    protected void configure() {
+        bind(WhoIm.class).toInstance(new WhoIm(name));
+    }
+
+}
++----------------------------------------+
+
+
+
++----------------------------------------+
+@RunWith(JUniceRunner.class)
+public class SimpleTest {
+
+    @GuiceProvidedModules
+    public static Module createComplexModule(){
+        return new ComplexModule("Marco Speranza");
+    }
+
+    @com.google.inject.Inject
+    public static WhoIm whoIm;
+
+    @org.junit.Test
+    public void testWhoIm() {
+        assertNotNull(whoIm);
+        assertEquals("Marco Speranza", whoIm.sayWhoIm());
+    }
+
+}
++----------------------------------------+
+
+  Finally if you want create a module on the fly, your test case should extend
+  <<<com.google.inject.AbstractModule>>> or implement a
+  <<<com.google.inject.Module>>>
+
++----------------------------------------+
+@RunWith(JUniceRunner.class)
+public class SimpleTest extends AbstractModule {
+
+    @Override
+     public void configure() {
+        bind(Integer.class)
+             .annotatedWith(Names.named("version"))
+                    .toInstance(10);
+    }
+
+    @Inject
+    @Named("version")
+    private Integer version;
+
+    @Test
+    public void testInjectModuleClass(){
+        assertNotNull(version);
+        assertEquals(10, version.intValue());
+    }
+
+}
++----------------------------------------+
