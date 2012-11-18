@@ -1,0 +1,58 @@
+                                    ------
+                                    JULI
+                                    ------
+                                    Simone Tripodi
+                                    ------
+                                     2012
+
+~~
+~~   Copyright 2010-2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+JULI - Java Utils Logging
+
+  Users that want to use the <<<java.util.logging>>> package and let <Guice>
+  injects automagically <<<java.util.logging.Logger>>> instances, have to add
+  the following dependency in the <<<pom.xml>>>:
+
++--------------------------------------+
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>sli4j-juli</artifactId>
+  <version>${project.version}</version>
+  <scope>compile</scope>
+</dependency>
++--------------------------------------+
+
+  then, when creating the <<<com.google.inject.Injector>>>, add the
+  <<<org.nnsoft.guice.sli4j.juli.JuliLoggingModule>>> module; please take note
+  that users have to specify the classes <<<com.google.inject.matcher.Matcher>>>
+  for whom the logging injection has to be applied:
+
++--------------------------------------+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import org.nnsoft.guice.sli4j.juli.JuliLoggingModule;
+import com.google.inject.matcher.Matchers;
+
+...
+
+Injector injector = Guice.createInjector( new JuliLoggingModule( Matchers.any() ),
+    ...
+);
++--------------------------------------+
+
+  and the magic happens :)

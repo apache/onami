@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2009-2011 The 99 Software Foundation
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<document>
+  <properties>
+    <author email="simone dot tripodi at gmail dot com">Simone Tripodi</author>
+    <title>Changes</title>
+  </properties>
+
+  <body>
+    <release version="3.2" date="2012-07-13" description="Maintenance release">
+      <action dev="simone.tripodi" type="fix" issue="2" due-to="Thilo-Alexander Ginkel">
+        Fix race condition in AbstractLoggerInjector
+      </action>
+    </release>
+
+    <release version="3.1" date="2012-07-09" description="Maintenance release">
+      <action dev="simone.tripodi" type="fix" issue="1" due-to="Thilo-Alexander Ginkel">
+        AbstractLoggerInjector#injectMembers uses incorrect class when creating logger.
+      </action>
+    </release>
+
+    <release version="3.1" date="2012-03-19" description="Upgrade release">
+      <action dev="simone.tripodi" type="update">
+        Updated dependencies, upgraded to latest 99soft infra.
+      </action>
+      <action dev="simone.tripodi" type="add">
+        Added default empty constructors in each logging module.
+      </action>
+    </release>
+
+    <release version="3.0" date="2011-03-25" description="Upgrade release">
+      <action dev="simone.tripodi" type="update">
+        Code moved to GitHub.
+      </action>
+      <action dev="simone.tripodi" type="update">
+        removed custom slf4j modules, slf4j APIs are enough.
+      </action>
+    </release>
+
+    <release version="2.0" date="2010-06-09" description="Major release">
+      <action dev="simone.tripodi" type="update">
+        Switched to Sonatype infrastructure.
+      </action>
+      <action dev="simone.tripodi" type="update">
+        Moved to com.googlecode package.
+      </action>
+    </release>
+
+    <release version="1.0" date="2009-02-12" description="First release">
+      <action dev="simone.tripodi" type="update">
+        First release.
+      </action>
+    </release>
+  </body>
+
+</document>
