@@ -1,0 +1,232 @@
+                                    ------
+                                    Home
+                                    ------
+                                    Configuration
+                                    ------
+                                     2010
+
+~~
+~~   Copyright 2009-2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+The Converters module
+
+  The <Converters> module adds some string-to-type converters not already present
+  in Google Guice, plus a simple to use module that makes easier the converters
+  registration.
+
+* The ConvertersModule
+
+  Starting from the version 3.1, each converter contained in the <<<com.googlecode.rocoto.converters>>>
+  package is implemented as a self-binding module easy to install in the Injector
+  as shown below:
+
++--------------------------------------+
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+...
+
+Injector injector = Guice.createInjector(new XXXConverter(),
+        new YYYConverter(),
+        new AbstractModule() {
+            @Override
+            protected void configure() {
+                this.bindConstant()
+                    .annotatedWith(Names.named("charset"))
+                    .to("UTF-8");
+            }
+        });
++--------------------------------------+
+
+* The Converters
+
+  The <<<com.googlecode.rocoto.converters>>> package comes with
+  default implementations of converers not already included in Google Guice.
+
+  Every converter throws runtime exceptions if invalid input are submitted to the
+  conversion process.
+
+  Let's show and explain how they work:
+
+** BigDecimalConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.math.BigDecimal>>>.
+
+** BigIntegerConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.math.BigInteger>>>.
+
+** BitSetConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.BitSet>>>.
+
+  String representation is typically a CSV String mixed o chars and numbers, i.e:
+
++--------------------------------------+
+a, 123, ~
++--------------------------------------+
+
+  in the example, <<<a>>> is taken in consideration as a <<<char>>>, <<<123>>>
+  as an <<<int>>>, <<<~>>> as a <<<char>>>.
+
+  <<Note>> non numerical fragments with length great than 1 are not allowed!!!
+
+** CharsetConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.nio.charset.Charset>>>.
+
+** ClobConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.sql.Clob>>>.
+
+** CurrencyConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Currency>>>.
+
+** DateConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Calendar>>> and to <<<java.util.Date>>>.
+
+  By default, this converter manages the following ISO Date format representation:
+
+  * yyyy;
+
+  * yyyy-MM;
+
+  * yyyy-MM-dd;
+
+  * yyyy-MM-dd'T'hh:mmZ;
+
+  * yyyy-MM-dd'T'hh:mm:ssZ;
+
+  * yyyy-MM-dd'T'hh:mm:ss.sZ
+
+  If users need to add new supported date formats, first they have to retrieve
+  the <DateConverter>, then add a new pattern:
+
++--------------------------------------+
+DateConverter dateConverter = module.lookup(Date.class, DateConverter.class);
+dateConverter.addPattern("EEE, MMM d, ''yy");
++--------------------------------------+
+
+  If users need to set the <<<java.util.Locale>>> and/or the
+  <<<java.util.TimeZone>>>, first they have to retrieve the <DateConverter>,
+  then set their preferences:
+
++--------------------------------------+
+import java.util.Locale;
+import java.util.TimeZone;
+...
+DateConverter dateConverter = module.lookup(Date.class, DateConverter.class);
+dateConverter.setLocale(Locale.getDefault());
+dateConverter.setTimeZone(TimeZone.getDefault());
++--------------------------------------+
+
+** DecimalFormatConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.text.DecimalFormat>>>
+
+** FileConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.io.File>>>
+
+** InetAddressConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.net.InetAddress>>>
+
+** LocaleConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Locale>>>
+
+  The converter checks first if the input String matches with the pattern
+  <languageCode_counrtyCode> to create the <<<java.util.Locale>>> otherwise
+  will use the input value as Locale language.
+
+** PatternConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.regex.Pattern>>>
+
+** PropertiesConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Properties>>>
+
+  <<Note>> Input string has to match with the pattern <key1=value1\nkey2=value2...>
+  encoded using the <<<ISO-8859-1>>> charset, according to <<<java.util.Properties>>>
+  recommendation.
+
+** SQLDateConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.sql.Date>>>, input has to match with <<<yyyy-MM-dd>>> pattern.
+
+** SQLTimeConverter.java
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.sql.Time>>>, input has to match with <<<HH:mm:ss>>> pattern.
+
+** SQLTimestampConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.sql.Timestamp>>>, input has to match with <<<yyyy-MM-dd HH:mm:ss.fffffffff>>> pattern.
+
+** TimeZoneConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.TimeZone>>>.
+
+** URIConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.net.URI>>>.
+
+** URLConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.net.URL>>>, supporting the <classpath://> pseudo protocol, to load
+  resources from the the class path.
+
+  Users that need to load classpath resources, have to specify the full qualified
+  name of the resource. For example, given the class path resource:
+
++--------------------------------------+
+com.acme.myapplication.JDBC.properties
++--------------------------------------+
+
+  following URLs point to the same resource:
+
++--------------------------------------+
+classpath://com/acme/myapplication/JDBC.properties
+classpath:///com/acme/myapplication/JDBC.properties
++--------------------------------------+
+
+** UUIDConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.UUID>>>.
