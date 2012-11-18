@@ -66,7 +66,7 @@
     </head>
 
     <menu name="Components" inherit="bottom">
-      <item name="Autoinject"     href="/autoinject" />
+      <item name="Autobind"       href="/autobind" />
       <item name="Cache"          href="/cache" />
       <item name="Configuration"  href="/configuration" />
       <item name="Guava"          href="/guava" />
