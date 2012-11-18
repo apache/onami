@@ -1,0 +1,165 @@
+                                    ------
+                                    User Guide
+                                    ------
+                                    The 99 Software Foundation
+                                    ------
+                                     2011-2012
+
+~~
+~~   Copyright 2009-2012 The 99 Software Foundation
+~~
+~~   Licensed under the Apache License, Version 2.0 (the "License");
+~~   you may not use this file except in compliance with the License.
+~~   You may obtain a copy of the License at
+~~
+~~       http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~   Unless required by applicable law or agreed to in writing, software
+~~   distributed under the License is distributed on an "AS IS" BASIS,
+~~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~~   See the License for the specific language governing permissions and
+~~   limitations under the License.
+~~
+
+Guartz user's guide
+
+  <Guartz> provides the <<<org.nnsoft.guice.guartz.QuartzModule>>> that makes easier the <<<org.quartz.Scheduler>>>
+  creation and <<<org.quartz.Job>>> creation and scheduling.
+
+* Scheduler
+
+  Once the Guice Injector will be created using the <<<org.nnsoft.guice.guartz.QuartzModule>>>, the
+  <<<org.quartz.Scheduler>>> will be ready and started. Users can require the <<<org.quartz.Scheduler>>> injection
+  for custom operations and for shutdown it.
+
++--------------------------------------+
+public class MyApplicationShutdownListener
+{
+
+    @Inject
+    private org.quartz.Scheduler scheduler;
+
+    public void shutdown()
+        throws Exception
+    {
+        ...
+        scheduler.shutdown();
+        ...
+    }
+
+}
++--------------------------------------+
+
+  Users that need to register listeners, can us the <<<org.nnsoft.guice.guartz.QuartzModule>>> EDSL:
+
++--------------------------------------+
+Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+{
+
+   @Override
+   protected void schedule()
+   {
+       addJobListener( com.acme.MyJobListener.class );
+       addTriggerListener( com.acme.MyTriggerListener.class );
+       addSchedulerListener( com.acme.MySchedulerListener.class );
+   }
+
+});
++--------------------------------------+
+
+  Don't create listeners instances manually, let Guice do the job for you!
+
+* Job
+
+  <Guartz> manages as well <<<org.quartz.Job>>> instances and scheduling, a typical example of
+  scheduling <<<org.quartz.Job>>> is:
+
++--------------------------------------+
+Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+{
+
+   @Override
+   protected void schedule()
+   {
+       ...
+       scheduleJob( com.acme.MyJobImpl.class ).withCronExpression( "0/2 * * * * ?" );
+       ...
+   }
+
+});
++--------------------------------------+
+
+  Don't create jobs instances manually, let Guice do the job for you!
+
+  Please refer to {{{./apidocs/reference/org/nnsoft/guice/guartz/JobSchedulerBuilder.html}JobSchedulerBuilder}} Javadoc
+  to see all the scheduling configuration parameters.
+
+** Implicit scheduling
+
+  Job classes annotated with <<<org.nnsoft.guice.guartz.Scheduled>>> will be automatically scheduled extracting
+  configuration parameters, i.e. given the :
+
++--------------------------------------+
+@javax.inject.Singleton
+@org.nnsoft.guice.guartz.Scheduled( jobName = "test", cronExpression = "0/2 * * * * ?" )
+public class com.acme.MyJobImpl
+    implements org.quartz.Job
+{
+
+    @javax.inject.Inject
+    private MyCustomService service;
+
+    public void execute( JobExecutionContext context )
+        throws JobExecutionException
+    {
+        service.customOperation();
+    }
+
+}
++--------------------------------------+
+
+  Then, when creating the <<<Injector>>> instance:
+
++--------------------------------------+
+Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+{
+
+   @Override
+   protected void schedule()
+   {
+       ...
+       scheduleJob( com.acme.MyJobImpl.class );
+       ...
+   }
+
+});
++--------------------------------------+
+
+** Starting the schedule manually
+
+  Since version 1.1, thanks to {{{https://github.com/argast}Pawel Poltorak}}, <Guartz> can be configured to let
+  the <<<Scheduler>>> instance started manually.
+
+  That feature is incredibly useful due to serious
+  {{{http://code.google.com/p/google-guice/issues/detail?id=183}deadlock}}
+  {{{http://groups.google.com/group/google-guice/browse_thread/thread/c4ccd95b76192519}issue}} found in the main Guice
+  thread:
+
++--------------------------------------+
+Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+{
+
+   @Override
+   protected void schedule()
+   {
+       ...
+       configureScheduler().withManualStart();
+       ...
+   }
+
+});
++--------------------------------------+
+
+  So users have to get the <<<Scheduler>>> instance and invoke the start explicitly.
+
+  Simple enough, uh?
