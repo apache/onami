@@ -33,10 +33,6 @@
   <url>http://onami.incubator.apache.org/cache/</url>
   <inceptionYear>2012</inceptionYear>
 
-  <modules>
-    <module>core</module>
-  </modules>
-
   <scm>
     <url>http://github.com/99soft/gache</url>
     <connection>scm:git:ssh://github.com/99soft/gache.git</connection>
