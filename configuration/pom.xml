@@ -38,6 +38,22 @@
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/configuration</developerConnection>
     <tag>HEAD</tag>
   </scm>
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>https://builds.apache.org/job/Onami-Configuration/</url>
+    <notifiers>
+      <notifier>
+        <type>mail</type>
+        <sendOnError>true</sendOnError>
+        <sendOnFailure>true</sendOnFailure>
+        <sendOnSuccess>false</sendOnSuccess>
+        <sendOnWarning>false</sendOnWarning>
+        <configuration>
+          <address>onami-dev@incubator.apache.org</address>
+        </configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
 
   <properties>
     <osgi.import>
