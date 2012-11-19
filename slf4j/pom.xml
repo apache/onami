@@ -28,7 +28,7 @@
   <artifactId>onami-logging-slf4j</artifactId>
   <packaging>jar</packaging>
 
-  <name>99soft :: logging :: SLF4J</name>
+  <name>Apache Onami-Logging :: SLF4J</name>
   <description>logging slf4j</description>
 
   <properties>

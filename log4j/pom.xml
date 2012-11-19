@@ -27,7 +27,7 @@
 
   <artifactId>onami-logging-log4j</artifactId>
   <packaging>jar</packaging>
-  <name>99soft :: logging :: Apache Log4j</name>
+  <name>Apache Onami-Logging :: Apache Log4j</name>
   <description>logging apache log4j</description>
 
   <properties>

@@ -27,7 +27,7 @@
 
   <artifactId>onami-logging-juli</artifactId>
   <packaging>jar</packaging>
-  <name>99soft :: logging :: JULI</name>
+  <name>Apache Onami-Logging :: JULI</name>
   <description>logging juli</description>
 
   <properties>
