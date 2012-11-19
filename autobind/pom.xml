@@ -50,16 +50,6 @@
     <connection>scm:git:ssh://github.com/99soft/autobind.git</connection>
     <developerConnection>scm:git:git+ssh://git@github.com/99soft/autobind.git</developerConnection>
   </scm>
-  <issueManagement>
-    <system>GitHub Issue Management</system>
-    <url>https://github.com/99soft/autobind/issues</url>
-  </issueManagement>
-  <distributionManagement>
-    <site>
-      <id>github</id>
-      <url>gitsite:git@github.com/99soft/autobind.git</url>
-    </site>
-  </distributionManagement>
 
   <properties>
     <javac.src.version>1.6</javac.src.version>
