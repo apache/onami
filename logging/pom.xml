@@ -24,14 +24,14 @@
     <version>1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.apache.onami.sli4j</groupId>
-  <artifactId>sli4j-parent</artifactId>
+  <groupId>org.apache.onami.logging</groupId>
+  <artifactId>logging-parent</artifactId>
   <version>3.4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>99soft :: SLI4J :: Parent</name>
+  <name>99soft :: logging :: Parent</name>
   <description>Simple Logging Injector for Java</description>
-  <url>http://onami.incubator.apache.org/sli4j</url>
+  <url>http://onami.incubator.apache.org/logging</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -57,19 +57,19 @@
   </modules>
 
   <scm>
-    <url>http://github.com/99soft/sli4j</url>
-    <connection>scm:git:ssh://github.com/99soft/sli4j.git</connection>
-    <developerConnection>scm:git:git+ssh://git@github.com/99soft/sli4j.git</developerConnection>
+    <url>http://github.com/99soft/logging</url>
+    <connection>scm:git:ssh://github.com/99soft/logging.git</connection>
+    <developerConnection>scm:git:git+ssh://git@github.com/99soft/logging.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
-    <url>https://github.com/99soft/sli4j/issues</url>
+    <url>https://github.com/99soft/logging/issues</url>
   </issueManagement>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>gitsite:git@github.com/99soft/sli4j.git</url>
+      <url>gitsite:git@github.com/99soft/logging.git</url>
     </site>
   </distributionManagement>
 

@@ -19,17 +19,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.onami.sli4j</groupId>
-    <artifactId>sli4j-parent</artifactId>
+    <groupId>org.apache.onami.logging</groupId>
+    <artifactId>logging-parent</artifactId>
     <version>3.4-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>sli4j-testfw</artifactId>
+  <artifactId>logging-testfw</artifactId>
   <packaging>jar</packaging>
 
-  <name>99soft :: SLI4J :: Test framework</name>
-  <description>Test framework for sli4j modules test</description>
+  <name>99soft :: logging :: Test framework</name>
+  <description>Test framework for logging modules test</description>
 
   <dependencies>
     <dependency>
@@ -40,7 +40,7 @@
 
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>sli4j-core</artifactId>
+      <artifactId>logging-core</artifactId>
       <version>${project.parent.version}</version>
       <scope>compile</scope>
     </dependency>
