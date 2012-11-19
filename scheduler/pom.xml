@@ -40,10 +40,6 @@
     <developerConnection>scm:git:git+ssh://git@github.com/99soft/guartz.git</developerConnection>
   </scm>
 
-  <properties>
-    <project.previousVersion>1.0</project.previousVersion>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>javax.inject</groupId>
