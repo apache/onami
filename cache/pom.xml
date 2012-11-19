@@ -30,7 +30,7 @@
 
   <name>99soft :: Gache</name>
   <description>A lightweight yet powerful Google Guice - JCache bridge integration</description>
-  <url>http://99soft.github.com/gache/</url>
+  <url>http://onami.incubator.apache.org/gache/</url>
   <inceptionYear>2012</inceptionYear>
 
   <developers>

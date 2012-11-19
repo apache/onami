@@ -30,7 +30,7 @@
   <version>1.4-SNAPSHOT</version>
   <name>JUnice</name>
   <description>Simple library to inject a Junit4 test classess via Google-Guice.</description>
-  <url>http://99soft.github.com/junice</url>
+  <url>http://onami.incubator.apache.org/junice</url>
 
   <inceptionYear>2010</inceptionYear>
 

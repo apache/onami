@@ -30,7 +30,7 @@
 
   <name>99soft :: Lifegycle</name>
   <description>objects lifecycle management made easy with Google Guice</description>
-  <url>http://99soft.github.com/lifegycle/</url>
+  <url>http://onami.incubator.apache.org/lifegycle/</url>
   <inceptionYear>2012</inceptionYear>
 
   <scm>
