@@ -25,12 +25,12 @@
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>gache</artifactId>
+  <artifactId>onami-cache</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>99soft :: Gache</name>
-  <description>A lightweight yet powerful Google Guice - JCache bridge integration</description>
-  <url>http://onami.incubator.apache.org/gache/</url>
+  <name>Apache Onami-Cache</name>
+  <description>Apache Onami-Cache is a lightweight yet powerful Google Guice - JCache bridge integration</description>
+  <url>http://onami.incubator.apache.org/cache/</url>
   <inceptionYear>2012</inceptionYear>
 
   <developers>
