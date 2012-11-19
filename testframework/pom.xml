@@ -25,7 +25,7 @@
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>logging-testfw</artifactId>
+  <artifactId>onami-logging-testfw</artifactId>
   <packaging>jar</packaging>
 
   <name>99soft :: logging :: Test framework</name>
