@@ -25,7 +25,7 @@
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>logging-acl</artifactId>
+  <artifactId>onami-logging-acl</artifactId>
   <packaging>jar</packaging>
 
   <name>99soft :: logging :: Apache Commons Logging</name>

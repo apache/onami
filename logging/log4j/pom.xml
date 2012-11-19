@@ -25,7 +25,7 @@
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>logging-log4j</artifactId>
+  <artifactId>onami-logging-log4j</artifactId>
   <packaging>jar</packaging>
   <name>99soft :: logging :: Apache Log4j</name>
   <description>logging apache log4j</description>
