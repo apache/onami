@@ -275,10 +275,7 @@ public abstract class QuartzModule
   <url/>
   <inceptionYear/>
 
-  <developers/>
   <contributors/>
-
-  <mailingLists/>
 
   <prerequisites/>
 
