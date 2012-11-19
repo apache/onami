@@ -34,23 +34,6 @@
   <url>http://onami.incubator.apache.org/scheduler</url>
   <inceptionYear>2011</inceptionYear>
 
-  <contributors>
-    <contributor>
-      <name>Jordi Gerona</name>
-      <url>https://github.com/jordi9</url>
-    </contributor>
-    <contributor>
-      <name>Pawel Poltorak</name>
-      <email>pawel dot poltorak at gmail dot com</email>
-      <url>https://github.com/argast</url>
-    </contributor>
-    <contributor>
-      <name>Thilo-Alexander Ginkel</name>
-      <email>hilo at ginkel dot com</email>
-      <url>http://blog.ginkel.com/</url>
-    </contributor>
-  </contributors>
-
   <scm>
     <url>http://github.com/99soft/guartz</url>
     <connection>scm:git:ssh://github.com/99soft/guartz.git</connection>
