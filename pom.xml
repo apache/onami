@@ -24,7 +24,7 @@
     <version>9</version>
   </parent>
 
-  <groupId>org.99soft.guice.sli4j</groupId>
+  <groupId>org.apache.onami.sli4j</groupId>
   <artifactId>sli4j-parent</artifactId>
   <version>3.4-SNAPSHOT</version>
   <packaging>pom</packaging>
