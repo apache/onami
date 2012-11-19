@@ -28,8 +28,8 @@
   <artifactId>onami-configuration</artifactId>
   <version>6.3-SNAPSHOT</version>
 
-  <name>Onami-Configuration</name>
-  <description>Add some spice to Google Guice through configuration files!</description>
+  <name>Apache Onami-Configuration</name>
+  <description>Apache Onami-Configuration adds some spice to Google Guice through configuration files!</description>
   <url>http://onami.incubator.apache.org/rocoto/</url>
 
   <scm>
