@@ -25,12 +25,12 @@
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>lifegycle</artifactId>
+  <artifactId>onami-lifecycle</artifactId>
   <version>0.2-SNAPSHOT</version>
 
-  <name>99soft :: Lifegycle</name>
-  <description>objects lifecycle management made easy with Google Guice</description>
-  <url>http://onami.incubator.apache.org/lifegycle/</url>
+  <name>Apache Onami-Lifecycle</name>
+  <description>Apache Onami-Lifecycle allows objects lifecycle management made easy with Google Guice</description>
+  <url>http://onami.incubator.apache.org/lifecycle/</url>
   <inceptionYear>2012</inceptionYear>
 
   <scm>
