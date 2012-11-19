@@ -25,12 +25,13 @@
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>gspi</artifactId>
+  <artifactId>onami-spi</artifactId>
   <version>0.2-SNAPSHOT</version>
 
-  <name>99soft :: G-SPI</name>
-  <description>objects lifecycle management made easy with Google Guice</description>
-  <url>http://onami.incubator.apache.org/gspi/</url>
+  <name>Apache Onami-SPI</name>
+  <description>Apache Onami-SPI is a Java5 compatible small collection of reusable tools to make easier the integration
+  with the Service Provider Interface pattern.</description>
+  <url>http://onami.incubator.apache.org/spi/</url>
   <inceptionYear>2012</inceptionYear>
 
   <scm>
