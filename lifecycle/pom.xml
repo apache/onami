@@ -34,9 +34,10 @@
   <inceptionYear>2012</inceptionYear>
 
   <scm>
-    <url>http://github.com/99soft/lifegycle</url>
-    <connection>scm:git:ssh://github.com/99soft/lifegycle.git</connection>
-    <developerConnection>scm:git:git+ssh://git@github.com/99soft/lifegycle.git</developerConnection>
+    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/lifecycle</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/lifecycle</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/lifecycle</developerConnection>
+    <tag>HEAD</tag>
   </scm>
 
   <dependencies>
