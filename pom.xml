@@ -25,14 +25,13 @@
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>guartz</artifactId>
+  <artifactId>onami-scheduler</artifactId>
   <version>1.4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>99soft:: Guartz</name>
-  <description>Guartz is the Google Guice extension for Quartz Scheduler,
-    originally developed by Nino Martinez Wael</description>
-  <url>https://github.com/99soft/guartz</url>
+  <name>Apache Onami-Scheduler</name>
+  <description>Apache Onami-Scheduler is the Google Guice extension for Quartz Scheduler</description>
+  <url>http://onami.incubator.apache.org/scheduler</url>
   <inceptionYear>2011</inceptionYear>
   <licenses>
     <license>
