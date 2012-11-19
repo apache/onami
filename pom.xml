@@ -48,16 +48,6 @@
     <developerConnection>scm:git:git+ssh://git@github.com/99soft/logging.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-  <issueManagement>
-    <system>GitHub Issue Management</system>
-    <url>https://github.com/99soft/logging/issues</url>
-  </issueManagement>
-  <distributionManagement>
-    <site>
-      <id>github</id>
-      <url>gitsite:git@github.com/99soft/logging.git</url>
-    </site>
-  </distributionManagement>
 
   <properties>
     <javadoc.aggregate>true</javadoc.aggregate>
