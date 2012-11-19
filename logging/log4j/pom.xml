@@ -28,7 +28,7 @@
   <artifactId>onami-logging-log4j</artifactId>
   <packaging>jar</packaging>
   <name>Apache Onami-Logging :: Apache Log4j</name>
-  <description>logging apache log4j</description>
+  <description>Apache Onami-Logging-Log4j is an Apache Log4j Injector</description>
 
   <properties>
     <site.skip>true</site.skip>

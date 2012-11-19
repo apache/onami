@@ -29,7 +29,7 @@
   <packaging>jar</packaging>
 
   <name>Apache Onami-Logging :: SLF4J</name>
-  <description>logging slf4j</description>
+  <description>Apache Onami-Logging-SLF4J is a SLF4J Injector</description>
 
   <properties>
     <site.skip>true</site.skip>
