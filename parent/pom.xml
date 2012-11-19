@@ -234,6 +234,9 @@
         <sendOnFailure>true</sendOnFailure>
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
+        <configuration>
+          <address>onami-dev@incubator.apache.org</address>
+        </configuration>
       </notifier>
     </notifiers>
   </ciManagement>
