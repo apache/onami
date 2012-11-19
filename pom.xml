@@ -30,7 +30,7 @@
 
   <name>Apache Onami-Configuration</name>
   <description>Apache Onami-Configuration adds some spice to Google Guice through configuration files!</description>
-  <url>http://onami.incubator.apache.org/rocoto/</url>
+  <url>http://onami.incubator.apache.org/configuration/</url>
 
   <scm>
     <url>https://svn.apache.org/viewvc/incubator/onami/trunk/configuration</url>
