@@ -42,11 +42,6 @@
     <tag>HEAD</tag>
   </scm>
 
-  <issueManagement>
-    <system>GitHub Issue Management</system>
-    <url>https://github.com/99soft/junice/issues</url>
-  </issueManagement>
-
   <dependencies>
     <dependency>
       <groupId>com.google.inject</groupId>
