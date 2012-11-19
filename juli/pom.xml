@@ -28,7 +28,7 @@
   <artifactId>onami-logging-juli</artifactId>
   <packaging>jar</packaging>
   <name>Apache Onami-Logging :: JULI</name>
-  <description>logging juli</description>
+  <description>Apache Onami-Logging-JULI is a JULI Injector</description>
 
   <properties>
     <site.skip>true</site.skip>

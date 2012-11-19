@@ -29,7 +29,7 @@
   <packaging>jar</packaging>
 
   <name>Apache Onami-Logging :: Core</name>
-  <description>logging core</description>
+  <description>Apache Onami-Logging core module</description>
 
   <properties>
     <site.skip>true</site.skip>
