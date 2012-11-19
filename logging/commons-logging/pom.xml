@@ -62,7 +62,9 @@
     <resources>
       <resource>
         <directory>${basedir}/../</directory>
+        <targetPath>META-INF</targetPath>
         <includes>
+          <include>DISCLAIMER</include>
           <include>LICENSE</include>
           <include>NOTICE</include>
         </includes>
