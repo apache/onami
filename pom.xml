@@ -27,12 +27,12 @@
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>junice</artifactId>
+  <artifactId>onami-test</artifactId>
   <version>1.4-SNAPSHOT</version>
-  <name>JUnice</name>
-  <description>Simple library to inject a Junit4 test classess via Google-Guice.</description>
-  <url>http://onami.incubator.apache.org/junice</url>
 
+  <name>Apache Onami-Test</name>
+  <description>Apache Onami-Test is a simple library to inject a Junit4 test classess via Google-Guice.</description>
+  <url>http://onami.incubator.apache.org/test</url>
   <inceptionYear>2010</inceptionYear>
 
   <distributionManagement>
