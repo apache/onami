@@ -35,24 +35,6 @@
   <url>http://onami.incubator.apache.org/autobind/</url>
   <inceptionYear>2010</inceptionYear>
 
-  <developers>
-    <developer>
-      <id>manzke</id>
-      <name>Daniel Manzke</name>
-      <email>daniel [dot] manzke [at] gmail [dot] com</email>
-      <url>http://devsurf.azurewebsites.net/</url>
-      <timezone>+1</timezone>
-    </developer>
-
-    <developer>
-      <id>simonetripodi</id>
-      <name>Simone Tripodi</name>
-      <email>simone [dot] tripodi [at] gmail [dot] com</email>
-      <url>http://simonetripodi.livejournal.com/</url>
-      <timezone>+1</timezone>
-    </developer>
-  </developers>
-
   <modules>
     <module>core</module>
     <module>configuration</module>
