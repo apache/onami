@@ -19,17 +19,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.onami.sli4j</groupId>
-    <artifactId>sli4j-parent</artifactId>
+    <groupId>org.apache.onami.logging</groupId>
+    <artifactId>logging-parent</artifactId>
     <version>3.4-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>sli4j-slf4j</artifactId>
+  <artifactId>logging-slf4j</artifactId>
   <packaging>jar</packaging>
 
-  <name>99soft :: SLI4J :: SLF4J</name>
-  <description>sli4j slf4j</description>
+  <name>99soft :: logging :: SLF4J</name>
+  <description>logging slf4j</description>
 
   <properties>
     <site.skip>true</site.skip>
@@ -39,7 +39,7 @@
   <dependencies>
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>sli4j-core</artifactId>
+      <artifactId>logging-core</artifactId>
       <version>${project.parent.version}</version>
       <scope>compile</scope>
     </dependency>
@@ -53,7 +53,7 @@
 
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>sli4j-testfw</artifactId>
+      <artifactId>logging-testfw</artifactId>
       <version>${project.parent.version}</version>
       <scope>test</scope>
     </dependency>

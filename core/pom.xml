@@ -19,17 +19,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.onami.sli4j</groupId>
-    <artifactId>sli4j-parent</artifactId>
+    <groupId>org.apache.onami.logging</groupId>
+    <artifactId>logging-parent</artifactId>
     <version>3.4-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>sli4j-core</artifactId>
+  <artifactId>logging-core</artifactId>
   <packaging>jar</packaging>
 
-  <name>99soft :: SLI4J :: Core</name>
-  <description>sli4j core</description>
+  <name>99soft :: logging :: Core</name>
+  <description>logging core</description>
 
   <properties>
     <site.skip>true</site.skip>
