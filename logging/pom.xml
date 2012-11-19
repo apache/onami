@@ -29,8 +29,8 @@
   <version>3.4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>99soft :: logging :: Parent</name>
-  <description>Simple Logging Injector for Java</description>
+  <name>Apache Onami-Logging :: Parent</name>
+  <description>Apache Onami-Logging is a Logging Injector for Java</description>
   <url>http://onami.incubator.apache.org/logging</url>
   <licenses>
     <license>
