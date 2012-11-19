@@ -226,7 +226,7 @@
   </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://builds.apache.org/job/Onami-parent-trunk/</url>
+    <url>https://builds.apache.org/job/Onami-Parent/</url>
     <notifiers>
       <notifier>
         <type>mail</type>
