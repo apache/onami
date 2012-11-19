@@ -19,22 +19,22 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.nnsoft.guice.autobind</groupId>
+    <groupId>org.apache.onami.autobind</groupId>
     <artifactId>autobind-parent</artifactId>
     <version>0.9.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>autobind-configuration</artifactId>
-  <name>org.nnsoft.guice.autobind.configuration</name>
+  <name>org.apache.onami.autobind.configuration</name>
 
   <dependencies>
     <dependency>
-      <groupId>org.nnsoft.guice.autobind</groupId>
+      <groupId>org.apache.onami.autobind</groupId>
       <artifactId>autobind-core</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.99soft.guice</groupId>
+      <groupId>org.apache.onami</groupId>
       <artifactId>rocoto</artifactId>
       <version>6.1</version>
     </dependency>

@@ -24,7 +24,7 @@
     <version>10</version>
   </parent>
 
-  <groupId>org.nnsoft.guice</groupId>
+  <groupId>org.apache.onami</groupId>
   <artifactId>gache</artifactId>
   <version>0.1-SNAPSHOT</version>
 

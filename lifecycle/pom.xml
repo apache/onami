@@ -24,7 +24,7 @@
     <version>9</version>
   </parent>
 
-  <groupId>org.99soft.guice</groupId>
+  <groupId>org.apache.onami</groupId>
   <artifactId>lifegycle</artifactId>
   <version>0.2-SNAPSHOT</version>
 

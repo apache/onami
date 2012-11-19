@@ -24,7 +24,7 @@
     <version>9</version>
   </parent>
 
-  <groupId>org.99soft.guice</groupId>
+  <groupId>org.apache.onami</groupId>
   <artifactId>gspi</artifactId>
   <version>0.2-SNAPSHOT</version>
 
@@ -87,8 +87,8 @@
         <configuration>
           <systemProperties>
             <property>
-              <name>org.nnsoft.guice.gspi.FooService</name>
-              <value>org.nnsoft.guice.gspi.FooServiceImpl1,org.nnsoft.guice.gspi.FooServiceImpl2</value>
+              <name>org.apache.onami.gspi.FooService</name>
+              <value>org.apache.onami.gspi.FooServiceImpl1,org.apache.onami.gspi.FooServiceImpl2</value>
             </property>
           </systemProperties>
         </configuration>
