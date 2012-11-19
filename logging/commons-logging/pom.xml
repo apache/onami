@@ -28,7 +28,7 @@
   <artifactId>onami-logging-acl</artifactId>
   <packaging>jar</packaging>
 
-  <name>99soft :: logging :: Apache Commons Logging</name>
+  <name>Apache Onami-Logging :: Apache Commons Logging</name>
   <description>logging Apache Commons Logging</description>
 
   <properties>

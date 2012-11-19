@@ -28,7 +28,7 @@
   <artifactId>onami-logging-core</artifactId>
   <packaging>jar</packaging>
 
-  <name>99soft :: logging :: Core</name>
+  <name>Apache Onami-Logging :: Core</name>
   <description>logging core</description>
 
   <properties>

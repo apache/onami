@@ -28,7 +28,7 @@
   <artifactId>onami-logging-testfw</artifactId>
   <packaging>jar</packaging>
 
-  <name>99soft :: logging :: Test framework</name>
+  <name>Apache Onami-Logging :: Test framework</name>
   <description>Test framework for logging modules test</description>
 
   <dependencies>
