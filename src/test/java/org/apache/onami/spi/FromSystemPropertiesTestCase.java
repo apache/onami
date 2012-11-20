@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi;
+package org.apache.onami.spi;
 
 import static com.google.inject.Guice.createInjector;
 import static org.junit.Assert.assertEquals;
@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 
 import java.util.Set;
 
+import org.apache.onami.spi.ServiceLoaderModule;
 import org.junit.Before;
 import org.junit.Test;
 

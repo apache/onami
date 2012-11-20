@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi;
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -19,8 +19,8 @@ package org.nnsoft.guice.gspi;
 
 import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
-import static org.nnsoft.guice.gspi.ServiceLoader.load;
-import static org.nnsoft.guice.gspi.ServiceLoader.loadInstalled;
+import static org.apache.onami.spi.ServiceLoader.load;
+import static org.apache.onami.spi.ServiceLoader.loadInstalled;
 
 import java.util.Iterator;
 

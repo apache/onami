@@ -95,8 +95,8 @@
         <configuration>
           <systemProperties>
             <property>
-              <name>org.apache.onami.gspi.FooService</name>
-              <value>org.apache.onami.gspi.FooServiceImpl1,org.apache.onami.gspi.FooServiceImpl2</value>
+              <name>org.apache.onami.spi.FooService</name>
+              <value>org.apache.onami.spi.FooServiceImpl1,org.apache.onami.spi.FooServiceImpl2</value>
             </property>
           </systemProperties>
         </configuration>

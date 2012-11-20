@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi;
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -22,14 +22,14 @@ import static com.google.inject.Key.get;
 import static com.google.inject.internal.util.$Preconditions.checkArgument;
 import static com.google.inject.multibindings.Multibinder.newSetBinder;
 import static java.lang.Thread.currentThread;
-import static org.nnsoft.guice.gspi.ServiceLoader.load;
+import static org.apache.onami.spi.ServiceLoader.load;
 
 import java.lang.annotation.Annotation;
 import java.util.Iterator;
 
-import org.nnsoft.guice.gspi.binder.AnnotatedServiceBuilder;
-import org.nnsoft.guice.gspi.binder.FromClassLoaderBuilder;
-import org.nnsoft.guice.gspi.binder.ServiceBuilder;
+import org.apache.onami.spi.binder.AnnotatedServiceBuilder;
+import org.apache.onami.spi.binder.FromClassLoaderBuilder;
+import org.apache.onami.spi.binder.ServiceBuilder;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Binder;

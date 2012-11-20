@@ -14,7 +14,7 @@
 #  limitations under the License.
 #
 
-org.nnsoft.guice.gspi.AcmeServiceImpl1   # EOL comment
+org.apache.onami.spi.AcmeServiceImpl1   # EOL comment
 
 # comments & blank lines
 

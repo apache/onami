@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi.binder;
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,19 +17,14 @@ package org.nnsoft.guice.gspi.binder;
  * limitations under the License.
  */
 
-/**
- * Allows specify the {@code ClassLoader} used to load the Service in the binding.
- */
-public interface FromClassLoaderBuilder
-    extends AnnotatedServiceBuilder
+public final class AcmeServiceImpl1
+    implements AcmeService
 {
 
-    /**
-     * Specifies the {@code ClassLoader} used to load the Service in the binding.
-     *
-     * @param classLoader the {@code ClassLoader} used to load the Service in the binding.
-     * @return the chained EDSL builder.
-     */
-    AnnotatedServiceBuilder fromClassLoader( ClassLoader classLoader );
+    public void doSomething()
+    {
+        // but does nothing
+
+    }
 
 }

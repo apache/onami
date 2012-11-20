@@ -1,3 +1,4 @@
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -16,7 +17,14 @@
  * limitations under the License.
  */
 
-/**
- * Google Guice Module SPI EDSL.
- */
-package org.nnsoft.guice.gspi.binder;
+public final class FooServiceImpl2
+    implements FooService
+{
+
+    @Override
+    public void doSomething()
+    {
+        // ... but does nothing
+    }
+
+}
