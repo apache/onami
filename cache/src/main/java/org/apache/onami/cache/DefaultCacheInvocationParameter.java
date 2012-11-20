@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gache;
+package org.apache.onami.cache;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more

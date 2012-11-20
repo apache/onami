@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gache;
+package org.apache.onami.cache;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -21,43 +21,30 @@ import javax.cache.Cache;
 import javax.cache.annotation.CacheInvocationContext;
 import javax.cache.annotation.CacheKey;
 import javax.cache.annotation.CacheKeyInvocationContext;
-import javax.cache.annotation.CachePut;
+import javax.cache.annotation.CacheRemoveEntry;
 
-import org.aopalliance.intercept.MethodInvocation;
-
-final class CachePutInterceptor
-    extends AfterBeforeInvocationInterceptor<CachePut>
+/**
+ *
+ */
+final class CacheRemoveEntryInterceptor
+    extends AfterBeforeInvocationInterceptor<CacheRemoveEntry>
 {
 
     @Override
-    public Class<CachePut> getInterceptedAnnotationType()
+    public Class<CacheRemoveEntry> getInterceptedAnnotationType()
     {
-        return CachePut.class;
+        return CacheRemoveEntry.class;
     }
 
     @Override
-    protected void hitCache( CacheInvocationContext<CachePut> context )
+    protected void hitCache( CacheInvocationContext<CacheRemoveEntry> context )
     {
-        CacheKeyInvocationContext<CachePut> keyedContext = (CacheKeyInvocationContext<CachePut>) context;
-        Object value = keyedContext.getValueParameter().getValue();
-
-        if ( value == null )
-        {
-            if ( context.getCacheAnnotation().cacheNull() )
-            {
-                // Null values are cached, set value to the null placeholder
-                value = NULL_PLACEHOLDER;
-            }
-            else
-            {
-                // Ignore null values
-                return;
-            }
-        }
+        CacheKeyInvocationContext<CacheRemoveEntry> keyedContext = (CacheKeyInvocationContext<CacheRemoveEntry>) context;
 
         Cache<Object, Object> cache = getCacheResolverFactory( context ).getCacheResolver( context ).resolveCache( context );
         CacheKey cacheKey = getCacheKeyGenerator( context ).generateCacheKey( keyedContext );
-        cache.put( cacheKey, value );
+
+        cache.remove( cacheKey );
     }
 
 }

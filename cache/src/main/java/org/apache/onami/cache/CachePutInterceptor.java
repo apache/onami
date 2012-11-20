@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gache;
+package org.apache.onami.cache;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -21,30 +21,43 @@ import javax.cache.Cache;
 import javax.cache.annotation.CacheInvocationContext;
 import javax.cache.annotation.CacheKey;
 import javax.cache.annotation.CacheKeyInvocationContext;
-import javax.cache.annotation.CacheRemoveEntry;
+import javax.cache.annotation.CachePut;
 
-/**
- *
- */
-final class CacheRemoveEntryInterceptor
-    extends AfterBeforeInvocationInterceptor<CacheRemoveEntry>
+import org.aopalliance.intercept.MethodInvocation;
+
+final class CachePutInterceptor
+    extends AfterBeforeInvocationInterceptor<CachePut>
 {
 
     @Override
-    public Class<CacheRemoveEntry> getInterceptedAnnotationType()
+    public Class<CachePut> getInterceptedAnnotationType()
     {
-        return CacheRemoveEntry.class;
+        return CachePut.class;
     }
 
     @Override
-    protected void hitCache( CacheInvocationContext<CacheRemoveEntry> context )
+    protected void hitCache( CacheInvocationContext<CachePut> context )
     {
-        CacheKeyInvocationContext<CacheRemoveEntry> keyedContext = (CacheKeyInvocationContext<CacheRemoveEntry>) context;
+        CacheKeyInvocationContext<CachePut> keyedContext = (CacheKeyInvocationContext<CachePut>) context;
+        Object value = keyedContext.getValueParameter().getValue();
+
+        if ( value == null )
+        {
+            if ( context.getCacheAnnotation().cacheNull() )
+            {
+                // Null values are cached, set value to the null placeholder
+                value = NULL_PLACEHOLDER;
+            }
+            else
+            {
+                // Ignore null values
+                return;
+            }
+        }
 
         Cache<Object, Object> cache = getCacheResolverFactory( context ).getCacheResolver( context ).resolveCache( context );
         CacheKey cacheKey = getCacheKeyGenerator( context ).generateCacheKey( keyedContext );
-
-        cache.remove( cacheKey );
+        cache.put( cacheKey, value );
     }
 
 }
