@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gguava.eventbus;
+package org.apache.onami.guava.eventbus;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -24,6 +24,7 @@ import static org.junit.Assert.assertTrue;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.onami.guava.eventbus.EventBusModule;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 /**
  * Modules integration with EventBus.
  */
-package org.nnsoft.guice.gguava.eventbus;
+package org.apache.onami.guava.eventbus;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
