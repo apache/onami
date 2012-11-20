@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi;
+package org.apache.onami.spi.binder;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,14 +17,20 @@ package org.nnsoft.guice.gspi;
  * limitations under the License.
  */
 
-public final class FooServiceImpl1
-    implements FooService
+/**
+ * Specifies if the Service loader has to load just the first or all found providers.
+ */
+public interface ServiceBuilder
 {
 
-    @Override
-    public void doSomething()
-    {
-        // ... but does nothing
-    }
+    /**
+     * Just loads the first provider found.
+     */
+    void loadingFirstService();
+
+    /**
+     * Loads all providers.
+     */
+    void loadingAllServices();
 
 }

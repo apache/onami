@@ -1,4 +1,3 @@
-package org.nnsoft.guice.gspi.binder;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -18,19 +17,6 @@ package org.nnsoft.guice.gspi.binder;
  */
 
 /**
- * Specifies if the Service loader has to load just the first or all found providers.
+ * SPI APIs integrated into Google Guice via fluent APIs.
  */
-public interface ServiceBuilder
-{
-
-    /**
-     * Just loads the first provider found.
-     */
-    void loadingFirstService();
-
-    /**
-     * Loads all providers.
-     */
-    void loadingAllServices();
-
-}
+package org.apache.onami.spi;

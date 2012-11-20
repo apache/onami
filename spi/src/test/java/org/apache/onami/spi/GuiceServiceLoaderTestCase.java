@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi;
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,21 +17,20 @@ package org.nnsoft.guice.gspi;
  * limitations under the License.
  */
 
-import static com.google.inject.Guice.createInjector;
-import static com.google.inject.name.Names.named;
+import static org.apache.onami.spi.GuiceServiceLoader.loadModules;
 import static org.junit.Assert.assertEquals;
+import static com.google.inject.Guice.createInjector;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
-public final class ServiceLoaderModuleTestCase
+public final class GuiceServiceLoaderTestCase
 {
 
     @Inject
-    @Named( "first" )
     private AcmeService acmeService;
 
     public void setAcmeService( AcmeService acmeService )
@@ -42,24 +41,27 @@ public final class ServiceLoaderModuleTestCase
     @Before
     public void setUp()
     {
-        createInjector( new ServiceLoaderModule()
-        {
-
-            @Override
-            protected void configure()
-            {
-                bindService( AcmeService.class ).annotatedWith( named( "first" ) ).loadingFirstService();
-            }
-
-        } )
-        .getMembersInjector( ServiceLoaderModuleTestCase.class )
+        createInjector( loadModules() )
+        .getMembersInjector( GuiceServiceLoaderTestCase.class )
         .injectMembers( this );
     }
 
     @Test
-    public void singleServiceInjection()
+    public void verifyRightModulesWereLoaded()
     {
         assertEquals( AcmeServiceImpl1.class, acmeService.getClass() );
+    }
+
+    public static final class AcmeModule
+        extends AbstractModule
+    {
+
+        @Override
+        protected void configure()
+        {
+            bind( AcmeService.class ).to( AcmeServiceImpl1.class );
+        }
+
     }
 
 }

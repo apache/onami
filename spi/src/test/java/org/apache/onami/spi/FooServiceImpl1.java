@@ -1,3 +1,4 @@
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -16,7 +17,14 @@
  * limitations under the License.
  */
 
-/**
- * SPI APIs integrated into Google Guice via fluent APIs.
- */
-package org.nnsoft.guice.gspi;
+public final class FooServiceImpl1
+    implements FooService
+{
+
+    @Override
+    public void doSomething()
+    {
+        // ... but does nothing
+    }
+
+}

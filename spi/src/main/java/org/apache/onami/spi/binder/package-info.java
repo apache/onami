@@ -1,4 +1,3 @@
-package org.nnsoft.guice.gspi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,9 +16,7 @@ package org.nnsoft.guice.gspi;
  * limitations under the License.
  */
 
-public interface AcmeService
-{
-
-    void doSomething();
-
-}
+/**
+ * Google Guice Module SPI EDSL.
+ */
+package org.apache.onami.spi.binder;

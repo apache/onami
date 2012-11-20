@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi;
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,13 +17,9 @@ package org.nnsoft.guice.gspi;
  * limitations under the License.
  */
 
-public final class AcmeServiceImpl2
-    implements AcmeService
+public interface AcmeService
 {
 
-    public void doSomething()
-    {
-        // but does nothing
-    }
+    void doSomething();
 
 }

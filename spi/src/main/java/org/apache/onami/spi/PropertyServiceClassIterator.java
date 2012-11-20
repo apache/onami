@@ -1,4 +1,4 @@
-package org.nnsoft.guice.gspi;
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more

@@ -14,7 +14,7 @@
 #  limitations under the License.
 #
 
-org.nnsoft.guice.gspi.GuiceServiceLoaderTestCase$AcmeModule   # EOL comment
+org.apache.onami.spi.GuiceServiceLoaderTestCase$AcmeModule   # EOL comment
 
 # comments & blank lines
 
