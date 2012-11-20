@@ -1,4 +1,4 @@
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -20,6 +20,8 @@ package org.nnsoft.guice.lifegycle;
 import static com.google.inject.Guice.createInjector;
 import static junit.framework.Assert.assertTrue;
 
+import org.apache.onami.lifecycle.AfterInjection;
+import org.apache.onami.lifecycle.AfterInjectionModule;
 import org.junit.Test;
 
 import com.google.inject.ConfigurationException;

@@ -1,4 +1,6 @@
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;
+
+import org.apache.onami.lifecycle.Dispose;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,13 +19,13 @@ package org.nnsoft.guice.lifegycle;
  * limitations under the License.
  */
 
-public final class WrongAfterInjectionMethod
+public final class ThrowingExceptionDisposeMethod
 {
 
-    @AfterInjection
-    public void init( String misplacedArg )
+    @Dispose
+    public void close()
     {
-        // do nothing
+        throw new IllegalStateException();
     }
 
 }

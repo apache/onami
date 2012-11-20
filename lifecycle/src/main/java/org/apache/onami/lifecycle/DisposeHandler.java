@@ -1,4 +1,4 @@
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,13 +17,25 @@ package org.nnsoft.guice.lifegycle;
  * limitations under the License.
  */
 
-public final class WrongDisposeMethod
+/**
+ * A {@link DisposeHandler} instance is used to track dispose progresses.
+ */
+public interface DisposeHandler
 {
 
-    @Dispose
-    public void close( Integer misplacedArg )
-    {
-        // do nothing
-    }
+    /**
+     * Tracks the input injectee successfully released the resources.
+     *
+     * @param injectee the injectee to be released
+     */
+    <I> void onSuccess( I injectee );
+
+    /**
+     * Tracks an error occurred while the input injectee released the resources.
+     *
+     * @param injectee the injectee to be released
+     * @param error the exception occurred
+     */
+    <I, E extends Throwable> void onError( I injectee, E error );
 
 }

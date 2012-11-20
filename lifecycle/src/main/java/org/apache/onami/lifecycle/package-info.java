@@ -17,4 +17,4 @@
 /**
  * Objects lifecycle management made easy with Google Guice.
  */
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;

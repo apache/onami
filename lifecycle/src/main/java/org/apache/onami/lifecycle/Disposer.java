@@ -1,4 +1,4 @@
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more

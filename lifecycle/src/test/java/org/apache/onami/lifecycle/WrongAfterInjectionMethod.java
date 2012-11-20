@@ -1,4 +1,6 @@
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;
+
+import org.apache.onami.lifecycle.AfterInjection;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,13 +19,13 @@ package org.nnsoft.guice.lifegycle;
  * limitations under the License.
  */
 
-public final class ThrowingExceptionAfterInjectionMethod
+public final class WrongAfterInjectionMethod
 {
 
     @AfterInjection
-    public void init()
+    public void init( String misplacedArg )
     {
-        throw new IllegalStateException();
+        // do nothing
     }
 
 }

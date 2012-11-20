@@ -1,4 +1,4 @@
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -25,13 +25,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * The {@code AfterInjection} annotation is used on a method that needs to be executed after dependency injection is
- * done to perform any initialization.
+ * The method annotated with {@code Dispose} is typically used to release resources that it has been holding.
  */
 @Documented
 @Retention( RUNTIME )
 @Target( METHOD )
-public @interface AfterInjection
+public @interface Dispose
 {
 
 }

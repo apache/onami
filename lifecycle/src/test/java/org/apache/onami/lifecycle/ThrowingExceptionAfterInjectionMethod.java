@@ -1,4 +1,6 @@
-package org.nnsoft.guice.lifegycle;
+package org.apache.onami.lifecycle;
+
+import org.apache.onami.lifecycle.AfterInjection;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,20 +19,13 @@ package org.nnsoft.guice.lifegycle;
  * limitations under the License.
  */
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-/**
- * The method annotated with {@code Dispose} is typically used to release resources that it has been holding.
- */
-@Documented
-@Retention( RUNTIME )
-@Target( METHOD )
-public @interface Dispose
+public final class ThrowingExceptionAfterInjectionMethod
 {
+
+    @AfterInjection
+    public void init()
+    {
+        throw new IllegalStateException();
+    }
 
 }
