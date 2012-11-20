@@ -1,4 +1,4 @@
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -24,6 +24,7 @@ import java.util.Properties;
 
 import javax.inject.Inject;
 
+import org.apache.onami.scheduler.QuartzModule;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

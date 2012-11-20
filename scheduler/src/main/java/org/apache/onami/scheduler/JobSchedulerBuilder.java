@@ -1,4 +1,4 @@
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -19,7 +19,7 @@ package org.nnsoft.guice.guartz;
 
 import static java.lang.String.format;
 import static java.util.TimeZone.getDefault;
-import static org.nnsoft.guice.guartz.Scheduled.DEFAULT;
+import static org.apache.onami.scheduler.Scheduled.DEFAULT;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobKey.jobKey;

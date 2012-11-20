@@ -1,4 +1,4 @@
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -20,20 +20,47 @@ package org.nnsoft.guice.guartz;
 import java.util.Properties;
 
 /**
- * Contains methods to change scheduler configuration by subclasses of QuartzModule.
+ * Configuration of scheduler.
  *
  * @since 1.1
  */
-public interface SchedulerConfigurationBuilder
+class SchedulerConfiguration
+    implements SchedulerConfigurationBuilder
 {
 
-    SchedulerConfigurationBuilder withManualStart();
+    private boolean manualStart = false;
 
     /**
      * @since 1.3
-     * @param properties
+     */
+    private Properties properties;
+
+    public SchedulerConfigurationBuilder withManualStart()
+    {
+        manualStart = true;
+        return this;
+    }
+
+    /**
+     * @since 1.3
+     */
+    public SchedulerConfigurationBuilder withProperties( Properties properties )
+    {
+        this.properties = properties;
+        return this;
+    }
+
+    boolean startManually()
+    {
+        return manualStart;
+    }
+
+    /**
+     * @since 1.3
      * @return
      */
-    SchedulerConfigurationBuilder withProperties( Properties properties );
+    Properties getProperties() {
+        return properties;
+    }
 
 }
