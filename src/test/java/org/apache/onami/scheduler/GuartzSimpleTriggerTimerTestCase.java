@@ -1,4 +1,4 @@
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -20,34 +20,29 @@ package org.nnsoft.guice.guartz;
 import static com.google.inject.Guice.createInjector;
 import static junit.framework.Assert.assertTrue;
 
-import javax.inject.Inject;
-
+import org.apache.onami.scheduler.QuartzModule;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.quartz.Scheduler;
+import org.quartz.SimpleScheduleBuilder;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
 
-/**
- *
- */
-public class GuartzTimerTestCase
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+public class GuartzSimpleTriggerTimerTestCase
 {
 
     @Inject
-    private TimedTask timedTask;
+    private SimpleTask timedTask;
 
     @Inject
     private Scheduler scheduler;
-
-    public void setTimedTask( TimedTask timedTask )
-    {
-        this.timedTask = timedTask;
-    }
-
-    public void setScheduler( Scheduler scheduler )
-    {
-        this.scheduler = scheduler;
-    }
 
     @Before
     public void setUp()
@@ -59,10 +54,13 @@ public class GuartzTimerTestCase
             @Override
             protected void schedule()
             {
-                scheduleJob( TimedTask.class );
+                Trigger trigger =
+                    TriggerBuilder.newTrigger().withSchedule( SimpleScheduleBuilder.repeatSecondlyForever() ).build();
+
+                scheduleJob( SimpleTask.class ).withTrigger( trigger );
             }
 
-        } ).getMembersInjector( GuartzTimerTestCase.class ).injectMembers( this );
+        } ).getMembersInjector( GuartzSimpleTriggerTimerTestCase.class ).injectMembers( this );
     }
 
     @After
@@ -77,7 +75,27 @@ public class GuartzTimerTestCase
         throws Exception
     {
         Thread.sleep( 5000 );
-        assertTrue( this.timedTask.getInvocationsTimedTaskA() > 0 );
+        assertTrue( this.timedTask.getInvocation() > 0 );
+    }
+
+    @Singleton
+    private static class SimpleTask
+        implements Job
+    {
+
+        private int invocation = 0;
+
+        public void execute( JobExecutionContext context )
+            throws JobExecutionException
+        {
+            invocation++;
+        }
+
+        public int getInvocation()
+        {
+            return invocation;
+        }
+
     }
 
 }

@@ -1,7 +1,7 @@
 /**
  * Guartz is the Google Guice extension for Quartz Scheduler, originally developed by Nino Martinez Wael.
  */
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more

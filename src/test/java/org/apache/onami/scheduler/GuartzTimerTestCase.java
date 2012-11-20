@@ -1,4 +1,4 @@
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,56 +17,68 @@ package org.nnsoft.guice.guartz;
  * limitations under the License.
  */
 
-import static org.junit.Assert.assertTrue;
+import static com.google.inject.Guice.createInjector;
+import static junit.framework.Assert.assertTrue;
 
 import javax.inject.Inject;
 
+import org.apache.onami.scheduler.QuartzModule;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.quartz.Scheduler;
 
-import com.google.inject.Guice;
-
-public class ManualStartTestCase
+/**
+ *
+ */
+public class GuartzTimerTestCase
 {
-
-    @Inject
-    private Scheduler scheduler;
 
     @Inject
     private TimedTask timedTask;
 
+    @Inject
+    private Scheduler scheduler;
+
+    public void setTimedTask( TimedTask timedTask )
+    {
+        this.timedTask = timedTask;
+    }
+
+    public void setScheduler( Scheduler scheduler )
+    {
+        this.scheduler = scheduler;
+    }
+
     @Before
     public void setUp()
+        throws Exception
     {
-        Guice.createInjector( new QuartzModule()
+        createInjector( new QuartzModule()
         {
+
             @Override
             protected void schedule()
             {
-                configureScheduler().withManualStart();
                 scheduleJob( TimedTask.class );
             }
-        } ).getMembersInjector( ManualStartTestCase.class ).injectMembers( this );
+
+        } ).getMembersInjector( GuartzTimerTestCase.class ).injectMembers( this );
     }
 
     @After
     public void tearDown()
         throws Exception
     {
-        scheduler.shutdown();
+        this.scheduler.shutdown();
     }
 
     @Test
-    public void testManualStart()
+    public void minimalTest()
         throws Exception
     {
-        Thread.sleep( 5000L );
-        assertTrue( timedTask.getInvocationsTimedTaskA() == 0 );
-        scheduler.start();
-        Thread.sleep( 5000L );
-        assertTrue( timedTask.getInvocationsTimedTaskA() > 0 );
+        Thread.sleep( 5000 );
+        assertTrue( this.timedTask.getInvocationsTimedTaskA() > 0 );
     }
 
 }

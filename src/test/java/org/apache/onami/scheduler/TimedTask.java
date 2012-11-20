@@ -1,4 +1,4 @@
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -19,6 +19,7 @@ package org.nnsoft.guice.guartz;
 
 import javax.inject.Singleton;
 
+import org.apache.onami.scheduler.Scheduled;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

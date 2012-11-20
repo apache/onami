@@ -1,4 +1,4 @@
-package org.nnsoft.guice.guartz;
+package org.apache.onami.scheduler;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -22,7 +22,7 @@ import static com.google.inject.internal.util.$Preconditions.checkNotNull;
 import static com.google.inject.internal.util.$Preconditions.checkState;
 import static com.google.inject.multibindings.Multibinder.newSetBinder;
 import static java.util.TimeZone.getTimeZone;
-import static org.nnsoft.guice.guartz.Scheduled.DEFAULT;
+import static org.apache.onami.scheduler.Scheduled.DEFAULT;
 
 import java.util.TimeZone;
 
