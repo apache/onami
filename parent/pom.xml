@@ -539,13 +539,6 @@
           <locales>en</locales>
           <skip>${site.skip}</skip>
           <skipDeploy>${site.skip}</skipDeploy>
-          <reportPlugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-              <version>2.6</version>
-            </plugin>
-          </reportPlugins>
         </configuration>
         <executions>
           <execution>
@@ -561,6 +554,13 @@
 
   <reporting>
     <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.6</version>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
