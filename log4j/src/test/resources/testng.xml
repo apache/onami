@@ -18,10 +18,10 @@
 -->
 <suite name="sli4j-log4j">
 
-    <test name="log-injection">
-        <classes>
-            <class name="org.apache.onami.logging.log4j.Log4jLoggingTestCase"/>
-        </classes>
-    </test>
+  <test name="log-injection">
+    <classes>
+      <class name="org.apache.onami.logging.log4j.Log4jLoggingTestCase" />
+    </classes>
+  </test>
 
 </suite>

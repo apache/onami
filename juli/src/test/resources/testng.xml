@@ -18,10 +18,10 @@
 -->
 <suite name="sli4j-juli">
 
-    <test name="log-injection">
-        <classes>
-            <class name="org.nnsoft.guice.sli4j.juli.JuliLoggingTestCase"/>
-        </classes>
-    </test>
+  <test name="log-injection">
+    <classes>
+      <class name="org.nnsoft.guice.sli4j.juli.JuliLoggingTestCase" />
+    </classes>
+  </test>
 
 </suite>
