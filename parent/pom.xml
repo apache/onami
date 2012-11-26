@@ -277,11 +277,60 @@
     <cobertura.version>2.5.2</cobertura.version>
     <plexus-utils.version>3.0.8</plexus-utils.version>
     <!--
+     | it makes easier to manage Google Guice extensions, such as multibindings, ...
+    -->
+    <guice.version>3.0</guice.version>
+    <!--
      | aux settings
     -->
     <site.skip>false</site.skip>
     <javadoc.aggregate>false</javadoc.aggregate>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>aopalliance</groupId>
+        <artifactId>aopalliance</artifactId>
+        <version>1.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.inject.extensions</groupId>
+        <artifactId>guice-multibindings</artifactId>
+        <version>${guice.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.10</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>6.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <!--
+     | Guice is a shared dependency accross all Onami modules
+    -->
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>${guice.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 
   <build>
     <resources>
