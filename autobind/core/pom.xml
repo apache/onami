@@ -25,7 +25,7 @@
   </parent>
 
   <artifactId>autobind-core</artifactId>
-  <name>org.apache.onami.autobind.core</name>
+  <name>Apache Onami Autobind :: Core</name>
 
   <dependencies>
     <dependency>

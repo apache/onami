@@ -25,7 +25,7 @@
   </parent>
 
   <artifactId>integrations-configurations</artifactId>
-  <name>org.apache.onami.autobind.integrations.configurations</name>
+  <name>Apache Onami Autobind :: Integrations :: Configurations</name>
 
   <dependencies>
     <dependency>
