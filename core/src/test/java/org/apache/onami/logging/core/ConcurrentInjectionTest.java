@@ -1,19 +1,16 @@
 package org.apache.onami.logging.core;
 
+import static org.testng.Assert.assertNotNull;
+
+import java.lang.reflect.Field;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matchers;
-
-import org.apache.onami.logging.core.AbstractLoggerInjector;
-import org.apache.onami.logging.core.AbstractLoggingModule;
-import org.apache.onami.logging.core.InjectLogger;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
-import java.lang.reflect.Field;
-
-import static org.testng.Assert.assertNotNull;
 
 public class ConcurrentInjectionTest {
     private Injector injector;

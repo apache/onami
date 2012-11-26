@@ -21,7 +21,7 @@ import static com.google.inject.matcher.Matchers.any;
 
 import java.util.logging.Logger;
 
-import org.nnsoft.guice.sli4j.core.AbstractLoggingModule;
+import org.apache.onami.logging.core.AbstractLoggingModule;
 
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;

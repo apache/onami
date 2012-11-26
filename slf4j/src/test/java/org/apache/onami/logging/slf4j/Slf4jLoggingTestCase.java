@@ -17,9 +17,8 @@ package org.apache.onami.logging.slf4j;
  * limitations under the License.
  */
 
-import org.apache.onami.logging.slf4j.Slf4jLoggingModule;
-import org.nnsoft.guice.sli4j.core.InjectLogger;
-import org.nnsoft.guice.sli4j.testfw.AbstractLoggerInectionTestCase;
+import org.apache.onami.logging.core.InjectLogger;
+import org.apache.onami.logging.testfw.AbstractLoggerInectionTestCase;
 import org.slf4j.Logger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

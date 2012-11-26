@@ -19,9 +19,8 @@ package org.apache.onami.logging.juli;
 
 import java.util.logging.Logger;
 
-import org.apache.onami.logging.juli.JuliLoggingModule;
-import org.nnsoft.guice.sli4j.core.InjectLogger;
-import org.nnsoft.guice.sli4j.testfw.AbstractLoggerInectionTestCase;
+import org.apache.onami.logging.core.InjectLogger;
+import org.apache.onami.logging.testfw.AbstractLoggerInectionTestCase;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

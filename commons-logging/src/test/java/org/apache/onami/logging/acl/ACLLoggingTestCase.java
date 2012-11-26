@@ -18,9 +18,8 @@ package org.apache.onami.logging.acl;
  */
 
 import org.apache.commons.logging.Log;
-import org.apache.onami.logging.acl.ACLLoggingModule;
-import org.nnsoft.guice.sli4j.core.InjectLogger;
-import org.nnsoft.guice.sli4j.testfw.AbstractLoggerInectionTestCase;
+import org.apache.onami.logging.core.InjectLogger;
+import org.apache.onami.logging.testfw.AbstractLoggerInectionTestCase;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

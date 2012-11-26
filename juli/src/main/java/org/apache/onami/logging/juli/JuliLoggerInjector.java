@@ -20,7 +20,7 @@ package org.apache.onami.logging.juli;
 import java.lang.reflect.Field;
 import java.util.logging.Logger;
 
-import org.nnsoft.guice.sli4j.core.AbstractLoggerInjector;
+import org.apache.onami.logging.core.AbstractLoggerInjector;
 
 /**
  * {@code java.util.logging.Logger} logger injector implementation.
