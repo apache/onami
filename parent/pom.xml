@@ -23,6 +23,7 @@
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
     <version>10</version>
+    <relativePath></relativePath>
   </parent>
 
   <groupId>org.apache.onami</groupId>
