@@ -187,7 +187,7 @@
       <post>dev[at]onami[dot]incubator[dot]apache[dot]org</post>
       <subscribe>dev-subscribe[at]onami[dot]incubator[dot]apache[dot]org</subscribe>
       <unsubscribe>dev-unsubscribe[at]onami[dot]incubator[dot]apache[dot]org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/onami-dev/</archive>
+      <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-dev/</archive>
       <otherArchives>
         <otherArchive>http://onami-dev.markmail.org/</otherArchive>
       </otherArchives>
@@ -197,7 +197,7 @@
       <post>user[at]onami[dot]incubator[dot]apache[dot]org</post>
       <subscribe>user-subscribe[at]onami[dot]incubator[dot]apache[dot]org</subscribe>
       <unsubscribe>user-unsubscribe[at]onami[dot]incubator[dot]apache[dot]org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/onami-user/</archive>
+      <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-user/</archive>
       <otherArchives>
         <otherArchive>http://onami-user.markmail.org/</otherArchive>
       </otherArchives>
@@ -207,7 +207,7 @@
       <post>commits[at]onami[dot]incubator[dot]apache[dot]org</post>
       <subscribe>commits-subscribe[at]onami[dot]incubator[dot]apache[dot]org</subscribe>
       <unsubscribe>commits-unsubscribe[at]onami[dot]incubator[dot]apache[dot]org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/onami-commits/</archive>
+      <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-commits/</archive>
       <otherArchives>
         <otherArchive>http://onami-commits.markmail.org/</otherArchive>
       </otherArchives>
