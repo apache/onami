@@ -19,7 +19,7 @@
 
     <test name="log-injection">
         <classes>
-            <class name="org.nnsoft.guice.sli4j.log4j.Log4jLoggingTestCase"/>
+            <class name="org.apache.onami.logging.log4j.Log4jLoggingTestCase"/>
         </classes>
     </test>
 
