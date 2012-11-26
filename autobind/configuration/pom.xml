@@ -35,8 +35,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.onami</groupId>
-      <artifactId>rocoto</artifactId>
-      <version>6.1</version>
+      <artifactId>onami-configuration</artifactId>
+      <version>6.3-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
