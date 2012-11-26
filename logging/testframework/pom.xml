@@ -40,7 +40,7 @@
 
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>logging-core</artifactId>
+      <artifactId>onami-logging-core</artifactId>
       <version>${project.parent.version}</version>
       <scope>compile</scope>
     </dependency>
