@@ -22,6 +22,7 @@
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
     <version>1-SNAPSHOT</version>
+    <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.apache.onami.autobind</groupId>
