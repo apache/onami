@@ -38,7 +38,7 @@
   <dependencies>
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>logging-core</artifactId>
+      <artifactId>onami-logging-core</artifactId>
       <version>${project.parent.version}</version>
       <scope>compile</scope>
     </dependency>
@@ -52,7 +52,7 @@
 
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>logging-testfw</artifactId>
+      <artifactId>onami-logging-testfw</artifactId>
       <version>${project.parent.version}</version>
       <scope>test</scope>
     </dependency>
