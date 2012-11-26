@@ -21,7 +21,7 @@ import java.lang.reflect.Field;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.nnsoft.guice.sli4j.core.AbstractLoggerInjector;
+import org.apache.onami.logging.core.AbstractLoggerInjector;
 
 /**
  * {@code Apache Commons Logging} logger injector implementation.

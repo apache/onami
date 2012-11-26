@@ -19,7 +19,7 @@ package org.apache.onami.logging.slf4j;
 
 import java.lang.reflect.Field;
 
-import org.nnsoft.guice.sli4j.core.AbstractLoggerInjector;
+import org.apache.onami.logging.core.AbstractLoggerInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

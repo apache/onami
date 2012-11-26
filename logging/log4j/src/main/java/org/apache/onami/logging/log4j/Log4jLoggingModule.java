@@ -20,7 +20,7 @@ package org.apache.onami.logging.log4j;
 import static com.google.inject.matcher.Matchers.any;
 
 import org.apache.log4j.Logger;
-import org.nnsoft.guice.sli4j.core.AbstractLoggingModule;
+import org.apache.onami.logging.core.AbstractLoggingModule;
 
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;

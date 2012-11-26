@@ -21,9 +21,8 @@ import static com.google.inject.TypeLiteral.get;
 import static com.google.inject.matcher.Matchers.only;
 
 import org.apache.log4j.Logger;
-import org.apache.onami.logging.log4j.Log4jLoggingModule;
-import org.nnsoft.guice.sli4j.core.InjectLogger;
-import org.nnsoft.guice.sli4j.testfw.AbstractLoggerInectionTestCase;
+import org.apache.onami.logging.core.InjectLogger;
+import org.apache.onami.logging.testfw.AbstractLoggerInectionTestCase;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

@@ -17,13 +17,13 @@ package org.apache.onami.logging.core;
  * limitations under the License.
  */
 
-import com.google.inject.MembersInjector;
-import com.google.inject.ProvisionException;
+import static java.lang.String.format;
+import static java.lang.reflect.Modifier.isFinal;
 
 import java.lang.reflect.Field;
 
-import static java.lang.String.format;
-import static java.lang.reflect.Modifier.isFinal;
+import com.google.inject.MembersInjector;
+import com.google.inject.ProvisionException;
 
 /**
  * The abstract Logger injector implementation, takes care of injecting the

@@ -19,7 +19,7 @@ package org.apache.onami.logging.slf4j;
 
 import static com.google.inject.matcher.Matchers.any;
 
-import org.nnsoft.guice.sli4j.core.AbstractLoggingModule;
+import org.apache.onami.logging.core.AbstractLoggingModule;
 import org.slf4j.Logger;
 
 import com.google.inject.TypeLiteral;
