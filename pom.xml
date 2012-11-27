@@ -21,12 +21,12 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1-SNAPSHOT-incubating</version>
   </parent>
 
   <groupId>org.apache.onami.logging</groupId>
   <artifactId>onami-logging-parent</artifactId>
-  <version>3.4-SNAPSHOT</version>
+  <version>3.4-SNAPSHOT-incubating</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami-Logging :: Parent</name>
