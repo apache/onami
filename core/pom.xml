@@ -39,7 +39,6 @@
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
-      <scope>compile</scope>
     </dependency>
   </dependencies>
 
