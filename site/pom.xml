@@ -32,7 +32,6 @@
 
   <name>Apache Onami Site</name>
 
-
   <scm>
     <url>https://svn.apache.org/viewvc/incubator/onami/trunk/site</url>
     <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/site</connection>
@@ -47,11 +46,7 @@
   </distributionManagement>
 
   <build>
-
-
-
     <plugins>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -79,6 +74,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-scm-publish-plugin</artifactId>
