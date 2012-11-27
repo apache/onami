@@ -26,7 +26,7 @@
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-spi</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT-incubating</version>
 
   <name>Apache Onami-SPI</name>
   <description>Apache Onami-SPI is a Java5 compatible small collection of reusable tools to make easier the integration

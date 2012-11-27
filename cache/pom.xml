@@ -21,12 +21,12 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1-SNAPSHOT-incubating</version>
   </parent>
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-cache</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT-incubating</version>
 
   <name>Apache Onami-Cache</name>
   <description>Apache Onami-Cache is a lightweight yet powerful Google Guice - JCache bridge integration</description>

@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.apache.onami.autobind</groupId>
     <artifactId>autobind-parent</artifactId>
-    <version>0.9.2-SNAPSHOT</version>
+    <version>0.9.2-SNAPSHOT-incubating</version>
   </parent>
 
   <artifactId>autobind-core</artifactId>

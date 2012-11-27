@@ -20,12 +20,12 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1-SNAPSHOT-incubating</version>
   </parent>
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-guava</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT-incubating</version>
   <packaging>jar</packaging>
 
   <name>Apache Onami-Guava</name>

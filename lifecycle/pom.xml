@@ -21,12 +21,12 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1-SNAPSHOT-incubating</version>
   </parent>
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-lifecycle</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT-incubating</version>
 
   <name>Apache Onami-Lifecycle</name>
   <description>Apache Onami-Lifecycle allows objects lifecycle management made easy with Google Guice</description>
