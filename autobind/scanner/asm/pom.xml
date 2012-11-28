@@ -20,17 +20,17 @@
 
   <parent>
     <groupId>org.apache.onami.autobind.scanner</groupId>
-    <artifactId>scanner-parent</artifactId>
+    <artifactId>onami-scanner-parent</artifactId>
     <version>0.9.2-SNAPSHOT-incubating</version>
   </parent>
 
-  <artifactId>scanner-asm</artifactId>
+  <artifactId>onami-scanner-asm</artifactId>
   <name>Apache Onami Autobind :: Scanner :: Asm</name>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.onami.autobind</groupId>
-      <artifactId>autobind-core</artifactId>
+      <artifactId>onami-autobind-core</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

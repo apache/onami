@@ -20,17 +20,17 @@
 
   <parent>
     <groupId>org.apache.onami.autobind</groupId>
-    <artifactId>autobind-parent</artifactId>
+    <artifactId>onami-autobind-parent</artifactId>
     <version>0.9.2-SNAPSHOT-incubating</version>
   </parent>
 
-  <artifactId>autobind-tests</artifactId>
+  <artifactId>onami-autobind-tests</artifactId>
   <name>Apache Onami Autobind :: Tests</name>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.onami.autobind.scanner</groupId>
-      <artifactId>scanner-asm</artifactId>
+      <artifactId>onami-scanner-asm</artifactId>
       <version>${project.version}</version>
       <type>jar</type>
       <scope>test</scope>
