@@ -69,6 +69,10 @@
       <item name="Sponsorship"           href="http://www.apache.org/foundation/sponsorship.html" />
       <item name="Thanks"                href="http://www.apache.org/foundation/thanks.html" />
     </menu>
+
+    <links>
+      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
+    </links>
   </body>
 
 </project>
