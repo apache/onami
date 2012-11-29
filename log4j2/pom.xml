@@ -17,63 +17,62 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.onami.logging</groupId>
-        <artifactId>onami-logging-parent</artifactId>
-        <version>3.4-SNAPSHOT-incubating</version>
-        <relativePath>../</relativePath>
-    </parent>
+  <parent>
+    <groupId>org.apache.onami.logging</groupId>
+    <artifactId>onami-logging-parent</artifactId>
+    <version>3.4-SNAPSHOT-incubating</version>
+  </parent>
 
-    <artifactId>onami-logging-log4j2</artifactId>
-    <packaging>jar</packaging>
-    <name>Apache Onami-Logging :: Apache Log4j2</name>
-    <description>Apache Onami-Logging-Log4j2 is an Apache Log4j2 Injector</description>
+  <artifactId>onami-logging-log4j2</artifactId>
+  <packaging>jar</packaging>
+  <name>Apache Onami-Logging :: Apache Log4j2</name>
+  <description>Apache Onami-Logging-Log4j2 is an Apache Log4j2 Injector</description>
 
-    <properties>
-        <site.skip>true</site.skip>
-    </properties>
+  <properties>
+    <site.skip>true</site.skip>
+  </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>${project.parent.groupId}</groupId>
-            <artifactId>onami-logging-core</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>compile</scope>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>${project.parent.groupId}</groupId>
+      <artifactId>onami-logging-core</artifactId>
+      <version>${project.parent.version}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.0-beta3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.0-beta3</version>
-        </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.0-beta3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.0-beta3</version>
+    </dependency>
 
-        <dependency>
-            <groupId>${project.parent.groupId}</groupId>
-            <artifactId>onami-logging-testfw</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>${project.parent.groupId}</groupId>
+      <artifactId>onami-logging-testfw</artifactId>
+      <version>${project.parent.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>${basedir}/../</directory>
-                <targetPath>META-INF</targetPath>
-                <includes>
-                    <include>DISCLAIMER</include>
-                    <include>LICENSE</include>
-                    <include>NOTICE</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/../</directory>
+        <targetPath>META-INF</targetPath>
+        <includes>
+          <include>DISCLAIMER</include>
+          <include>LICENSE</include>
+          <include>NOTICE</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
 
 </project>

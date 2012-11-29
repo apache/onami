@@ -14,7 +14,8 @@
  | WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  | See the License for the specific language governing permissions and
  | limitations under the License.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -67,6 +68,9 @@
 
   <properties>
     <javadoc.aggregate>true</javadoc.aggregate>
+    <onami.logging.siteFilePath>${user.home}/onami-logging-site/</onami.logging.siteFilePath>
+    <onami.logging.siteUrlDeployment>file://${onami.logging.siteFilePath}</onami.logging.siteUrlDeployment>
+    <onami.logging.scmPubCheckoutDirectory>${user.home}/onami-logging-site-content</onami.logging.scmPubCheckoutDirectory>
   </properties>
 
   <dependencies>
@@ -80,5 +84,30 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <configuration>
+            <checkoutDirectory>${onami.logging.scmPubCheckoutDirectory}</checkoutDirectory>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/logging</pubScmUrl>
+            <checkinComment>Apache Onami Logging site deployment</checkinComment>
+            <content>${onami.logging.siteFilePath}</content>
+            <tryUpdate>true</tryUpdate>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <distributionManagement>
+    <site>
+      <id>apache.website</id>
+      <url>${onami.logging.siteUrlDeployment}</url>
+    </site>
+  </distributionManagement>
 
 </project>
