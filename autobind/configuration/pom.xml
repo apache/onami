@@ -36,7 +36,7 @@
     <dependency>
       <groupId>org.apache.onami</groupId>
       <artifactId>onami-configuration</artifactId>
-      <version>6.3-SNAPSHOT</version>
+      <version>6.3-SNAPSHOT-incubating</version>
     </dependency>
   </dependencies>
 
