@@ -19,8 +19,6 @@
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
   name="${project.name}">
 
-  <publishDate format="dd MMMM yyyy" position="left" />
-
   <version position="none" />
 
   <bannerLeft>
@@ -29,18 +27,6 @@
     <alt>Apache Onami logo</alt>
     <href>${project.url}/index.html</href>
   </bannerLeft>
-
-  <bannerRight>
-    <name>Apache Incubator</name>
-    <src>http://incubator.apache.org/images/apache-incubator-logo.png</src>
-    <href>http://incubator.apache.org/</href>
-  </bannerRight>
-
-  <skin>
-    <groupId>org.apache.maven.skins</groupId>
-    <artifactId>maven-fluido-skin</artifactId>
-    <version>1.3.0</version>
-  </skin>
 
   <custom>
     <fluidoSkin>
@@ -65,41 +51,7 @@
       </script>
     </head>
 
-    <menu name="Components" inherit="bottom">
-      <item name="Autobind"       href="/autobind" />
-      <item name="Cache"          href="/cache" />
-      <item name="Configuration"  href="/configuration" />
-      <item name="Guava"          href="/guava" />
-      <item name="Lifecycle"      href="/lifecycle" />
-      <item name="Logging"        href="/logging" />
-      <item name="Scheduler"      href="/scheduler" />
-      <item name="SPI"            href="/spi" />
-      <item name="Test"           href="/test" />
-    </menu>
-
-    <menu name="Community" inherit="bottom">
-      <item name="Volunteering"          href="/community/volunteering.html" />
-      <item name="Contributing Patches"  href="/community/patches.html" />
-      <item name="Mailing lists"         href="/community/mail-lists.html" />
-    </menu>
-
-    <menu name="Committers" inherit="bottom">
-      <item name="SVN conventions"             href="/committers/svn-conventions.html" />
-      <item name="Maven settings"              href="/committers/maven-settings.html" />
-      <item name="GPG keys"                    href="/committers/gpg-keys.html" />
-      <item name="JIRA conventions"            href="/committers/jira-conventions.html" />
-      <item name="Code style recommendations"  href="/committers/codestyle.html" />
-    </menu>
-
     <menu ref="reports" />
-
-    <menu name="ASF" inherit="bottom">
-      <item name="How the ASF works"     href="http://www.apache.org/foundation/how-it-works.html" />
-      <item name="Get Involved"          href="http://www.apache.org/foundation/getinvolved.html" />
-      <item name="Developer Resources"   href="http://www.apache.org/dev/" />
-      <item name="Sponsorship"           href="http://www.apache.org/foundation/sponsorship.html" />
-      <item name="Thanks"                href="http://www.apache.org/foundation/thanks.html" />
-    </menu>
 
     <footer>
       <div class="row span12">Apache Onami, Apache, the Apache feather logo, and the Apache Onami project logos are trademarks of The Apache Software Foundation.
