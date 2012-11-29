@@ -17,16 +17,6 @@
 -->
 <project name="${project.name}">
 
-  <custom>
-    <fluidoSkin>
-      <gitHub>
-        <projectId>99soft/autobind</projectId>
-        <ribbonOrientation>right</ribbonOrientation>
-        <ribbonColor>red</ribbonColor>
-      </gitHub>
-    </fluidoSkin>
-  </custom>
-
   <bannerLeft>
     <name>Guice Automatic Binding</name>
     <src>images/logo.png</src>
@@ -34,14 +24,17 @@
   </bannerLeft>
 
   <body>
-    <menu name="${project.name}">
+    <menu name="Apache Onami™ Autobind">
       <item name="Home" href="index.html" />
     </menu>
 
-    <menu name="External Links">
-      <item name="Project Page" href="https://github.com/99soft/autobind" />
-      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
-    </menu>
+    <menu ref="reports" />
+
+    <footer>
+      <div class="row span12">
+        Apache Onami, Apache Onami Autobind, Apache, the Apache feather logo, and the Apache Onami project logos are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+      </div>
+    </footer>
   </body>
 
 </project>
