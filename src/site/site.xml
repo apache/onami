@@ -15,36 +15,58 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
 -->
-<project name="SLI4J">
+<project xmlns="http://maven.apache.org/DECORATION/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd" name="${project.name}">
+  <publishDate format="dd MMMM yyyy" position="left"/>
+  <version position="none"/>
+  <bannerLeft>
+    <name>Apache Onami Logging</name>
+    <src>/images/logo.png</src>
+    <alt>Apache Onami Logging Logo</alt>
+    <href>${project.url}/index.html</href>
+  </bannerLeft>
+  <bannerRight>
+    <name>Apache Incubator</name>
+    <src>http://incubator.apache.org/images/apache-incubator-logo.png</src>
+    <href>http://incubator.apache.org/</href>
+  </bannerRight>
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.3.0</version>
+  </skin>
 
   <custom>
     <fluidoSkin>
-      <gitHub>
-        <projectId>99soft/sli4j</projectId>
-        <ribbonOrientation>right</ribbonOrientation>
-        <ribbonColor>red</ribbonColor>
-      </gitHub>
+      <topBarEnabled>false</topBarEnabled>
+      <sideBarEnabled>true</sideBarEnabled>
     </fluidoSkin>
   </custom>
 
-  <bannerLeft>
-    <name>Simple Logging Injector for Java</name>
-    <src>images/logo.png</src>
-    <href>${project.url}/index.html</href>
-  </bannerLeft>
-
-  <version position="left"/>
-
   <body>
-    <menu name="SLI4J">
+    <menu name="Apache Onami(tm) Logging">
       <item name="Home" href="./index.html" />
       <item name="JULI" href="./juli.html" />
       <item name="Apache Commons Logging" href="./acl.html" />
       <item name="Apache log4j" href="./log4j.html" />
       <item name="Simple Logging Facade for Java" href="./slf4j.html" />
-      <item name="Extend sli4j" href="./extend.html" />
-      <item name="APIs doc" href="./apidocs/index.html" />
+      <item name="Extend Onami Logging" href="./extend.html" />
+      <item name="API docs" href="./apidocs/index.html" />
+      <item name="Apache Onami" href="http://onami.incubator.apache.org" />
     </menu>
+
+    <menu name="ASF" inherit="bottom">
+      <item name="How the ASF works" href="http://www.apache.org/foundation/how-it-works.html"/>
+      <item name="Get Involved" href="http://www.apache.org/foundation/getinvolved.html"/>
+      <item name="Developer Resources" href="http://www.apache.org/dev/"/>
+      <item name="Sponsorship" href="http://www.apache.org/foundation/sponsorship.html"/>
+      <item name="Thanks" href="http://www.apache.org/foundation/thanks.html"/>
+    </menu>
+
+    <footer>
+      <div class="row span12">
+        Apache Onami, Apache, the Apache feather logo, and the Apache Onami project logos are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+      </div>
+    </footer>
   </body>
 
 </project>
