@@ -33,11 +33,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>${project.parent.groupId}</groupId>
       <artifactId>onami-logging-core</artifactId>
       <version>${project.parent.version}</version>
