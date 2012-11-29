@@ -22,7 +22,7 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1-SNAPSHOT-incubating</version>
   </parent>
 
   <groupId>org.apache.onami</groupId>
@@ -92,6 +92,7 @@
             <ignorePathToDelete>spi**</ignorePathToDelete>
             <ignorePathToDelete>test**</ignorePathToDelete>
           </ignorePathsToDelete>
+          <checkoutDirectory>${user.home}/onami-main-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
@@ -105,11 +106,5 @@
       </plugin>
     </plugins>
   </build>
-
-  <reporting>
-    <plugins>
-
-    </plugins>
-  </reporting>
 
 </project>
