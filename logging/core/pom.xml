@@ -22,7 +22,6 @@
     <groupId>org.apache.onami.logging</groupId>
     <artifactId>onami-logging-parent</artifactId>
     <version>3.4-SNAPSHOT-incubating</version>
-    <relativePath>../</relativePath>
   </parent>
 
   <artifactId>onami-logging-core</artifactId>
