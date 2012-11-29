@@ -54,6 +54,8 @@
       <item name="Apache Onami" href="http://onami.incubator.apache.org" />
     </menu>
 
+    <menu ref="reports" />
+
     <menu name="ASF" inherit="bottom">
       <item name="How the ASF works" href="http://www.apache.org/foundation/how-it-works.html"/>
       <item name="Get Involved" href="http://www.apache.org/foundation/getinvolved.html"/>
