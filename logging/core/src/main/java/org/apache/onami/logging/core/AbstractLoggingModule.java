@@ -68,7 +68,7 @@ public class AbstractLoggingModule<L>
      * @param <LI> the concrete {@link AbstractLoggerInjector}
      * @param matcher types matcher for whom the Logger injection has to be
      *        performed.
-     * @param logInjectorClass the {@link AbstractLoggerInjector} constructor.
+     * @param loggerInjectorClass the {@link AbstractLoggerInjector} constructor.
      */
     public <LI extends AbstractLoggerInjector<L>> AbstractLoggingModule( Matcher<? super TypeLiteral<?>> matcher,
                                                                          Class<LI> loggerInjectorClass )
