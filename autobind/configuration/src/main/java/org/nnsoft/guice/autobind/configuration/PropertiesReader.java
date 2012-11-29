@@ -18,11 +18,13 @@ package org.nnsoft.guice.autobind.configuration;
  */
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import org.nnsoft.guice.rocoto.variables.VariablesMap;
+import org.apache.onami.configuration.configuration.PropertiesURLReader;
 
 public class PropertiesReader
     implements ConfigurationReader
@@ -30,9 +32,9 @@ public class PropertiesReader
 
     private final PropertiesURLReader reader;
 
-    public PropertiesReader( URL url, boolean isXML )
+    public PropertiesReader( URL url )
     {
-        reader = new PropertiesURLReader( url, isXML );
+        reader = new PropertiesURLReader( url );
     }
 
     public Properties readNative()
@@ -40,21 +42,17 @@ public class PropertiesReader
     {
         Properties properties = new Properties();
 
-        Iterator<Entry<String, String>> configuration = reader.readConfiguration();
-        for ( Entry<String, String> entry; configuration.hasNext(); )
-        {
-            entry = configuration.next();
-            properties.setProperty( entry.getKey(), entry.getValue() );
-        }
-
-        return properties;
+        return  reader.readConfiguration();
     }
 
     @Override
     public Iterator<Entry<String, String>> readConfiguration()
         throws Exception
     {
-        return reader.readConfiguration();
+        Properties properties = reader.readConfiguration();
+        Map<String, String> result = new HashMap<String, String>();
+        properties.putAll(result);
+        return result.entrySet().iterator();
     }
 
 }
