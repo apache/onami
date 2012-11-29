@@ -32,7 +32,7 @@ import org.apache.onami.configuration.configuration.binder.XMLPropertiesFormatBi
  *
  * This reader implementation support both {@code .properties} and {@code .xml} properties format.
  */
-final class PropertiesURLReader
+public final class PropertiesURLReader
     implements XMLPropertiesFormatBindingBuilder
 {
 
