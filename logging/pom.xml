@@ -15,7 +15,8 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -67,16 +68,16 @@
   </ciManagement>
 
   <properties>
-    <javadoc.aggregate>true</javadoc.aggregate>
     <onami.logging.siteFilePath>${user.home}/onami-logging-site/</onami.logging.siteFilePath>
     <onami.logging.siteUrlDeployment>file://${onami.logging.siteFilePath}</onami.logging.siteUrlDeployment>
-    <onami.logging.scmPubCheckoutDirectory>${user.home}/onami-logging-site-content</onami.logging.scmPubCheckoutDirectory>
+    <onami.logging.scmPubCheckoutDirectory>${user.home}/onami-logging-site-content
+    </onami.logging.scmPubCheckoutDirectory>
   </properties>
 
   <dependencies>
     <dependency>
-        <groupId>com.google.inject</groupId>
-        <artifactId>guice</artifactId>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
     </dependency>
     <dependency>
       <groupId>org.testng</groupId>
@@ -109,5 +110,23 @@
       <url>${onami.logging.siteUrlDeployment}</url>
     </site>
   </distributionManagement>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadocVersion}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>aggregate</report>
+              <report>test-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
