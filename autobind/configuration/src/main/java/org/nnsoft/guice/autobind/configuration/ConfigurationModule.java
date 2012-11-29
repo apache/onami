@@ -24,7 +24,7 @@ import org.nnsoft.guice.autobind.annotations.GuiceModule;
 @Singleton
 @GuiceModule
 public class ConfigurationModule
-    extends org.nnsoft.guice.rocoto.configuration.ConfigurationModule
+    extends org.apache.onami.configuration.configuration.ConfigurationModule
 {
 
     @Override
