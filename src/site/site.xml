@@ -36,6 +36,12 @@
       <item name="Easy-Mock" href="http://easymock.org/"/>
       <item name="Mockito" href="http://mockito.org/"/>
     </menu>
+
+    <footer>
+      <div class="row span12">
+        Apache Onami, Apache Onami Test, Apache, the Apache feather logo, and the Apache Onami project logos are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+      </div>
+    </footer>
   </body>
 
 </project>
