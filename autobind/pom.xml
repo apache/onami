@@ -37,8 +37,10 @@
 
   <modules>
     <module>core</module>
+    <!--
+    TODO UPGRADE ROCOTO TO CURREN CONFIGURATION VERSION
     <module>configuration</module>
-    <module>examples</module>
+    <module>examples</module>         -->
     <module>integrations</module>
     <module>scanner</module>
     <module>aop</module>

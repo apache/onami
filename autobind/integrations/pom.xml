@@ -30,8 +30,10 @@
   <packaging>pom</packaging>
 
   <modules>
+    <!--
+    TODO UPGRADE ROCOTO TO CURRENT VERSION
     <module>commons.configurations</module>
-    <module>enterprise</module>
+    <module>enterprise</module>                -->
     <module>metro</module>
   </modules>
 
