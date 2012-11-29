@@ -81,6 +81,17 @@
         <inherited>false</inherited>
         <configuration>
           <checkinComment>Onami main site deployment</checkinComment>
+          <ignorePathsToDelete>
+            <ignorePathToDelete>autobind**</ignorePathToDelete>
+            <ignorePathToDelete>cache**</ignorePathToDelete>
+            <ignorePathToDelete>configuration**</ignorePathToDelete>
+            <ignorePathToDelete>guava**</ignorePathToDelete>
+            <ignorePathToDelete>lifecycle**</ignorePathToDelete>
+            <ignorePathToDelete>logging**</ignorePathToDelete>
+            <ignorePathToDelete>scheduler**</ignorePathToDelete>
+            <ignorePathToDelete>spi**</ignorePathToDelete>
+            <ignorePathToDelete>test**</ignorePathToDelete>
+          </ignorePathsToDelete>
         </configuration>
         <executions>
           <execution>
