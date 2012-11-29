@@ -1,8 +1,6 @@
                                     ------
                                     Introduction
                                     ------
-                                    Simone Tripodi
-                                    ------
                                      2012
 
 ~~
@@ -24,19 +22,20 @@
 
 Introduction
 
-  The <<sli4j>>, achronimous of <Simple Logger Injector for Java>, is a small,
-  light and fast logger Injector, built on top of <Google-Guice>, for the well
-  known frameworks:
+  <<Onami Logging>> is a small, light and fast logger Injector, built on
+  top of <Google-Guice>, for the well known frameworks:
 
-  * Java Utils Logging;
+  * Apache {{{http://logging.apache.org/log4j/2.x}log4j 2}};
+
+  * Apache {{{http://logging.apache.org/log4j/1.2/}log4j}};
 
   * Apache {{{http://commons.apache.org/logging/}commons-logging}};
 
-  * Apache {{{http://logging.apache.org/log4j/}log4j}};
+  * Java Utils Logging;
 
   * Simple Logging Facade for Java {{{http://www.slf4j.org/}slf4j}}.
 
-  The concept behind <<sli4j>> is that instead of creating Loggers by hand,
+  The concept behind <<Onami Logging>> is that instead of creating Loggers by hand,
   users can let <Guice> creates and injects them automagically, for example
   instead writing:
 
@@ -58,13 +57,5 @@ Logger logger;
 +--------------------------------------+
 
   and <<nothing>> more! <<No>> setter methods are needed, just declare it, annotate with <<<@InjectLogger>>>
-  annotation let <sli4j> doing the rest, <<<final>>> and already set
-  Loggers will be skipped and <sli4j> won't try to override them at all.
-
-Acknowledgements
-
-  This work is dedicated to our city, L'Aquila, destroyed by a terrible
-  earthquake the 6th April, 2009... That day more than 300 people were killed
-  because buildings collapsed after a magnitudo 6.3 earthquake at 3:32 am.
-
-  We'll never forget that episode.
+  annotation let <Onami Logging> doing the rest, <<<final>>> and already set
+  Loggers will be skipped and <Onami Logging> won't try to override them at all.
