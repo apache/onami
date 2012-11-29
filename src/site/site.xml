@@ -17,28 +17,21 @@
 -->
 <project name="${project.name}">
 
-  <custom>
-    <fluidoSkin>
-      <gitHub>
-        <projectId>99soft/gspi</projectId>
-        <ribbonOrientation>right</ribbonOrientation>
-        <ribbonColor>red</ribbonColor>
-      </gitHub>
-    </fluidoSkin>
-  </custom>
-
   <body>
-    <menu name="${project.name}">
+    <menu name="Apache Onami™ SPI">
       <item name="Home" href="index.html" />
       <item name="Load Modules" href="modules.html" />
       <item name="Bind Services" href="services.html" />
       <item name="API doc" href="apidocs/index.html" />
     </menu>
 
-    <menu name="External Links">
-      <item name="Project Page" href="https://github.com/99soft/gspi" />
-      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
-    </menu>
+    <menu ref="reports" />
+
+    <footer>
+      <div class="row span12">
+        Apache Onami, Apache Onami SPI, Apache, the Apache feather logo, and the Apache Onami project logos are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+      </div>
+    </footer>
   </body>
 
 </project>
