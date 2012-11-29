@@ -35,13 +35,6 @@
     <site.skip>true</site.skip>
   </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-    </dependency>
-  </dependencies>
-
   <build>
     <resources>
       <resource>
