@@ -395,6 +395,13 @@
             <tagBase>https://svn.apache.org/repos/asf/incubator/onami/tags</tagBase>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <version>1.0-beta-2</version>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
