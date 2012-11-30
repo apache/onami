@@ -116,7 +116,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${javadocVersion}</version>
+        <version>${javadoc.version}</version>
         <reportSets>
           <reportSet>
             <reports>
