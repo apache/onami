@@ -64,6 +64,13 @@
     <osgi.fragment-host>com.google.inject;bundle-version="[3.0.0,4)"</osgi.fragment-host>
   </properties>
 
+  <distributionManagement>
+    <site>
+      <id>apache.website.svnpub</id>
+      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/configuration</url>
+    </site>
+  </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>javax.inject</groupId>
@@ -81,5 +88,56 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <locales>en</locales>
+          <skipDeploy>true</skipDeploy>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-descriptor</id>
+            <goals>
+              <goal>attach-descriptor</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stage-for-scm-publish</id>
+            <phase>post-site</phase>
+            <goals>
+              <goal>stage</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>false</skipDeploy>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <checkinComment>Onami Configuration site deployment</checkinComment>
+          <checkoutDirectory>${user.home}/onami-cache-site</checkoutDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <id>scm-publish</id>
+            <phase>site-deploy</phase>
+            <goals>
+              <goal>publish-scm</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
