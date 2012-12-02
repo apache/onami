@@ -625,6 +625,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${javadoc.version}</version>
         <configuration>
+          <notimestamp>true</notimestamp>
           <bootclasspath>${sun.boot.class.path}</bootclasspath>
           <doclet>com.google.doclava.Doclava</doclet>
           <useStandardDocletOptions>false</useStandardDocletOptions>
