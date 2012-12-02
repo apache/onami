@@ -167,7 +167,7 @@ abstract class CacheInterceptor<A extends Annotation>
 
         CacheDefaults cacheDefaults = context.getTarget().getClass().getAnnotation( CacheDefaults.class );
 
-        if ( cacheDefaults != null && CacheResolverFactory.class != cacheDefaults.cacheKeyGenerator() )
+        if ( cacheDefaults != null && cacheDefaults.cacheKeyGenerator().isAssignableFrom( CacheResolverFactory.class ) )
         {
             return injector.getInstance( cacheKeyGeneratorType );
         }
