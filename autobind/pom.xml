@@ -73,6 +73,11 @@
   <properties>
     <javac.src.version>1.6</javac.src.version>
     <javac.target.version>1.6</javac.target.version>
+
+    <onami.autobind.siteFilePath>${user.home}/onami-autobind-site/</onami.autobind.siteFilePath>
+    <onami.autobind.siteUrlDeployment>file://${onami.autobind.siteFilePath}</onami.autobind.siteUrlDeployment>
+    <onami.autobind.scmPubCheckoutDirectory>${user.home}/onami-autobind-site-content</onami.autobind.scmPubCheckoutDirectory>
+
   </properties>
 
   <dependencies>
@@ -97,5 +102,48 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <configuration>
+            <checkoutDirectory>${onami.autobind.scmPubCheckoutDirectory}</checkoutDirectory>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/autobind</pubScmUrl>
+            <checkinComment>Apache Onami Autobind site deployment</checkinComment>
+            <content>${onami.logging.siteFilePath}</content>
+            <tryUpdate>true</tryUpdate>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <distributionManagement>
+    <site>
+      <id>apache.website</id>
+      <url>${onami.autobind.siteUrlDeployment}</url>
+    </site>
+  </distributionManagement>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>aggregate</report>
+              <report>test-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
