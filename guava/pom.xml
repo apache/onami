@@ -47,6 +47,14 @@
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/guava</developerConnection>
     <tag>HEAD</tag>
   </scm>
+
+  <distributionManagement>
+    <site>
+      <id>apache.website.svnpub</id>
+      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/guava</url>
+    </site>
+  </distributionManagement>
+
   <ciManagement>
     <system>Jenkins</system>
     <url>https://builds.apache.org/job/Onami-Guava/</url>
@@ -83,5 +91,55 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <locales>en</locales>
+          <skipDeploy>true</skipDeploy>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-descriptor</id>
+            <goals>
+              <goal>attach-descriptor</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stage-for-scm-publish</id>
+            <phase>post-site</phase>
+            <goals>
+              <goal>stage</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>false</skipDeploy>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <checkinComment>Onami Guava site deployment</checkinComment>
+          <checkoutDirectory>${user.home}/onami-guava-site</checkoutDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <id>scm-publish</id>
+            <phase>site-deploy</phase>
+            <goals>
+              <goal>publish-scm</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
