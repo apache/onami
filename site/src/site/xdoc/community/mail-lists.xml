@@ -66,12 +66,13 @@
 
     <section name="Other subject prefixes">
       <p>
-        Other prefixes which may be used on Commons mailing lists are:
+        Other prefixes which may be used on Onami mailing lists are:
         <ul>
           <li>[ALL] - general discussion (developer list)</li>
           <li>[DOC] - Documentation discussion</li>
+          <li>[SITE] - Site building related discussion (developer list)</li>
           <li>[VOTE], [RESULT], [CANCELLED] - voting threads (developer list)</li>
-          <li>[ANNOUNCE], [ANN] - announcements of releases etc.</li>
+          <li>[ANNOUNCE] - announcements of releases etc.</li>
         </ul>
       </p>
     </section>
