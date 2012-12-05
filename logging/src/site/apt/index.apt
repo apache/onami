@@ -1,7 +1,9 @@
-                                    ------
-                                    Introduction
-                                    ------
-                                     2012
+   ------
+   Introduction to Apache Onami Logging
+   ------
+   The Apache Onami Team
+   ------
+   2012
 
 ~~
 ~~   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -22,7 +24,7 @@
 
 Introduction
 
-  <<Onami Logging>> is a small, light and fast logger Injector, built on
+  <<Apache Onami Logging>> is a small, light and fast logger Injector, built on
   top of <Google-Guice>, for the well known frameworks:
 
   * Apache {{{http://logging.apache.org/log4j/2.x}log4j 2}};

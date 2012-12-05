@@ -1,9 +1,9 @@
-                                    ------
-                                    JULI
-                                    ------
-                                    Simone Tripodi
-                                    ------
-                                     2012
+   ------
+   JULI
+   ------
+   The Apache Onami Team
+   ------
+   2012
 
 ~~
 ~~   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -30,8 +30,8 @@ JULI - Java Utils Logging
 
 +--------------------------------------+
 <dependency>
-  <groupId>${project.groupId}</groupId>
-  <artifactId>sli4j-juli</artifactId>
+  <groupId>org.apache.onami.logging</groupId>
+  <artifactId>onami-logging-juli</artifactId>
   <version>${project.version}</version>
   <scope>compile</scope>
 </dependency>
@@ -46,7 +46,7 @@ JULI - Java Utils Logging
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import org.nnsoft.guice.sli4j.juli.JuliLoggingModule;
+import org.apache.onami.logging.juli.JuliLoggingModule;
 import com.google.inject.matcher.Matchers;
 
 ...

@@ -1,9 +1,9 @@
-                                    ------
-                                    Extend sli4j
-                                    ------
-                                    Simone Tripodi
-                                    ------
-                                     2012
+   ------
+   Extend Onami Logging
+   ------
+   The Apache Onami Team
+   ------
+   2012
 
 ~~
 ~~   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -22,7 +22,7 @@
 ~~   limitations under the License.
 ~~
 
-Extend sli4j
+Extend Apache Onami Logging
 
   Exigent users that have the need to integrate not already supported logging
   framework, can easily do it by following the listed steps:
@@ -31,8 +31,8 @@ Extend sli4j
 
 +--------------------------------------+
 <dependency>
-  <groupId>${project.groupId}</groupId>
-  <artifactId>sli4j-core</artifactId>
+  <groupId>org.apache.onami.logging</groupId>
+  <artifactId>onami-logging-core</artifactId>
   <version>${project.version}</version>
   <scope>compile</scope>
 </dependency>
@@ -48,7 +48,7 @@ import java.lang.reflect.Field;
 import com.acme.MyLogger;
 import com.acme.MyLoggerFactory;
 
-import org.nnsoft.guice.sli4j.core.AbstractLoggerInjector;
+import org.apache.onami.logging.core.AbstractLoggerInjector;
 
 public final class AcmeLoggerInjector
     extends AbstractLoggerInjector<MyLogger>
@@ -68,14 +68,14 @@ public final class AcmeLoggerInjector
 }
 +--------------------------------------+
 
-  [[3]] Extend the <<<org.nnsoft.guice.sli4j.core.AbstractLoggingModule>>>,
+  [[3]] Extend the <<<org.apache.onami.logging.core.AbstractLoggingModule>>>,
         specifying the Logger type and the
-        <<<org.nnsoft.guice.sli4j.core.AbstractLoggerInjector>>> type:
+        <<<org.apache.onami.logging.core.AbstractLoggerInjector>>> type:
 
 +--------------------------------------+
 import com.acme.MyLogger;
 
-import org.nnsoft.guice.sli4j.core.AbstractLoggingModule;
+import org.apache.onami.logging.core.AbstractLoggingModule;
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
 
