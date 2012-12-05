@@ -1,9 +1,9 @@
-                                    ------
-                                    Apache Commons Logging
-                                    ------
-                                    Simone Tripodi
-                                    ------
-                                     2012
+   ------
+   Apache Commons Logging
+   ------
+   The Apache Onami Team
+   ------
+   2012
 
 ~~
 ~~   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -30,15 +30,15 @@ Apache Commons Logging
 
 +--------------------------------------+
 <dependency>
-  <groupId>${project.groupId}</groupId>
-  <artifactId>sli4j-acl</artifactId>
+  <groupId>org.apache.onami.logging</groupId>
+  <artifactId>onami-logging-acl</artifactId>
   <version>${project.version}</version>
   <scope>compile</scope>
 </dependency>
 +--------------------------------------+
 
   then, when creating the <<<com.google.inject.Injector>>>, add the
-  <<<org.nnsoft.guice.sli4j.acl.ACLLoggingModule>>> module; please take note
+  <<<org.apache.onami.logging.acl.ACLLoggingModule>>> module; please take note
   that users have to specify the classes <<<com.google.inject.matcher.Matcher>>>
   for whom the logging injection has to be applied:
 
@@ -46,7 +46,7 @@ Apache Commons Logging
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import org.nnsoft.guice.sli4j.acl.ACLLoggingModule;
+import org.apache.onami.logging.acl.ACLLoggingModule;
 import com.google.inject.matcher.Matchers;
 
 ...
