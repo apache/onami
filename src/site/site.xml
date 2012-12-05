@@ -27,10 +27,11 @@
   <body>
     <menu name="Apache Onami™ Logging">
       <item name="Home" href="./index.html" />
-      <item name="JULI" href="./juli.html" />
-      <item name="Apache Commons Logging" href="./acl.html" />
-      <item name="Apache log4j" href="./log4j.html" />
+      <item name="Apache log4j 2.x" href="./log4j2.html" />
+      <item name="Apache log4j 1.x" href="./log4j.html" />
       <item name="Simple Logging Facade for Java" href="./slf4j.html" />
+      <item name="Apache Commons Logging" href="./acl.html" />
+      <item name="JULI" href="./juli.html" />
       <item name="Extend Onami Logging" href="./extend.html" />
       <item name="API docs" href="./apidocs/index.html" />
       <item name="Apache Onami" href="http://onami.incubator.apache.org" />
