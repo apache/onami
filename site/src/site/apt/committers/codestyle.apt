@@ -142,7 +142,7 @@ public abstract class QuartzModule
 
 *** IntelliJ IDEA 4.5+
 
- Download <<<{{{http://maven.apache.org/developers/maven-idea-codestyle.xml}maven-idea-codestyle.xml}}>>> and copy it to
+ Download <<<{{{https://svn.apache.org/repos/asf/incubator/onami/committers/intellij/onami-idea-codestyle.xml}onami-idea-codestyle.xml}}>>> and copy it to
  <<<~/.IntelliJIDEA/config/codestyles>>> then restart IDEA. On Windows, try
  <<<C:\Documents and Settings\<username>\.IntelliJIDEA\config\codestyles>>>
 
@@ -150,7 +150,7 @@ public abstract class QuartzModule
 
 *** Eclipse 3.2+
 
- Download <<<{{{http://maven.apache.org/developers/maven-eclipse-codestyle.xml}maven-eclipse-codestyle.xml}}>>>.
+ Download <<<{{{https://svn.apache.org/repos/asf/incubator/onami/committers/eclipse/onami-eclipse-codestyle.xml}onami-eclipse-codestyle.xml}}>>>.
 
  After this, select Window \> Preferences, and open up the configuration for Java \> Code
  Style \> Code Formatter. Click on the button labeled Import... and select the file you
