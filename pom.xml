@@ -127,7 +127,7 @@
         <inherited>false</inherited>
         <configuration>
           <checkinComment>Onami Configuration site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-cache-site</checkoutDirectory>
+          <checkoutDirectory>${user.home}/onami-configuration-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
