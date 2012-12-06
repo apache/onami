@@ -59,7 +59,7 @@ public final class ConfigurationRunner
                 bindProperties( URI.create( "classpath:/org/apache/onami/configuration/configuration/ldap.properties" ) );
                 bindProperties( "proxy.xml" ).inXMLFormat();
 
-                File parentConf = new File( "src/test/data/apache/onami" );
+                File parentConf = new File( "src/test/data/org/apache/onami" );
                 bindProperties( new File( parentConf, "ibatis.properties" ) );
                 bindProperties( new File( parentConf, "configuration/jdbc.properties" ) );
                 bindProperties( new File( parentConf, "configuration/configuration/memcached.xml" ) ).inXMLFormat();
