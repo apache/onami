@@ -286,6 +286,10 @@
     -->
     <site.skip>false</site.skip>
     <javadoc.aggregate>false</javadoc.aggregate>
+    <!--
+     | subcomponents can specify additional Doclava parameters
+    -->
+    <doclava.additionalparams />
   </properties>
 
   <dependencyManagement>
@@ -643,6 +647,7 @@
             -hdf project.name "${project.name}"
             -apiversion "${project.version}"
             -d ${project.reporting.outputDirectory}/apidocs
+            ${doclava.additionalparams}
           </additionalparam>
         </configuration>
         <reportSets>
