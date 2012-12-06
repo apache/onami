@@ -56,7 +56,7 @@ public final class ConfigurationRunner
 
                 bindProperty( "test.suites" ).toValue( "${user.dir}/src/test/resources/testng.xml" );
 
-                bindProperties( URI.create( "classpath:/org/apache/onami/configuration/configuration/ldap.properties" ) );
+                bindProperties( URI.create( "classpath:/org/apache/onami/configuration/ldap.properties" ) );
                 bindProperties( "proxy.xml" ).inXMLFormat();
 
                 File parentConf = new File( "src/test/data/org/apache/onami" );
