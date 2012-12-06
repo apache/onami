@@ -38,6 +38,10 @@
   </skin>
 
   <body>
+    <links>
+      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
+    </links>
+
     <menu name="Components" inherit="bottom">
       <item name="Autobind"       href="http://onami.incubator.apache.org/autobind" />
       <item name="Cache"          href="http://onami.incubator.apache.org/cache" />
@@ -71,10 +75,6 @@
       <item name="Sponsorship"           href="http://www.apache.org/foundation/sponsorship.html" />
       <item name="Thanks"                href="http://www.apache.org/foundation/thanks.html" />
     </menu>
-
-    <links>
-      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
-    </links>
   </body>
 
 </project>
