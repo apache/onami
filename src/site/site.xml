@@ -39,29 +39,29 @@
 
   <body>
     <menu name="Components" inherit="bottom">
-      <item name="Autobind"       href="/autobind" />
-      <item name="Cache"          href="/cache" />
-      <item name="Configuration"  href="/configuration" />
-      <item name="Guava"          href="/guava" />
-      <item name="Lifecycle"      href="/lifecycle" />
-      <item name="Logging"        href="/logging" />
-      <item name="Scheduler"      href="/scheduler" />
-      <item name="SPI"            href="/spi" />
-      <item name="Test"           href="/test" />
+      <item name="Autobind"       href="http://onami.incubator.apache.org/autobind" />
+      <item name="Cache"          href="http://onami.incubator.apache.org/cache" />
+      <item name="Configuration"  href="http://onami.incubator.apache.org/configuration" />
+      <item name="Guava"          href="http://onami.incubator.apache.org/guava" />
+      <item name="Lifecycle"      href="http://onami.incubator.apache.org/lifecycle" />
+      <item name="Logging"        href="http://onami.incubator.apache.org/logging" />
+      <item name="Scheduler"      href="http://onami.incubator.apache.org/scheduler" />
+      <item name="SPI"            href="http://onami.incubator.apache.org/spi" />
+      <item name="Test"           href="http://onami.incubator.apache.org/test" />
     </menu>
 
     <menu name="Community" inherit="bottom">
-      <item name="Volunteering"          href="/community/volunteering.html" />
-      <item name="Contributing Patches"  href="/community/patches.html" />
-      <item name="Mailing lists"         href="/community/mail-lists.html" />
+      <item name="Volunteering"          href="http://onami.incubator.apache.org/community/volunteering.html" />
+      <item name="Contributing Patches"  href="http://onami.incubator.apache.org/community/patches.html" />
+      <item name="Mailing lists"         href="http://onami.incubator.apache.org/community/mail-lists.html" />
     </menu>
 
     <menu name="Committers" inherit="bottom">
-      <item name="SVN conventions"             href="/committers/svn-conventions.html" />
-      <item name="Maven settings"              href="/committers/maven-settings.html" />
-      <item name="GPG keys"                    href="/committers/gpg-keys.html" />
-      <item name="JIRA conventions"            href="/committers/jira-conventions.html" />
-      <item name="Code style recommendations"  href="/committers/codestyle.html" />
+      <item name="SVN conventions"             href="http://onami.incubator.apache.org/committers/svn-conventions.html" />
+      <item name="Maven settings"              href="http://onami.incubator.apache.org/committers/maven-settings.html" />
+      <item name="GPG keys"                    href="http://onami.incubator.apache.org/committers/gpg-keys.html" />
+      <item name="JIRA conventions"            href="http://onami.incubator.apache.org/committers/jira-conventions.html" />
+      <item name="Code style recommendations"  href="http://onami.incubator.apache.org/committers/codestyle.html" />
     </menu>
 
     <menu name="ASF" inherit="bottom">
