@@ -19,6 +19,6 @@
  | under the License.
 -->
 <properties version="1.0">
-    <entry key="com.ibaguice.memcached.keyprefix">test_</entry>
-    <entry key="com.ibaguice.memcached.compression">true</entry>
+  <entry key="com.ibaguice.memcached.keyprefix">test_</entry>
+  <entry key="com.ibaguice.memcached.compression">true</entry>
 </properties>
