@@ -23,13 +23,13 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
-    <version>1-SNAPSHOT-incubating</version>
+    <version>1-incubating-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-configuration</artifactId>
-  <version>6.3-SNAPSHOT-incubating</version>
+  <version>6.3-incubating-SNAPSHOT</version>
 
   <name>Apache Onami-Configuration</name>
   <description>Apache Onami-Configuration adds some spice to Google Guice through configuration files!</description>
