@@ -40,7 +40,6 @@
 
   <modules>
     <module>core</module>
-    <!-- TODO UPGRADE ROCOTO TO CURRENT CONFIGURATION VERSION -->
     <module>configuration</module>
     <module>examples</module>
     <module>integrations</module>
@@ -87,12 +86,7 @@
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-    </dependency>
-
+    
     <dependency>
       <groupId>com.google.inject.extensions</groupId>
       <artifactId>guice-multibindings</artifactId>
