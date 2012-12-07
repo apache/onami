@@ -23,13 +23,13 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>onami-parent</artifactId>
-    <version>1-SNAPSHOT-incubating</version>
+    <version>1-incubating-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-guava</artifactId>
-  <version>0.2-SNAPSHOT-incubating</version>
+  <version>0.2-incubating-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Apache Onami-Guava</name>

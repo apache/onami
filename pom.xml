@@ -22,7 +22,7 @@
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-aggregator</artifactId>
-  <version>1.0-SNAPSHOT-incubating</version>
+  <version>1.0-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami Components</name>

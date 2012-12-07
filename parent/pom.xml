@@ -29,7 +29,7 @@
 
   <groupId>org.apache.onami</groupId>
   <artifactId>onami-parent</artifactId>
-  <version>1-SNAPSHOT-incubating</version>
+  <version>1-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami</name>
