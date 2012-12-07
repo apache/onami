@@ -60,11 +60,11 @@
       <version>1.6</version>
     </dependency>
 
-    <dependency>
+    <!--dependency>
       <groupId>org.apache.onami.autobind.integrations</groupId>
       <artifactId>onami-integrations-enterprise</artifactId>
       <version>${project.version}</version>
-    </dependency>
+    </dependency-->
   </dependencies>
 
   <build>

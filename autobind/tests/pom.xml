@@ -37,6 +37,12 @@
       <type>jar</type>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>org.apache.onami.autobind</groupId>
+    	<artifactId>onami-autobind-configuration</artifactId>
+    	<version>${project.version}</version>
+      	<type>jar</type>
+    </dependency>
   </dependencies>
 
   <build>

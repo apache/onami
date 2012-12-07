@@ -32,10 +32,10 @@
   <packaging>pom</packaging>
 
   <modules>
-    <!--
-    TODO UPGRADE ROCOTO TO CURRENT VERSION
     <module>commons.configurations</module>
-    <module>enterprise</module>                -->
+    <!-- PropertiesResolver is not available anymore
+    <module>enterprise</module>
+    -->               
     <module>metro</module>
   </modules>
 
