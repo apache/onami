@@ -37,7 +37,7 @@
     <module>parent</module>
     <!-- <module>autobind</module> -->
     <module>cache</module>
-    <!-- <module>configuration</module> -->
+    <module>configuration</module>
     <module>guava</module>
     <module>lifecycle</module>
     <module>logging</module>
