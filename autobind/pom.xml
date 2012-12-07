@@ -75,9 +75,9 @@
     <javac.src.version>1.6</javac.src.version>
     <javac.target.version>1.6</javac.target.version>
 
-    <onami.autobind.siteFilePath>${user.home}/onami-autobind-site/</onami.autobind.siteFilePath>
+    <onami.autobind.siteFilePath>${user.home}/onami-sites/onami-autobind-site/</onami.autobind.siteFilePath>
     <onami.autobind.siteUrlDeployment>file://${onami.autobind.siteFilePath}</onami.autobind.siteUrlDeployment>
-    <onami.autobind.scmPubCheckoutDirectory>${user.home}/onami-autobind-site-content</onami.autobind.scmPubCheckoutDirectory>
+    <onami.autobind.scmPubCheckoutDirectory>${user.home}/onami-sites/onami-autobind-site-content</onami.autobind.scmPubCheckoutDirectory>
 
   </properties>
 
@@ -109,7 +109,7 @@
             <checkoutDirectory>${onami.autobind.scmPubCheckoutDirectory}</checkoutDirectory>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/autobind</pubScmUrl>
             <checkinComment>Apache Onami Autobind site deployment</checkinComment>
-            <content>${onami.logging.siteFilePath}</content>
+            <content>${onami.autobind.siteFilePath}</content>
             <tryUpdate>true</tryUpdate>
           </configuration>
         </plugin>
