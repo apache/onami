@@ -28,14 +28,14 @@ Mock framework
 
   <JUnice> integrates two <Mock frameworks> integrated with <Google Guice>
   to inject the mocked object into bussines logic classes, simply by annotating
-  a test fild with <<<@org.nnsoft.guice.junice.mock.annotation.Mock>>> annotation.
+  a test fild with <<<@org.apache.onami.test.mock.annotation.Mock>>> annotation.
   All existing bindins will be replaced with mock object declared into your test class.
 
   JUnice supports this kind of mock:
 
-  * Easy-Mock  (<<<org.nnsoft.guice.junice.mock.annotation.MockType.EASY_MOCK>>>)
+  * Easy-Mock  (<<<org.apache.onami.test.mock.annotation.MockType.EASY_MOCK>>>)
 
-  * Mockito    (<<<org.nnsoft.guice.junice.mock.annotation.MockType.MOCKITO>>>)
+  * Mockito    (<<<org.apache.onami.test.mock.annotation.MockType.MOCKITO>>>)
 
   <<by default>> JUnice creates Easy-Mock mock objects.
 
@@ -56,10 +56,10 @@ public class SimpleTest
 
 * Mock annotation
 
-  <<<org.nnsoft.guice.junice.annotation.Mock>>> is a field annotation used by core <Runner> to
+  <<<org.apache.onami.test.annotation.Mock>>> is a field annotation used by core <Runner> to
   instantiate and inject Mock object into a test case class.
 
-  <<<org.nnsoft.guice.junice.annotation.Mock>>> can be configured with this parameters:
+  <<<org.apache.onami.test.annotation.Mock>>> can be configured with this parameters:
 
 *----+------+------+
 || Property ||  Type   ||  Description     |
@@ -74,7 +74,7 @@ public class SimpleTest
 *----+------+------+
 | <<namedWith>> | <<<String>>> | Specifies an annotaion <<<String>> that will be used in the <<<Google Guice>>> binder to execute the literal binding. |
 *----+------+------+
-| <<type>> | <<<org.nnsoft.guice.junice.annotation.MockObjType>>> | Specifies the mock type. |
+| <<type>> | <<<org.apache.onami.test.annotation.MockObjType>>> | Specifies the mock type. |
 *----+------+------+
 
  In the following example <HelloWorld> class dependencies will be injected with
@@ -106,7 +106,7 @@ public class SimpleTest
 {
 
     //Create and inject a simple EasyMock Strict mock
-    @org.nnsoft.guice.junice.annotation.Mock
+    @org.apache.onami.test.annotation.Mock
     private Service service;
 
     @Inject
@@ -215,8 +215,8 @@ public class SimpleTest
 * Replace module
 
   <JUnice> core <Runner> will replace all existing bindings found into modules declared via
-  <<<@org.nnsoft.guice.junice.annotation.GuiceModule>>> and <<<@org.nnsoft.guice.junice.annotation.GuiceProvidedModules>>>
-  with mocked object annotated with <<<org.nnsoft.guice.junice.annotation.Mock>>>
+  <<<@org.apache.onami.test.annotation.GuiceModule>>> and <<<@org.apache.onami.test.annotation.GuiceProvidedModules>>>
+  with mocked object annotated with <<<org.apache.onami.test.annotation.Mock>>>
 
   So given google-guice module:
 
@@ -276,28 +276,28 @@ public class TestCustomInjectionTest
 
 * Multiple annotation for same type
 
-   It's possible annotate multiple types with the <<<org.nnsoft.guice.junice.annotation.Mock>>> annotation
+   It's possible annotate multiple types with the <<<org.apache.onami.test.annotation.Mock>>> annotation
 
    The Method <<<GuiceMockModule#configure()>>> creates a binding for each
-   <<<org.nnsoft.guice.junice.annotation.Mock>>> found. The binding will be created <<if and only if>> there is no
-   types conflict beetween declared <<<org.nnsoft.guice.junice.annotation.Mock>>>.
+   <<<org.apache.onami.test.annotation.Mock>>> found. The binding will be created <<if and only if>> there is no
+   types conflict beetween declared <<<org.apache.onami.test.annotation.Mock>>>.
 
 
    A type conflict is detected
 
-   * if two or more field are annotated with the same <<<org.nnsoft.guice.junice.annotation.Mock>>>
-   and no different <<<org.nnsoft.guice.junice.annotation.Mock#annotatedWith>>> parameter are specified for these
+   * if two or more field are annotated with the same <<<org.apache.onami.test.annotation.Mock>>>
+   and no different <<<org.apache.onami.test.annotation.Mock#annotatedWith>>> parameter are specified for these
    annotation or,
 
 
-   * two, or more, equals  <<<org.nnsoft.guice.junice.annotation.Mock#annotatedWith>>> parameter
+   * two, or more, equals  <<<org.apache.onami.test.annotation.Mock#annotatedWith>>> parameter
    are specified for the same type field.
 
 
 
    If a conflict is detected the <<binding will not be created>> for this conflicted type,
    and the field will be injected <<only>> into the test class.
-   So if necessary you have to create a proper binding for this <<<org.nnsoft.guice.junice.annotation.Mock>>> field:
+   So if necessary you have to create a proper binding for this <<<org.apache.onami.test.annotation.Mock>>> field:
 
 +----------------------------------------+
 @RunWith( JUniceRunner.class )

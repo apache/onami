@@ -26,7 +26,7 @@
 
 JUnice core - The JUniceRunner
 
-  The core of <JUnice> is the <<<org.nnsoft.guice.junice.JUniceRunner>>> class, that's a
+  The core of <JUnice> is the <<<org.apache.onami.test.JUniceRunner>>> class, that's a
   <JUnit Runner> and extends <org.junit.internal.runners.BlockJUnit4ClassRunner>
   For each test case the <JUniceRunner> initializes a google-guice <injector>
   before that your test case class is instantiated.
