@@ -26,7 +26,7 @@
 
 Mock framework
 
-  <JUnice> integrates two <Mock frameworks> integrated with <Google Guice>
+  <Apaceh Onami-Test> integrates two <Mock frameworks> integrated with <Google Guice>
   to inject the mocked object into bussines logic classes, simply by annotating
   a test fild with <<<@org.apache.onami.test.mock.annotation.Mock>>> annotation.
   All existing bindins will be replaced with mock object declared into your test class.
@@ -41,7 +41,7 @@ Mock framework
 
 * Choose your favorite mock framework
 
-  To choose a different mock framework that <JUnice> shuld be used to create your mock object,
+  To choose a different mock framework that <Apaceh Onami-Test> shuld be used to create your mock object,
   you should annotate the test classes in this way:
 
 +----------------------------------------+
@@ -214,7 +214,7 @@ public class SimpleTest
 
 * Replace module
 
-  <JUnice> core <Runner> will replace all existing bindings found into modules declared via
+  <Apaceh Onami-Test> core <Runner> will replace all existing bindings found into modules declared via
   <<<@org.apache.onami.test.annotation.GuiceModule>>> and <<<@org.apache.onami.test.annotation.GuiceProvidedModules>>>
   with mocked object annotated with <<<org.apache.onami.test.annotation.Mock>>>
 

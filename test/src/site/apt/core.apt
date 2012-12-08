@@ -26,7 +26,7 @@
 
 JUnice core - The JUniceRunner
 
-  The core of <JUnice> is the <<<org.apache.onami.test.JUniceRunner>>> class, that's a
+  The core of <Apache Onami-Test> is the <<<org.apache.onami.test.JUniceRunner>>> class, that's a
   <JUnit Runner> and extends <org.junit.internal.runners.BlockJUnit4ClassRunner>
   For each test case the <JUniceRunner> initializes a google-guice <injector>
   before that your test case class is instantiated.
@@ -35,7 +35,7 @@ JUnice core - The JUniceRunner
 
 Getting Started
 
-  To use <JUnice> users have to annotate the <junit> test class in the following
+  To use <Apache Onami-Test> users have to annotate the <junit> test class in the following
   way:
 
 +----------------------------------------+
@@ -56,7 +56,7 @@ public class SimpleTest
 }
 +----------------------------------------+
 
-  The <JUnice> runner can be used also in a super class:
+  The <Apache Onami-Test> runner can be used also in a super class:
 
 +----------------------------------------+
 @com.google.inject.ImplementedBy( AcmeDatabasePoolImpl.class )
