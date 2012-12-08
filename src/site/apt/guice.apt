@@ -26,7 +26,7 @@
 
 Guice integration!
 
-  <Apaceh Onami-Test> provides a couple of annotations to allow user reusing google-guice
+  <Apache Onami-Test> provides a couple of annotations to allow user reusing google-guice
   modules in test classes.
 
   <<<@org.apache.onami.test.annotation.GuiceModule>>> is a class annotation useful to
