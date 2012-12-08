@@ -29,7 +29,7 @@ Guice integration!
   <JUnice> provides a couple of annotations to allow user reusing google-guice
   modules in test classes.
 
-  <<<@org.apache.onami.test.annotation.GuiceModule>>> is a class annotation usefull to
+  <<<@org.apache.onami.test.annotation.GuiceModule>>> is a class annotation useful to
   indicate a list of google-guice modules class.
 
   <<<@org.apache.onami.test.annotation.GuiceProvidedModules>>> is a method annotation
