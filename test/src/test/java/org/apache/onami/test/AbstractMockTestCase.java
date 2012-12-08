@@ -25,7 +25,6 @@ import org.easymock.classextension.EasyMock;
 
 abstract public class AbstractMockTestCase
     extends AbstractEmptyTestCase
-
 {
 
     // Create and inject a Provided EasyMock
