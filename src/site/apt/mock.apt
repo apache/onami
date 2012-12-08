@@ -46,7 +46,7 @@ Mock framework
 
 +----------------------------------------+
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 @MockFramework( MockType.MOCKITO )
 public class SimpleTest
 {
@@ -101,7 +101,7 @@ public class HelloWorld
   Then, in the test class:
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class SimpleTest
 {
 
@@ -149,7 +149,7 @@ public class SimpleTest
     You should delegate the mock creation to a method in this way:
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class SimpleTest
 {
 
@@ -188,7 +188,7 @@ public class ServiceMockProvider
 
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class SimpleTest
 {
 
@@ -250,7 +250,7 @@ public class ServiceImpl
 +----------------------------------------+
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 @GuiceModules( ServiceModule.class )
 public class TestCustomInjectionTest
 {
@@ -300,7 +300,7 @@ public class TestCustomInjectionTest
    So if necessary you have to create a proper binding for this <<<org.apache.onami.test.annotation.Mock>>> field:
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class TestCustomInjectionTest
     implements Module
 {

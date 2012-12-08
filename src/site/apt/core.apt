@@ -1,5 +1,5 @@
  ------
- JUnice core - The JUniceRunner
+ JUnice core - The OnamiRunner
  ------
  The Apache Onami developers team
  ------
@@ -24,11 +24,11 @@
 ~~ under the License.
 ~~
 
-JUnice core - The JUniceRunner
+JUnice core - The OnamiRunner
 
-  The core of <Apache Onami-Test> is the <<<org.apache.onami.test.JUniceRunner>>> class, that's a
+  The core of <Apache Onami-Test> is the <<<org.apache.onami.test.OnamiRunner>>> class, that's a
   <JUnit Runner> and extends <org.junit.internal.runners.BlockJUnit4ClassRunner>
-  For each test case the <JUniceRunner> initializes a google-guice <injector>
+  For each test case the <OnamiRunner> initializes a google-guice <injector>
   before that your test case class is instantiated.
 
   So you have an injector ready to use already into any method <<@BeforeClass>>.
@@ -39,7 +39,7 @@ Getting Started
   way:
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class SimpleTest
 {
 
@@ -70,7 +70,7 @@ public interface AcmeDatabasePool
 +----------------------------------------+
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public abstract class DatabasePoolInitTest
 {
 

@@ -19,7 +19,7 @@ package org.apache.onami.test.guice;
  * under the License.
  */
 
-import org.apache.onami.test.JUniceRunner;
+import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.data.HelloWordAnnotated;
 import org.apache.onami.test.data.Service;
@@ -31,7 +31,7 @@ import org.junit.runner.RunWith;
 
 import com.google.inject.Inject;
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class MockAnnotatedWithTestCase
 {
 

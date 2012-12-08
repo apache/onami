@@ -19,7 +19,7 @@ package org.apache.onami.test;
  * under the License.
  */
 
-import org.apache.onami.test.JUniceRunner;
+import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.data.Service;
 import org.apache.onami.test.data.ServiceMockProvider;
@@ -28,7 +28,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class ServiceMockProviderTest
 {
 
