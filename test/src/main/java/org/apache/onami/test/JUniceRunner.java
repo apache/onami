@@ -71,7 +71,7 @@ import com.google.inject.util.Modules;
  * <pre>
  * 
  * &#064;RunWith(JUniceRunner.class)
- * &#064;GuiceModules(modules=SimpleModule.class)
+ * &#064;GuiceModules(SimpleModule.class)
  * public class AcmeTestCase {
  * 
  *     &#064;GuiceProvidedModules
