@@ -1,7 +1,7 @@
  ------
- Welcome to JUnice
+ Welcome to ${project.name}
  ------
- The 99 Software Foundation
+ The Apache Onami developers team
  ------
  2010
  ------
@@ -24,9 +24,9 @@
 ~~ under the License.
 ~~
 
-Welcome to JUnice!
+Welcome to ${project.name}!
 
-  JUnice is a small java library for <JUnit> that minimizes the boilerplate code
+  ${project.name} is a small java library for <JUnit> that minimizes the boilerplate code
   in your unit test relying on <Google Guice> to inject directly into your test
   cases all the required dependecies.
   Moreover it makes easier creating and injecting Mock and Stubs for your test
@@ -38,21 +38,12 @@ Before Coding...
 
 +----------------------------------------+
 <dependencies>
-    ...
-    <dependency>
-        <groupId>org.nnsoft.guice.junice</groupId>
-        <artifactId>junice</artifactId>
-        <version>${project.version}</version>
-    </dependency>
-    ...
+  ...
+  <dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}</version>
+  </dependency>
+  ...
 </dependencies>
 +----------------------------------------+
-
-
-Acknowledgements
-
-  This work is dedicated to our city, L'Aquila, destroyed by a terrible
-  earthquake the 6th April, 2009... That day more than 300 people were killed
-  because buildings collapsed after a magnitudo 6.3 earthquake at 3:32 am.
-
-  We'll never forget that episode.

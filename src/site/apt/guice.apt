@@ -1,7 +1,7 @@
  ------
  Guice Integration
  ------
- The 99 Software Foundation
+ The Apache Onami developers team
  ------
  2010
  ------
@@ -41,11 +41,14 @@ Guice integration!
   module:
 
 +----------------------------------------+
-public class SimpleModule extends AbstractModule {
+public class SimpleModule
+    extends AbstractModule
+{
 
     @Override
-    protected void configure() {
-        bind(Hello.class).to(HelloWorld.class);
+    protected void configure()
+    {
+        bind( Hello.class ).to( HelloWorld.class );
     }
 
 }
@@ -54,23 +57,23 @@ public class SimpleModule extends AbstractModule {
   then users can reuse it specifying
 
 +----------------------------------------+
-@RunWith(JUniceRunner.class)
-@GuiceModules(modules={ SimpleModule.class,
-                        AnotherAcmeModule.class })
-public class SimpleTest {
+@RunWith( JUniceRunner.class )
+@GuiceModules( { SimpleModule.class, AnotherAcmeModule.class } )
+public class SimpleTest
+{
 
- @com.google.inject.Inject
-  private Hello helloWorld;
+    @com.google.inject.Inject
+    private Hello helloWorld;
 
-  @org.junit.Test
-  public void testInjectNotStatic() {
-    assertNotNull(helloWorld);
-    assertEquals("Hello World!!!!", helloWorld.sayHallo());
-  }
+    @org.junit.Test
+    public void testInjectNotStatic()
+    {
+        assertNotNull( helloWorld );
+        assertEquals( "Hello World!!!!", helloWorld.sayHallo() );
+    }
 
 }
 +----------------------------------------+
-
 
 * GuiceProvidedModule annotation
 
@@ -78,9 +81,10 @@ public class SimpleTest {
   So in you testcase you have to declare a <<public static>> method with the return type is <com.google.inject.Module>
   or <Iterable\<com.google.inject.Module\>> or or <com.google.inject.Module[]>
 
-
 +----------------------------------------+
-public class ComplexModule extends AbstractModule {
+public class ComplexModule
+    extends AbstractModule
+{
 
     private String name;
 
@@ -90,30 +94,33 @@ public class ComplexModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(WhoIm.class).toInstance(new WhoIm(name));
+        bind( WhoIm.class ).toInstance( new WhoIm(name) );
     }
 
 }
 +----------------------------------------+
 
-
+  then, in the test class:
 
 +----------------------------------------+
-@RunWith(JUniceRunner.class)
-public class SimpleTest {
+@RunWith( JUniceRunner.class )
+public class SimpleTest
+{
 
     @GuiceProvidedModules
-    public static Module createComplexModule(){
-        return new ComplexModule("Marco Speranza");
+    public static Module createComplexModule()
+    {
+        return new ComplexModule( "Marco Speranza" );
     }
 
     @com.google.inject.Inject
     public static WhoIm whoIm;
 
     @org.junit.Test
-    public void testWhoIm() {
-        assertNotNull(whoIm);
-        assertEquals("Marco Speranza", whoIm.sayWhoIm());
+    public void testWhoIm()
+    {
+        assertNotNull( whoIm );
+        assertEquals( "Marco Speranza", whoIm.sayWhoIm() );
     }
 
 }
@@ -124,24 +131,26 @@ public class SimpleTest {
   <<<com.google.inject.Module>>>
 
 +----------------------------------------+
-@RunWith(JUniceRunner.class)
-public class SimpleTest extends AbstractModule {
+@RunWith( JUniceRunner.class )
+public class SimpleTest
+    extends AbstractModule
+{
 
     @Override
-     public void configure() {
-        bind(Integer.class)
-             .annotatedWith(Names.named("version"))
-                    .toInstance(10);
+    public void configure()
+    {
+        bind( Integer.class ).annotatedWith( Names.named("version") ).toInstance( 10 );
     }
 
     @Inject
-    @Named("version")
+    @Named( "version" )
     private Integer version;
 
     @Test
-    public void testInjectModuleClass(){
-        assertNotNull(version);
-        assertEquals(10, version.intValue());
+    public void testInjectModuleClass()
+    {
+        assertNotNull( version );
+        assertEquals( 10, version.intValue() );
     }
 
 }

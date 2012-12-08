@@ -1,7 +1,7 @@
  ------
  JUnice core - The JUniceRunner
  ------
- The 99 Software Foundation
+ The Apache Onami developers team
  ------
  2010
  ------
@@ -39,16 +39,18 @@ Getting Started
   way:
 
 +----------------------------------------+
-@RunWith(JUniceRunner.class)
-public class SimpleTest {
+@RunWith( JUniceRunner.class )
+public class SimpleTest
+{
 
    @com.google.inject.Inject
    private com.google.inject.Injector injector;
 
    @org.junit.BeforeClass
-   public static void setUpYourClass(){
+   public static void setUpYourClass()
+   {
         // use injector.
-        injector.getInstance(AcmeService.class);
+        injector.getInstance( AcmeService.class );
    }
 
 }
@@ -57,8 +59,9 @@ public class SimpleTest {
   The <JUnice> runner can be used also in a super class:
 
 +----------------------------------------+
-@com.google.inject.ImplementedBy(AcmeDatabasePoolImpl.class)
-public interface AcmeDatabasePool {
+@com.google.inject.ImplementedBy( AcmeDatabasePoolImpl.class )
+public interface AcmeDatabasePool
+{
 
     void open();
 
@@ -67,34 +70,45 @@ public interface AcmeDatabasePool {
 +----------------------------------------+
 
 +----------------------------------------+
-@RunWith(JUniceRunner.class)
-abstract public class DatabasePoolInitTest {
+@RunWith( JUniceRunner.class )
+public abstract class DatabasePoolInitTest
+{
 
    @com.google.inject.Inject
    private static AcmeDatabasePool pool;
 
-   @org.junit.BeforeClass
-   public static void setUpYourClass(){
-        pool = injector.getInstance(AcmeDatabasePool.class);
+    public void setPool( AcmeDatabasePool pool )
+    {
+        this.pool = pool;
+    }
+
+    @org.junit.BeforeClass
+    public static void setUpYourClass()
+    {
+        ...
         pool.open();
         ...
-   }
+    }
 
-   @org.junit.AfterClass
-   public static void setUpYourClass(){
+    @org.junit.AfterClass
+    public static void tearDownYourClass()
+    {
         ...
         pool.close();
         ...
-   }
+    }
 
 }
 +----------------------------------------+
 
 +----------------------------------------+
-public class DatabaseClassTest  extends DatabasePoolInitTest{
+public class DatabaseClassTest
+    extends DatabasePoolInitTest
+{
 
    @org.junit.Test
-   public  void test(){
+   public  void test()
+   {
         ...
    }
 
