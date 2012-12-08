@@ -1,7 +1,7 @@
  ------
  Mock framework
  ------
- The 99 Software Foundation
+ The Apache Onami developers team
  ------
  2010
  ------
@@ -39,8 +39,6 @@ Mock framework
 
   <<by default>> JUnice creates Easy-Mock mock objects.
 
-
-
 * Choose your favorite mock framework
 
   To choose a different mock framework that <JUnice> shuld be used to create your mock object,
@@ -48,14 +46,13 @@ Mock framework
 
 +----------------------------------------+
 
-@RunWith(JUniceRunner.class)
-@MockFramework(type=MockType.MOCKITO)
-public class SimpleTest {
+@RunWith( JUniceRunner.class )
+@MockFramework( MockType.MOCKITO )
+public class SimpleTest
+{
 
 }
 +----------------------------------------+
-
-
 
 * Mock annotation
 
@@ -63,7 +60,6 @@ public class SimpleTest {
   instantiate and inject Mock object into a test case class.
 
   <<<org.nnsoft.guice.junice.annotation.Mock>>> can be configured with this parameters:
-
 
 *----+------+------+
 || Property ||  Type   ||  Description     |
@@ -81,21 +77,20 @@ public class SimpleTest {
 | <<type>> | <<<org.nnsoft.guice.junice.annotation.MockObjType>>> | Specifies the mock type. |
 *----+------+------+
 
-
-
  In the following example <HelloWorld> class dependencies will be injected with
   the mocked class created by the <Runner>:
 
 +----------------------------------------+
-
-public class HelloWorld {
+public class HelloWorld
+{
 
     @Inject
     private Service service;
 
     ...
 
-    public String sayHalloByService() {
+    public String sayHalloByService()
+    {
         return service.go();
     }
 
@@ -103,13 +98,12 @@ public class HelloWorld {
 }
 +----------------------------------------+
 
-
   Then, in the test class:
 
 +----------------------------------------+
-
-@RunWith(JUniceRunner.class)
-public class SimpleTest {
+@RunWith( JUniceRunner.class )
+public class SimpleTest
+{
 
     //Create and inject a simple EasyMock Strict mock
     @org.nnsoft.guice.junice.annotation.Mock
@@ -119,21 +113,20 @@ public class SimpleTest {
     private HelloWorld helloWorld;
 
     @Test
-    public void testMock(){
+    public void testMock()
+    {
         //Stub created mock
-        EasyMock.expect(service.go()).andReturn("Ciao");
-        EasyMock.replay(providedMock);
+        EasyMock.expect( service.go() ).andReturn( "Ciao" );
+        EasyMock.replay( providedMock );
 
-        assertNotNull(service);
-        assertEquals("Ciao", helloWorld.sayHalloByService());
+        assertNotNull( service );
+        assertEquals( "Ciao", helloWorld.sayHalloByService());
 
         EasyMock.verify(service);
     }
 
 }
 +----------------------------------------+
-
-
 
 ** Mock resetAfter
 
@@ -142,7 +135,6 @@ public class SimpleTest {
   a mock has to be resetted manually, fields must to be annotated in this way:
 
 +----------------------------------------+
-
     ...
 
     @Mock(resetAfter=false)
@@ -151,65 +143,62 @@ public class SimpleTest {
     ...
 +----------------------------------------+
 
-
 ** Mock provider
 
     The Runner class create a simple mock for each <<<@Mock>>> annotated filed.
-    You shuld delegate the mock creation to a method in this way:
+    You should delegate the mock creation to a method in this way:
 
 +----------------------------------------+
+@RunWith( JUniceRunner.class )
+public class SimpleTest
+{
 
-@RunWith(JUniceRunner.class)
-public class SimpleTest {
-
-  @Mock(providedBy="providerMethod")
+  @Mock( providedBy="providerMethod" )
   private Service service;
 
-  public static Service providerMethod() {
-    Service mocked = EasyMock.createNiceMock(Service.class);
+    public static Service providerMethod() {
+        Service mocked = EasyMock.createNiceMock(Service.class);
+
+        ...
+
+        return mockedService;
+    }
 
     ...
 
-    return mockedService;
-  }
-
-  ...
-
 }
 +----------------------------------------+
-
 
   It's possible also delegate an external class:
 
 +----------------------------------------+
+public class ServiceMockProvider
+{
 
-public class ServiceMockProvider {
+    public static Service providerMethod()
+    {
+        Service mocked = EasyMock.createNiceMock( Service.class );
 
-  public static Service providerMethod() {
-    Service mocked = EasyMock.createNiceMock(Service.class);
+        ...
 
-    ...
-
-    return mockedService;
-  }
+        return mockedService;
+    }
 }
 +----------------------------------------+
 
 
 +----------------------------------------+
+@RunWith( JUniceRunner.class )
+public class SimpleTest
+{
 
-@RunWith(JUniceRunner.class)
-public class SimpleTest {
-
-    @Mock(providedBy="providerMethod",
-                      providerClass=ServiceMockProvider.class)
+    @Mock( providedBy = "providerMethod",
+           providerClass = ServiceMockProvider.class )
     private Service service;
 
     ...
 }
 +----------------------------------------+
-
-
 
 ** Mock type
 
@@ -223,8 +212,6 @@ public class SimpleTest {
 
     * EASY_MOCK_NICE to create a nice EasyMock object mock
 
-
-
 * Replace module
 
   <JUnice> core <Runner> will replace all existing bindings found into modules declared via
@@ -234,61 +221,58 @@ public class SimpleTest {
   So given google-guice module:
 
 +----------------------------------------+
-
-public class ServiceModule extends AbstractModule {
+public class ServiceModule
+    extends AbstractModule
+{
 
     @Override
-    protected void configure() {
-        bind(Service.class)
-            .to(ServiceImpl.class)
-                .asEagerSingleton();
+    protected void configure()
+    {
+        bind( Service.class).to( ServiceImpl.class ).asEagerSingleton();
         ...
     }
 }
 +----------------------------------------+
 
-
    and your implementation
 
 +----------------------------------------+
+public class ServiceImpl
+    implements Service
+{
 
-public class ServiceImpl implements Service {
-
-    public String go() {
+    public String go()
+    {
         return "It's real class";
     }
 
 }
 +----------------------------------------+
 
-
-
 +----------------------------------------+
-
-@RunWith(JUniceRunner.class)
-@GuiceModules(modules=ServiceModule.class)
-public class TestCustomInjectionTest {
+@RunWith( JUniceRunner.class )
+@GuiceModules( ServiceModule.class )
+public class TestCustomInjectionTest
+{
 
     @Mock
     private static Service service;
 
     @Test
-    public void testOverideModule() throws Exception {
-        assertNotNull(service);
+    public void testOverideModule()
+        throws Exception
+    {
+        assertNotNull( service );
 
-        EasyMock.expect(service.go())
-                .andReturn("Mocked injected class");
+        EasyMock.expect( service.go() ).andReturn( "Mocked injected class" );
 
-        assertEquals("Mocked injected class", service.go());
+        assertEquals( "Mocked injected class", service.go() );
     }
 
 }
-
 +----------------------------------------+
 
-
    service instance will be injected with the mocked object.
-
 
 * Multiple annotation for same type
 
@@ -315,14 +299,15 @@ public class TestCustomInjectionTest {
    and the field will be injected <<only>> into the test class.
    So if necessary you have to create a proper binding for this <<<org.nnsoft.guice.junice.annotation.Mock>>> field:
 
-
 +----------------------------------------+
+@RunWith( JUniceRunner.class )
+public class TestCustomInjectionTest
+    implements Module
+{
 
-@RunWith(JUniceRunner.class)
-public class TestCustomInjectionTest extendes Module {
-
-    public void configure(Binder binder) {
-        binder.bind(Service.class).toInstance(serviceOne);
+    public void configure( Binder binder )
+    {
+        binder.bind( Service.class ).toInstance( serviceOne );
     }
 
     @Mock
@@ -335,20 +320,14 @@ public class TestCustomInjectionTest extendes Module {
     private HelloWorld helloWorld;
 
     @Test
-    public void testOverideModule() throws Exception {
-        assertNotNull(serviceOne);
-        assertNotNull(serviceTwo);
+    public void testOverideModule()
+        throws Exception
+    {
+        assertNotNull( serviceOne );
+        assertNotNull( serviceTwo );
     }
 }
 +----------------------------------------+
 
-
-
   in this case <<<HelloWorld>>> class has a dependency with <<<Service>>> interface. If
-  you dont specify a proper binding <<<Google Guice>>> raises an <<<com.google.inject.ConfigurationExcepion>>>.
-
-
-
-
-
-
+  you don't specify a proper binding <<<Google Guice>>> raises an <<<com.google.inject.ConfigurationExcepion>>>.
