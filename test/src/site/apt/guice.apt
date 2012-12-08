@@ -57,7 +57,7 @@ public class SimpleModule
   then users can reuse it specifying
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 @GuiceModules( { SimpleModule.class, AnotherAcmeModule.class } )
 public class SimpleTest
 {
@@ -103,7 +103,7 @@ public class ComplexModule
   then, in the test class:
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class SimpleTest
 {
 
@@ -131,7 +131,7 @@ public class SimpleTest
   <<<com.google.inject.Module>>>
 
 +----------------------------------------+
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class SimpleTest
     extends AbstractModule
 {

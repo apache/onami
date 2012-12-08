@@ -19,7 +19,7 @@ package org.apache.onami.test;
  * under the License.
  */
 
-import org.apache.onami.test.JUniceRunner;
+import org.apache.onami.test.OnamiRunner;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +29,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class InjectModuleClassTestCase
     extends AbstractModule
 {

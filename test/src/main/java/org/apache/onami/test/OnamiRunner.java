@@ -115,11 +115,11 @@ import com.google.inject.util.Modules;
  * 
  * @see GuiceMockModule
  */
-public class JUniceRunner
+public class OnamiRunner
     extends BlockJUnit4ClassRunner
 {
 
-    final private static Logger logger = Logger.getLogger( JUniceRunner.class.getName() );
+    final private static Logger logger = Logger.getLogger( OnamiRunner.class.getName() );
 
     private Injector injector;
 
@@ -136,7 +136,7 @@ public class JUniceRunner
      * @param klass The test case class to run.
      * @throws org.junit.runners.model.InitializationError if any error occurs.
      */
-    public JUniceRunner( Class<?> klass )
+    public OnamiRunner( Class<?> klass )
         throws InitializationError
     {
         super( klass );

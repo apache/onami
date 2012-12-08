@@ -22,7 +22,7 @@ package org.apache.onami.test;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.onami.test.JUniceRunner;
+import org.apache.onami.test.OnamiRunner;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class InjectJSR330ModuleClassTestCase
     extends AbstractModule
 {

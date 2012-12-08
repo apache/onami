@@ -19,7 +19,7 @@ package org.apache.onami.test;
  * under the License.
  */
 
-import org.apache.onami.test.JUniceRunner;
+import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.GuiceModules;
 import org.apache.onami.test.data.HelloWorld;
 import org.apache.onami.test.data.SimpleModule;
@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
 
 import com.google.inject.Inject;
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 @GuiceModules( SimpleModule.class )
 public class SimpleTest
 {

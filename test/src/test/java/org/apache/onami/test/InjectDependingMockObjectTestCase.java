@@ -22,7 +22,7 @@ package org.apache.onami.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.onami.test.JUniceRunner;
+import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.data.HelloWorld;
 import org.apache.onami.test.data.Service;
@@ -37,7 +37,7 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.TypeLiteral;
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 public class InjectDependingMockObjectTestCase
 {
 

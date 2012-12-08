@@ -21,7 +21,7 @@ package org.apache.onami.test;
 
 import java.util.ArrayList;
 
-import org.apache.onami.test.JUniceRunner;
+import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.GuiceModules;
 import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.apache.onami.test.data.SimpleModule;
@@ -31,7 +31,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Module;
 import com.google.inject.name.Names;
 
-@RunWith( JUniceRunner.class )
+@RunWith( OnamiRunner.class )
 @GuiceModules( SimpleModule.class )
 abstract public class AbstractTestCase
     extends AbstractEmptyTestCase
