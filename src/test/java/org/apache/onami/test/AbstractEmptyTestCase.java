@@ -26,8 +26,7 @@ import java.util.logging.LogManager;
 import org.junit.BeforeClass;
 
 /**
- * Utility class. Just for inizializing logging.
- *
+ * Utility class. Just for logging initialization.
  */
 abstract public class AbstractEmptyTestCase
 {
