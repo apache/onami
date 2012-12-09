@@ -88,7 +88,7 @@ public class AntStyleParser
             int endVariable = pattern.indexOf( VAR_CLOSE, pos );
             if ( endVariable < 0 )
             {
-                throw new IllegalArgumentException( format( "Syntax error in property value '%s', missing close bracket '%s' for variable beginning at col %s: ''{3}''",
+                throw new IllegalArgumentException( format( "Syntax error in property value '%s', missing close bracket '%s' for variable beginning at col %s: '%s'",
                                                             pattern, VAR_CLOSE, pos - VAR_START_LEN, pattern.substring( pos - VAR_START_LEN ) ) );
             }
 
