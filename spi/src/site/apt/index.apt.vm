@@ -24,9 +24,9 @@
 ~~ under the License.
 ~~
 
-Welcome to GSPI!
+Welcome to ${project.name}!
 
-  GSPI is a Java5 compatible small collection of reusable tools for <Google Guice> to make
+  ${project.name} is a Java5 compatible small collection of reusable tools for <Google Guice> to make
   easier the integration with the Service Provider Interface pattern.
 
   It tries to take the best from the past experiences in
@@ -35,7 +35,7 @@ Welcome to GSPI!
 
 Before starting
 
-  GSPI is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
+  ${project.name} is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
 
 +--------------------------------------+
 <dependencies>
@@ -48,11 +48,3 @@ Before starting
   ...
 </dependencies>
 +--------------------------------------+
-
-Acknowledgements
-
-  This work is dedicated to our city, L'Aquila, destroyed by a terrible
-  earthquake the 6th April, 2009... That day more than 300 people were killed
-  because buildings collapsed after a magnitudo 6.3 earthquake at 3:32 am.
-
-  We'll never forget that episode.
