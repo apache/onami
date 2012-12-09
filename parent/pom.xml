@@ -270,7 +270,7 @@
     <osgi.dynamicImport />
     <osgi.private />
     <osgi.fragment-host />
-    <osgi.requiredExecutionEnvironment>J2SE−${javac.target.version}</osgi.requiredExecutionEnvironment>
+    <osgi.requiredExecutionEnvironment>J2SE-${javac.target.version}</osgi.requiredExecutionEnvironment>
     <!--
      | shared build/report plugins version
     -->
