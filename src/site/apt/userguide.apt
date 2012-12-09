@@ -26,12 +26,12 @@
 
 User's guide
 
-  The <<<org.nnsoft.guice.guartz.QuartzModule>>> makes easier the <<<org.quartz.Scheduler>>>
+  The <<<org.apache.onami.scheduler.QuartzModule>>> makes easier the <<<org.quartz.Scheduler>>>
   creation and <<<org.quartz.Job>>> creation and scheduling.
 
 * Scheduler
 
-  Once the Guice Injector will be created using the <<<org.nnsoft.guice.guartz.QuartzModule>>>, the
+  Once the Guice Injector will be created using the <<<org.apache.onami.scheduler.QuartzModule>>>, the
   <<<org.quartz.Scheduler>>> will be ready and started. Users can require the <<<org.quartz.Scheduler>>> injection
   for custom operations and for shutdown it.
 
@@ -53,10 +53,10 @@ public class MyApplicationShutdownListener
 }
 +--------------------------------------+
 
-  Users that need to register listeners, can us the <<<org.nnsoft.guice.guartz.QuartzModule>>> EDSL:
+  Users that need to register listeners, can us the <<<org.apache.onami.scheduler.QuartzModule>>> EDSL:
 
 +--------------------------------------+
-Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+Guice.createInjector(..., new org.apache.onami.scheduler.QuartzModule()
 {
 
    @Override
@@ -78,7 +78,7 @@ Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
   scheduling <<<org.quartz.Job>>> is:
 
 +--------------------------------------+
-Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+Guice.createInjector(..., new org.apache.onami.scheduler.QuartzModule()
 {
 
    @Override
@@ -99,12 +99,12 @@ Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
 
 ** Implicit scheduling
 
-  Job classes annotated with <<<org.nnsoft.guice.guartz.Scheduled>>> will be automatically scheduled extracting
+  Job classes annotated with <<<org.apache.onami.scheduler.Scheduled>>> will be automatically scheduled extracting
   configuration parameters, i.e. given the :
 
 +--------------------------------------+
 @javax.inject.Singleton
-@org.nnsoft.guice.guartz.Scheduled( jobName = "test", cronExpression = "0/2 * * * * ?" )
+@org.apache.onami.scheduler.Scheduled( jobName = "test", cronExpression = "0/2 * * * * ?" )
 public class com.acme.MyJobImpl
     implements org.quartz.Job
 {
@@ -124,7 +124,7 @@ public class com.acme.MyJobImpl
   Then, when creating the <<<Injector>>> instance:
 
 +--------------------------------------+
-Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+Guice.createInjector(..., new org.apache.onami.scheduler.QuartzModule()
 {
 
    @Override
@@ -149,7 +149,7 @@ Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
   thread:
 
 +--------------------------------------+
-Guice.createInjector(..., new org.nnsoft.guice.guartz.QuartzModule()
+Guice.createInjector(..., new org.apache.onami.scheduler.QuartzModule()
 {
 
    @Override
