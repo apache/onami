@@ -24,9 +24,9 @@
 ~~ under the License.
 ~~
 
-Guartz user's guide
+User's guide
 
-  <Guartz> provides the <<<org.nnsoft.guice.guartz.QuartzModule>>> that makes easier the <<<org.quartz.Scheduler>>>
+  The <<<org.nnsoft.guice.guartz.QuartzModule>>> makes easier the <<<org.quartz.Scheduler>>>
   creation and <<<org.quartz.Job>>> creation and scheduling.
 
 * Scheduler
