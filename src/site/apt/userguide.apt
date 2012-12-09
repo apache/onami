@@ -74,7 +74,7 @@ Guice.createInjector(..., new org.apache.onami.scheduler.QuartzModule()
 
 * Job
 
-  <Guartz> manages as well <<<org.quartz.Job>>> instances and scheduling, a typical example of
+  <<<org.quartz.Job>>> instances and scheduling are managed as well, a typical example of
   scheduling <<<org.quartz.Job>>> is:
 
 +--------------------------------------+
