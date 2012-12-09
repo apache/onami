@@ -94,7 +94,7 @@ Guice.createInjector(..., new org.apache.onami.scheduler.QuartzModule()
 
   Don't create jobs instances manually, let Guice do the job for you!
 
-  Please refer to {{{./apidocs/reference/org/nnsoft/guice/guartz/JobSchedulerBuilder.html}JobSchedulerBuilder}} Javadoc
+  Please refer to {{{./apidocs/reference/org/apache/onami/scheduler/JobSchedulerBuilder.html}JobSchedulerBuilder}} Javadoc
   to see all the scheduling configuration parameters.
 
 ** Implicit scheduling
