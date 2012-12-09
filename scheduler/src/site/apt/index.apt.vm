@@ -24,7 +24,7 @@
 ~~ under the License.
 ~~
 
-Welcome to Guartz!
+Welcome to ${project.name}!
 
   ${project.name} is the {{{http://code.google.com/p/google-guice/}Google Guice}} extension for
   {{{http://www.quartz-scheduler.org/}Quartz}}, originally developed by
