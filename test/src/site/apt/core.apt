@@ -24,7 +24,7 @@
 ~~ under the License.
 ~~
 
-JUnice core - The OnamiRunner
+The OnamiRunner
 
   The core of <Apache Onami-Test> is the <<<org.apache.onami.test.OnamiRunner>>> class, that's a
   <JUnit Runner> and extends <org.junit.internal.runners.BlockJUnit4ClassRunner>
