@@ -26,22 +26,22 @@
 
 Welcome to Guartz!
 
-  Guartz is the {{{http://code.google.com/p/google-guice/}Google Guice}} extension for
+  ${project.name} is the {{{http://code.google.com/p/google-guice/}Google Guice}} extension for
   {{{http://www.quartz-scheduler.org/}Quartz}}, originally developed by
   {{{http://ninomartinez.wordpress.com/}Nino Martinez Wael}} on Google Code with the name of
   {{{http://code.google.com/p/slurry/}quartz4guice}}.
 
 Before starting
 
-  Guartz is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
+  ${project.name} is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
 
 +--------------------------------------+
 <dependencies>
   ...
   <dependency>
-    <groupId>org.99soft.guice</groupId>
-    <artifactId>guartz</artifactId>
-    <version>XX.XX</version>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}</version>
   </dependency>
   ...
 </dependencies>
