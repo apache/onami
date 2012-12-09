@@ -30,7 +30,7 @@ After Injection callbacks
   has to be invoked once injection is complete:
 
 +--------------------------------------+
-import org.nnsoft.guice.lifegycle.AfterInjection;
+import org.apache.onami.lifecycle.AfterInjection;
 
 @Singleton // not necessary, but let's add some spice
 public class MyServiceImpl
@@ -55,7 +55,7 @@ public class MyServiceImpl
 +--------------------------------------+
 import static com.google.inject.Guice.createInjector;
 
-import org.nnsoft.guice.lifegycle.AfterInjectionModule;
+import org.apache.onami.lifecycle.AfterInjectionModule;
 
 ...
 
@@ -65,7 +65,7 @@ Injector injector = createInjector( new AfterInjectionModule(), ... );
 Customization
 
   The <<<AfterInjectionModule>>> module supports dynamic definition of the annotation has to be handled; let's replace
-  the <<<org.nnsoft.guice.lifegycle.AfterInjection>>> with the <<<javax.annotation.PostConstruct>>>:
+  the <<<org.apache.onami.lifecycle.AfterInjection>>> with the <<<javax.annotation.PostConstruct>>>:
 
 +--------------------------------------+
 import javax.annotation.PostConstruct;
@@ -94,10 +94,9 @@ public class MyServiceImpl
 import static com.google.inject.Guice.createInjector;
 
 import javax.annotation.PostConstruct;
-import org.nnsoft.guice.lifegycle.AfterInjectionModule;
+import org.apache.onami.lifecycle.AfterInjectionModule;
 
 ...
 
 Injector injector = createInjector( new AfterInjectionModule( PostConstruct.class, Matchers.any() ), ... );
 +--------------------------------------+
-  

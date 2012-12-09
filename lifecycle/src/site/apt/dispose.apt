@@ -30,7 +30,7 @@ Dispose
   has to be invoked once application will be shutdown:
 
 +--------------------------------------+
-import org.nnsoft.guice.lifegycle.Dispose;
+import org.apache.onami.lifecycle.Dispose;
 
 @Singleton // not necessary, but let's add some spice
 public class MyServiceImpl
@@ -55,17 +55,17 @@ public class MyServiceImpl
 +--------------------------------------+
 import static com.google.inject.Guice.createInjector;
 
-import org.nnsoft.guice.lifegycle.DisposeModule;
+import org.apache.onami.lifecycle.DisposeModule;
 
 ...
 
 Injector injector = createInjector( new DisposeModule(), ... );
 +--------------------------------------+
 
-  Then, require the <<<org.nnsoft.guice.lifegycle.Disposer>>> injection to shutdown the application:
+  Then, require the <<<org.apache.onami.lifecycle.Disposer>>> injection to shutdown the application:
 
 +--------------------------------------+
-import org.nnsoft.guice.lifegycle.Disposer;
+import org.apache.onami.lifecycle.Disposer;
 
 ...
 
@@ -109,7 +109,7 @@ public final class ContextListener
 Dispose Handling
 
   Users interested on tracking/logging/... objects dispose progresses, can register a
-  <<<org.nnsoft.guice.lifegycle.DisposeHandler>>>, which has the following methods signatures:
+  <<<org.apache.onami.lifecycle.DisposeHandler>>>, which has the following methods signatures:
 
 +--------------------------------------+
 public interface DisposeHandler
@@ -144,7 +144,7 @@ injector.getInstance( Disposer.class ).dispose( new DisposeHandler
 Customization
 
   The <<<DisposeModule>>> module supports dynamic definition of the annotation has to be handled; let's replace
-  the <<<org.nnsoft.guice.lifegycle.Dispose>>> with the <<<javax.annotation.PreDestroy>>>:
+  the <<<org.apache.onami.lifecycle.Dispose>>> with the <<<javax.annotation.PreDestroy>>>:
 
 +--------------------------------------+
 import javax.annotation.PreDestroy;
@@ -173,7 +173,7 @@ public class MyServiceImpl
 import static com.google.inject.Guice.createInjector;
 
 import javax.annotation.PreDestroy;
-import org.nnsoft.guice.lifegycle.AfterInjectionModule;
+import org.apache.onami.lifecycle.AfterInjectionModule;
 
 ...
 
