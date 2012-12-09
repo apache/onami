@@ -22,6 +22,11 @@
   name="${project.name}">
 
   <body>
+    <links>
+      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
+      <item name="Google Guava Libraries" href="http://code.google.com/p/guava-libraries/" />
+    </links>
+
     <menu name="Apache Onami™ Guava">
       <item name="Home" href="index.html" />
       <item name="EventBus Module" href="eventbus.html" />
