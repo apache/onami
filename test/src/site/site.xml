@@ -31,7 +31,7 @@
 
     <menu name="Apache Onami™ Test">
       <item name="Home" href="index.html" />
-      <item name="The core - JUniceRunner" href="core.html" />
+      <item name="The OnamiRunner" href="core.html" />
       <item name="Guice integration" href="guice.html" />
       <item name="Mock Framework integration" href="mock.html" />
     </menu>
