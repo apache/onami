@@ -22,6 +22,13 @@
   name="${project.name}">
 
   <body>
+    <links>
+      <item name="Google Guice" href="http://code.google.com/p/google-guice/"/>
+      <item name="JUnit" href="http://www.junit.org"/>
+      <item name="Easy-Mock" href="http://easymock.org/"/>
+      <item name="Mockito" href="http://mockito.org/"/>
+    </links>
+
     <menu name="Apache Onami™ Test">
       <item name="Home" href="index.html"/>
       <item name="The core - JUniceRunner" href="core.html"/>
@@ -30,14 +37,6 @@
     </menu>
 
     <menu ref="reports"/>
-
-    <menu name="External Links">
-      <item name="Project Page" href="http://code.google.com/p/junice/"/>
-      <item name="Google Guice" href="http://code.google.com/p/google-guice/"/>
-      <item name="JUnit" href="http://www.junit.org"/>
-      <item name="Easy-Mock" href="http://easymock.org/"/>
-      <item name="Mockito" href="http://mockito.org/"/>
-    </menu>
 
     <footer>
       <div class="row span12">
