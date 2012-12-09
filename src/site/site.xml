@@ -22,6 +22,11 @@
   name="${project.name}">
 
   <body>
+    <links>
+      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
+      <item name="Quartz Scheduler" href="http://quartz-scheduler.org/" />
+    </links>
+
     <menu name="Apache Onami™ Scheduler">
       <item name="Home" href="index.html" />
       <item name="User guide" href="userguide.html" />
