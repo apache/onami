@@ -26,7 +26,7 @@
 
 Loading Modules
 
-  GSPI allows loading <<<com.google.inject.Module>>>s from the SPI in an easy way:
+  <<<com.google.inject.Module>>>s can be now load applying the SPI pattern in an easy way:
   define first which <<<Module>>>s you intend to load in the <<<META-INF/services/com.google.inject.Module>>> file(s):
 
 ----------------------------------------
