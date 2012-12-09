@@ -86,7 +86,7 @@ public final class MySystem
 
     public void start()
     {
-        com.google.inject.Guice.createInjector(  new EventBusModule()
+        com.google.inject.Guice.createInjector( new org.apache.onami.guava.eventbus.EventBusModule()
         {
 
             @Override
