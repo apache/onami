@@ -140,10 +140,7 @@ Guice.createInjector(..., new org.apache.onami.scheduler.QuartzModule()
 
 ** Starting the schedule manually
 
-  Since version 1.1, thanks to {{{https://github.com/argast}Pawel Poltorak}}, <Guartz> can be configured to let
-  the <<<Scheduler>>> instance started manually.
-
-  That feature is incredibly useful due to serious
+  Since version 1.1 the <<<Scheduler>>> instance can be started manually; that feature is incredibly useful due to serious
   {{{http://code.google.com/p/google-guice/issues/detail?id=183}deadlock}}
   {{{http://groups.google.com/group/google-guice/browse_thread/thread/c4ccd95b76192519}issue}} found in the main Guice
   thread:
