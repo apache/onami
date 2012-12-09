@@ -32,7 +32,7 @@ public final class VariablesMap implements Map<String, String>
 {
 
     /** Parser to use for variables resolving */
-    private Parser parser;
+    private final Parser parser;
 
     public VariablesMap( Parser parser )
     {
