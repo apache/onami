@@ -26,7 +26,7 @@
 
 Binding Services
 
-  The <<<org.nnsoft.guice.gspi.ServiceLoaderModule>>> provides APIs to bind Services to Provided
+  The <<<org.apache.onami.spi.ServiceLoaderModule>>> provides APIs to bind Services to Provided
   discovered via SPI pattern.
 
   Given an hipotetycal <<<FooService>>>:
@@ -102,7 +102,7 @@ import static com.google.inject.Guice.createInjector;
 import com.acme.FooService;
 import com.google.inject.Injector;
 
-import org.nnsoft.guice.gspi.ServiceLoaderModule;
+import org.apache.onami.spi.ServiceLoaderModule;
 
 ...
 
@@ -140,7 +140,7 @@ import static com.google.inject.Guice.createInjector;
 import com.acme.FooService;
 import com.google.inject.Injector;
 
-import org.nnsoft.guice.gspi.ServiceLoaderModule;
+import org.apache.onami.spi.ServiceLoaderModule;
 
 ...
 

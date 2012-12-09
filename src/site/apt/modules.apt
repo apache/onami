@@ -42,10 +42,10 @@ com.acme.FooTestCase$AcmeModule   # EOL comment
 #
 ----------------------------------------
 
-  then, load modules invoking <<<org.nnsoft.guice.gspi.GuiceServiceLoader.*>>> APIs:
+  then, load modules invoking <<<org.apache.onami.spi.GuiceServiceLoader.*>>> APIs:
 
 +--------------------------------------+
-import static org.nnsoft.guice.gspi.GuiceServiceLoader.loadModules;
+import static org.apache.onami.spi.GuiceServiceLoader.loadModules;
 import static com.google.inject.Guice.createInjector;
 
 import com.google.inject.Injector;
