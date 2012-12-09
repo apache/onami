@@ -34,19 +34,19 @@ public final class VariablesMap implements Map<String, String>
     /** Parser to use for variables resolving */
     private final Parser parser;
 
-    public VariablesMap( Parser parser )
-    {
-        this.parser = parser;
-    }
+    private final Map<String, Resolver> resolvers = new HashMap<String, Resolver>();
+
+    private final Map<String, String> data = new HashMap<String, String>();
 
     public VariablesMap()
     {
         this( new AntStyleParser() );
     }
 
-    private final Map<String, Resolver> resolvers = new HashMap<String, Resolver>();
-
-    private final Map<String, String> data = new HashMap<String, String>();
+    public VariablesMap( Parser parser )
+    {
+        this.parser = parser;
+    }
 
     public void clear()
     {
