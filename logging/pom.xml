@@ -98,7 +98,7 @@
           <configuration>
             <checkoutDirectory>${onami.logging.scmPubCheckoutDirectory}</checkoutDirectory>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/logging</pubScmUrl>
-            <checkinComment>Apache Onami Logging site deployment</checkinComment>
+            <checkinComment>Onami Logging site deployment</checkinComment>
             <content>${onami.logging.siteFilePath}</content>
             <tryUpdate>true</tryUpdate>
           </configuration>

@@ -108,7 +108,7 @@
           <configuration>
             <checkoutDirectory>${onami.autobind.scmPubCheckoutDirectory}</checkoutDirectory>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/autobind</pubScmUrl>
-            <checkinComment>Apache Onami Autobind site deployment</checkinComment>
+            <checkinComment>Onami Autobind site deployment</checkinComment>
             <content>${onami.autobind.siteFilePath}</content>
             <tryUpdate>true</tryUpdate>
           </configuration>

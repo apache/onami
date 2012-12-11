@@ -114,7 +114,7 @@
         <artifactId>maven-scm-publish-plugin</artifactId>
         <inherited>false</inherited>
         <configuration>
-          <checkinComment>Onami Guava site deployment</checkinComment>
+          <checkinComment>Onami Lifecycle site deployment</checkinComment>
           <checkoutDirectory>${user.home}/onami-sites/onami-lifecycle-site</checkoutDirectory>
         </configuration>
         <executions>
