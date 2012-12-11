@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.autobind.aop</artifactId>
-  <name>Apache Onami Autobind :: Aop</name>
+  <name>Apache Onami Autobind - Aop</name>
 
   <dependencies>
     <dependency>

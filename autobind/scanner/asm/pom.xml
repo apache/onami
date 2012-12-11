@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.autobind.scanner.asm</artifactId>
-  <name>Apache Onami Autobind :: Scanner :: Asm</name>
+  <name>Apache Onami Autobind - Scanner - Asm</name>
 
   <dependencies>
     <dependency>

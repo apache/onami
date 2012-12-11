@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.autobind.configuration</artifactId>
-  <name>Apache Onami Autobind :: Configuration</name>
+  <name>Apache Onami Autobind - Configuration</name>
 
   <dependencies>
     <dependency>

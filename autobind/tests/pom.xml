@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.autobind.tests</artifactId>
-  <name>Apache Onami Autobind :: Tests</name>
+  <name>Apache Onami Autobind - Tests</name>
 
   <dependencies>
     <dependency>

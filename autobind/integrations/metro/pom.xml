@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.autobind.integrations.metro</artifactId>
-  <name>Apache Onami Autobind :: Integrations :: Metro</name>
+  <name>Apache Onami Autobind - Integrations - Metro</name>
 
   <dependencies>
     <dependency>

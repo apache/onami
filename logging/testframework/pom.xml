@@ -29,7 +29,7 @@
   <artifactId>org.apache.onami.logging.testfw</artifactId>
   <packaging>jar</packaging>
 
-  <name>Apache Onami-Logging :: Test framework</name>
+  <name>Apache Onami-Logging - Test framework</name>
   <description>Apache Onami-Logging test framework for logging modules test</description>
 
   <dependencies>

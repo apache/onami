@@ -33,7 +33,7 @@
   <version>3.4-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Onami-Logging :: Parent</name>
+  <name>Apache Onami-Logging - Parent</name>
   <description>Apache Onami-Logging is a Logging Injector for Java</description>
   <url>http://onami.incubator.apache.org/logging</url>
 

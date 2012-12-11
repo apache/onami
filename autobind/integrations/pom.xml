@@ -28,7 +28,7 @@
 
   <groupId>org.apache.onami.autobind.integrations</groupId>
   <artifactId>org.apache.onami.autobind.integrations.parent</artifactId>
-  <name>Apache Onami Autobind :: Integrations</name>
+  <name>Apache Onami Autobind - Integrations</name>
   <packaging>pom</packaging>
 
   <modules>

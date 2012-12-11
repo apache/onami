@@ -28,7 +28,7 @@
 
   <groupId>org.apache.onami.autobind.scanner</groupId>
   <artifactId>org.apache.onami.autobind.scanner.parent</artifactId>
-  <name>Apache Onami Autobind :: Scanner</name>
+  <name>Apache Onami Autobind - Scanner</name>
   <packaging>pom</packaging>
 
   <modules>

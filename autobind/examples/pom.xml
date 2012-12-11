@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.autobind.examples</artifactId>
-  <name>Apache Onami Autobind :: Examples</name>
+  <name>Apache Onami Autobind - Examples</name>
 
   <dependencies>
     <dependency>
