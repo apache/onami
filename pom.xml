@@ -28,7 +28,7 @@
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>onami-parent</artifactId>
+  <artifactId>org.apache.onami.parent</artifactId>
   <version>1-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -228,7 +228,7 @@
   </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://builds.apache.org/job/Onami-Parent/</url>
+    <url>https://builds.apache.org/job/org.apache.onami.parent/</url>
     <notifiers>
       <notifier>
         <type>mail</type>
