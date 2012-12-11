@@ -23,11 +23,11 @@
 
   <parent>
     <groupId>org.apache.onami.logging</groupId>
-    <artifactId>onami-logging-parent</artifactId>
+    <artifactId>org.apache.onami.logging.parent</artifactId>
     <version>3.4-incubating-SNAPSHOT</version>
   </parent>
 
-  <artifactId>onami-logging-log4j2</artifactId>
+  <artifactId>org.apache.onami.logging.log4j2</artifactId>
   <packaging>jar</packaging>
   <name>Apache Onami-Logging :: Apache Log4j2</name>
   <description>Apache Onami-Logging-Log4j2 is an Apache Log4j2 Injector</description>
@@ -39,7 +39,7 @@
   <dependencies>
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>onami-logging-core</artifactId>
+      <artifactId>org.apache.onami.logging.core</artifactId>
       <version>${project.parent.version}</version>
       <scope>compile</scope>
     </dependency>
@@ -57,7 +57,7 @@
 
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>onami-logging-testfw</artifactId>
+      <artifactId>org.apache.onami.logging.testfw</artifactId>
       <version>${project.parent.version}</version>
       <scope>test</scope>
     </dependency>

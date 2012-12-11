@@ -21,7 +21,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>onami-aggregator</artifactId>
+  <artifactId>org.apache.onami.aggregator</artifactId>
   <version>1.0-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 

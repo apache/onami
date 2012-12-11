@@ -22,11 +22,11 @@
 
   <parent>
     <groupId>org.apache.onami.autobind</groupId>
-    <artifactId>onami-autobind-parent</artifactId>
+    <artifactId>org.apache.onami.autobind.parent</artifactId>
     <version>0.9.2-incubating-SNAPSHOT</version>
   </parent>
 
-  <artifactId>onami-autobind-core</artifactId>
+  <artifactId>org.apache.onami.autobind.core</artifactId>
   <name>Apache Onami Autobind :: Core</name>
 
   <dependencies>
