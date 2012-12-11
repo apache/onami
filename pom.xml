@@ -134,7 +134,7 @@
         <inherited>false</inherited>
         <configuration>
           <checkinComment>Onami Guava site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-spi-site</checkoutDirectory>
+          <checkoutDirectory>${user.home}/onami-sites/onami-spi-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
