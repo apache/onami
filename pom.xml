@@ -264,13 +264,13 @@
     <!--
      | OSGi stuff
     -->
-    <osgi.symbolic-name>${project.groupId}.${project.artifactId}</osgi.symbolic-name>
-    <osgi.export>${project.groupId}.*;version=${project.version};-noimport:=true</osgi.export>
+    <osgi.symbolic-name>${project.artifactId}</osgi.symbolic-name>
+    <osgi.export>${project.artifactId}*;version=${project.version}</osgi.export>
     <osgi.import>*</osgi.import>
     <osgi.dynamicImport />
     <osgi.private />
     <osgi.fragment-host />
-    <osgi.requiredExecutionEnvironment>J2SE-${javac.target.version}</osgi.requiredExecutionEnvironment>
+    <osgi.requiredExecutionEnvironment>J2SE-1.5,J2SE-1.6</osgi.requiredExecutionEnvironment>
     <!--
      | shared build/report plugins version
     -->
