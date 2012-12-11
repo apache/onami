@@ -147,7 +147,7 @@
         <inherited>false</inherited>
         <configuration>
           <checkinComment>Onami Guava site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-scheduler-site</checkoutDirectory>
+          <checkoutDirectory>${user.home}/onami-sites/onami-scheduler-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
