@@ -71,9 +71,9 @@
   </ciManagement>
 
   <properties>
-    <onami.logging.siteFilePath>${user.home}/onami-logging-site/</onami.logging.siteFilePath>
+    <onami.logging.siteFilePath>${user.home}/onami-sites/onami-logging-site/</onami.logging.siteFilePath>
     <onami.logging.siteUrlDeployment>file://${onami.logging.siteFilePath}</onami.logging.siteUrlDeployment>
-    <onami.logging.scmPubCheckoutDirectory>${user.home}/onami-logging-site-content
+    <onami.logging.scmPubCheckoutDirectory>${user.home}/onami-sites/onami-logging-site-content
     </onami.logging.scmPubCheckoutDirectory>
   </properties>
 
