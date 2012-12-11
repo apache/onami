@@ -38,6 +38,10 @@
       <googleSearch>
         <sitesearch>${project.url}</sitesearch>
       </googleSearch>
+      <ohloh>
+        <projectId>622434</projectId>
+        <widget>factoids</widget>
+      </ohloh>
     </fluidoSkin>
   </custom>
 
