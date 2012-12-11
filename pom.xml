@@ -22,13 +22,13 @@
 
   <parent>
     <groupId>org.apache.onami</groupId>
-    <artifactId>onami-parent</artifactId>
+    <artifactId>org.apache.onami.parent</artifactId>
     <version>1-incubating-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>onami-spi</artifactId>
+  <artifactId>org.apache.onami.spi</artifactId>
   <version>0.2-incubating-SNAPSHOT</version>
 
   <name>Apache Onami-SPI</name>
