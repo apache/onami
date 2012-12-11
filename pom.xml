@@ -139,7 +139,7 @@
         <inherited>false</inherited>
         <configuration>
           <checkinComment>Onami Test site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-test-site</checkoutDirectory>
+          <checkoutDirectory>${user.home}/onami-sites/onami-test-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
