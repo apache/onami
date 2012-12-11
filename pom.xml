@@ -24,13 +24,13 @@
 
   <parent>
     <groupId>org.apache.onami</groupId>
-    <artifactId>onami-parent</artifactId>
+    <artifactId>org.apache.onami.parent</artifactId>
     <version>1-incubating-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.apache.onami</groupId>
-  <artifactId>onami-test</artifactId>
+  <artifactId>org.apache.onami.test</artifactId>
   <version>1.4-incubating-SNAPSHOT</version>
 
   <name>Apache Onami-Test</name>
