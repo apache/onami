@@ -130,7 +130,7 @@
         <inherited>false</inherited>
         <configuration>
           <checkinComment>Onami Guava site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-guava-site</checkoutDirectory>
+          <checkoutDirectory>${user.home}/onami-sites/onami-guava-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>

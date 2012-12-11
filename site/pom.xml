@@ -94,7 +94,7 @@
             <ignorePathToDelete>spi**</ignorePathToDelete>
             <ignorePathToDelete>test**</ignorePathToDelete>
           </ignorePathsToDelete>
-          <checkoutDirectory>${user.home}/onami-main-site</checkoutDirectory>
+          <checkoutDirectory>${user.home}/onami-sites/onami-main-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
