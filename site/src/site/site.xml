@@ -42,6 +42,8 @@
         <projectId>622434</projectId>
         <widget>factoids</widget>
       </ohloh>
+      <facebookLike />
+      <googlePlusOne />
     </fluidoSkin>
   </custom>
 
