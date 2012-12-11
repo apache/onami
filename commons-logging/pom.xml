@@ -30,8 +30,8 @@
   <artifactId>org.apache.onami.logging.commons-logging</artifactId>
   <packaging>jar</packaging>
 
-  <name>Apache Onami-Logging :: Apache Commons Logging</name>
-  <description>Apache Onami-Logging-ACL is an Apache Commons Logging Injector</description>
+  <name>Apache Onami-Logging - Apache Commons-Logging</name>
+  <description>Apache Onami-Logging-ACL is an Apache Commons-Logging Injector</description>
 
   <properties>
     <site.skip>true</site.skip>
