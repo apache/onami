@@ -66,6 +66,7 @@
       <item name="GPG keys"                    href="http://onami.incubator.apache.org/committers/gpg-keys.html" />
       <item name="JIRA conventions"            href="http://onami.incubator.apache.org/committers/jira-conventions.html" />
       <item name="Code style recommendations"  href="http://onami.incubator.apache.org/committers/codestyle.html" />
+      <item name="Release HowTo"               href="http://onami.incubator.apache.org/committers/release-howto.html" />
     </menu>
 
     <menu name="ASF" inherit="bottom">
