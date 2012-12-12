@@ -25,7 +25,7 @@
     <menu name="Apache Onami™ Lifecycle">
       <item name="Home" href="index.html" />
       <item name="After Injection callbacks" href="after-injection.html" />
-      <item name="Dispose hooker" href="dispose.html" />
+      <item name="Dispose callbacks" href="dispose.html" />
     </menu>
 
     <menu ref="reports"/>
