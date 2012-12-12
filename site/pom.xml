@@ -41,10 +41,15 @@
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/site</developerConnection>
   </scm>
 
+  <properties>
+    <svnUrl>https://svn.apache.org/repos/asf/incubator/onami/site/</svnUrl>
+    <checkoutDirectory>${user.home}/onami-sites/onami-main-site</checkoutDirectory>
+  </properties>
+
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/</url>
+      <url>scm:svn:${svnUrl}</url>
     </site>
   </distributionManagement>
 
@@ -94,7 +99,7 @@
             <ignorePathToDelete>spi**</ignorePathToDelete>
             <ignorePathToDelete>test**</ignorePathToDelete>
           </ignorePathsToDelete>
-          <checkoutDirectory>${user.home}/onami-sites/onami-main-site</checkoutDirectory>
+          <checkoutDirectory>${checkoutDirectory}</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
@@ -119,5 +124,56 @@
       </releases>
     </repository>
   </repositories>
+
+  <profiles>
+    <profile>
+      <id>setup-checkout</id>
+      <activation>
+        <file>
+          <missing>site-publish</missing>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>prepare-checkout</id>
+                <phase>pre-site</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <exec executable="svn">
+                      <arg line="checkout --depth immediates ${svnUrl} ${checkoutDirectory}" />
+                    </exec>
+
+                    <exec executable="svn">
+                      <arg line="update --set-depth exclude ${checkoutDirectory}/autobind ${checkoutDirectory}/cache
+                      ${checkoutDirectory}/configuration ${checkoutDirectory}/guava
+                      ${checkoutDirectory}/lifecycle ${checkoutDirectory}/logging
+                      ${checkoutDirectory}/scheduler ${checkoutDirectory}/spi
+                      ${checkoutDirectory}/test" />
+                    </exec>
+
+                    <pathconvert pathsep=" " property="dirs">
+                      <dirset dir="${checkoutDirectory}" includes="*" />
+                    </pathconvert>
+                    <exec executable="svn">
+                      <arg line="update --set-depth infinity ${dirs}" />
+                    </exec>
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
