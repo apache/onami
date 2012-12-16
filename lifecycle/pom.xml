@@ -36,6 +36,13 @@
   <url>http://onami.incubator.apache.org/lifecycle/</url>
   <inceptionYear>2012</inceptionYear>
 
+  <contributors>
+    <contributor>
+      <name>Mikhail Mazursky</name>
+      <email>mikhail dot mazursky at gmail dot com</email>
+    </contributor>
+  </contributors>
+
   <scm>
     <url>https://svn.apache.org/viewvc/incubator/onami/trunk/lifecycle</url>
     <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/lifecycle</connection>

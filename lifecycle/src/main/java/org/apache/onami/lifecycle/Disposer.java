@@ -140,6 +140,7 @@ public final class Disposer
             try
             {
                 disposeMethod.invoke( injectee );
+                disposeHandler.onSuccess( injectee );
             }
             catch ( IllegalArgumentException e )
             {
