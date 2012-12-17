@@ -19,7 +19,6 @@ package org.apache.onami.lifecycle;
  * under the License.
  */
 
-import static com.google.inject.internal.util.$Preconditions.checkArgument;
 import static com.google.inject.matcher.Matchers.any;
 
 import java.lang.annotation.Annotation;
@@ -64,8 +63,14 @@ abstract class AbstractLifeCycleModule
     public <A extends Annotation> AbstractLifeCycleModule( Class<A> annotationType,
                                                            Matcher<Object> typeMatcher )
     {
-        checkArgument( annotationType != null, "annotationType must be specified" );
-        checkArgument( typeMatcher != null, "typeMatcher must be specified" );
+        if ( annotationType == null )
+        {
+            throw new IllegalArgumentException( "annotationType must be specified" );
+        }
+        if ( typeMatcher == null )
+        {
+            throw new IllegalArgumentException( "typeMatcher must be specified" );
+        }
         this.annotationType = annotationType;
         this.typeMatcher = typeMatcher;
     }
