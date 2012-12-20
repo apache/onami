@@ -745,12 +745,11 @@
       <id>release</id>
       <build>
         <plugins>
-
-            <!--
-                Create a source-release artifact that contains the fully buildable
-                project directory source structure. This is the artifact which is
-                the official subject of any release vote.
-            -->
+          <!--
+           | Create a source-release artifact that contains the fully buildable
+           | project directory source structure.
+           | This is the artifact which is the official subject of any release vote.
+          -->
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <dependencies>
