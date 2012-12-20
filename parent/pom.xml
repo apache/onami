@@ -405,23 +405,6 @@
           </configuration>
         </plugin>
 
-        <!-- Add license and disclaimer to artifacts -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-remote-resources-plugin</artifactId>
-          <executions>
-            <execution>
-              <configuration>
-                <resourceBundles>
-                  <resourceBundle>org.apache:apache-incubator-disclaimer-resource-bundle:1.1</resourceBundle>
-                  <resourceBundle>org.apache:apache-jar-resource-bundle:1.4</resourceBundle>
-                </resourceBundles>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-publish-plugin</artifactId>
@@ -762,6 +745,39 @@
       <id>release</id>
       <build>
         <plugins>
+
+            <!--
+                Create a source-release artifact that contains the fully buildable
+                project directory source structure. This is the artifact which is
+                the official subject of any release vote.
+            -->
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <dependencies>
+              <dependency>
+                <groupId>org.apache.apache.resources</groupId>
+                <artifactId>apache-source-release-assembly-descriptor</artifactId>
+                <version>1.0.4</version>
+              </dependency>
+            </dependencies>
+            <executions>
+              <execution>
+                <id>source-release-assembly</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <runOnlyAtExecutionRoot>true</runOnlyAtExecutionRoot>
+                  <descriptorRefs>
+                    <descriptorRef>${sourceReleaseAssemblyDescriptor}</descriptorRef>
+                  </descriptorRefs>
+                  <tarLongFileFormat>gnu</tarLongFileFormat>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
           <plugin>
             <groupId>org.apache.rat</groupId>
             <artifactId>apache-rat-plugin</artifactId>
