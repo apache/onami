@@ -29,7 +29,7 @@
 
   <groupId>org.apache.onami</groupId>
   <artifactId>org.apache.onami.parent</artifactId>
-  <version>1-incubating</version>
+  <version>2-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami</name>
@@ -217,9 +217,9 @@
   </mailingLists>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/tags/org.apache.onami.parent-1-incubating</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.parent-1-incubating</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.parent-1-incubating</developerConnection>
+    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/parent</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/parent</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/parent</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
