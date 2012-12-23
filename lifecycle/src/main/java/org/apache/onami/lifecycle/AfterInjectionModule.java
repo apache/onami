@@ -26,6 +26,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.google.inject.ProvisionException;
+import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
@@ -53,7 +54,7 @@ public final class AfterInjectionModule
      * @param typeMatcher the filter for injectee types.
      */
     public <A extends Annotation> AfterInjectionModule( Class<A> afterInjectionAnnotationType,
-                                                        Matcher<Object> typeMatcher )
+                                                        Matcher<? super TypeLiteral<?>> typeMatcher )
     {
         super( afterInjectionAnnotationType, typeMatcher );
     }

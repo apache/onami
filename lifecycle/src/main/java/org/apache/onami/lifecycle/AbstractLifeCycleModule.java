@@ -24,6 +24,7 @@ import static com.google.inject.matcher.Matchers.any;
 import java.lang.annotation.Annotation;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
 
 /**
@@ -41,7 +42,7 @@ abstract class AbstractLifeCycleModule
     /**
      * The type matcher to filter classes where looking for lifecycle annotations.
      */
-    private final Matcher<Object> typeMatcher;
+    private final Matcher<? super TypeLiteral<?>> typeMatcher;
 
     /**
      * Creates a new module which looks for the input lifecycle annotation on methods in any type.
@@ -61,7 +62,7 @@ abstract class AbstractLifeCycleModule
      * @param typeMatcher the filter for injectee types.
      */
     public <A extends Annotation> AbstractLifeCycleModule( Class<A> annotationType,
-                                                           Matcher<Object> typeMatcher )
+                                                           Matcher<? super TypeLiteral<?>> typeMatcher )
     {
         if ( annotationType == null )
         {
@@ -90,7 +91,7 @@ abstract class AbstractLifeCycleModule
      *
      * @return the type matcher to filter classes where looking for lifecycle annotations.
      */
-    protected final Matcher<Object> getTypeMatcher()
+    protected final Matcher<? super TypeLiteral<?>> getTypeMatcher()
     {
         return typeMatcher;
     }

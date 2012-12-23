@@ -22,6 +22,7 @@ package org.apache.onami.lifecycle;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
@@ -49,7 +50,7 @@ public final class DisposeModule
      * @param typeMatcher the filter for injectee types.
      */
     public <A extends Annotation> DisposeModule( Class<A> disposeAnnotationType,
-                                                 Matcher<Object> typeMatcher )
+                                                 Matcher<? super TypeLiteral<?>> typeMatcher )
     {
         super( disposeAnnotationType, typeMatcher );
     }
