@@ -29,7 +29,7 @@
 
   <groupId>org.apache.onami</groupId>
   <artifactId>org.apache.onami.site</artifactId>
-  <version>1-SNAPSHOT</version>
+  <version>1-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami Site</name>
