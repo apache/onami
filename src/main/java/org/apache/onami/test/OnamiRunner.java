@@ -70,7 +70,7 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;RunWith(JUniceRunner.class)
+ * &#064;RunWith(OnamiRunner.class)
  * &#064;GuiceModules(SimpleModule.class)
  * public class AcmeTestCase {
  * 
@@ -88,7 +88,7 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;RunWith(JUniceRunner.class)
+ * &#064;RunWith(OnamiRunner.class)
  * public class AcmeTestCase extends com.google.inject.AbstractModule {
  * 
  *     public void configure() {
@@ -130,7 +130,7 @@ public class OnamiRunner
     private MockType mockFramework = MockType.EASY_MOCK;
 
     /**
-     * JUniceRunner constructor to create the core JUnice class.
+     * OnamiRunner constructor to create the core JUnice class.
      * 
      * @see RunWith
      * @param klass The test case class to run.
@@ -145,7 +145,7 @@ public class OnamiRunner
         {
             if ( logger.isLoggable( Level.FINER ) )
             {
-                logger.finer( "Inizializing JUniceRunner for class: " + klass.getSimpleName() );
+                logger.finer( "Inizializing OnamiRunner for class: " + klass.getSimpleName() );
             }
 
             this.allModules = inizializeInjector( klass );
