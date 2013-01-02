@@ -20,8 +20,6 @@ package org.apache.onami.scheduler;
  */
 
 import static com.google.inject.Scopes.SINGLETON;
-import static com.google.inject.internal.util.$Preconditions.checkNotNull;
-import static com.google.inject.internal.util.$Preconditions.checkState;
 import static com.google.inject.multibindings.Multibinder.newSetBinder;
 import static java.util.TimeZone.getTimeZone;
 import static org.apache.onami.scheduler.Scheduled.DEFAULT;
@@ -208,8 +206,24 @@ public abstract class QuartzModule
      */
     protected final <T> void doBind( Multibinder<T> binder, Class<? extends T> type )
     {
-        checkNotNull( type );
+        checkNotNull( type, "Impossible to bind a null type" );
         binder.addBinding().to( type );
+    }
+
+    private static void checkState( boolean state, String message )
+    {
+        if ( !state )
+        {
+            throw new IllegalStateException( message );
+        }
+    }
+
+    private static void checkNotNull( Object object, String message )
+    {
+        if ( object == null )
+        {
+            throw new IllegalArgumentException( message );
+        }
     }
 
 }
