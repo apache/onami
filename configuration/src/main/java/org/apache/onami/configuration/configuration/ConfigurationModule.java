@@ -19,8 +19,6 @@ package org.apache.onami.configuration.configuration;
  * under the License.
  */
 
-import static com.google.inject.internal.util.$Preconditions.checkNotNull;
-import static com.google.inject.internal.util.$Preconditions.checkState;
 import static com.google.inject.name.Names.named;
 import static java.lang.String.format;
 import static org.apache.onami.configuration.configuration.PropertiesIterator.newPropertiesIterator;
@@ -64,7 +62,10 @@ public abstract class ConfigurationModule
     @Override
     protected final void configure()
     {
-        checkState( readers == null, "Re-entry not allowed" );
+        if ( readers != null )
+        {
+            throw new IllegalStateException( "Re-entry not allowed" );
+        }
 
         readers = new LinkedList<PropertiesURLReader>();
 
@@ -276,6 +277,14 @@ public abstract class ConfigurationModule
         PropertiesURLReader reader = new PropertiesURLReader( propertiesResource );
         readers.add( reader );
         return reader;
+    }
+
+    private static void checkNotNull( Object object, String messageFormat, Object...args )
+    {
+        if ( object == null )
+        {
+            throw new IllegalArgumentException( format( messageFormat, args ) );
+        }
     }
 
 }

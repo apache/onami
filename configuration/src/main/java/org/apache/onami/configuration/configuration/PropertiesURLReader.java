@@ -19,7 +19,6 @@ package org.apache.onami.configuration.configuration;
  * under the License.
  */
 
-import static com.google.inject.internal.util.$Preconditions.checkNotNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -56,7 +55,10 @@ public final class PropertiesURLReader
      */
     public PropertiesURLReader( URL url )
     {
-        checkNotNull( url, "'url' argument can't be null" );
+        if ( url == null)
+        {
+            throw new IllegalArgumentException( "'url' argument can't be null" );
+        }
 
         this.url = url;
     }
