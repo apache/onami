@@ -69,6 +69,12 @@
       </notifier>
     </notifiers>
   </ciManagement>
+  <distributionManagement>
+    <site>
+      <id>apache.website</id>
+      <url>${onami.logging.siteUrlDeployment}</url>
+    </site>
+  </distributionManagement>
 
   <properties>
     <onami.logging.siteFilePath>${user.home}/onami-sites/onami-logging-site/</onami.logging.siteFilePath>
@@ -106,13 +112,6 @@
       </plugins>
     </pluginManagement>
   </build>
-
-  <distributionManagement>
-    <site>
-      <id>apache.website</id>
-      <url>${onami.logging.siteUrlDeployment}</url>
-    </site>
-  </distributionManagement>
 
   <reporting>
     <plugins>
