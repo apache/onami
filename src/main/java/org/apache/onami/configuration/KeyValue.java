@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration;
+package org.apache.onami.configuration;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

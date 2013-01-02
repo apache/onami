@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration;
+package org.apache.onami.configuration.binder;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,41 +19,17 @@ package org.apache.onami.configuration.configuration;
  * under the License.
  */
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 /**
- *
+ * Define a properties file is in the XML format.
  */
-public final class ProxyConfiguration
+public interface XMLPropertiesFormatBindingBuilder
 {
 
-    @Inject
-    @Named( "proxy.host" )
-    private String host;
-
-    @Inject
-    @Named( "proxy.port" )
-    private int port;
-
-    public String getHost()
-    {
-        return host;
-    }
-
-    public void setHost( String host )
-    {
-        this.host = host;
-    }
-
-    public int getPort()
-    {
-        return port;
-    }
-
-    public void setPort( int port )
-    {
-        this.port = port;
-    }
+    /**
+     *
+     *
+     * @return
+     */
+    void inXMLFormat();
 
 }

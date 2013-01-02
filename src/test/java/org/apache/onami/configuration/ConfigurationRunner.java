@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration;
+package org.apache.onami.configuration;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -25,7 +25,7 @@ import static org.apache.onami.configuration.Rocoto.expandVariables;
 import java.io.File;
 import java.net.URI;
 
-import org.apache.onami.configuration.configuration.ConfigurationModule;
+import org.apache.onami.configuration.ConfigurationModule;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 

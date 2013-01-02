@@ -1,5 +1,3 @@
-package org.apache.onami.configuration.configuration;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -19,41 +17,9 @@ package org.apache.onami.configuration.configuration;
  * under the License.
  */
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 /**
+ * Configuration files EDSL.
  *
+ * @since 5.0
  */
-public final class MemcachedConfiguration
-{
-
-    @Inject
-    @Named( "com.ibaguice.memcached.keyprefix" )
-    private String keyPrefix;
-
-    @Inject
-    @Named( "com.ibaguice.memcached.compression" )
-    private boolean compressionEnabled;
-
-    public String getKeyPrefix()
-    {
-        return keyPrefix;
-    }
-
-    public void setKeyPrefix( String keyPrefix )
-    {
-        this.keyPrefix = keyPrefix;
-    }
-
-    public boolean isCompressionEnabled()
-    {
-        return compressionEnabled;
-    }
-
-    public void setCompressionEnabled( boolean compressionEnabled )
-    {
-        this.compressionEnabled = compressionEnabled;
-    }
-
-}
+package org.apache.onami.configuration.binder;

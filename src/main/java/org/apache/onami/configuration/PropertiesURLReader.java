@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration;
+package org.apache.onami.configuration;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -26,7 +26,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
-import org.apache.onami.configuration.configuration.binder.XMLPropertiesFormatBindingBuilder;
+import org.apache.onami.configuration.binder.XMLPropertiesFormatBindingBuilder;
 
 /**
  * {@link Properties} reader implementation able to read configuration files from classpath, file system or URLs.

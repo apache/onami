@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration.binder;
+package org.apache.onami.configuration.binder;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
