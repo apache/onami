@@ -52,7 +52,7 @@ final class MockEngineFactory
                 return new MockitoFramework();
 
             default:
-                throw new IllegalArgumentException( "Unrecognized MockeType '" + type.name() + "'" );
+                throw new IllegalArgumentException( "Unrecognized MockType '" + type.name() + "'" );
         }
     }
 
