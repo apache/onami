@@ -145,7 +145,7 @@ public class OnamiRunner
         {
             if ( logger.isLoggable( Level.FINER ) )
             {
-                logger.finer( "Inizializing " + OnamiRunner.class.getSimpleName() + " for class: " + klass.getName() );
+                logger.finer( "Inizializing injector for test class: " + klass.getName() );
             }
 
             this.allModules = inizializeInjector( klass );
