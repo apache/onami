@@ -24,8 +24,7 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>1-incubating-SNAPSHOT</version>
-    <relativePath>../parent</relativePath>
+    <version>1-incubating</version>
   </parent>
 
   <groupId>org.apache.onami</groupId>

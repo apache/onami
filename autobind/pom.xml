@@ -23,8 +23,7 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>1-incubating-SNAPSHOT</version>
-    <relativePath>../parent</relativePath>
+    <version>1-incubating</version>
   </parent>
 
   <groupId>org.apache.onami.autobind</groupId>
@@ -142,16 +141,5 @@
       </plugin>
     </plugins>
   </reporting>
-
-  <repositories>
-    <repository>
-      <id>apache.snapshots</id>
-      <name>Apache Snapshot Repository</name>
-      <url>http://repository.apache.org/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-  </repositories>
 
 </project>
