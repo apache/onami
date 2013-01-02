@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration;
+package org.apache.onami.configuration;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -25,35 +25,35 @@ import javax.inject.Named;
 /**
  *
  */
-public final class MyBatisConfiguration
+public final class ProxyConfiguration
 {
 
     @Inject
-    @Named( "ibatis.environment.id" )
-    private String environmentId;
+    @Named( "proxy.host" )
+    private String host;
 
     @Inject
-    @Named( "ibatis.configuration.lazyLoadingEnabled" )
-    private boolean lazyLoadingEnabled;
+    @Named( "proxy.port" )
+    private int port;
 
-    public String getEnvironmentId()
+    public String getHost()
     {
-        return environmentId;
+        return host;
     }
 
-    public void setEnvironmentId( String environmentId )
+    public void setHost( String host )
     {
-        this.environmentId = environmentId;
+        this.host = host;
     }
 
-    public boolean isLazyLoadingEnabled()
+    public int getPort()
     {
-        return lazyLoadingEnabled;
+        return port;
     }
 
-    public void setLazyLoadingEnabled( boolean lazyLoadingEnabled )
+    public void setPort( int port )
     {
-        this.lazyLoadingEnabled = lazyLoadingEnabled;
+        this.port = port;
     }
 
 }

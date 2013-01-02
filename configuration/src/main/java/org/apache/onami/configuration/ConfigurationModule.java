@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration;
+package org.apache.onami.configuration;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -21,7 +21,7 @@ package org.apache.onami.configuration.configuration;
 
 import static com.google.inject.name.Names.named;
 import static java.lang.String.format;
-import static org.apache.onami.configuration.configuration.PropertiesIterator.newPropertiesIterator;
+import static org.apache.onami.configuration.PropertiesIterator.newPropertiesIterator;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -34,8 +34,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import org.apache.onami.configuration.configuration.binder.PropertyValueBindingBuilder;
-import org.apache.onami.configuration.configuration.binder.XMLPropertiesFormatBindingBuilder;
+import org.apache.onami.configuration.binder.PropertyValueBindingBuilder;
+import org.apache.onami.configuration.binder.XMLPropertiesFormatBindingBuilder;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.ProvisionException;

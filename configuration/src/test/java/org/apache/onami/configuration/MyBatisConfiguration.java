@@ -1,3 +1,5 @@
+package org.apache.onami.configuration;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,9 +19,41 @@
  * under the License.
  */
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 /**
- * Configuration files EDSL.
  *
- * @since 5.0
  */
-package org.apache.onami.configuration.configuration.binder;
+public final class MyBatisConfiguration
+{
+
+    @Inject
+    @Named( "ibatis.environment.id" )
+    private String environmentId;
+
+    @Inject
+    @Named( "ibatis.configuration.lazyLoadingEnabled" )
+    private boolean lazyLoadingEnabled;
+
+    public String getEnvironmentId()
+    {
+        return environmentId;
+    }
+
+    public void setEnvironmentId( String environmentId )
+    {
+        this.environmentId = environmentId;
+    }
+
+    public boolean isLazyLoadingEnabled()
+    {
+        return lazyLoadingEnabled;
+    }
+
+    public void setLazyLoadingEnabled( boolean lazyLoadingEnabled )
+    {
+        this.lazyLoadingEnabled = lazyLoadingEnabled;
+    }
+
+}

@@ -30,7 +30,7 @@ import java.util.Properties;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.onami.configuration.configuration.ConfigurationModule;
+import org.apache.onami.configuration.ConfigurationModule;
 import org.apache.onami.configuration.converters.FileConverter;
 import org.junit.Before;
 import org.junit.Test;

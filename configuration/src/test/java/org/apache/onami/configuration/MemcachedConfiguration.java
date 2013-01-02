@@ -1,4 +1,4 @@
-package org.apache.onami.configuration.configuration.binder;
+package org.apache.onami.configuration;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,17 +19,41 @@ package org.apache.onami.configuration.configuration.binder;
  * under the License.
  */
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 /**
- * Define a properties file is in the XML format.
+ *
  */
-public interface XMLPropertiesFormatBindingBuilder
+public final class MemcachedConfiguration
 {
 
-    /**
-     *
-     *
-     * @return
-     */
-    void inXMLFormat();
+    @Inject
+    @Named( "com.ibaguice.memcached.keyprefix" )
+    private String keyPrefix;
+
+    @Inject
+    @Named( "com.ibaguice.memcached.compression" )
+    private boolean compressionEnabled;
+
+    public String getKeyPrefix()
+    {
+        return keyPrefix;
+    }
+
+    public void setKeyPrefix( String keyPrefix )
+    {
+        this.keyPrefix = keyPrefix;
+    }
+
+    public boolean isCompressionEnabled()
+    {
+        return compressionEnabled;
+    }
+
+    public void setCompressionEnabled( boolean compressionEnabled )
+    {
+        this.compressionEnabled = compressionEnabled;
+    }
 
 }
