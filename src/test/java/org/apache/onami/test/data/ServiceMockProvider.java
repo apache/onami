@@ -19,7 +19,7 @@ package org.apache.onami.test.data;
  * under the License.
  */
 
-import org.easymock.classextension.EasyMock;
+import org.easymock.EasyMock;
 
 public class ServiceMockProvider
 {

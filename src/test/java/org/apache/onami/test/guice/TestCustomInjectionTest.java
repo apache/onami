@@ -26,7 +26,7 @@ import org.apache.onami.test.data.HelloWorld;
 import org.apache.onami.test.data.Service;
 import org.apache.onami.test.data.ServiceModule;
 import org.apache.onami.test.data.TelephonService;
-import org.easymock.classextension.EasyMock;
+import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
