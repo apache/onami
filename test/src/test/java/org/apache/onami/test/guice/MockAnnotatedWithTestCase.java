@@ -24,7 +24,7 @@ import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.data.HelloWordAnnotated;
 import org.apache.onami.test.data.Service;
 import org.apache.onami.test.data.TestAnnotation;
-import org.easymock.classextension.EasyMock;
+import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

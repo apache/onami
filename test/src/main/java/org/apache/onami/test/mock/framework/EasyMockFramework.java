@@ -21,7 +21,7 @@ package org.apache.onami.test.mock.framework;
 
 import org.apache.onami.test.annotation.MockObjType;
 import org.apache.onami.test.mock.MockEngine;
-import org.easymock.classextension.EasyMock;
+import org.easymock.EasyMock;
 
 /**
  * Specifies the Easy-Mock Framework.

@@ -21,7 +21,7 @@ package org.apache.onami.test;
 
 import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.data.Service;
-import org.easymock.classextension.EasyMock;
+import org.easymock.EasyMock;
 
 abstract public class AbstractMockTestCase
     extends AbstractEmptyTestCase

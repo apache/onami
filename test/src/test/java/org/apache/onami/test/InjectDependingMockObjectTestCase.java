@@ -26,7 +26,7 @@ import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.data.HelloWorld;
 import org.apache.onami.test.data.Service;
-import org.easymock.classextension.EasyMock;
+import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
