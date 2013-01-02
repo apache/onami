@@ -69,7 +69,14 @@ public final class GuiceProvidedModuleHandler
         if ( logger.isLoggable( Level.FINER ) )
         {
             logger.finer( "  Found " + GuiceProvidedModules.class.getSimpleName()
-                + " annotated method, checking if return type '" + returnType.getName() + "' is one of (''|''|'')..." );
+                + " annotated method, checking if return type '" + returnType.getName() + "' is one of " 
+                + " ('" 
+                + Module.class.getName() 
+                + "' | '" 
+                + "Iterable<" + Module.class.getName() + ">" 
+                + "' | '" 
+                + Module.class.getName() + "[]" +
+                "' )");
         }
 
         if ( !Modifier.isPublic( method.getModifiers() ) || !Modifier.isStatic( method.getModifiers() ) )
@@ -97,16 +104,27 @@ public final class GuiceProvidedModuleHandler
             {
                 addModules( (Module[]) method.invoke( type ) );
             }
+            else
+            {
+                throw new ClassCastException("Incompatible return type: '" + returnType.getName() + "' of method '"  
+                        + method.getName() + "'. \nThe return type must be one of " 
+                        + " ('" 
+                        + Module.class.getName() 
+                        + "' | '" 
+                        + "Iterable<" + Module.class.getName() + ">" 
+                        + "' | '" 
+                        + Module.class.getName() + "[]" +
+                        "' )" );
+            }
+            
+            if ( logger.isLoggable( Level.FINER ) )
+            {
+                logger.finer( "  Invoked method: " + method.toGenericString() );
+            }
         }
         catch ( Exception e )
         {
-            throw new HandleException( "Error invoking method: " + method + "please make sure it is static and public",
-                                       e );
-        }
-
-        if ( logger.isLoggable( Level.FINER ) )
-        {
-            logger.finer( "  Invoked method: " + method.toGenericString() );
+            throw new HandleException( e );
         }
     }
 
@@ -125,5 +143,4 @@ public final class GuiceProvidedModuleHandler
             this.modules.add( module );
         }
     }
-
 }
