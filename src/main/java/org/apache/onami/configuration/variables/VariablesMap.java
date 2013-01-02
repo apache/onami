@@ -19,8 +19,6 @@ package org.apache.onami.configuration.variables;
  * under the License.
  */
 
-import static com.google.inject.internal.util.$Preconditions.checkArgument;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +45,10 @@ public final class VariablesMap implements Map<String, String>
 
     public VariablesMap( Parser parser )
     {
-        checkArgument( parser != null, "Parser used to resolve input variables cannot be null." );
+        if ( parser == null )
+        {
+            throw new IllegalArgumentException( "Parser used to resolve input variables cannot be null." );
+        }
         this.parser = parser;
     }
 
