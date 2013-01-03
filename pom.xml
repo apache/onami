@@ -268,7 +268,6 @@
     <osgi.dynamicImport />
     <osgi.private />
     <osgi.fragment-host />
-    <osgi.requiredExecutionEnvironment>J2SE-1.5,J2SE-1.6</osgi.requiredExecutionEnvironment>
     <!--
      | shared build/report plugins version
     -->
@@ -552,7 +551,7 @@
             <Import-Package>${osgi.import}</Import-Package>
             <DynamicImport-Package>${osgi.dynamicImport}</DynamicImport-Package>
             <Bundle-DocURL>${project.url}</Bundle-DocURL>
-            <Bundle-RequiredExecutionEnvironment>${osgi.requiredExecutionEnvironment}</Bundle-RequiredExecutionEnvironment>
+            <Bundle-RequiredExecutionEnvironment>J2SE-${javac.target.version}</Bundle-RequiredExecutionEnvironment>
           </instructions>
         </configuration>
         <executions>
