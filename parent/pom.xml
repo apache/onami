@@ -263,7 +263,6 @@
     <!--
      | OSGi stuff
     -->
-    <osgi.symbolic-name>${project.artifactId}</osgi.symbolic-name>
     <osgi.export>${project.artifactId}*;version=${project.version}</osgi.export>
     <osgi.import>*</osgi.import>
     <osgi.dynamicImport />
@@ -546,7 +545,7 @@
             -->
             <_removeheaders>JAVA_1_3_HOME,JAVA_1_4_HOME,JAVA_1_5_HOME,JAVA_1_6_HOME,JAVA_1_7_HOME</_removeheaders>
             <Bundle-Name>${project.name}</Bundle-Name>
-            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Export-Package>${osgi.export}</Export-Package>
             <Private-Package>${osgi.private}</Private-Package>
