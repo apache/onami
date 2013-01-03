@@ -29,7 +29,7 @@
 
   <groupId>org.apache.onami.logging</groupId>
   <artifactId>org.apache.onami.logging.parent</artifactId>
-  <version>3.4-incubating-SNAPSHOT</version>
+  <version>3.4.0-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami-Logging - Parent</name>
