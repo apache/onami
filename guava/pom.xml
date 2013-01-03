@@ -26,7 +26,6 @@
     <version>1-incubating</version>
   </parent>
 
-  <groupId>org.apache.onami</groupId>
   <artifactId>org.apache.onami.guava</artifactId>
   <version>0.2.0-incubating-SNAPSHOT</version>
   <packaging>jar</packaging>

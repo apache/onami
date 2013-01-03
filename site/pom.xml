@@ -27,7 +27,6 @@
     <version>1-incubating</version>
   </parent>
 
-  <groupId>org.apache.onami</groupId>
   <artifactId>org.apache.onami.site</artifactId>
   <version>1-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>

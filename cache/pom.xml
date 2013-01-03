@@ -26,7 +26,6 @@
     <version>1-incubating</version>
   </parent>
 
-  <groupId>org.apache.onami</groupId>
   <artifactId>org.apache.onami.cache</artifactId>
   <version>0.1.0-incubating-SNAPSHOT</version>
 
