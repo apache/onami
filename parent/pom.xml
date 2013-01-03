@@ -42,7 +42,7 @@
     <developer>
       <id>codyaray</id>
       <name>Cody Ray</name>
-      <email>codyaray[at]apache[dot]org</email>
+      <email>codyaray@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -53,7 +53,7 @@
     <developer>
       <id>danielmanzke</id>
       <name>Daniel Manzke</name>
-      <email>danielmanzke[at]apache[dot]org</email>
+      <email>danielmanzke@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -64,7 +64,7 @@
     <developer>
       <id>dpalmisano</id>
       <name>Davide Palmisano</name>
-      <email>dpalmisano[at]apache[dot]org</email>
+      <email>dpalmisano@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -75,7 +75,7 @@
     <developer>
       <id>grobmeier</id>
       <name>Christian Grobmeier</name>
-      <email>grobmeier[at]apache[dot]org</email>
+      <email>grobmeier@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -87,7 +87,7 @@
     <developer>
       <id>iocanel</id>
       <name>Ioannis Canellos</name>
-      <email>iocanel[at]apache[dot]org</email>
+      <email>iocanel@apache.org</email>
       <roles>
         <role>Committer</role>
         <role>PPMC Member</role>
@@ -97,7 +97,7 @@
     <developer>
       <id>jordi</id>
       <name>Jordi Gerona</name>
-      <email>jordi[at]apache[dot]org</email>
+      <email>jordi@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -108,7 +108,7 @@
     <developer>
       <id>mcculls</id>
       <name>Stuart McCulloch</name>
-      <email>mcculls[at]apache[dot]org</email>
+      <email>mcculls@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -119,7 +119,7 @@
     <developer>
       <id>mnour</id>
       <name>Mohammad Nour El-Din</name>
-      <email>mnour[at]apache[dot]org</email>
+      <email>mnour@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -131,7 +131,7 @@
     <developer>
       <id>marcosperanza</id>
       <name>Marco Speranza</name>
-      <email>marcosperanza[at]apache[dot]org</email>
+      <email>marcosperanza@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -142,7 +142,7 @@
     <developer>
       <id>nmwael</id>
       <name>Nino Martinez Wael</name>
-      <email>nmwael[at]apache[dot]org</email>
+      <email>nmwael@apache.org</email>
       <roles>
         <role>Committer</role>
         <role>PPMC Member</role>
@@ -152,7 +152,7 @@
     <developer>
       <id>olamy</id>
       <name>Olivier Lamy</name>
-      <email>olamy[at]apache[dot]org</email>
+      <email>olamy@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -164,7 +164,7 @@
     <developer>
       <id>simonetripodi</id>
       <name>Simone Tripodi</name>
-      <email>simonetripodi[at]apache[dot]org</email>
+      <email>simonetripodi@apache.org</email>
       <timezone>+1</timezone>
       <roles>
         <role>Committer</role>
@@ -176,7 +176,7 @@
   <contributors>
     <contributor>
       <name>Frank David Martinez</name>
-      <email>mnesarco[at]gmail[dot]com</email>
+      <email>mnesarco@gmail.com</email>
       <roles>
         <role>Apache Onami logo designer</role>
       </roles>
@@ -186,9 +186,9 @@
   <mailingLists>
     <mailingList>
       <name>Dev Mailing List</name>
-      <post>dev[at]onami[dot]incubator[dot]apache[dot]org</post>
-      <subscribe>dev-subscribe[at]onami[dot]incubator[dot]apache[dot]org</subscribe>
-      <unsubscribe>dev-unsubscribe[at]onami[dot]incubator[dot]apache[dot]org</unsubscribe>
+      <post>dev@onami.incubator.apache.org</post>
+      <subscribe>dev-subscribe@onami.incubator.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@onami.incubator.apache.org</unsubscribe>
       <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-dev/</archive>
       <otherArchives>
         <otherArchive>http://onami-dev.markmail.org/</otherArchive>
@@ -196,9 +196,9 @@
     </mailingList>
     <mailingList>
       <name>User Mailing List</name>
-      <post>user[at]onami[dot]incubator[dot]apache[dot]org</post>
-      <subscribe>user-subscribe[at]onami[dot]incubator[dot]apache[dot]org</subscribe>
-      <unsubscribe>user-unsubscribe[at]onami[dot]incubator[dot]apache[dot]org</unsubscribe>
+      <post>user@onami.incubator.apache.org</post>
+      <subscribe>user-subscribe@onami.incubator.apache.org</subscribe>
+      <unsubscribe>user-unsubscribe@onami.incubator.apache.org</unsubscribe>
       <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-user/</archive>
       <otherArchives>
         <otherArchive>http://onami-user.markmail.org/</otherArchive>
@@ -206,9 +206,9 @@
     </mailingList>
     <mailingList>
       <name>Commits Mailing List</name>
-      <post>commits[at]onami[dot]incubator[dot]apache[dot]org</post>
-      <subscribe>commits-subscribe[at]onami[dot]incubator[dot]apache[dot]org</subscribe>
-      <unsubscribe>commits-unsubscribe[at]onami[dot]incubator[dot]apache[dot]org</unsubscribe>
+      <post>commits@onami.incubator.apache.org</post>
+      <subscribe>commits-subscribe@onami.incubator.apache.org</subscribe>
+      <unsubscribe>commits-unsubscribe@onami.incubator.apache.org</unsubscribe>
       <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-commits/</archive>
       <otherArchives>
         <otherArchive>http://onami-commits.markmail.org/</otherArchive>
