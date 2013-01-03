@@ -28,7 +28,7 @@
 
   <groupId>org.apache.onami</groupId>
   <artifactId>org.apache.onami.configuration</artifactId>
-  <version>6.3-incubating-SNAPSHOT</version>
+  <version>6.3.0-incubating-SNAPSHOT</version>
 
   <name>Apache Onami-Configuration</name>
   <description>Apache Onami-Configuration adds some spice to Google Guice through configuration files!</description>
