@@ -42,7 +42,7 @@
       <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
     </links>
 
-    <menu name="Extensions" inherit="bottom">
+    <menu name="Extensions">
       <item name="Autobind"       href="http://onami.incubator.apache.org/autobind" />
       <item name="Cache"          href="http://onami.incubator.apache.org/cache" />
       <item name="Configuration"  href="http://onami.incubator.apache.org/configuration" />
