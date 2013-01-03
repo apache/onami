@@ -267,7 +267,6 @@
     <osgi.import>*</osgi.import>
     <osgi.dynamicImport />
     <osgi.private />
-    <osgi.fragment-host />
     <!--
      | shared build/report plugins version
     -->
