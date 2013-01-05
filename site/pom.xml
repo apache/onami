@@ -41,7 +41,7 @@
 
   <properties>
     <svnUrl>https://svn.apache.org/repos/asf/incubator/onami/site/</svnUrl>
-    <checkoutDirectory>${user.home}/onami-sites/onami-main-site</checkoutDirectory>
+    <checkoutDirectory>site-publish</checkoutDirectory>
   </properties>
 
   <distributionManagement>
