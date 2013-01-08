@@ -21,8 +21,7 @@ package org.apache.onami.lifecycle;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Stack;
 
 /**
  * A Disposer is a mini-container that releases resources
@@ -34,7 +33,7 @@ public final class Disposer
     /**
      * List of elements have to be disposed.
      */
-    private final List<Disposable> disposables = new LinkedList<Disposable>();
+    private final Stack<Disposable> disposables = new Stack<Disposable>();
 
     /**
      * Register an injectee and its related method to release resources.
@@ -44,7 +43,7 @@ public final class Disposer
      */
     <I> void register( Method disposeMethod, I injectee )
     {
-        disposables.add( new Disposable( disposeMethod, injectee ) );
+        disposables.push( new Disposable( disposeMethod, injectee ) );
     }
 
     /**
@@ -68,10 +67,9 @@ public final class Disposer
         {
             disposeHandler = new NoOpDisposeHandler();
         }
-
-        for ( Disposable disposable : disposables )
+        while ( !disposables.isEmpty() )
         {
-            disposable.dispose( disposeHandler );
+            disposables.pop().dispose( disposeHandler );
         }
     }
 
