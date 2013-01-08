@@ -34,7 +34,7 @@
 
   <name>Apache Onami</name>
   <description>Apache Onami is a project focused on the development and maintenance of a set of Google Guice extensions.</description>
-  <url>http://onami.incubator.apache.org/</url>
+  <url>http://onami.incubator.apache.org</url>
   <inceptionYear>2012</inceptionYear>
 
   <developers>
@@ -253,6 +253,9 @@
       </notifier>
     </notifiers>
   </ciManagement>
+  <distributionManagement>
+    <downloadUrl>http://repo.maven.apache.org/maven2/org/apache/onami/</downloadUrl>
+  </distributionManagement>
 
   <properties>
     <!--
@@ -422,7 +425,6 @@
             <tryUpdate>true</tryUpdate>
           </configuration>
         </plugin>
-
       </plugins>
     </pluginManagement>
 
@@ -622,6 +624,35 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-doap-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>site</id>
+            <phase>site</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <doapFile>doap.rdf</doapFile>
+          <doapOptions>
+            <created>${project.inceptionYear}-11-14</created>
+          </doapOptions>
+          <asfExtOptions>
+            <charter>${project.description}</charter>
+            <!--
+             | 'chair' parameter is required
+             | putting Mentors ATM just to let the plugin fail
+            -->
+            <chair>Christian Grobmeier, Mohammad Nour El-Din, Olivier Lamy</chair>
+          </asfExtOptions>
+        </configuration>
       </plugin>
     </plugins>
   </build>
