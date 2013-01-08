@@ -425,6 +425,35 @@
             <tryUpdate>true</tryUpdate>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-doap-plugin</artifactId>
+          <version>1.1</version>
+          <executions>
+            <execution>
+              <id>site</id>
+              <phase>site</phase>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <doapFile>doap.rdf</doapFile>
+            <doapOptions>
+              <created>${project.inceptionYear}-11-14</created>
+            </doapOptions>
+            <asfExtOptions>
+              <charter>${project.description}</charter>
+              <!--
+               | 'chair' parameter is required
+               | putting Mentors ATM just to let the plugin fail
+              -->
+              <chair>Christian Grobmeier, Mohammad Nour El-Din, Olivier Lamy</chair>
+            </asfExtOptions>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -629,29 +658,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-doap-plugin</artifactId>
-        <version>1.1</version>
-        <executions>
-          <execution>
-            <id>site</id>
-            <phase>site</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
-          <doapFile>doap.rdf</doapFile>
           <doapOptions>
-            <created>${project.inceptionYear}-11-14</created>
+            <shortdesc>Apache Onami is a project focused on Google Guice extensions.</shortdesc>
           </doapOptions>
-          <asfExtOptions>
-            <charter>${project.description}</charter>
-            <!--
-             | 'chair' parameter is required
-             | putting Mentors ATM just to let the plugin fail
-            -->
-            <chair>Christian Grobmeier, Mohammad Nour El-Din, Olivier Lamy</chair>
-          </asfExtOptions>
         </configuration>
       </plugin>
     </plugins>
