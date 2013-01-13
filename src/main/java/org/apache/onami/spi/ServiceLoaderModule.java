@@ -19,10 +19,9 @@ package org.apache.onami.spi;
  * under the License.
  */
 
-import static java.lang.String.format;
 import static com.google.inject.Key.get;
-import static com.google.inject.internal.util.$Preconditions.checkArgument;
 import static com.google.inject.multibindings.Multibinder.newSetBinder;
+import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
 import static org.apache.onami.spi.ServiceLoader.load;
 
@@ -154,6 +153,14 @@ public abstract class ServiceLoaderModule
             }
         }
 
+    }
+
+    private static void checkArgument( boolean expression, String errorMessagePattern, Object...args )
+    {
+        if ( !expression )
+        {
+            throw new IllegalArgumentException( format( errorMessagePattern, args ) );
+        }
     }
 
 }
