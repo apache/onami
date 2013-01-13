@@ -80,19 +80,16 @@ final class PropertyServiceClassIterator<S>
 
             private final StringTokenizer tokenizer = new StringTokenizer( systemServiceNames, DEFAULT_SEPARATOR );
 
-            @Override
             public boolean hasNext()
             {
                 return tokenizer.hasMoreTokens();
             }
 
-            @Override
             public String next()
             {
                 return tokenizer.nextToken();
             }
 
-            @Override
             public void remove()
             {
                 throw new UnsupportedOperationException();

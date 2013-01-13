@@ -23,7 +23,6 @@ public final class FooServiceImpl2
     implements FooService
 {
 
-    @Override
     public void doSomething()
     {
         // ... but does nothing

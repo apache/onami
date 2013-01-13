@@ -70,7 +70,6 @@ abstract class AbstractServiceClassIterator<S>
     /**
      * {@inheritDoc}
      */
-    @Override
     public final boolean hasNext()
     {
         if ( nextName != null )
@@ -108,7 +107,6 @@ abstract class AbstractServiceClassIterator<S>
     /**
      * {@inheritDoc}
      */
-    @Override
     public final Class<? extends S> next()
     {
         if ( !hasNext() )
@@ -141,7 +139,6 @@ abstract class AbstractServiceClassIterator<S>
     /**
      * {@inheritDoc}
      */
-    @Override
     public final void remove()
     {
         throw new UnsupportedOperationException();
