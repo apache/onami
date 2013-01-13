@@ -23,7 +23,7 @@ org.apache.onami.spi.AcmeServiceImpl1   # EOL comment
 #
 
 
-org.nnsoft.guice.gspi.AcmeServiceImpl2   # EOL comment
+org.apache.onami.spi.AcmeServiceImpl2   # EOL comment
 
 # comments & blank lines
 
