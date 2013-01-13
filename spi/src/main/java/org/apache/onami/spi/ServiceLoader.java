@@ -20,7 +20,6 @@ package org.apache.onami.spi;
  */
 
 import static java.lang.System.getProperty;
-import static com.google.inject.internal.util.$Preconditions.checkArgument;
 import static java.lang.ClassLoader.getSystemClassLoader;
 import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
@@ -66,8 +65,14 @@ final class ServiceLoader<S>
      */
     public static <S> ServiceLoader<S> load( Class<S> service, ClassLoader classLoader )
     {
-        checkArgument( service != null, "Parameter 'service' must not be null" );
-        checkArgument( classLoader != null, "Parameter 'classLoader' must not be null" );
+        if ( service == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'service' must not be null" );
+        }
+        if ( classLoader == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'classLoader' must not be null" );
+        }
 
         return new ServiceLoader<S>( service, classLoader );
     }
