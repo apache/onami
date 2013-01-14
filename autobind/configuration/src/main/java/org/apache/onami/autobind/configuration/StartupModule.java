@@ -49,7 +49,7 @@ import org.apache.onami.autobind.scanner.ClasspathScanner;
 import org.apache.onami.autobind.scanner.PackageFilter;
 import org.apache.onami.autobind.scanner.ScannerModule;
 import org.apache.onami.autobind.scanner.features.ScannerFeature;
-import org.apache.onami.configuration.configuration.PropertiesURLReader;
+import org.apache.onami.configuration.PropertiesURLReader;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Binder;

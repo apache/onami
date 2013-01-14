@@ -48,7 +48,7 @@ import org.apache.onami.autobind.configuration.PropertiesProvider;
 import org.apache.onami.autobind.install.BindingStage;
 import org.apache.onami.autobind.install.bindjob.BindingJob;
 import org.apache.onami.autobind.scanner.features.BindingScannerFeature;
-import org.apache.onami.configuration.configuration.PropertiesURLReader;
+import org.apache.onami.configuration.PropertiesURLReader;
 
 /**
  * This class will bind a Properties-Instance or -Provider for each Class

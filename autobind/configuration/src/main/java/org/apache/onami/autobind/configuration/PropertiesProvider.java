@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 import javax.inject.Provider;
 
-import org.apache.onami.configuration.configuration.PropertiesURLReader;
+import org.apache.onami.configuration.PropertiesURLReader;
 
 public class PropertiesProvider
     implements Provider<Properties>

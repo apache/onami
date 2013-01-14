@@ -23,12 +23,12 @@ import java.util.List;
 import javax.inject.Singleton;
 
 import org.apache.onami.autobind.annotations.GuiceModule;
-import org.apache.onami.configuration.configuration.PropertiesURLReader;
+import org.apache.onami.configuration.PropertiesURLReader;
 
 @Singleton
 @GuiceModule
 public class ConfigurationModule
-    extends org.apache.onami.configuration.configuration.ConfigurationModule
+    extends org.apache.onami.configuration.ConfigurationModule
 {
 	
 	protected List<PropertiesURLReader> readers = new ArrayList<PropertiesURLReader>();
