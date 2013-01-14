@@ -19,9 +19,12 @@ package org.apache.onami.lifecycle;
  * under the License.
  */
 
+import static com.google.inject.matcher.Matchers.any;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import com.google.inject.Injector;
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
 import com.google.inject.spi.InjectionListener;
@@ -29,17 +32,21 @@ import com.google.inject.spi.TypeEncounter;
 
 /**
  * Guice module to register methods to be invoked when {@link Disposer#dispose()} is invoked.
+ * <p>
+ * Module instance have state so it must not be used to construct more than one {@link Injector}. 
  */
 public final class DisposeModule
     extends AbstractLifeCycleModule
 {
+
+    private final Disposer disposer;
 
     /**
      * Creates a new module which register methods annotated with {@link Dispose} on methods in any type.
      */
     public DisposeModule()
     {
-        super( Dispose.class );
+        this( Dispose.class, any() );
     }
 
     /**
@@ -53,6 +60,19 @@ public final class DisposeModule
                                                  Matcher<? super TypeLiteral<?>> typeMatcher )
     {
         super( disposeAnnotationType, typeMatcher );
+        disposer = new Disposer();
+    }
+
+    /**
+     * Creates a new module from the supplied {@link Builder}.
+     *
+     * @param builder settings container.
+     * @since 0.2.0
+     */
+    DisposeModule( Builder builder )
+    {
+        super( builder.disposeAnnotationType, builder.typeMatcher );
+        this.disposer = builder.disposer;
     }
 
     /**
@@ -61,8 +81,6 @@ public final class DisposeModule
     @Override
     protected void configure()
     {
-        final Disposer disposer = new Disposer();
-
         bind( Disposer.class ).toInstance( disposer );
 
         bindListener( getTypeMatcher(), new AbstractMethodTypeListener( getAnnotationType() )
@@ -83,6 +101,100 @@ public final class DisposeModule
             }
 
         } );
+    }
+
+    /**
+     * Allows to create {@link DisposeModule} with builder pattern.
+     *
+     * @return builder for {@link DisposeModule}.
+     * @since 0.2.0
+     */
+    public static Builder builder()
+    {
+        return new Builder();
+    }
+
+    /**
+     * Builder pattern helper.
+     *
+     * @since 0.2.0
+     */
+    public static final class Builder
+    {
+
+        Class<? extends Annotation> disposeAnnotationType = Dispose.class;
+
+        Matcher<? super TypeLiteral<?>> typeMatcher = any();
+
+        Disposer disposer = new Disposer();
+
+        /**
+         * Hidden constructor.
+         */
+        Builder()
+        {
+        }
+
+        /**
+         * Builds {@link DisposeModule} with given settings.
+         *
+         * @return {@link DisposeModule} with given settings.
+         * @since 0.2.0
+         */
+        public DisposeModule build()
+        {
+            return new DisposeModule( this );
+        }
+
+        /**
+         * Sets <i>Dispose</i> annotation to be searched.
+         *
+         * @param disposeAnnotationType <i>Dispose</i> annotation to be searched.
+         * @return self
+         * @since 0.2.0
+         */
+        public Builder withDisposeAnnotationType( Class<? extends Annotation> disposeAnnotationType )
+        {
+            this.disposeAnnotationType = checkNotNull( disposeAnnotationType,
+                                                       "Argument 'disposeAnnotationType' must be not null." );
+            return this;
+        }
+
+        /**
+         * Sets the filter for injectee types.
+         *
+         * @param typeMatcher the filter for injectee types.
+         * @return self
+         * @since 0.2.0
+         */
+        public Builder withTypeMatcher( Matcher<? super TypeLiteral<?>> typeMatcher )
+        {
+            this.typeMatcher = checkNotNull( typeMatcher, "Argument 'typeMatcher' must be not null." );
+            return this;
+        }
+
+        /**
+         * Sets the container to register disposable objects.
+         *
+         * @param disposer container to register disposable objects.
+         * @return self
+         * @since 0.2.0
+         */
+        public Builder withDisposer( Disposer disposer )
+        {
+            this.disposer = checkNotNull( disposer, "Argument 'disposer' must be not null." );
+            return this;
+        }
+
+        private static <T> T checkNotNull( T object, String message )
+        {
+            if ( object == null )
+            {
+                throw new IllegalArgumentException( message );
+            }
+            return object;
+        }
+
     }
 
 }
