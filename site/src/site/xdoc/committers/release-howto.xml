@@ -267,6 +267,14 @@ I will promote the artifacts to the central repo.]]></pre>
             </ol>
           </li>
 
+          <li>Deploy the component site:
+            <ol>
+              <li>in the component dir, go under <code>target/checkout</code> directory (or checkout the tag);</li>
+              <li>if the component is a single-module project, then run <code>mvn site-deploy -Dusername=${committer.id} -Dpassword=${committer.password}</code></li>
+              <li>if the component is a multi-module project, then run <code>sh ./deploySite.sh -Dusername=${committer.id} -Dpassword=${committer.password}</code></li>
+            </ol>
+          </li>
+
           <li><h1>FIXME</h1>Add the distribution artifacts to the distribution area
             <source>ssh asf-id@people.apache.org
 cd /x1/www/www.apache.org/dist/incubator/onami/
