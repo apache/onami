@@ -19,24 +19,24 @@ package org.apache.onami.spi;
  * under the License.
  */
 
-import static com.google.inject.Key.get;
-import static com.google.inject.multibindings.Multibinder.newSetBinder;
 import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
 import static org.apache.onami.spi.ServiceLoader.load;
 
 import java.lang.annotation.Annotation;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.apache.onami.spi.binder.AnnotatedServiceBuilder;
+import javax.inject.Qualifier;
+
 import org.apache.onami.spi.binder.FromClassLoaderBuilder;
-import org.apache.onami.spi.binder.ServiceBuilder;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Binder;
-import com.google.inject.Key;
+import com.google.inject.BindingAnnotation;
 import com.google.inject.ProvisionException;
-import com.google.inject.multibindings.Multibinder;
+import com.google.inject.binder.AnnotatedBindingBuilder;
+import com.google.inject.binder.LinkedBindingBuilder;
 
 /**
  * A Google Guice {@code Module} to simplify the task of
@@ -46,16 +46,95 @@ public abstract class ServiceLoaderModule
     extends AbstractModule
 {
 
+    private List<ServiceInfo<?>> services = new LinkedList<ServiceInfo<?>>();
+
+    @Override
+    protected final void configure()
+    {
+        if ( !services.isEmpty() )
+        {
+            throw new IllegalStateException( "Re-entry is not allowed." );
+        }
+
+        configureServices();
+
+        try
+        {
+            for ( ServiceInfo<?> builder : services )
+            {
+                bindService( builder );
+            }
+        }
+        finally
+        {
+            services.clear();
+        }
+    }
+
+    private <S> void bindService( ServiceInfo<S> serviceInfo )
+    {
+        Class<S> serviceType = serviceInfo.getServiceType();
+
+        Iterator<Class<? extends S>> servicesIterator = load( serviceType, serviceInfo.getClassLoader() )
+                                                        .iterator();
+        boolean found = false;
+        while ( servicesIterator.hasNext() )
+        {
+            if ( !found )
+            {
+                found = true;
+            }
+
+            Class<? extends S> serviceImplType = servicesIterator.next();
+
+            bindService( serviceType, serviceImplType );
+        }
+
+        if ( !found )
+        {
+            throw new ProvisionException( format( "No Provider found for Service %s", serviceType.getName() ) );
+        }
+    }
+
+    private <S> void bindService( Class<S> serviceType, Class<? extends S> serviceImplType )
+    {
+        AnnotatedBindingBuilder<S> annotatedBindingBuilder = bind( serviceType );
+        LinkedBindingBuilder<S> linkedBindingBuilder = annotatedBindingBuilder;
+
+        dance: for ( Annotation annotation : serviceImplType.getAnnotations() )
+        {
+            Class<? extends Annotation> annotationType = annotation.annotationType();
+
+            /*
+             * if the serviceImplType is a javax.inject.Qualifier annotation
+             * or
+             * if the serviceImplType is a com.google.inject.BindingAnnotation
+             */
+            if ( annotationType.isAnnotationPresent( Qualifier.class )
+                 || annotationType.isAnnotationPresent( BindingAnnotation.class ) )
+            {
+                linkedBindingBuilder = annotatedBindingBuilder.annotatedWith( annotation );
+                break dance;
+            }
+        }
+
+        linkedBindingBuilder.to( serviceImplType );
+    }
+
+    protected abstract void configureServices();
+
     /**
      * EDSL to bind Services to Providers using the SPI pattern.
      *
      * @param service The type of the service to be loaded.
      * @return the chained EDSL builder.
      */
-    protected final <S> FromClassLoaderBuilder bindService( Class<S> service )
+    protected final <S> FromClassLoaderBuilder discover( Class<S> service )
     {
         checkArgument( service != null, "Impossible to bind null service class!" );
-        return new DefaultServiceBuilder<S>( service, binder() );
+        ServiceInfo<S> builder = new ServiceInfo<S>( service );
+        services.add( builder );
+        return builder;
     }
 
     /**
@@ -63,94 +142,38 @@ public abstract class ServiceLoaderModule
      *
      * @param <S> The type of the service to be loaded.
      */
-    private static final class DefaultServiceBuilder<S>
+    private static final class ServiceInfo<S>
         implements FromClassLoaderBuilder
     {
 
-        private final Class<S> service;
-
-        private final Binder binder;
+        private final Class<S> serviceType;
 
         private ClassLoader classLoader;
 
-        private Key<S> bindingKey;
-
-        public DefaultServiceBuilder( Class<S> service, Binder binder )
+        public ServiceInfo( Class<S> serviceType )
         {
-            this.service = service;
-            this.binder = binder;
-
-            bindingKey = get( service );
+            this.serviceType = serviceType;
             classLoader = currentThread().getContextClassLoader();
         }
 
         /**
          * {@inheritDoc}
          */
-        public ServiceBuilder annotatedWith( Class<? extends Annotation> annotationType )
-        {
-            bindingKey = get( service, annotationType );
-            return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public ServiceBuilder annotatedWith( Annotation annotation )
-        {
-            bindingKey = get( service, annotation );
-            return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public AnnotatedServiceBuilder fromClassLoader( ClassLoader classLoader )
+        public void fromClassLoader( ClassLoader classLoader )
         {
             checkArgument( classLoader != null,
-                           "Impossible to load Service %s with a null ClassLoader", service.getName() );
+                           "Impossible to load Service %s with a null ClassLoader", serviceType.getName() );
             this.classLoader = classLoader;
-            return this;
         }
 
-        /**
-         * {@inheritDoc}
-         */
-        public void loadingFirstService()
+        public Class<S> getServiceType()
         {
-            Iterator<Class<? extends S>> servicesIterator = load( service, classLoader ).iterator();
-            if ( !servicesIterator.hasNext() )
-            {
-                throw new ProvisionException( format( "No Provider found for Service %s", service.getName() ) );
-            }
-            binder.bind( bindingKey ).to( servicesIterator.next() );
+            return serviceType;
         }
 
-        /**
-         * {@inheritDoc}
-         */
-        public void loadingAllServices()
+        public ClassLoader getClassLoader()
         {
-            Multibinder<S> multiBinder;
-
-            if ( bindingKey.getAnnotation() != null )
-            {
-                multiBinder = newSetBinder( binder, service, bindingKey.getAnnotation() );
-            }
-            else if ( bindingKey.getAnnotationType() != null )
-            {
-                multiBinder = newSetBinder( binder, service, bindingKey.getAnnotationType() );
-            }
-            else
-            {
-                multiBinder = newSetBinder( binder, service );
-            }
-
-            Iterator<Class<? extends S>> serviceProviders = load( service, classLoader ).iterator();
-            while ( serviceProviders.hasNext() )
-            {
-                multiBinder.addBinding().to( serviceProviders.next() );
-            }
+            return classLoader;
         }
 
     }

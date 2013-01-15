@@ -1,4 +1,4 @@
-package org.apache.onami.spi.binder;
+package org.apache.onami.spi;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,29 +19,21 @@ package org.apache.onami.spi.binder;
  * under the License.
  */
 
-import java.lang.annotation.Annotation;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-/**
- * Allows specify Service annotation in the binding.
- */
-public interface AnnotatedServiceBuilder
-    extends ServiceBuilder
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import com.google.inject.BindingAnnotation;
+
+@BindingAnnotation
+@Retention( RUNTIME )
+@Target( { FIELD, TYPE } )
+public @interface BarBindingAnnotation
 {
 
-    /**
-     * Specifies Service annotation type in the binding.
-     *
-     * @param annotationType the Service annotation type in the binding.
-     * @return the chained EDSL builder.
-     */
-    ServiceBuilder annotatedWith( Class<? extends Annotation> annotationType );
-
-    /**
-     * Specifies Service annotation in the binding.
-     *
-     * @param annotation the Service annotation in the binding.
-     * @return the chained EDSL builder.
-     */
-    ServiceBuilder annotatedWith( Annotation annotation );
+    int value();
 
 }

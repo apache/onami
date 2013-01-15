@@ -19,6 +19,7 @@ package org.apache.onami.spi;
  * under the License.
  */
 
+@BarBindingAnnotation( 1 )
 public final class FooServiceImpl1
     implements FooService
 {

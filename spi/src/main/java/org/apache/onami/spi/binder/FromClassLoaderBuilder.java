@@ -23,7 +23,6 @@ package org.apache.onami.spi.binder;
  * Allows specify the {@code ClassLoader} used to load the Service in the binding.
  */
 public interface FromClassLoaderBuilder
-    extends AnnotatedServiceBuilder
 {
 
     /**
@@ -32,6 +31,6 @@ public interface FromClassLoaderBuilder
      * @param classLoader the {@code ClassLoader} used to load the Service in the binding.
      * @return the chained EDSL builder.
      */
-    AnnotatedServiceBuilder fromClassLoader( ClassLoader classLoader );
+    void fromClassLoader( ClassLoader classLoader );
 
 }

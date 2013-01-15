@@ -2,11 +2,7 @@ package org.apache.onami.spi;
 
 import static com.google.inject.Guice.createInjector;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
-import java.util.Set;
-
-import org.apache.onami.spi.ServiceLoaderModule;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,11 +12,21 @@ public final class FromSystemPropertiesTestCase
 {
 
     @Inject
-    private Set<FooService> fooServices;
+    @BarBindingAnnotation( 1 )
+    private FooService fooService1;
 
-    public void setFooServices( Set<FooService> fooServices )
+    @Inject
+    @BarBindingAnnotation( 2 )
+    private FooService fooService2;
+
+    public void setFooService1( FooService fooService1 )
     {
-        this.fooServices = fooServices;
+        this.fooService1 = fooService1;
+    }
+    
+    public void setFooService2( FooService fooService2 )
+    {
+        this.fooService2 = fooService2;
     }
 
     @Before
@@ -30,9 +36,9 @@ public final class FromSystemPropertiesTestCase
         {
 
             @Override
-            protected void configure()
+            protected void configureServices()
             {
-                bindService( FooService.class ).loadingAllServices();
+                discover( FooService.class );
             }
 
         } )
@@ -43,8 +49,8 @@ public final class FromSystemPropertiesTestCase
     @Test
     public void injectedServicesCaughtFromSystemProperties()
     {
-        assertFalse( fooServices.isEmpty() );
-        assertEquals( 2, fooServices.size() );
+        assertEquals( FooServiceImpl1.class, fooService1.getClass() );
+        assertEquals( FooServiceImpl2.class, fooService2.getClass() );
     }
 
 }
