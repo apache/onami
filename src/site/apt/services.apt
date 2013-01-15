@@ -29,12 +29,12 @@ Binding Services
   The <<<org.apache.onami.spi.ServiceLoaderModule>>> provides APIs to bind Services to Provided
   discovered via SPI pattern.
 
-  Given an hipotetycal <<<FooService>>>:
+  Given an hypothetical <<<CreditCardProcessor>>>:
 
 +--------------------------------------+
 package com.acme;
 
-public interface FooService
+public interface CreditCardProcessor
 {
 
     void doSomething();
@@ -47,11 +47,11 @@ public interface FooService
 +--------------------------------------+
 package com.acme.first;
 
-public final class FooServiceImpl1
-    implements FooService
+@javax.inject.Named( "Visa" ) // any @javax.inject.Qualifier or @com.google.inject.BindingAnnotation annotated annotation
+public final class VisaCreditCardProcessor
+    implements CreditCardProcessor
 {
 
-    @Override
     public void doSomething()
     {
         // ...
@@ -65,11 +65,11 @@ public final class FooServiceImpl1
 +--------------------------------------+
 package com.acme.second;
 
-public final class FooServiceImpl2
-    implements FooService
+@javax.inject.Named( "MasterCard" ) // any @javax.inject.Qualifier or @com.google.inject.BindingAnnotation annotated annotation
+public final class MasterCardCreditCardProcessor
+    implements CreditCardProcessor
 {
 
-    @Override
     public void doSomething()
     {
         // ...
@@ -78,13 +78,13 @@ public final class FooServiceImpl2
 }
 +--------------------------------------+
 
-  Then define the SPI in <<<META-INF/services/com.acme.FooService>>> file(s):
+  Then define the SPI in <<<META-INF/services/com.acme.CreditCardProcessor>>> file(s):
 
 ----------------------------------------
 # created by Jack Bauer in less than 24h
 
-com.acme.first.FooServiceImpl1
-com.acme.second.FooServiceImpl2   # EOL comment
+com.acme.first.VisaCreditCardProcessor
+com.acme.second.MasterCardCreditCardProcessor   # EOL comment
 
 # comments and blank lines supported
 
@@ -92,9 +92,7 @@ com.acme.second.FooServiceImpl2   # EOL comment
 #
 ----------------------------------------
 
-  Then users can:
-
-  * Bind the Service to the first discovered Provider
+  Then users can require Services binding discovering implementation(s) with the service loader:
 
 +--------------------------------------+
 import static com.google.inject.Guice.createInjector;
@@ -110,74 +108,163 @@ Injector injector = createInjector( new ServiceLoaderModule()
 {
 
     @Override
-    protected void configure()
+    protected void configureServices()
     {
-        bindService( FooService.class ).loadingFirstService();
+        discover( CreditCardProcessor.class ); //.fromClassLoader( ClassLoader classLoader );
     }
 
 } );
 +--------------------------------------+
 
-  and the require its injection somewhere else:
+  and the require injections somewhere else:
 
 +--------------------------------------+
 public class PowerTool
 {
 
     @Inject
-    private FooService fooService;
+    @javax.inject.Named( "MasterCard" )
+    private CreditCardProcessor creditCardProcessor;
 
     // setters and algorithms omitted
 
 }
 +--------------------------------------+
 
-  * Bind the Service to all discovered Provider
+  if a service is <not> annotated by a qualifier/binding annotation, i.e.
 
 +--------------------------------------+
-import static com.google.inject.Guice.createInjector;
+package com.acme;
 
-import com.acme.FooService;
-import com.google.inject.Injector;
-
-import org.apache.onami.spi.ServiceLoaderModule;
-
-...
-
-Injector injector = createInjector( new ServiceLoaderModule()
+public final class DefaultCreditCardProcessor
+    implements CreditCardProcessor
 {
 
-    @Override
-    protected void configure()
+    public void doSomething()
     {
-        bindService( FooService.class ).loadingAllService();
+        // ...
     }
 
-} );
+}
 +--------------------------------------+
 
-  and the require their injection somewhere else:
+  Then defined the SPI in <<<META-INF/services/com.acme.CreditCardProcessor>>> file:
+
+----------------------------------------
+# created by Jack Bauer in less than 24h
+
+com.acme.DefaultCreditCardProcessor
+----------------------------------------
+
+  it is enough requiring its injection:
 
 +--------------------------------------+
-public class SuperPowerTool
+public class PowerTool
 {
 
     @Inject
-    private Set<FooService> fooService;
+    // this is bound to com.acme.DefaultCreditCardProcessor
+    private CreditCardProcessor creditCardProcessor;
 
     // setters and algorithms omitted
 
 }
 +--------------------------------------+
 
-  Eh?!? Just that?!? YES!!! :)
+Qualifier annotations
+
+  Services implementations can be annotated with whatever annotation which, at their time, are annotated with a
+  <<<@javax.inject.Qualifier>>> or <<<@com.google.inject.BindingAnnotation>>> annotation; i.e. given the following
+  annotations:
+
++--------------------------------------+
+@com.google.inject.BindingAnnotation
+@Retention( RUNTIME )
+@Target( { FIELD, TYPE } )
+public @interface Visa
+{}
++--------------------------------------+
+
+  and
+
++--------------------------------------+
+@com.google.inject.BindingAnnotation
+@Retention( RUNTIME )
+@Target( { FIELD, TYPE } )
+public @interface MasterCard
+{}
++--------------------------------------+
+
+  users can annotate services implementations:
+
++--------------------------------------+
+package com.acme.first;
+
+@Visa
+public final class VisaCreditCardProcessorImpl
+    implements CreditCardProcessor
+{
+
+    public void doSomething()
+    {
+        // ...
+    }
+
+}
++--------------------------------------+
+
+  and
+
++--------------------------------------+
+package com.acme.second;
+
+@MasterCard
+public final class MasterCardCreditCardProcessorImpl
+    implements CreditCardProcessor
+{
+
+    public void doSomething()
+    {
+        // ...
+    }
+
+}
++--------------------------------------+
+
+  Then define the SPI in <<<META-INF/services/com.acme.CreditCardProcessor>>> file(s):
+
+----------------------------------------
+# created by Jack Bauer in less than 24h
+
+com.acme.first.VisaCreditCardProcessorImpl
+com.acme.second.MasterCardCreditCardProcessorImpl
+----------------------------------------
+
+  Injections can be required by qualifying the injections:
+
++--------------------------------------+
+public class PowerTool
+{
+
+    @Inject
+    @Visa
+    private CreditCardProcessor creditCardProcessor;
+
+    @Inject
+    @MasterCard
+    private CreditCardProcessor creditCardProcessor;
+
+    // setters and algorithms omitted
+
+}
++--------------------------------------+
 
 Loading Services from SystemProperties
 
   Alternatively, SPIs can be specified via <Java System properties>:
 
 ----------------------------------------
-java -Dcom.acme.FooService=com.acme.first.FooServiceImpl1,com.acme.second.FooServiceImpl2
+java -Dcom.acme.CreditCardProcessor=com.acme.first.VisaCreditCardProcessorImpl,com.acme.second.MasterCardCreditCardProcessorImpl
 ----------------------------------------
 
   Where <<,>> is the separator character between Providers.

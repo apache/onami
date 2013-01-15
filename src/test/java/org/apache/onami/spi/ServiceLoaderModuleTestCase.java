@@ -20,10 +20,8 @@ package org.apache.onami.spi;
  */
 
 import static com.google.inject.Guice.createInjector;
-import static com.google.inject.name.Names.named;
 import static org.junit.Assert.assertEquals;
 
-import org.apache.onami.spi.ServiceLoaderModule;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,13 +32,11 @@ public final class ServiceLoaderModuleTestCase
 {
 
     @Inject
-    @Named( "first" )
-    private AcmeService acmeService;
+    private AcmeService firstAcmeService;
 
-    public void setAcmeService( AcmeService acmeService )
-    {
-        this.acmeService = acmeService;
-    }
+    @Inject
+    @Named( "second" )
+    private AcmeService secondAcmeService;
 
     @Before
     public void setUp()
@@ -49,9 +45,9 @@ public final class ServiceLoaderModuleTestCase
         {
 
             @Override
-            protected void configure()
+            protected void configureServices()
             {
-                bindService( AcmeService.class ).annotatedWith( named( "first" ) ).loadingFirstService();
+                discover( AcmeService.class );
             }
 
         } )
@@ -62,7 +58,8 @@ public final class ServiceLoaderModuleTestCase
     @Test
     public void singleServiceInjection()
     {
-        assertEquals( AcmeServiceImpl1.class, acmeService.getClass() );
+        assertEquals( AcmeServiceImpl1.class, firstAcmeService.getClass() );
+        assertEquals( AcmeServiceImpl2.class, secondAcmeService.getClass() );
     }
 
 }

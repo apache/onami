@@ -1,5 +1,7 @@
 package org.apache.onami.spi;
 
+import javax.inject.Named;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -19,6 +21,7 @@ package org.apache.onami.spi;
  * under the License.
  */
 
+@Named( "second" )
 public final class AcmeServiceImpl2
     implements AcmeService
 {
