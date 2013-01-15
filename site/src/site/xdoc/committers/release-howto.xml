@@ -300,7 +300,7 @@ mv /x1/builds/incubator/onami/binaries/* binaries/</source>
 
         <pre><![CDATA[From: YOUR_APACHE_USERNAME@apache.org
 To: "ASF Announcements" <announce@apache.org>, "Apache Onami Users List" <user@onami.incubator.apache.org>
-CC: "Apache Onami Developers List" <dev@onami.incubator.apache.org>
+CC: "Apache Onami Developers List" <dev@onami.incubator.apache.org>, "Google Guice Users List" <google-guice@googlegroups.com>
 Subject: [ANNOUNCE] Apache Onami XXXX major.minor.patch-incubating
 
 The Apache Onami Team is pleased to announce the release of Apache Onami XXXX major.minor.patch-incubating.
