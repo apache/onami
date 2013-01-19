@@ -38,7 +38,7 @@ public final class MockFrameworkHandler
     implements ClassHandler<MockFramework>
 {
 
-    final static private Logger LOGGER = Logger.getLogger( MockFrameworkHandler.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( MockFrameworkHandler.class.getName() );
 
     private MockType mockType;
 
