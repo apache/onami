@@ -67,15 +67,12 @@ public final class GuiceProvidedModuleHandler
 
         if ( logger.isLoggable( Level.FINER ) )
         {
-            logger.finer( "  Found " + GuiceProvidedModules.class.getSimpleName()
-                + " annotated method, checking if return type '" + returnType.getName() + "' is one of " 
-                + " ('" 
-                + Module.class.getName() 
-                + "' | '" 
-                + "Iterable<" + Module.class.getName() + ">" 
-                + "' | '" 
-                + Module.class.getName() + "[]" +
-                "' )");
+            logger.finer( String.format( "  Found %s annotated method, checking if return type '%s' is one of %s ( %s | Iterable<%s> | %s[] )",
+                                         GuiceProvidedModules.class.getSimpleName(),
+                                         returnType.getName(),
+                                         Module.class.getName(),
+                                         Module.class.getName(),
+                                         Module.class.getName() ) );
         }
 
         if ( !Modifier.isPublic( method.getModifiers() ) || !Modifier.isStatic( method.getModifiers() ) )
