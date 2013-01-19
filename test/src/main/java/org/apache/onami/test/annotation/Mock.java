@@ -25,8 +25,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.google.inject.name.Named;
-
 /**
  * Annotate your filed into which {@link org.apache.onami.test.GuiceMockModule} will create and inject the mock object.
  */
@@ -71,7 +69,7 @@ public @interface Mock
 
     /**
      * Specifies an {@link String} annotation that will be used in the <em>Google Guice</em> binder to execute the
-     * literal annotating binding via {@link Named} class.
+     * literal annotating binding via {@link com.google.inject.name.Named} class.
      *
      * @return
      */
