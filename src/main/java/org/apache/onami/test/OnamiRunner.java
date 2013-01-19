@@ -215,7 +215,6 @@ public class OnamiRunner
         {
             logger.finer( " --- end test method: " + method.getName() + " --- " );
         }
-
     }
 
     // create test class via Google-Guice to inject all not-static dependencies.
@@ -231,7 +230,6 @@ public class OnamiRunner
 
     protected Injector createInjector( List<Module> modules )
     {
-
         return Guice.createInjector( modules );
     }
 
