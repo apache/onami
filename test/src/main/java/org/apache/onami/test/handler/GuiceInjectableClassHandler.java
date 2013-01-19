@@ -33,7 +33,7 @@ import org.apache.onami.test.reflection.HandleException;
 /**
  * Handler class to handle all {@link com.google.inject.Inject} annotations.
  *
- * @see org.apache.onami.test.reflection.ClassVisitor.ClassVisitor
+ * @see org.apache.onami.test.reflection.ClassVisitor
  */
 public final class GuiceInjectableClassHandler<A extends Annotation>
     implements AnnotationHandler<A, AccessibleObject>
