@@ -25,13 +25,12 @@ import java.util.logging.Logger;
 import org.apache.onami.test.annotation.MockFramework;
 import org.apache.onami.test.annotation.MockType;
 import org.apache.onami.test.reflection.ClassHandler;
-import org.apache.onami.test.reflection.ClassVisitor;
 import org.apache.onami.test.reflection.HandleException;
 
 /**
  * Handler class to handle all {@link MockFramework} annotations.
  *
- * @see ClassVisitor
+ * @see org.apache.onami.test.reflection.ClassVisitor
  * @see MockFramework
  */
 public final class MockFrameworkHandler
