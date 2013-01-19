@@ -39,7 +39,7 @@ public final class GuiceModuleHandler
     implements ClassHandler<GuiceModules>
 {
 
-    private static final Logger logger = Logger.getLogger( GuiceModuleHandler.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( GuiceModuleHandler.class.getName() );
 
     final private List<Module> modules;
 
@@ -64,9 +64,9 @@ public final class GuiceModuleHandler
     {
         for ( Class<? extends Module> module : annotation.value() )
         {
-            if ( logger.isLoggable( Level.FINER ) )
+            if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                logger.finer( "   Try to create module: " + module );
+                LOGGER.finer( "   Try to create module: " + module );
             }
             try
             {
