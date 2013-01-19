@@ -29,14 +29,13 @@ import java.util.logging.Logger;
 
 import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.mock.MockEngine;
-import org.apache.onami.test.reflection.ClassVisitor;
 import org.apache.onami.test.reflection.FieldHandler;
 import org.apache.onami.test.reflection.HandleException;
 
 /**
  * Handler class to handle all {@link Mock} annotations.
  *
- * @see ClassVisitor
+ * @see org.apache.onami.test.reflection.ClassVisitor
  * @see Mock
  */
 public final class MockHandler
