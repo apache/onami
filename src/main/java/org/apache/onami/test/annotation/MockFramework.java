@@ -34,8 +34,6 @@ public @interface MockFramework
 
     /**
      * Type of mock that JUnice has to create.
-     *
-     * @return the choosen mock type.
      */
     public MockType value();
 
