@@ -19,6 +19,8 @@ package org.apache.onami.test.reflection;
  * under the License.
  */
 
+import static java.lang.String.format;
+
 /**
  * Exception thrown by a {@link ClassVisitor} when a error occurs.
  */
@@ -33,9 +35,9 @@ public final class HandleException
         super( message, cause );
     }
 
-    public HandleException( String message )
+    public HandleException( String message, Object...args )
     {
-        super( message );
+        super( format( message, args ) );
     }
 
     public HandleException( Throwable cause )
