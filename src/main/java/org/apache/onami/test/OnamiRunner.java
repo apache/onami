@@ -229,6 +229,12 @@ public class OnamiRunner
         return this.injector.getInstance( getTestClass().getJavaClass() );
     }
 
+    /**
+     * Shortcut to create the Injector given a list of Modules.
+     *
+     * @param modules the list of modules have to be load
+     * @return an Injector instance built using the input Module list
+     */
     protected Injector createInjector( List<Module> modules )
     {
         return Guice.createInjector( modules );
