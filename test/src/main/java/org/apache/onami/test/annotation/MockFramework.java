@@ -35,6 +35,6 @@ public @interface MockFramework
     /**
      * Type of mock that JUnice has to create.
      */
-    public MockType value();
+    MockType value();
 
 }
