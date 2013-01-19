@@ -44,7 +44,7 @@ public final class MockHandler
 
     private static final Logger LOGGER = Logger.getLogger( MockHandler.class.getName() );
 
-    final private HashMap<Field, Object> mockedObjects = new HashMap<Field, Object>( 1 );
+    private final HashMap<Field, Object> mockedObjects = new HashMap<Field, Object>( 1 );
 
     /**
      * @param engine
