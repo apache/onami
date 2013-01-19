@@ -244,6 +244,7 @@ public class OnamiRunner
      * This method collects modules from {@link GuiceModules}, {@link GuiceProvidedModules}, {@link Mock}.
      *
      * @param <T> whatever input type is accepted
+     * @param clazz the input class has to be analyzed
      * @return a List of Guice Modules built after input class analysis.
      * @throws IllegalAccessException
      * @throws InstantiationException
