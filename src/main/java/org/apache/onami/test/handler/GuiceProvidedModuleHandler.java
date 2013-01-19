@@ -46,7 +46,7 @@ public final class GuiceProvidedModuleHandler
 
     private static Logger logger = Logger.getLogger( GuiceProvidedModuleHandler.class.getName() );
 
-    final private List<Module> modules = new ArrayList<Module>();
+    private final List<Module> modules = new ArrayList<Module>();
 
     /**
      * @return the guiceProviderModuleRegistry
