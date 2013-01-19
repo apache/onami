@@ -1,5 +1,5 @@
 /**
- * Contains core classes to build class reflection.
+ * Contains core classes to visit Java classes via reflection and handling actions during the analysis.
  */
 package org.apache.onami.test.reflection;
 
