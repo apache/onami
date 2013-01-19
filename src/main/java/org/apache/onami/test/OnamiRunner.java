@@ -241,14 +241,8 @@ public class OnamiRunner
     }
 
     /**
-     * <p>
-     * Initialize the main Injector.
-     * </p>
-     * <p>
-     * This methot collects modules from {@link GuiceModules}, {@link GuiceProvidedModules}, {@link Mock}, creates a
-     * Google-Guice Injector and than inject static members into callings class.
-     * </p>
-     * 
+     * This method collects modules from {@link GuiceModules}, {@link GuiceProvidedModules}, {@link Mock}.
+     *
      * @throws IllegalAccessException
      * @throws InstantiationException
      * @throws HandleException
