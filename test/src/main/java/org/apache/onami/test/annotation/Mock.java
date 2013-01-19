@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
 public @interface Mock
 {
 
-    public class NoAnnotation
+    public static class NoAnnotation
     {
     }
 
