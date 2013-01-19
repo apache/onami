@@ -40,45 +40,33 @@ public @interface Mock
 
     /**
      * Indicates if this mock object has to be resetted after each test method Default: true
-     *
-     * @return the value
      */
     boolean resetAfter() default true;
 
     /**
      * The name of the method that provides to mock creation.
-     *
-     * @return
      */
     String providedBy() default "";
 
     /**
      * The {@link Class} that contains the method {@link Mock#providedBy()}. By default: the filed declaring class.
-     *
-     * @return
      */
     Class<?> providerClass() default Object.class;
 
     /**
      * Specifies an annotaion {@link Class} that will be used in the <em>Google Guice</em> binder to execute the literal
      * annotating binding.
-     *
-     * @return
      */
     Class<?> annotatedWith() default NoAnnotation.class;
 
     /**
      * Specifies an {@link String} annotation that will be used in the <em>Google Guice</em> binder to execute the
      * literal annotating binding via {@link com.google.inject.name.Named} class.
-     *
-     * @return
      */
     String namedWith() default "";
 
     /**
-     * Specifies
-     *
-     * @return
+     * Specifies TODO
      */
     MockObjType type() default MockObjType.DEFAULT;
 
