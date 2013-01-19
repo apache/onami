@@ -26,7 +26,6 @@ import java.util.logging.Logger;
 
 import org.apache.onami.test.annotation.GuiceModules;
 import org.apache.onami.test.reflection.ClassHandler;
-import org.apache.onami.test.reflection.ClassVisitor;
 import org.apache.onami.test.reflection.HandleException;
 
 import com.google.inject.Module;
@@ -34,7 +33,7 @@ import com.google.inject.Module;
 /**
  * Handler class to handle all {@link GuiceModules} annotations.
  *
- * @see ClassVisitor
+ * @see org.apache.onami.test.reflection.ClassVisitor
  */
 public final class GuiceModuleHandler
     implements ClassHandler<GuiceModules>
