@@ -24,14 +24,16 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>1-incubating</version>
+    <version>2-incubating</version>
   </parent>
 
   <artifactId>org.apache.onami.site</artifactId>
-  <version>1-incubating-SNAPSHOT</version>
+  <version>2-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Onami Site</name>
+  <name>Apache Onami</name>
+  <description>Apache Onami is a project focused on the development and maintenance of a set of Google Guice extensions.</description>
+  <url>http://onami.incubator.apache.org</url>
 
   <scm>
     <url>https://svn.apache.org/viewvc/incubator/onami/trunk/site</url>
@@ -53,6 +55,21 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-doap-plugin</artifactId>
+        <configuration>
+          <artifact>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>${project.parent.artifactId}</artifactId>
+            <version>${project.parent.version}</version>
+          </artifact>
+          <doapOptions>
+            <shortdesc>Apache Onami is a project focused on Google Guice extensions.</shortdesc>
+          </doapOptions>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>

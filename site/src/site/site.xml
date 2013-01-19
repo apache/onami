@@ -49,6 +49,8 @@
 
   <body>
     <head>
+      <link rel="meta" title="DOAP" href="${project.url}/doap_org.apache.onami.parent.rdf" type="application/rdf+xml" />
+
       <script type="text/javascript">
         $( document ).ready( function()
         {
