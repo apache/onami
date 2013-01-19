@@ -44,7 +44,7 @@ public final class GuiceProvidedModuleHandler
     implements MethodHandler<GuiceProvidedModules>
 {
 
-    private static Logger logger = Logger.getLogger( GuiceProvidedModuleHandler.class.getName() );
+    private static Logger LOGGER = Logger.getLogger( GuiceProvidedModuleHandler.class.getName() );
 
     private final List<Module> modules = new ArrayList<Module>();
 
@@ -65,9 +65,9 @@ public final class GuiceProvidedModuleHandler
     {
         final Class<?> returnType = method.getReturnType();
 
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( String.format( "  Found %s annotated method, checking if return type '%s' is one of %s ( %s | Iterable<%s> | %s[] )",
+            LOGGER.finer( String.format( "  Found %s annotated method, checking if return type '%s' is one of %s ( %s | Iterable<%s> | %s[] )",
                                          GuiceProvidedModules.class.getSimpleName(),
                                          returnType.getName(),
                                          Module.class.getName(),
@@ -113,9 +113,9 @@ public final class GuiceProvidedModuleHandler
                         "' )" );
             }
             
-            if ( logger.isLoggable( Level.FINER ) )
+            if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                logger.finer( "  Invoked method: " + method.toGenericString() );
+                LOGGER.finer( "  Invoked method: " + method.toGenericString() );
             }
         }
         catch ( Exception e )
