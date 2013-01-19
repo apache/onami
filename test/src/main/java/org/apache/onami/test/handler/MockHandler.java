@@ -92,9 +92,11 @@ public final class MockHandler
 
                 if ( !element.getType().isAssignableFrom( method.getReturnType() ) )
                 {
-                    throw new HandleException( "Impossible to mock " + element.getDeclaringClass().getName()
-                        + " due to compatibility type, method provider " + providedClass.getName() + "#"
-                        + annotation.providedBy() + " returns " + method.getReturnType().getName() );
+                    throw new HandleException( "Impossible to mock %s due to compatibility type, method provider %s#%s returns %s",
+                                               element.getDeclaringClass().getName(),
+                                               providedClass.getName(),
+                                               annotation.providedBy(),
+                                               method.getReturnType().getName() );
                 }
                 try
                 {
@@ -103,22 +105,27 @@ public final class MockHandler
                 }
                 catch ( Throwable t )
                 {
-                    throw new HandleException( "Impossible to mock " + element.getDeclaringClass().getName()
-                        + ", method provider " + providedClass.getName() + "#" + annotation.providedBy()
-                        + " raised an error", t );
+                    throw new HandleException( "Impossible to mock %s, method provider %s#%s raised an error: %s",
+                                               element.getDeclaringClass().getName(),
+                                               providedClass.getName(),
+                                               annotation.providedBy(),
+                                               t );
                 }
             }
             catch ( SecurityException e )
             {
-                throw new HandleException( "Impossible to mock " + element.getDeclaringClass().getName()
-                    + ", impossible to access to method provider " + providedClass.getName() + "#"
-                    + annotation.providedBy(), e );
+                throw new HandleException( "Impossible to mock %s, impossible to access to method provider %s#%s: %s",
+                                           element.getDeclaringClass().getName(),
+                                           providedClass.getName(),
+                                           annotation.providedBy(),
+                                           e );
             }
             catch ( NoSuchMethodException e )
             {
-                throw new HandleException( "Impossible to mock " + element.getDeclaringClass().getName()
-                    + ", the method provider " + providedClass.getName() + "#" + annotation.providedBy()
-                    + " doesn't exist." );
+                throw new HandleException( "Impossible to mock %s, the method provider %s#%s doesn't exist.",
+                                           element.getDeclaringClass().getName(),
+                                           providedClass.getName(),
+                                           annotation.providedBy() );
             }
         }
         else
@@ -141,9 +148,11 @@ public final class MockHandler
                 }
                 if ( !Modifier.isPublic( method.getModifiers() ) || !Modifier.isStatic( method.getModifiers() ) )
                 {
-                    throw new HandleException( "Impossible to invoke method " + cls + "#" + method.getName()
-                        + ". The method shuld be 'static public " + method.getReturnType().getName() + " "
-                        + method.getName() + "()'" );
+                    throw new HandleException( "Impossible to invoke method %s#%s. The method shuld be 'static public %s %s()",
+                                               cls.getName(),
+                                               method.getName(),
+                                               method.getReturnType().getName(),
+                                               method.getName() );
                 }
 
                 return (T) method.invoke( cls );
@@ -153,7 +162,7 @@ public final class MockHandler
                 throw new RuntimeException( e );
             }
         }
-        throw new HandleException( "The method: " + method + " shuld be return a type " + t );
+        throw new HandleException( "The method: %s should return type %s", method, t );
     }
 
 }
