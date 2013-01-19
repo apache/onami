@@ -38,6 +38,7 @@ import org.apache.onami.test.reflection.HandleException;
 public final class GuiceInjectableClassHandler<A extends Annotation>
     implements AnnotationHandler<A, AccessibleObject>
 {
+
     private static final Logger LOGGER = Logger.getLogger( GuiceInjectableClassHandler.class.getName() );
 
     protected final Set<Class<?>> classes = new HashSet<Class<?>>();
