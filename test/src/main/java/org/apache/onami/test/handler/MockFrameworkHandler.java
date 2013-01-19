@@ -38,7 +38,7 @@ public final class MockFrameworkHandler
     implements ClassHandler<MockFramework>
 {
 
-    final static private Logger logger = Logger.getLogger( MockFrameworkHandler.class.getName() );
+    final static private Logger LOGGER = Logger.getLogger( MockFrameworkHandler.class.getName() );
 
     private MockType mockType;
 
@@ -62,9 +62,9 @@ public final class MockFrameworkHandler
                 + mockType + " now found: " + annotation.value() + "]" );
         }
 
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( "  Found MockFramework: " + annotation.value() );
+            LOGGER.finer( "  Found MockFramework: " + annotation.value() );
         }
 
         mockType = annotation.value();
