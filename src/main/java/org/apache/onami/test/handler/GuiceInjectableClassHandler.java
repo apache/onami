@@ -38,7 +38,7 @@ import org.apache.onami.test.reflection.HandleException;
 public final class GuiceInjectableClassHandler<A extends Annotation>
     implements AnnotationHandler<A, AccessibleObject>
 {
-    private static final Logger logger = Logger.getLogger( GuiceInjectableClassHandler.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( GuiceInjectableClassHandler.class.getName() );
 
     protected final Set<Class<?>> classes = new HashSet<Class<?>>();
 
@@ -67,9 +67,9 @@ public final class GuiceInjectableClassHandler<A extends Annotation>
 
         if ( type != null && !classes.contains( type ) )
         {
-            if ( logger.isLoggable( Level.FINER ) )
+            if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                logger.finer( "   Found injectable type: " + type );
+                LOGGER.finer( "   Found injectable type: " + type );
             }
             classes.add( type );
         }
