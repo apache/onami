@@ -36,8 +36,6 @@ public @interface GuiceModules
 
     /**
      * List of Google Guice {@link Module}.
-     *
-     * @return the list of Google Guice {@link Module}.
      */
     Class<? extends Module>[] value();
 
