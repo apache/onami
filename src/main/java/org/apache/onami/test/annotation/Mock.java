@@ -43,21 +43,21 @@ public @interface Mock
      *
      * @return the value
      */
-    public boolean resetAfter() default true;
+    boolean resetAfter() default true;
 
     /**
      * The name of the method that provides to mock creation.
      *
      * @return
      */
-    public String providedBy() default "";
+    String providedBy() default "";
 
     /**
      * The {@link Class} that contains the method {@link Mock#providedBy()}. By default: the filed declaring class.
      *
      * @return
      */
-    public Class<?> providerClass() default Object.class;
+    Class<?> providerClass() default Object.class;
 
     /**
      * Specifies an annotaion {@link Class} that will be used in the <em>Google Guice</em> binder to execute the literal
@@ -65,7 +65,7 @@ public @interface Mock
      *
      * @return
      */
-    public Class<?> annotatedWith() default NoAnnotation.class;
+    Class<?> annotatedWith() default NoAnnotation.class;
 
     /**
      * Specifies an {@link String} annotation that will be used in the <em>Google Guice</em> binder to execute the
@@ -73,13 +73,13 @@ public @interface Mock
      *
      * @return
      */
-    public String namedWith() default "";
+    String namedWith() default "";
 
     /**
      * Specifies
      *
      * @return
      */
-    public MockObjType type() default MockObjType.DEFAULT;
+    MockObjType type() default MockObjType.DEFAULT;
 
 }
