@@ -43,7 +43,6 @@ import org.apache.onami.test.mock.MockEngine;
 import org.apache.onami.test.mock.guice.MockTypeListener;
 import org.apache.onami.test.reflection.ClassVisitor;
 import org.apache.onami.test.reflection.HandleException;
-import org.junit.runner.RunWith;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
@@ -70,7 +69,7 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;RunWith( OnamiRunner.class )
+ * &#064;org.junit.runner.RunWith( OnamiRunner.class )
  * &#064;GuiceModules( SimpleModule.class )
  * public class AcmeTestCase
  * {
@@ -90,7 +89,7 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;RunWith( OnamiRunner.class )
+ * &#064;org.junit.runner.RunWith( OnamiRunner.class )
  * public class AcmeTestCase
  *     extends com.google.inject.AbstractModule
  * {
@@ -138,7 +137,7 @@ public class OnamiRunner
     /**
      * OnamiRunner constructor to create the core JUnice class.
      * 
-     * @see RunWith
+     * @see org.junit.runner.RunWith
      * @param klass The test case class to run.
      * @throws org.junit.runners.model.InitializationError if any error occurs.
      */
