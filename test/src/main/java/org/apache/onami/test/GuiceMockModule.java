@@ -61,7 +61,7 @@ public class GuiceMockModule
     extends AbstractModule
 {
 
-    private final static Logger logger = Logger.getLogger( GuiceMockModule.class.getName() );
+    private final static Logger LOGGER = Logger.getLogger( GuiceMockModule.class.getName() );
 
     final Map<Field, Object> mockedFields;
 
@@ -116,9 +116,9 @@ public class GuiceMockModule
                 {
                     bind( literal ).toInstance( mock );
                 }
-                if ( logger.isLoggable( Level.FINER ) )
+                if ( LOGGER.isLoggable( Level.FINER ) )
                 {
-                    logger.finer( "    Created binding for: " + type + " " + annoBy );
+                    LOGGER.finer( "    Created binding for: " + type + " " + annoBy );
                 }
             }
         }
@@ -144,7 +144,7 @@ public class GuiceMockModule
             }
             if ( numOfSimpleType > 1 )
             {
-                logger.finer( "Found multiple simple type" );
+                LOGGER.finer( "Found multiple simple type" );
                 return true;
             }
 
@@ -157,7 +157,7 @@ public class GuiceMockModule
                 else
                 {
                     // found two fields with same annotation
-                    logger.finer( "Found multiple annotatedBy type" );
+                    LOGGER.finer( "Found multiple annotatedBy type" );
                     return true;
                 }
             }
@@ -171,7 +171,7 @@ public class GuiceMockModule
                 else
                 {
                     // found two fields with same named annotation
-                    logger.finer( "Found multiple namedWith type" );
+                    LOGGER.finer( "Found multiple namedWith type" );
                     return true;
                 }
             }
