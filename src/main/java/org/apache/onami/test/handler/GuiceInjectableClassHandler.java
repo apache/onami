@@ -30,10 +30,8 @@ import java.util.logging.Logger;
 import org.apache.onami.test.reflection.AnnotationHandler;
 import org.apache.onami.test.reflection.HandleException;
 
-import com.google.inject.Inject;
-
 /**
- * Handler class to handle all {@link Inject} annotations.
+ * Handler class to handle all {@link com.google.inject.Inject} annotations.
  *
  * @see org.apache.onami.test.reflection.ClassVisitor.ClassVisitor
  */
@@ -45,7 +43,7 @@ public final class GuiceInjectableClassHandler<A extends Annotation>
     protected final Set<Class<?>> classes = new HashSet<Class<?>>();
 
     /**
-     * Return all {@link Class} that contains at last one {@link Inject} annotation.
+     * Return all {@link Class} that contains at last one {@link com.google.inject.Inject} annotation.
      *
      * @return {@link Class} array.
      */
