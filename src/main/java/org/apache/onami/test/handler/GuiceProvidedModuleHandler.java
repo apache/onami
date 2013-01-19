@@ -27,7 +27,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.onami.test.annotation.GuiceProvidedModules;
-import org.apache.onami.test.reflection.ClassVisitor;
 import org.apache.onami.test.reflection.HandleException;
 import org.apache.onami.test.reflection.MethodHandler;
 
@@ -38,7 +37,7 @@ import com.google.inject.internal.MoreTypes;
 /**
  * Handler class to handle all {@link GuiceProvidedModules} annotations.
  *
- * @see ClassVisitor
+ * @see org.apache.onami.test.reflection.ClassVisitor
  * @see GuiceProvidedModules
  */
 public final class GuiceProvidedModuleHandler
