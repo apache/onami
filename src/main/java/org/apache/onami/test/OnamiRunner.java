@@ -243,6 +243,7 @@ public class OnamiRunner
     /**
      * This method collects modules from {@link GuiceModules}, {@link GuiceProvidedModules}, {@link Mock}.
      *
+     * @return a List of Guice Modules built after input class analysis.
      * @throws IllegalAccessException
      * @throws InstantiationException
      * @throws HandleException
