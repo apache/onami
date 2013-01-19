@@ -19,7 +19,6 @@ package org.apache.onami.test;
  * under the License.
  */
 
-import org.apache.onami.test.annotation.MockFramework;
 import org.apache.onami.test.annotation.MockType;
 import org.apache.onami.test.mock.MockEngine;
 import org.apache.onami.test.mock.framework.EasyMockFramework;
@@ -27,8 +26,8 @@ import org.apache.onami.test.mock.framework.MockitoFramework;
 
 /**
  * Factory class to create the mock framework.
- *
- * @see MockFramework
+ * 
+ * @see org.apache.onami.test.annotation.MockFramework
  */
 final class MockEngineFactory
 {
