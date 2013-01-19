@@ -124,7 +124,7 @@ public class OnamiRunner
     extends BlockJUnit4ClassRunner
 {
 
-    final private static Logger logger = Logger.getLogger( OnamiRunner.class.getName() );
+    private static final Logger logger = Logger.getLogger( OnamiRunner.class.getName() );
 
     private Injector injector;
 
