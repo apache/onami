@@ -25,12 +25,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.apache.onami.test.GuiceMockModule;
-
 import com.google.inject.name.Named;
 
 /**
- * Annotate your filed into which {@link GuiceMockModule} will create and inject the mock object.
+ * Annotate your filed into which {@link org.apache.onami.test.GuiceMockModule} will create and inject the mock object.
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( ElementType.FIELD )
