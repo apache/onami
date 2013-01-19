@@ -70,14 +70,16 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;RunWith(OnamiRunner.class)
- * &#064;GuiceModules(SimpleModule.class)
- * public class AcmeTestCase {
+ * &#064;RunWith( OnamiRunner.class )
+ * &#064;GuiceModules( SimpleModule.class )
+ * public class AcmeTestCase
+ * {
  * 
  *     &#064;GuiceProvidedModules
- *     static public Module getProperties() {
+ *     static public Module getProperties()
+ *     {
  *         ...
- *         return Modules.combine(new ComplexModule(loadProperies()), ...  );
+ *         return Modules.combine(new ComplexModule( loadProperies() ), ...  );
  *     }
  * 
  * </pre>
@@ -88,13 +90,16 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;RunWith(OnamiRunner.class)
- * public class AcmeTestCase extends com.google.inject.AbstractModule {
+ * &#064;RunWith( OnamiRunner.class )
+ * public class AcmeTestCase
+ *     extends com.google.inject.AbstractModule
+ * {
  * 
- *     public void configure() {
- *         //Configure your proper modules
+ *     public void configure()
+ *     {
+ *         // Configure your proper modules
  *         ...
- *         bind(Service.class).annotatedWith(TestAnnotation.class).to(ServiceTestImpl.class);
+ *         bind( Service.class ).annotatedWith( TestAnnotation.class ).to( ServiceTestImpl.class );
  *         ...
  *     }
  * 
@@ -105,9 +110,10 @@ import com.google.inject.util.Modules;
  *     private Service serviceTest;
  * 
  *     &#064;org.junit.Test
- *     public void test() {
- *         assertNotNull(serviceMock);
- *         assertNotNull(serviceTest);
+ *     public void test()
+ *     {
+ *         assertNotNull( serviceMock );
+ *         assertNotNull( serviceTest );
  *     }
  * </pre>
  * 
