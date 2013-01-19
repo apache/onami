@@ -24,11 +24,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.google.inject.Module;
-
 /**
  * <p>
- * Annotate a <b>public static</b> method to create a Google Guice {@link Module} provider.
+ * Annotate a <b>public static</b> method to create a Google Guice {@link com.google.inject.Module} provider.
  * </p>
  * <p>
  * The method return type must be one of:
