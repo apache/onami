@@ -124,7 +124,7 @@ public class OnamiRunner
     extends BlockJUnit4ClassRunner
 {
 
-    private static final Logger logger = Logger.getLogger( OnamiRunner.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( OnamiRunner.class.getName() );
 
     private Injector injector;
 
@@ -148,16 +148,16 @@ public class OnamiRunner
 
         try
         {
-            if ( logger.isLoggable( Level.FINER ) )
+            if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                logger.finer( "Inizializing injector for test class: " + klass.getName() );
+                LOGGER.finer( "Inizializing injector for test class: " + klass.getName() );
             }
 
             this.allModules = inizializeInjector( klass );
 
-            if ( logger.isLoggable( Level.FINER ) )
+            if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                logger.finer( "done..." );
+                LOGGER.finer( "done..." );
             }
         }
         catch ( Exception e )
@@ -173,19 +173,19 @@ public class OnamiRunner
      */
     public void run( final RunNotifier notifier )
     {
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( " ### Run test case: " + getTestClass().getJavaClass() + " ### " );
-            logger.finer( " #### Creating injector ####" );
+            LOGGER.finer( " ### Run test case: " + getTestClass().getJavaClass() + " ### " );
+            LOGGER.finer( " #### Creating injector ####" );
         }
 
         this.injector = createInjector( allModules );
         super.run( notifier );
         this.flush();
 
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( " ### End test case: " + getTestClass().getJavaClass().getName() + " ### " );
+            LOGGER.finer( " ### End test case: " + getTestClass().getJavaClass().getName() + " ### " );
         }
     }
 
@@ -202,17 +202,17 @@ public class OnamiRunner
     @Override
     protected void runChild( FrameworkMethod method, RunNotifier notifier )
     {
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( " +++ invoke test method: " + method.getName() + " +++ " );
+            LOGGER.finer( " +++ invoke test method: " + method.getName() + " +++ " );
         }
 
         super.runChild( method, notifier );
         resetAllResetAfterMocks();
 
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( " --- end test method: " + method.getName() + " --- " );
+            LOGGER.finer( " --- end test method: " + method.getName() + " --- " );
         }
     }
 
@@ -220,9 +220,9 @@ public class OnamiRunner
     protected Object createTest()
         throws Exception
     {
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( " Create and inject test class: " + getTestClass().getJavaClass() );
+            LOGGER.finer( " Create and inject test class: " + getTestClass().getJavaClass() );
         }
         return this.injector.getInstance( getTestClass().getJavaClass() );
     }
@@ -280,9 +280,9 @@ public class OnamiRunner
     {
         try
         {
-            if ( logger.isLoggable( Level.FINER ) )
+            if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                logger.finer( "  Start introspecting class: " + clazz.getName() );
+                LOGGER.finer( "  Start introspecting class: " + clazz.getName() );
             }
             final List<Module> allModules = new ArrayList<Module>( 1 );
 
@@ -355,9 +355,9 @@ public class OnamiRunner
             // Check if the class is itself a Google Module.
             if ( Module.class.isAssignableFrom( getTestClass().getJavaClass() ) )
             {
-                if ( logger.isLoggable( Level.FINER ) )
+                if ( LOGGER.isLoggable( Level.FINER ) )
                 {
-                    logger.finer( "   creating module from test class " + getTestClass().getJavaClass() );
+                    LOGGER.finer( "   creating module from test class " + getTestClass().getJavaClass() );
                 }
                 final Module classModule = (Module) getTestClass().getJavaClass().newInstance();
                 allModules.add( classModule );
@@ -382,9 +382,9 @@ public class OnamiRunner
                     final Object mock = entry.getValue();
                     if ( Modifier.isStatic( field.getModifiers() ) )
                     {
-                        if ( logger.isLoggable( Level.FINER ) )
+                        if ( LOGGER.isLoggable( Level.FINER ) )
                         {
-                            logger.finer( "   inject static mock field: " + field.getName() );
+                            LOGGER.finer( "   inject static mock field: " + field.getName() );
                         }
 
                         field.setAccessible( true );
@@ -398,7 +398,7 @@ public class OnamiRunner
 
             if ( allModules.size() != 0 )
             {
-                if ( logger.isLoggable( Level.FINER ) )
+                if ( LOGGER.isLoggable( Level.FINER ) )
                 {
                     StringBuilder builder = new StringBuilder();
                     builder.append( " Collected modules: " );
@@ -408,7 +408,7 @@ public class OnamiRunner
                         builder.append( "    " + module );
                         builder.append( "\n" );
                     }
-                    logger.finer( builder.toString() );
+                    LOGGER.finer( builder.toString() );
                 }
                 return Modules.combine( allModules );
             }
@@ -416,9 +416,9 @@ public class OnamiRunner
         }
         finally
         {
-            if ( logger.isLoggable( Level.FINER ) )
+            if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                logger.finer( " ...done" );
+                LOGGER.finer( " ...done" );
             }
         }
     }
