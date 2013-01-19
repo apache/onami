@@ -69,12 +69,212 @@
     <section name="Other subject prefixes">
       <p>Other prefixes which may be used on Onami mailing lists are:</p>
       <ul>
-        <li>[ALL] - general discussion (developer list)</li>
-        <li>[DOC] - Documentation discussion</li>
-        <li>[SITE] - Site building related discussion (developer list)</li>
-        <li>[VOTE], [RESULT], [CANCELLED] - voting threads (developer list)</li>
-        <li>[ANNOUNCE] - announcements of releases etc.</li>
+        <li><code>[ALL]</code> - general discussion (developer list)</li>
+        <li><code>[DOC]</code> - Documentation discussion</li>
+        <li><code>[SITE]</code> - Site building related discussion (developer list)</li>
+        <li><code>[VOTE]</code>, <code>[RESULT]</code>, <code>[CANCELLED]</code> - voting threads (developer list)</li>
+        <li><code>[ANNOUNCE]</code> - announcements of releases etc.</li>
       </ul>
+    </section>
+
+    <section name="Voting">
+      <p>Decisions regarding the project are made by votes on the primary project mailing list. Where necessary, voting
+      may take place on the private mailing list. Votes are clearly indicated by subject line starting with
+      <code>[VOTE]</code>. Votes may contain multiple items for approval and these should be clearly separated.
+      Voting is carried out by replying to the vote mail. Voting may take four flavours.</p>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <strong>+1</strong>
+            </td>
+            <td><i>Yes</i>, <i>Agree</i>, or <i>the action should be performed</i>. In
+              general, this vote also indicates a willingness on the behalf of
+              the voter in <i>making it happen</i>.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>+0</strong>
+            </td>
+            <td>This vote indicates a willingness for the action under
+              consideration to go ahead. The voter, however will not be able
+              to help.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>-0</strong>
+            </td>
+            <td>This vote indicates that the voter does not, in general, agree
+              with the proposed action but is not concerned enough to prevent
+              the action going ahead.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>-1</strong>
+            </td>
+            <td>
+              This is a negative vote. On issues where consensus is required,
+              this vote counts as a
+              <strong>veto</strong>
+              . All vetoes must contain an explanation of why the veto is
+              appropriate. Vetoes with no explanation are void. It may also be
+              appropriate for a -1 vote to include an alternative course of
+              action.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        All participants in the project are encouraged to
+        show their agreement with or against a particular action by voting.
+        For technical decisions, only the votes of active committers are
+        binding. Non binding votes are still useful for those with binding
+        votes to understand the perception of an action in the wider community. For
+        <span class="caps">PPPMC</span>
+        decisions, only the votes of
+        <span class="caps">PPPMC</span>
+        members are binding.
+      </p>
+
+      <p>Voting can also be applied to changes made to the codebase. These typically take the form of a veto (-1) in
+        reply to the commit message sent when the commit is made.</p>
+
+      <subsection name="Approvals">
+        <p>These are the types of approvals that can be sought. Different actions require different types of approvals.</p>
+
+        <table class="table table-bordered" cellspacing="0">
+          <tbody>
+            <tr>
+              <th>Consensus</th>
+              <td>For this to pass, all voters with binding votes must vote and
+                there can be no binding vetoes (-1). Consensus votes are rarely
+                required due to the impracticality of getting all eligible
+                voters to cast a vote.</td>
+            </tr>
+            <tr>
+              <th>Lazy Consensus</th>
+              <td>Lazy consensus requires 3 binding +1 votes and no binding vetoes.</td>
+            </tr>
+            <tr>
+              <th>Lazy Majority</th>
+              <td>A lazy majority vote requires 3 binding +1 votes and more binding +1 votes that -1 votes.</td>
+            </tr>
+            <tr>
+              <th>Lazy Approval</th>
+              <td>An action with lazy approval is implicitly allowed unless a -1
+                vote is received, at which time, depending on the type of
+                action, either lazy majority or lazy consensus approval must be
+                obtained.</td>
+            </tr>
+            <tr>
+              <th>2/3 Majority</th>
+              <td>
+                Some actions require a 2/3 majority of active committers or
+                <span class="caps">PPPMC</span>
+                members to pass. Such actions typically affect the foundation of
+                the project (e.g. adopting a new codebase to replace an existing
+                product). The higher threshold is designed to ensure such
+                changes are strongly supported. To pass this vote requires at
+                least 2/3 of binding vote holders to vote +1
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </subsection>
+
+      <subsection name="Vetoes">
+        <p>A valid, binding veto cannot be overruled. If a veto is cast,
+        it must be accompanied by a valid reason explaining the reasons for
+        the veto. The validity of a veto, if challenged, can be confirmed by
+        anyone who has a binding vote. This does not necessarily signify
+        agreement with the veto - merely that the veto is valid.</p>
+
+        <p>If you disagree with a valid veto, you must lobby the person
+        casting the veto to withdraw their veto. If a veto is not withdrawn,
+        the action that has been vetoed must be reversed in a timely manner.</p>
+      </subsection>
+
+      <subsection name="Actions">
+        <p>This section describes the various actions which are
+        undertaken within the project, the corresponding approval required for
+        that action and those who have binding votes over the action.</p>
+
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Action</th>
+              <th>Description</th>
+              <th>Approval</th>
+              <th>Binding Votes</th>
+            </tr>
+            <tr>
+              <td><strong>Code Change</strong></td>
+              <td>A change made to the codebase of a sub-project and committed by a committer. This includes source code, documentation, website content, etc.</td>
+              <td>Lazy approval and then lazy consensus.</td>
+              <td>Active committers of the relevant sub-project.</td>
+            </tr>
+            <tr valign="top">
+              <td><strong>Release Plan</strong></td>
+              <td>Defines the timetable and actions for a release. The plan also nominates a Release Manager.</td>
+              <td>Lazy majority</td>
+              <td>Active committers of the relevant sub-project</td>
+            </tr>
+            <tr>
+              <td><strong>Product Release</strong></td>
+              <td>When a release of one of the sub-project's products is ready, a vote is required to accept the release as an official release of the Logging Services project. This step ensures the overall supervision by the Logging Services <span class="caps">PPMC </span>over its sub-projects.</td>
+              <td>Lazy Majority</td>
+              <td><b>Active <span class="caps">PPMC </span>members</b></td>
+            </tr>
+            <tr>
+              <td><strong>Adoption of New Codebase</strong></td>
+              <td>When the codebase for an existing, released product is to be replaced with an alternative codebase. If such a vote fails to gain approval, the existing code base will continue. This also covers the creation of new sub-projects within the project.</td>
+              <td>2/3 majority</td>
+              <td>Active <span class="caps">PPMC </span>members</td>
+            </tr>
+            <tr>
+              <td><strong>Modification of the Bylaws</strong></td>
+              <td>Modification of this document</td>
+              <td>2/3 majority</td>
+              <td>Active <span class="caps">PPMC </span>members</td>
+            </tr>
+            <tr>
+              <td><strong>New Committer</strong></td>
+              <td>When a new committer is proposed for a sub-project.The <span class="caps">PPMC </span>must be informed of the result of the sub-project's vote.</td>
+              <td>Lazy consensus</td>
+              <td>Active committers of the relevant sub-project</td>
+            </tr>
+            <tr>
+              <td><strong>New <span class="caps">PPMC</span> Member</strong></td>
+              <td>When a committer is proposed for the <span class="caps">PPMC</span></td>
+              <td>Lazy consensus</td>
+              <td>Active <span class="caps">PPMC</span> members</td>
+            </tr>
+            <tr>
+              <td><strong>Committer Removal</strong></td>
+              <td>When removal of commit privileges is sought.<br>
+                  <strong>Note:</strong> Such actions will also be referred to the <span class="caps">ASF</span> board by the <span class="caps">PPMC</span> chair.</td>
+              <td>Consensus</td>
+              <td>Active <span class="caps">PPMC </span>members (excluding the committer in question if a member of the <span class="caps">PPMC</span>).</td>
+            </tr>
+            <tr>
+              <td><strong><span class="caps">PPMC</span> Member Removal</strong></td>
+              <td>When removal of a <span class="caps">PPMC</span> member is sought.<br>
+                  <strong>Note:</strong> Such actions will also be referred to the <span class="caps">ASF </span>board by the <span class="caps">PPMC</span> chair.</td>
+              <td>Consensus</td>
+              <td>Active <span class="caps">PPMC </span>members (excluding the member in question).</td>
+            </tr>
+          </tbody>
+        </table>
+      </subsection>
+
+      <subsection name="Voting Timeframes">
+        <p>Votes are open for a period of 72 hours to allow all active
+        voters time to consider the vote. Votes relating to code changes are
+        not subject to a strict timetable but should be made as timely as
+        possible.</p>
+      </subsection>
     </section>
   </body>
 
