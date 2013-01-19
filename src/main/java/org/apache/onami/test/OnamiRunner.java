@@ -216,7 +216,9 @@ public class OnamiRunner
         }
     }
 
-    // create test class via Google-Guice to inject all not-static dependencies.
+    /**
+     * Creates test instance via Google-Guice to inject all not-static dependencies.
+     */
     protected Object createTest()
         throws Exception
     {
