@@ -43,7 +43,7 @@ public final class MockHandler
     implements FieldHandler<Mock>
 {
 
-    private static final Logger logger = Logger.getLogger( MockHandler.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( MockHandler.class.getName() );
 
     final private HashMap<Field, Object> mockedObjects = new HashMap<Field, Object>( 1 );
 
@@ -76,9 +76,9 @@ public final class MockHandler
     {
         final Class<? super Object> type = (Class<? super Object>) element.getDeclaringClass();
 
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( "      Found annotated field: " + element );
+            LOGGER.finer( "      Found annotated field: " + element );
         }
         if ( annotation.providedBy().length() > 0 )
         {
@@ -136,9 +136,9 @@ public final class MockHandler
         {
             try
             {
-                if ( logger.isLoggable( Level.FINER ) )
+                if ( LOGGER.isLoggable( Level.FINER ) )
                 {
-                    logger.finer( "        ...invoke Provider method for Mock: " + method.getName() );
+                    LOGGER.finer( "        ...invoke Provider method for Mock: " + method.getName() );
                 }
                 if ( !Modifier.isPublic( method.getModifiers() ) || !Modifier.isStatic( method.getModifiers() ) )
                 {
