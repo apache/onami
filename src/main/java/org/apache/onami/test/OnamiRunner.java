@@ -128,9 +128,9 @@ public class OnamiRunner
 
     private Injector injector;
 
-    final private List<Module> allModules;
+    private final List<Module> allModules;
 
-    final private Map<Field, Object> mocked = new HashMap<Field, Object>( 1 );
+    private final Map<Field, Object> mocked = new HashMap<Field, Object>( 1 );
 
     private MockType mockFramework = MockType.EASY_MOCK;
 
