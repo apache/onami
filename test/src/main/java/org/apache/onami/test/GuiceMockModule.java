@@ -61,7 +61,7 @@ public class GuiceMockModule
     extends AbstractModule
 {
 
-    final static private Logger logger = Logger.getLogger( GuiceMockModule.class.getName() );
+    private final static Logger logger = Logger.getLogger( GuiceMockModule.class.getName() );
 
     final Map<Field, Object> mockedFields;
 
