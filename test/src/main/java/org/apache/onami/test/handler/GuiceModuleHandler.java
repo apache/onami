@@ -41,7 +41,7 @@ public final class GuiceModuleHandler
 
     private static final Logger LOGGER = Logger.getLogger( GuiceModuleHandler.class.getName() );
 
-    final private List<Module> modules;
+    private final List<Module> modules;
 
     public GuiceModuleHandler()
     {
