@@ -1,0 +1,52 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+
+                            Apache Onami Parent
+                               Release Notes
+
+===========================================================================================
+
+    2-incubating - 2013-01-19 (yyyy-MM-dd)
+
+Bug
+[ONAMI-37] - Email addresses are not a valid email
+[ONAMI-38] - wrong and redundant Bundle-SymbolicName in maven-bundle-plugin
+
+Improvement
+[ONAMI-39] - simplify Bundle-RequiredExecutionEnvironment parameter in maven-bundle-plugin
+[ONAMI-40] - Remove unused osgi.fragment-host property
+[ONAMI-41] - remove components list in inherited site.xml descriptor
+[ONAMI-48] - Upgrade the release-plugin to 2.4
+
+New Feature
+[ONAMI-42] - Allow parent to publish DOAP descriptors for all components
+
+===========================================================================================
+
+    1-incubating - 2013-01-04 (yyyy-MM-dd)
+
+Bug
+[ONAMI-21] - Relative links in inherited menus break the links in components site
+
+Improvement
+[ONAMI-11] - Manage shared commons dependencies in the parent
+[ONAMI-20] - Allows subcomponents adding Doclava parameters
+
+Task
+[ONAMI-26] - Make all artifactId OSGi name compliant
