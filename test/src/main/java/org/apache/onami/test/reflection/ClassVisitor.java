@@ -42,7 +42,7 @@ public final class ClassVisitor
 
     private static final String JAVA_PACKAGE = "java";
 
-    private static final Logger logger = Logger.getLogger( ClassVisitor.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( ClassVisitor.class.getName() );
 
     private final Multimap<Class<? extends Annotation>, AnnotationHandler<? extends Annotation, ? extends AnnotatedElement>> handlers =
         ArrayListMultimap.create();
@@ -59,9 +59,9 @@ public final class ClassVisitor
     {
         checkArgument( type != null, "Type to be visited cannot be null" );
 
-        if ( logger.isLoggable( Level.FINER ) )
+        if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            logger.finer( "  Visit class: " + type );
+            LOGGER.finer( "  Visit class: " + type );
         }
 
         if ( type.getPackage() != null && type.getPackage().getName().startsWith( JAVA_PACKAGE ) )
