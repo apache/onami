@@ -29,7 +29,9 @@ import static com.google.inject.matcher.Matchers.any;
 /**
  * {@code Apache Log4j2} logger module implementation.
  */
-public final class Log4j2LoggingModule extends AbstractLoggingModule<Logger> {
+public final class Log4j2LoggingModule
+    extends AbstractLoggingModule<Logger>
+{
 
     /**
      * Creates a new {@code Apache Log4j2} injection module that matches any class.
@@ -45,7 +47,7 @@ public final class Log4j2LoggingModule extends AbstractLoggingModule<Logger> {
      * @param matcher types matcher for whom the Logger injection has to be
      *        performed.
      */
-    public Log4j2LoggingModule(Matcher<? super TypeLiteral<?>> matcher)
+    public Log4j2LoggingModule( Matcher<? super TypeLiteral<?>> matcher )
     {
         super( matcher, Log4J2LoggerInjector.class );
     }
