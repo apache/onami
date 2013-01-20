@@ -25,9 +25,24 @@ package org.apache.onami.test.annotation;
 public enum MockObjType
 {
 
+    /** 
+     * @see EasyMock.createMock
+     */
     EASY_MOCK_NORMAL,
+    
+    /** 
+     * @see EasyMock.createStrictMock
+     */
     EASY_MOCK_STRICT,
+    
+    /** 
+     * @see EasyMock.createNiceMock
+     */
     EASY_MOCK_NICE,
+    
+    /** 
+     * Use default mock creation mode
+     */
     DEFAULT
 
 }
