@@ -33,8 +33,6 @@ public final class Log4j2LoggingModule extends AbstractLoggingModule<Logger> {
 
     /**
      * Creates a new {@code Apache Log4j2} injection module that matches any class.
-     *
-     * @since 3.1
      */
     public Log4j2LoggingModule()
     {
