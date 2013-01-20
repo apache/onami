@@ -48,7 +48,7 @@ public final class ClassVisitor
         ArrayListMultimap.create();
 
     public <A extends Annotation> ClassVisitor registerHandler( Class<A> annotationType,
-                                                        AnnotationHandler<A, ? extends AnnotatedElement> handler )
+                                                                AnnotationHandler<A, ? extends AnnotatedElement> handler )
     {
         handlers.put( annotationType, handler );
         return this;
