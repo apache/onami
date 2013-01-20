@@ -32,6 +32,12 @@ public final class FromSystemPropertiesTestCase
     @Before
     public void setUp()
     {
+        // This simulates the SPI specification via Java System Properties,
+        // equivalent to java -Dorg.apache.onami.spi.FooService=org.apac...
+        System.setProperty( "org.apache.onami.spi.FooService",
+                            "org.apache.onami.spi.FooServiceImpl1," +
+                            "org.apache.onami.spi.FooServiceImpl2");
+
         createInjector( new ServiceLoaderModule()
         {
 
