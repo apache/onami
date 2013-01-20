@@ -219,6 +219,8 @@ public class OnamiRunner
 
     /**
      * Creates test instance via Google-Guice to inject all not-static dependencies.
+     * @return The instance of the test case.
+     * @throws Exception when an error occurs.
      */
     protected Object createTest()
         throws Exception
@@ -247,9 +249,9 @@ public class OnamiRunner
      * @param <T> whatever input type is accepted
      * @param clazz the input class has to be analyzed
      * @return a List of Guice Modules built after input class analysis.
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     * @throws HandleException
+     * @throws IllegalAccessException when a n error occurs.
+     * @throws InstantiationException when a n error occurs.
+     * @throws HandleException when a n error occurs.
      */
     protected <T> List<Module> inizializeInjector( Class<T> clazz )
         throws HandleException, InstantiationException, IllegalAccessException
