@@ -54,7 +54,7 @@ public @interface Mock
     Class<?> providerClass() default Object.class;
 
     /**
-     * Specifies an annotaion {@link Class} that will be used in the <em>Google Guice</em> binder to execute the literal
+     * Specifies an annotation {@link Class} that will be used in the <em>Google Guice</em> binder to execute the literal
      * annotating binding.
      */
     Class<?> annotatedWith() default NoAnnotation.class;
