@@ -44,7 +44,7 @@ public final class GuiceProvidedModuleHandler
     implements MethodHandler<GuiceProvidedModules>
 {
 
-    private static Logger LOGGER = Logger.getLogger( GuiceProvidedModuleHandler.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( GuiceProvidedModuleHandler.class.getName() );
 
     private final List<Module> modules = new ArrayList<Module>();
 
