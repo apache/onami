@@ -34,6 +34,9 @@ import java.lang.annotation.Target;
 public @interface Mock
 {
 
+    /**
+     * Class used to mark that no annotation binding is defined.
+     */
     public static class NoAnnotation
     {
     }
