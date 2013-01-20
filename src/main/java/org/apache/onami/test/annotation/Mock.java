@@ -19,6 +19,7 @@ package org.apache.onami.test.annotation;
  * under the License.
  */
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -35,9 +36,9 @@ public @interface Mock
 {
 
     /**
-     * Class used to mark that no annotation binding is defined.
+     * Annotation class used to mark that no annotation binding is defined.
      */
-    public static class NoAnnotation
+    public static @interface NoAnnotation
     {
     }
 
@@ -60,7 +61,7 @@ public @interface Mock
      * Specifies an annotation {@link Class} that will be used in the <em>Google Guice</em> binder to execute the literal
      * annotating binding.
      */
-    Class<?> annotatedWith() default NoAnnotation.class;
+    Class<? extends Annotation> annotatedWith() default NoAnnotation.class;
 
     /**
      * Specifies an {@link String} annotation that will be used in the <em>Google Guice</em> binder to execute the
