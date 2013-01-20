@@ -46,7 +46,7 @@ public class MockTypeListener
     implements TypeListener
 {
 
-    final private Map<Field, Object> mockedObjects;
+    private final Map<Field, Object> mockedObjects;
 
     public MockTypeListener( Map<Field, Object> mockedObjects )
     {
