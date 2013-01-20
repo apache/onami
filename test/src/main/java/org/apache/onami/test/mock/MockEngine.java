@@ -42,6 +42,7 @@ public interface MockEngine
      *
      * @param <T> Class to mock
      * @param cls Class to mock
+     * @param type the {@link MockObjType}
      * @return the mock object
      */
     <T> T createMock( Class<T> cls, MockObjType type );

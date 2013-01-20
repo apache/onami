@@ -66,8 +66,8 @@ public final class ClassVisitor
      * Visits all fields, methods and super classes of the input class.
      *
      * @param <T> any type
-     * @param type
-     * @throws HandleException
+     * @param type The type 
+     * @throws HandleException when an error occurs.
      */
     public <T> void visit( final Class<? super T> type )
         throws HandleException
