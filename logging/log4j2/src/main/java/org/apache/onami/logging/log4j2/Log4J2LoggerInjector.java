@@ -37,7 +37,7 @@ public final class Log4J2LoggerInjector
      *
      * @param field the logger field has to be injected.
      */
-    public Log4J2LoggerInjector(Field field)
+    public Log4J2LoggerInjector( Field field )
     {
         super( field );
     }

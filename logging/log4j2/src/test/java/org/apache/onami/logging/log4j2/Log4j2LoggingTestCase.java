@@ -34,6 +34,7 @@ import static com.google.inject.matcher.Matchers.only;
 public final class Log4j2LoggingTestCase
     extends AbstractLoggerInectionTestCase<Logger>
 {
+
     @InjectLogger
     private Logger logger;
 
