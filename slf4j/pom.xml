@@ -27,7 +27,6 @@
   </parent>
 
   <artifactId>org.apache.onami.logging.slf4j</artifactId>
-  <packaging>jar</packaging>
 
   <name>Apache Onami-Logging - SLF4J</name>
   <description>Apache Onami-Logging-SLF4J is a SLF4J Injector</description>
