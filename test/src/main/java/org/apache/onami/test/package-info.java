@@ -1,5 +1,3 @@
-package org.apache.onami.test;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -22,3 +20,5 @@ package org.apache.onami.test;
 /**
  * Contains core classes to create JUnice Runner.
  */
+package org.apache.onami.test;
+
