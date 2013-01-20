@@ -47,8 +47,10 @@ public final class MockHandler
     private final HashMap<Field, Object> mockedObjects = new HashMap<Field, Object>( 1 );
 
     /**
-     * @param engine
-     * @return
+     * Return the mocked objects.
+     * 
+     * @param engine the {@link MockEngine}
+     * @return the map of mocked objects
      */
     public HashMap<Field, Object> getMockedObject( MockEngine engine )
     {
@@ -69,6 +71,13 @@ public final class MockHandler
         }
     }
 
+    
+    /**
+     * Invoked when the visitor founds an element with a {@link Mock} annotation.
+     * @param annotation The {@link Mock} annotation type
+     * @param element the {@link Mock} annotated fiels 
+     * @throws HandleException when an error occurs.    
+     */
     @SuppressWarnings( "unchecked" )
     public void handle( final Mock annotation, final Field element )
         throws HandleException
