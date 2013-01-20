@@ -26,7 +26,14 @@ package org.apache.onami.test.annotation;
  */
 public enum MockType
 {
-
-    EASY_MOCK, MOCKITO;
+    /**
+     * Identify the Easy Mock framework
+     */
+    EASY_MOCK, 
+    
+    /**
+     * Identify the Mockito framework
+     */
+    MOCKITO;
 
 }
