@@ -30,16 +30,34 @@ public final class HandleException
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructs a new HandleException with the specified detail message and cause.
+     *
+     * @param message  detail message
+     * @param cause the cause
+     */
     public HandleException( String message, Throwable cause )
     {
         super( message, cause );
     }
 
+    /**
+     * Constructs a new HandleException with the specified detail message.
+     *
+     * @param message a format string
+     * @param args arguments referenced by the format specifiers in the format string
+     * @see String#format(String, Object...)
+     */
     public HandleException( String message, Object...args )
     {
         super( format( message, args ) );
     }
 
+    /**
+     * Constructs a new HandleException with the specified cause.
+     *
+     * @param cause the cause
+     */
     public HandleException( Throwable cause )
     {
         super( cause );
