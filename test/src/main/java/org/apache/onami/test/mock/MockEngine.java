@@ -20,14 +20,12 @@ package org.apache.onami.test.mock;
  */
 
 import org.apache.onami.test.annotation.MockObjType;
-import org.apache.onami.test.mock.framework.EasyMockFramework;
-import org.apache.onami.test.mock.framework.MockitoFramework;
 
 /**
  * Interface to specify mock framework class engine.
  *
- * @see EasyMockFramework
- * @see MockitoFramework
+ * @see org.apache.onami.test.mock.framework.EasyMockFramework
+ * @see org.apache.onami.test.mock.framework.MockitoFramework
  */
 public interface MockEngine
 {
