@@ -37,6 +37,12 @@ public class MockMembersInjector<T>
 
     private final Map<Field, Object> mockedObjects;
 
+    /**
+     * Create a new instance.
+     * 
+     * @param field the field that has to be injected.
+     * @param mockedObjects  the map of mocked object.
+     */
     public MockMembersInjector( Field field, Map<Field, Object> mockedObjects )
     {
         this.field = field;
