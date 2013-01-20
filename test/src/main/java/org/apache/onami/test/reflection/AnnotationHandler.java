@@ -34,9 +34,10 @@ public interface AnnotationHandler<A extends Annotation, E extends AnnotatedElem
     /**
      * Invoked when {@link ClassVisitor} found an annotation into a class.
      *
-     * @param annotation that
-     * @param element
-     * @throws HandleException
+     * @param annotation handled annotation
+     * @param element the element annotated with input annotation
+     * @throws HandleException if an error occurs while processing the annotated element
+     *         and the related annotation
      */
     void handle( A annotation, E element )
         throws HandleException;
