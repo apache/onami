@@ -1,5 +1,3 @@
-package org.apache.onami.test.handler;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -22,3 +20,4 @@ package org.apache.onami.test.handler;
 /**
  * Contains core classes to handle annotations found by class introspector.
  */
+package org.apache.onami.test.handler;
