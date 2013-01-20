@@ -1,5 +1,3 @@
-package org.apache.onami.test.mock.framework;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -22,4 +20,4 @@ package org.apache.onami.test.mock.framework;
 /**
  * Contains core classes to build mock framework.
  */
-
+package org.apache.onami.test.mock.framework;
