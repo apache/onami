@@ -26,6 +26,8 @@ import com.google.inject.MembersInjector;
 
 /**
  * Class to inject via google-guice mock members into test cases classes.
+ *
+ * @param <T> type to inject members of
  */
 public class MockMembersInjector<T>
     implements MembersInjector<T>
