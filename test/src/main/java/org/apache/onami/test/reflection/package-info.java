@@ -1,6 +1,3 @@
-/**
- * Contains core classes to visit Java classes via reflection and handling actions during the analysis.
- */
 package org.apache.onami.test.reflection;
 
 /*
@@ -20,4 +17,8 @@ package org.apache.onami.test.reflection;
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/**
+ * Contains core classes to visit Java classes via reflection and handling actions during the analysis.
  */

@@ -1,6 +1,3 @@
-/**
- * Contains core annotations classes to configure JUnice framework.
- */
 package org.apache.onami.test.annotation;
 
 /*
@@ -20,4 +17,8 @@ package org.apache.onami.test.annotation;
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/**
+ * Contains core annotations classes to configure JUnice framework.
  */
