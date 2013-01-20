@@ -42,6 +42,9 @@ public final class GuiceInjectableClassHandler<A extends Annotation>
 
     private static final Logger LOGGER = Logger.getLogger( GuiceInjectableClassHandler.class.getName() );
 
+    /**
+     * Contains the guice injectable classes founded, after inspection.
+     */
     protected final Set<Class<?>> classes = new HashSet<Class<?>>();
 
     /**
