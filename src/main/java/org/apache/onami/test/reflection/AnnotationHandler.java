@@ -24,6 +24,9 @@ import java.lang.reflect.AnnotatedElement;
 
 /**
  * Interface to specify a generic annotation handler.
+ *
+ * @param <A> whatever annotation type
+ * @param <E> the element annotated with an annotation type
  */
 public interface AnnotationHandler<A extends Annotation, E extends AnnotatedElement>
 {
