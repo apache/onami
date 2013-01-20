@@ -33,6 +33,14 @@ final class MockEngineFactory
 {
 
     /**
+     * Hidden constructor, this class must not be instantiated directly.
+     */
+    private MockEngineFactory()
+    {
+        // do nothing
+    }
+
+    /**
      * Mock factory constructor. <br>
      * Supported framewors: <li> {@link MockType}.EASY_MOCK <li> {@link MockType}.MOCKITO <br>
      *
