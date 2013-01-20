@@ -69,7 +69,7 @@ public final class GuiceProvidedModuleHandler
 
         if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            LOGGER.finer( format( "  Found %s annotated method, checking if return type '%s' is one of %s ( %s | Iterable<%s> | %s[] )",
+            LOGGER.finer( format( "  Found %s annotated method, checking if return type '%s' is one of ( %s | Iterable<%s> | %s[] )",
                                   GuiceProvidedModules.class.getSimpleName(),
                                   returnType.getName(),
                                   Module.class.getName(),
