@@ -40,7 +40,7 @@
       <item name="JULI" href="./juli.html" />
       <item name="Extend Onami Logging" href="./extend.html" />
       <item name="API docs" href="./apidocs/index.html" />
-      <item name="Apache Onami" href="http://onami.incubator.apache.org" />
+      <item name="Release Notes" href="./changes.html" />
     </menu>
 
     <menu ref="reports" />
