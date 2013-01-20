@@ -28,7 +28,7 @@
   </parent>
 
   <artifactId>org.apache.onami.test</artifactId>
-  <version>1.4.0-incubating</version>
+  <version>1.4.1-incubating-SNAPSHOT</version>
 
   <name>Apache Onami-Test</name>
   <description>Apache Onami-Test is a simple library to inject a Junit4 test classess via Google-Guice.</description>
@@ -36,9 +36,9 @@
   <inceptionYear>2010</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/tags/org.apache.onami.test-1.4.0-incubating</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.test-1.4.0-incubating</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.test-1.4.0-incubating</developerConnection>
+    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/test</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/test</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/test</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
