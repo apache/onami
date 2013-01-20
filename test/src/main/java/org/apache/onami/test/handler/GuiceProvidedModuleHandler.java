@@ -19,6 +19,8 @@ package org.apache.onami.test.handler;
  * under the License.
  */
 
+import static java.lang.String.format;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -67,12 +69,12 @@ public final class GuiceProvidedModuleHandler
 
         if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            LOGGER.finer( String.format( "  Found %s annotated method, checking if return type '%s' is one of %s ( %s | Iterable<%s> | %s[] )",
-                                         GuiceProvidedModules.class.getSimpleName(),
-                                         returnType.getName(),
-                                         Module.class.getName(),
-                                         Module.class.getName(),
-                                         Module.class.getName() ) );
+            LOGGER.finer( format( "  Found %s annotated method, checking if return type '%s' is one of %s ( %s | Iterable<%s> | %s[] )",
+                                  GuiceProvidedModules.class.getSimpleName(),
+                                  returnType.getName(),
+                                  Module.class.getName(),
+                                  Module.class.getName(),
+                                  Module.class.getName() ) );
         }
 
         if ( !Modifier.isPublic( method.getModifiers() ) || !Modifier.isStatic( method.getModifiers() ) )
@@ -102,17 +104,13 @@ public final class GuiceProvidedModuleHandler
             }
             else
             {
-                throw new ClassCastException("Incompatible return type: '" + returnType.getName() + "' of method '"  
-                        + method.getName() + "'. \nThe return type must be one of " 
-                        + " ('" 
-                        + Module.class.getName() 
-                        + "' | '" 
-                        + "Iterable<" + Module.class.getName() + ">" 
-                        + "' | '" 
-                        + Module.class.getName() + "[]" +
-                        "' )" );
+                throw new ClassCastException( format( "  Incompatible return type: %s.\nThe return type must be one of ( %s | Iterable<%s> | %s[] )",
+                                                      returnType.getName(),
+                                                      Module.class.getName(),
+                                                      Module.class.getName(),
+                                                      Module.class.getName() ) );
             }
-            
+
             if ( LOGGER.isLoggable( Level.FINER ) )
             {
                 LOGGER.finer( "  Invoked method: " + method.toGenericString() );
