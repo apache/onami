@@ -21,15 +21,19 @@ package org.apache.onami.logging.core;
 
 import static java.lang.String.format;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 
 import com.google.inject.Binder;
 import com.google.inject.MembersInjector;
 import com.google.inject.Module;
 import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
-import com.google.inject.internal.MoreTypes;
 import com.google.inject.matcher.Matcher;
 import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
@@ -85,7 +89,7 @@ public class AbstractLoggingModule<L>
         }
 
         this.matcher = matcher;
-        loggerClass = MoreTypes.getRawType( getType() );
+        loggerClass = getRawType( getType() );
         try
         {
             logInjectorConstructor = loggerInjectorClass.getConstructor( Field.class );
@@ -144,6 +148,48 @@ public class AbstractLoggingModule<L>
         }
 
         hear( klass.getSuperclass(), encounter );
+    }
+
+    private static Class<?> getRawType( Type type )
+    {
+        if ( type instanceof Class<?> )
+        {
+            // type is a normal class.
+            return (Class<?>) type;
+        }
+        else if ( type instanceof ParameterizedType )
+        {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+
+            // I'm not exactly sure why getRawType() returns Type instead of Class.
+            // Neal isn't either but suspects some pathological case related
+            // to nested classes exists.
+            Type rawType = parameterizedType.getRawType();
+            if ( !(rawType instanceof Class) )
+            {
+                throw new IllegalArgumentException( format( "Expected a Class, but <%s> is of type %s",
+                                                            type,
+                                                            type.getClass().getName() ) );
+            }
+            return (Class<?>) rawType;
+        }
+        else if ( type instanceof GenericArrayType )
+        {
+            Type componentType = ( (GenericArrayType) type ).getGenericComponentType();
+            return Array.newInstance( getRawType( componentType ), 0 ).getClass();
+        }
+        else if ( type instanceof TypeVariable )
+        {
+            // we could use the variable's bounds, but that'll won't work if there are multiple.
+            // having a raw type that's more general than necessary is okay
+            return Object.class;
+        }
+        else
+        {
+            throw new IllegalArgumentException( format( "Expected a Class, ParameterizedType, or GenericArrayType, but <%s> is of type %s",
+                                                        type,
+                                                        type.getClass().getName() ) );
+        }
     }
 
 }
