@@ -47,6 +47,14 @@ public final class ClassVisitor
     private final Multimap<Class<? extends Annotation>, AnnotationHandler<? extends Annotation, ? extends AnnotatedElement>> handlers =
         ArrayListMultimap.create();
 
+    /**
+     * Registers an annotation handler.
+     *
+     * @param <A> whatever annotation type
+     * @param annotationType the annotation class to handle
+     * @param handler the related annotation handler
+     * @return the current {@code ClassVisitor} instance
+     */
     public <A extends Annotation> ClassVisitor registerHandler( Class<A> annotationType,
                                                                 AnnotationHandler<A, ? extends AnnotatedElement> handler )
     {
@@ -54,6 +62,13 @@ public final class ClassVisitor
         return this;
     }
 
+    /**
+     * Visits all fields, methods and super classes of the input class.
+     *
+     * @param <T> any type
+     * @param type
+     * @throws HandleException
+     */
     public <T> void visit( final Class<? super T> type )
         throws HandleException
     {
