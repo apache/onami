@@ -28,7 +28,7 @@
 
   <groupId>org.apache.onami.logging</groupId>
   <artifactId>org.apache.onami.logging.parent</artifactId>
-  <version>3.4.0-incubating</version>
+  <version>3.4.1-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami-Logging - Parent</name>
@@ -46,10 +46,9 @@
   </modules>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/tags/org.apache.onami.logging.parent-3.4.0-incubating</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.logging.parent-3.4.0-incubating</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.logging.parent-3.4.0-incubating</developerConnection>
-    <tag>HEAD</tag>
+    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/logging</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/logging</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/logging</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
