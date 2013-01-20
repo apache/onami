@@ -1,6 +1,3 @@
-/**
- * Contains core classes to handle annotations found by class introspector.
- */
 package org.apache.onami.test.handler;
 
 /*
@@ -20,4 +17,8 @@ package org.apache.onami.test.handler;
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/**
+ * Contains core classes to handle annotations found by class introspector.
  */
