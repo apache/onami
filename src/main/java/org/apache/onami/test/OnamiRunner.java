@@ -23,6 +23,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -162,7 +163,7 @@ public class OnamiRunner
         }
         catch ( Exception e )
         {
-            final List<Throwable> throwables = new ArrayList<Throwable>( 1 );
+            final List<Throwable> throwables = new LinkedList<Throwable>();
             throwables.add( e );
             throw new InitializationError( throwables );
         }
@@ -289,7 +290,7 @@ public class OnamiRunner
             {
                 LOGGER.finer( "  Start introspecting class: " + clazz.getName() );
             }
-            final List<Module> allModules = new ArrayList<Module>( 1 );
+            final List<Module> allModules = new ArrayList<Module>();
 
             // Setup the handlers
             final GuiceProvidedModuleHandler guiceProvidedModuleHandler = new GuiceProvidedModuleHandler();
