@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ | Licensed to the Apache Software Foundation (ASF) under one
+ | or more contributor license agreements.  See the NOTICE file
+ | distributed with this work for additional information
+ | regarding copyright ownership.  The ASF licenses this file
+ | to you under the Apache License, Version 2.0 (the
+ | "License"); you may not use this file except in compliance
+ | with the License.  You may obtain a copy of the License at
+ |
+ |   http://www.apache.org/licenses/LICENSE-2.0
+ |
+ | Unless required by applicable law or agreed to in writing,
+ | software distributed under the License is distributed on an
+ | "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ | KIND, either express or implied.  See the License for the
+ | specific language governing permissions and limitations
+ | under the License.
+-->
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Release Notes</title>
+    <author email="onami-dev@incubator.apache.org">Apache Onami Documentation Team</author>
+  </properties>
+
+  <body>
+    <section name="Release Notes">
+      <subsection name="1.4.0-incubating">
+        <h5>        Bug
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-25'>ONAMI-25</a>] -         Rename the JUniceRunner as OnamiRunner
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-28'>ONAMI-28</a>] -         Do not use code from com.google.inject.internal
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-35'>ONAMI-35</a>] -         Incomplete logging message in GuiceProvidedModuleHandler#handle() at line 72
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-58'>ONAMI-58</a>] -         Collections initialized with dimension 1
+</li>
+</ul>
+            
+<h5>        Improvement
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-55'>ONAMI-55</a>] -         org.apache.onami.test.annotation.Mock$NoAnnotation class can be declared as static
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-56'>ONAMI-56</a>] -         simplify org.apache.onami.test.reflection.HandleException(String) construction introducing varargs
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-57'>ONAMI-57</a>] -         org.apache.onami.test.annotation.Mock#annotatedWith() should define Annotation types only
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-59'>ONAMI-59</a>] -         Add checkstyle suppressions file
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-60'>ONAMI-60</a>] -         MockEngineFactory constructor can be hidden
+</li>
+</ul>
+                            
+<h5>        Task
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-10'>ONAMI-10</a>] -         Import Test donated codebase to ASF SVN
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-26'>ONAMI-26</a>] -         Make all artifactId OSGi name compliant
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-31'>ONAMI-31</a>] -         Update parent pom reference to released 1-incubating version
+</li>
+</ul>
+      </subsection>
+    </section>
+  </body>
+</document>

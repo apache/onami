@@ -39,6 +39,7 @@
       <item name="Guice integration" href="guice.html" />
       <item name="Mock Framework integration" href="mock.html" />
       <item name="Support of JSR330 Dependency Injection for Java" href="jsr330.html" />
+      <item name="Release Notes" href="changes.html" />
     </menu>
 
     <menu ref="reports" />
