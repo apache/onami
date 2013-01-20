@@ -24,6 +24,8 @@ import java.lang.reflect.Method;
 
 /**
  * Interface to specify a generic method handler.
+ *
+ * @param <A> whatever annotation type
  */
 public interface MethodHandler<A extends Annotation>
     extends AnnotationHandler<A, Method>
