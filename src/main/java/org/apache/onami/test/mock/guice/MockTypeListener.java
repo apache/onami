@@ -48,6 +48,11 @@ public class MockTypeListener
 
     private final Map<Field, Object> mockedObjects;
 
+    /**
+     * Creates a new {@code MockTypeListener} instance given a map of mocked objects.
+     *
+     * @param mockedObjects a map of mocked objects
+     */
     public MockTypeListener( Map<Field, Object> mockedObjects )
     {
         this.mockedObjects = mockedObjects;
