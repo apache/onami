@@ -24,11 +24,11 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>2-incubating</version>
+    <version>3-incubating-SNAPSHOT</version>
   </parent>
 
   <artifactId>org.apache.onami.site</artifactId>
-  <version>2-incubating-SNAPSHOT</version>
+  <version>3-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami</name>
