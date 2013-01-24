@@ -253,14 +253,14 @@
             </tr>
             <tr>
               <td><strong>Committer Removal</strong></td>
-              <td>When removal of commit privileges is sought.<br>
+              <td>When removal of commit privileges is sought.<br/>
                   <strong>Note:</strong> Such actions will also be referred to the <span class="caps">ASF</span> board by the <span class="caps">PPMC</span> chair.</td>
               <td>Consensus</td>
               <td>Active <span class="caps">PPMC </span>members (excluding the committer in question if a member of the <span class="caps">PPMC</span>).</td>
             </tr>
             <tr>
               <td><strong><span class="caps">PPMC</span> Member Removal</strong></td>
-              <td>When removal of a <span class="caps">PPMC</span> member is sought.<br>
+              <td>When removal of a <span class="caps">PPMC</span> member is sought.<br/>
                   <strong>Note:</strong> Such actions will also be referred to the <span class="caps">ASF </span>board by the <span class="caps">PPMC</span> chair.</td>
               <td>Consensus</td>
               <td>Active <span class="caps">PPMC </span>members (excluding the member in question).</td>
