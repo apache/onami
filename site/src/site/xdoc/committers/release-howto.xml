@@ -27,7 +27,9 @@
 
   <body>
     <section name="HowTo Release Apache Onami">
-      <p>This short guide is for volunteers that intend to cover the role of Release Manager</p>
+      <p>This short guide is for volunteers that intend to cover the role of Release Manager. It also 
+      contains a sections for voters with <a href="#Recommended_steps_before_casting_a_vote">recommended 
+      steps before casting a vote</a>.</p>
     </section>
 
     <section name="Prerequisites">
@@ -344,6 +346,81 @@ Have Fun,
         <li>Spin another release attempt!</li>
       </ol>
     </section>
+
+    <section name="Recommended steps before casting a vote">
+    
+      <p>Making releases is a serious job at the ASF. And a time-eater.</p>
+      <p>The following gives you some ideas to check a release and cast your vote (as written by Christian Grobmeier on the Onami dev mailing list).</p>
+      <ol>
+      
+        <li>Check out the source tag and test/package it.</li>
+        <li>Then take a look at the site to check the branding requirements (read more on <a href="http://www.apache.org/foundation/marks/pmcs">http://www.apache.org/foundation/marks/pmcs</a>).</li>
+        <li>The RAT plugin outputs license header issues (read more on <a href="http://creadur.apache.org/rat/apache-rat-plugin/index.html">http://creadur.apache.org/rat/apache-rat-plugin/index.html</a>).</li>
+        <li>This command helps to download artifacts from nexus to check them: <code>wget -e robots=off --cut-dirs=3 -r -p -np --no-check-certificate https://repository.apache.org/content/repositories/orgapacheonami-149/org/apache/onami/org.apache.onami.test/</code></li>
+        <li>Then we need to take care our code signing keys are in the KEYS file. MD5 checking i do with a scripts such as  <code>[1]</code> or  <code>[2]</code></li>
+        <li>Also try to open artifacts (avoid zip problems and such).</li>
+      </ol>
+
+<p>[1] <a href="https://gist.github.com/3504123">https://gist.github.com/3504123</a> from our mate Ivan (over from logging land)</p>
+
+<source>from os.path import join, splitext, basename
+import os
+import sys
+import hashlib
+
+def file_get_contents(path):
+    with open(path, 'rb') as file:
+        return file.read()
+
+for root, dirs, files in os.walk('.'):
+    for file in files:
+        file = join(root, file)
+        name, ext = splitext(file)
+        
+        if ext == '.md5':
+            file_contents = file_get_contents(name)
+            md5_given = file_get_contents(file)
+            md5_actual = hashlib.md5(file_contents).hexdigest()
+            
+            if (md5_given == md5_actual):
+                print "%s md5 OK" % basename(name)
+            else:
+                print "\nERROR: md5 mismatch\nfile      : %s\ncalculated: %s\ngiven     : %s\n" % (name, md5_actual, md5_given)
+
+        if ext == '.sha1':
+            file_contents = file_get_contents(name)
+            sha1_given = file_get_contents(file)
+            sha1_actual = hashlib.sha1(file_contents).hexdigest()
+            
+            if (sha1_given == sha1_actual):
+                print "%s sha1 OK" % basename(name)
+            else:
+                print "\nERROR: sha1 mismatch\nfile      : %s\ncalculated: %s\ngiven     : %s\n" % (name, sha1_actual, sha1_given)</source>
+
+<p>[2] <a href="http://www.grobmeier.de/checking-md5-and-signatures-with-a-shell-script-29062011.html">http://www.grobmeier.de/checking-md5-and-signatures-with-a-shell-script-29062011.html</a></p>
+
+<source>#!/bin/bash
+ 
+file1=`md5 -q $1`
+file2=`cut -d* -f1 $1.md5`
+ 
+echo "Checking file: $1"
+echo "Using MD5 file: $1.md5"
+echo $file1
+echo $file2
+ 
+if [ $file1 != $file2 ]
+then
+    echo "md5 sums mismatch"
+else
+    echo "checksums OK"
+fi
+ 
+echo "GPG verification output"
+gpg --verify $1.asc $1</source>
+
+    </section>
+    
   </body>
 
 </document>
