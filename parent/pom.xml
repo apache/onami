@@ -76,6 +76,17 @@
     </developer>
 
     <developer>
+      <id>eric</id>
+      <name>Eric Charles</name>
+      <email>eric@apache.org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+      </roles>
+      <url>http://people.apache.org/~eric/</url>
+    </developer>
+
+    <developer>
       <id>grobmeier</id>
       <name>Christian Grobmeier</name>
       <email>grobmeier@apache.org</email>
