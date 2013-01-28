@@ -60,7 +60,7 @@ public final class DisposeModule
                                                  Matcher<? super TypeLiteral<?>> typeMatcher )
     {
         super( disposeAnnotationType, typeMatcher );
-        disposer = new Disposer();
+        disposer = new DefaultDisposer();
     }
 
     /**
@@ -94,7 +94,7 @@ public final class DisposeModule
 
                     public void afterInjection( I injectee )
                     {
-                        disposer.register( disposeMethod, injectee );
+                        disposer.register( new MethodDisposable( disposeMethod, injectee ) );
                     }
 
                 } );
@@ -126,7 +126,7 @@ public final class DisposeModule
 
         Matcher<? super TypeLiteral<?>> typeMatcher = any();
 
-        Disposer disposer = new Disposer();
+        Disposer disposer = new DefaultDisposer();
 
         /**
          * Hidden constructor.

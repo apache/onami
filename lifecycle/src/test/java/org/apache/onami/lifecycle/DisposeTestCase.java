@@ -4,10 +4,6 @@ import static com.google.inject.Guice.createInjector;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
-import org.apache.onami.lifecycle.Dispose;
-import org.apache.onami.lifecycle.DisposeHandler;
-import org.apache.onami.lifecycle.DisposeModule;
-import org.apache.onami.lifecycle.Disposer;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -20,39 +20,18 @@ package org.apache.onami.lifecycle;
  */
 
 /**
- * A Disposer is a mini-container that releases resources
- * invoking {@link Disposable#dispose(DisposeHandler)}.
- * <p>
- * Order of disposal is reverse to the order of registration. Each disposable
- * may register zero or more objects for disposal too.
- * <p>
- * Implementations must be threadsafe because registration can be done from
- * any thread.
+ * Object that knows how to dispose some resources.
  *
  * @since 0.2.0
  */
-public interface Disposer
+public interface Disposable
 {
 
     /**
-     * Register a {@link Disposable} to release resources.
+     * Disposes allocated resources, tracking progresses in the
+     * input {@code DisposeHandler}.
      *
-     * @param disposable object to be invoked to release resources.
-     * @since 0.2.0
-     */
-    void register( Disposable disposable );
-
-    /**
-     * Releases resources invoking {@link Disposable#dispose(DisposeHandler)}.
-     *
-     * @since 0.2.0
-     */
-    void dispose();
-
-    /**
-     * Releases resources invoking {@link Disposable#dispose(DisposeHandler)}.
-     *
-     * @param disposeHandler the {@link DisposeHandler} instance that tracks dispose progresses.
+     * @param disposeHandler the handler to track dispose progresses.
      * @since 0.2.0
      */
     void dispose( DisposeHandler disposeHandler );
