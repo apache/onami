@@ -40,6 +40,17 @@
   <developers>
     <!-- developers are enlisted in alphabetical ascending order by ID -->
     <developer>
+      <id>ash2k</id>
+      <name>Mikhail Mazursky</name>
+      <email>ash2k@apache.org</email>
+      <timezone>+6</timezone>
+      <roles>
+        <role>Committer</role>
+      </roles>
+      <url>http://people.apache.org/~ash2k/</url>
+    </developer>
+
+    <developer>
       <id>codyaray</id>
       <name>Cody Ray</name>
       <email>codyaray@apache.org</email>
