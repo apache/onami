@@ -107,6 +107,7 @@
             <ignorePathToDelete>autobind**</ignorePathToDelete>
             <ignorePathToDelete>cache**</ignorePathToDelete>
             <ignorePathToDelete>configuration**</ignorePathToDelete>
+            <ignorePathToDelete>factoryannotation**</ignorePathToDelete>
             <ignorePathToDelete>guava**</ignorePathToDelete>
             <ignorePathToDelete>lifecycle**</ignorePathToDelete>
             <ignorePathToDelete>logging**</ignorePathToDelete>

@@ -74,6 +74,10 @@
       <item name="Test"           href="http://onami.incubator.apache.org/test" />
     </menu>
 
+    <menu name="Sandbox">
+      <item name="Factory Annotation"       href="http://onami.incubator.apache.org/factoryannotation" />
+    </menu>
+
     <menu ref="reports" />
 
     <footer>
