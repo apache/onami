@@ -114,6 +114,7 @@
             <ignorePathToDelete>scheduler**</ignorePathToDelete>
             <ignorePathToDelete>spi**</ignorePathToDelete>
             <ignorePathToDelete>test**</ignorePathToDelete>
+            <ignorePathToDelete>validation**</ignorePathToDelete>
           </ignorePathsToDelete>
           <checkoutDirectory>${checkoutDirectory}</checkoutDirectory>
         </configuration>

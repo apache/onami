@@ -76,6 +76,7 @@
 
     <menu name="Sandbox">
       <item name="Factory Annotation"       href="http://onami.incubator.apache.org/factoryannotation" />
+      <item name="Validation"               href="http://onami.incubator.apache.org/validation" />
     </menu>
 
     <menu ref="reports" />
