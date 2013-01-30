@@ -26,6 +26,10 @@
   </bannerLeft>
 
   <body>
+    <head>
+      <link rel="meta" title="DOAP" href="${project.url}/doap.rdf" type="application/rdf+xml" />
+    </head>
+
     <menu name="Apache Onami™ Autobind">
       <item name="Home" href="index.html" />
     </menu>
