@@ -28,9 +28,10 @@
   </parent>
 
   <artifactId>org.apache.onami.validation</artifactId>
+  <version>1.0.0-incubating-SNAPSHOT</version>
 
   <name>Apache Onami-Validation</name>
-  <description>Apache Onami-Validation is </description>
+  <description>Apache Onami-Validation is a Java5 compatible JSR303 (Bean Validation) integration extension for Google Guice</description>
   <url>http://onami.incubator.apache.org/validation/</url>
   <inceptionYear>2013</inceptionYear>
 
