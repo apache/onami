@@ -82,10 +82,10 @@ public final class ConfigurationStateProvider
      */
     public ConfigurationState get()
     {
-        ConfigurationImpl configuration = new ConfigurationImpl( this.bootstrapState, this.validationProvider );
-        configuration.traversableResolver( this.traversableResolver );
-        configuration.messageInterpolator( this.messageInterpolator );
-        configuration.constraintValidatorFactory( this.constraintValidatorFactory );
+        ConfigurationImpl configuration = new ConfigurationImpl( bootstrapState, validationProvider );
+        configuration.traversableResolver( traversableResolver );
+        configuration.messageInterpolator( messageInterpolator );
+        configuration.constraintValidatorFactory( constraintValidatorFactory );
         return configuration;
     }
 

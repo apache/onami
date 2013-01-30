@@ -47,7 +47,7 @@ final class GuiceAwareConstraintValidatorFactory
      */
     public <T extends ConstraintValidator<?, ?>> T getInstance( Class<T> key )
     {
-        return this.injector.getInstance( key );
+        return injector.getInstance( key );
     }
 
 }

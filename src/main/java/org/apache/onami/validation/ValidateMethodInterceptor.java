@@ -70,7 +70,7 @@ public final class ValidateMethodInterceptor
     {
         Validate validate = invocation.getMethod().getAnnotation( Validate.class );
 
-        Validator validator = this.validatorFactory.getValidator();
+        Validator validator = validatorFactory.getValidator();
         MethodValidator methodValidator = validator.unwrap( MethodValidator.class );
 
         Set<ConstraintViolation<?>> constraintViolations = new HashSet<ConstraintViolation<?>>();

@@ -48,7 +48,7 @@ final class ValidatorFactoryProvider
      */
     public ValidatorFactory get()
     {
-        return new ApacheValidationProvider().buildValidatorFactory( this.configurationState );
+        return new ApacheValidationProvider().buildValidatorFactory( configurationState );
     }
 
 }

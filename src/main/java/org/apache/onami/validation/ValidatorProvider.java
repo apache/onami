@@ -49,7 +49,7 @@ final class ValidatorProvider
      */
     public Validator get()
     {
-        return this.validatorFactory.getValidator();
+        return validatorFactory.getValidator();
     }
 
 }

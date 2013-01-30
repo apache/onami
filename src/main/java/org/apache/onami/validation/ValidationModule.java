@@ -51,20 +51,18 @@ public final class ValidationModule
     protected void configure()
     {
         // apache bval bootstrap
-        this.bind( MessageInterpolator.class ).to( DefaultMessageInterpolator.class ).in( Scopes.SINGLETON );
-        this.bind( TraversableResolver.class ).to( DefaultTraversableResolver.class ).in( Scopes.SINGLETON );
-        this.bind( ConstraintValidatorFactory.class ).to( GuiceAwareConstraintValidatorFactory.class );
-        this.bind( new TypeLiteral<ValidationProvider<?>>()
-        {
-        } ).to( ApacheValidationProvider.class ).in( Scopes.SINGLETON );
-        this.bind( ConfigurationState.class ).toProvider( ConfigurationStateProvider.class ).in( Scopes.SINGLETON );
-        this.bind( ValidatorFactory.class ).toProvider( ValidatorFactoryProvider.class ).in( Scopes.SINGLETON );
-        this.bind( Validator.class ).toProvider( ValidatorProvider.class );
+        bind( MessageInterpolator.class ).to( DefaultMessageInterpolator.class ).in( Scopes.SINGLETON );
+        bind( TraversableResolver.class ).to( DefaultTraversableResolver.class ).in( Scopes.SINGLETON );
+        bind( ConstraintValidatorFactory.class ).to( GuiceAwareConstraintValidatorFactory.class );
+        bind( new TypeLiteral<ValidationProvider<?>>(){} ).to( ApacheValidationProvider.class ).in( Scopes.SINGLETON );
+        bind( ConfigurationState.class ).toProvider( ConfigurationStateProvider.class ).in( Scopes.SINGLETON );
+        bind( ValidatorFactory.class ).toProvider( ValidatorFactoryProvider.class ).in( Scopes.SINGLETON );
+        bind( Validator.class ).toProvider( ValidatorProvider.class );
 
         // AOP stuff
         MethodInterceptor validateMethodInterceptor = new ValidateMethodInterceptor();
-        this.binder().requestInjection( validateMethodInterceptor );
-        this.bindInterceptor( Matchers.any(), Matchers.annotatedWith( Validate.class ), validateMethodInterceptor );
+        binder().requestInjection( validateMethodInterceptor );
+        bindInterceptor( Matchers.any(), Matchers.annotatedWith( Validate.class ), validateMethodInterceptor );
     }
 
 }
