@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.bval.guice;
+package org.apache.onami.validation;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

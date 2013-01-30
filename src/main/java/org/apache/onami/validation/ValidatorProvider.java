@@ -14,23 +14,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.bval.guice;
+package org.apache.onami.validation;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 /**
- * 
+ * Validator guice provider implementation.
  *
  * @version $Id$
  */
-public final class DummyException extends Exception {
+@Singleton
+final class ValidatorProvider implements Provider<Validator> {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * The validator reference.
+     */
+    @Inject
+    private ValidatorFactory validatorFactory;
 
-    public DummyException(Throwable cause) {
-        super(cause);
+    public void setValidatorFactory(ValidatorFactory validatorFactory) {
+        this.validatorFactory = validatorFactory;
     }
 
-    public DummyException(String message, Throwable cause) {
-        super(message, cause);
+    /**
+     * {@inheritDoc}
+     */
+    public Validator get() {
+        return this.validatorFactory.getValidator();
     }
 
 }

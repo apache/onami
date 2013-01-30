@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.bval.guice;
+package org.apache.onami.validation;
 
 import java.util.Set;
 
@@ -22,6 +22,8 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
+
+import org.apache.onami.validation.ValidationModule;
 
 import junit.framework.TestCase;
 

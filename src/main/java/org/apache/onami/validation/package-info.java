@@ -20,4 +20,4 @@
  *
  * @version $Id$
  */
-package org.apache.bval.guice;
+package org.apache.onami.validation;

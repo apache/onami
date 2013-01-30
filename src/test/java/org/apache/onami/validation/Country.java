@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.    
  */
-package org.apache.bval.guice;
+package org.apache.onami.validation;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

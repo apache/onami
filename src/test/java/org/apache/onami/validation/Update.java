@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.    
  */
-package org.apache.bval.guice;
+package org.apache.onami.validation;
 
 /**
  * 
  *
  * @version $Id$
  */
-public interface Insert {
+public interface Update {
 
 }

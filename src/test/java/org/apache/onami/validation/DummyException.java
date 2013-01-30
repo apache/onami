@@ -14,36 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.bval.guice;
-
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.inject.Singleton;
-import javax.validation.ValidatorFactory;
-import javax.validation.spi.ConfigurationState;
-
-import org.apache.bval.jsr303.ApacheValidationProvider;
+package org.apache.onami.validation;
 
 /**
- * Validator Factory guice provider implementation.
+ * 
  *
  * @version $Id$
  */
-@Singleton
-final class ValidatorFactoryProvider implements Provider<ValidatorFactory> {
+public final class DummyException extends Exception {
 
-    @Inject
-    private ConfigurationState configurationState;
+    private static final long serialVersionUID = 1L;
 
-    public void setConfigurationState(ConfigurationState configurationState) {
-        this.configurationState = configurationState;
+    public DummyException(Throwable cause) {
+        super(cause);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public ValidatorFactory get() {
-        return new ApacheValidationProvider().buildValidatorFactory(this.configurationState);
+    public DummyException(String message, Throwable cause) {
+        super(message, cause);
     }
 
 }
