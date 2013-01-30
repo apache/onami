@@ -22,6 +22,10 @@
   name="${project.name}">
 
   <body>
+    <head>
+      <link rel="meta" title="DOAP" href="${project.url}/doap.rdf" type="application/rdf+xml" />
+    </head>
+
     <links>
       <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
       <item name="Quartz Scheduler" href="http://quartz-scheduler.org/" />
