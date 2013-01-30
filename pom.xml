@@ -42,7 +42,7 @@
   </scm>
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://builds.apache.org/job/Onami-FactoryAnnotation/</url>
+    <url>https://builds.apache.org/job/Onami-Validation/</url>
     <notifiers>
       <notifier>
         <type>mail</type>
