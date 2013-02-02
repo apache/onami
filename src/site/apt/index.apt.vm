@@ -168,3 +168,15 @@ public class MyService
   * <<<groups>>> Class array, <<<{}>>> by default, that specifies the groups to be validated;
 
   * <<<validateReturnedValue>>> flag, <<<false>>> by default, indicating whether the method's return value should be validated.
+
+* Re-throwing exceptions
+
+  <<<@Validate>>> annotations supports special configuration settings to re-throw validations error in a custom exception.
+
+  When specifying <<<rethrowExceptionsAs>>> parameter, it is required that the target exception type has the constructor
+  with <<<Throwable>>> single argument; when specifying both <<<rethrowExceptionsAs>>> and <<<exceptionMessage>>>
+  parameters, it is required that the target exception type has the constructor with <<<String, Throwable>>> arguments;
+  specifying the <<<exceptionMessage>>> parameter only, doesn't have any effect.
+
+  <<<exceptionMessage>>> supports <<<java.util.Formatter>>> place holders, intercepted method arguments will be used as
+  message format arguments.
