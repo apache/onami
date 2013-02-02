@@ -35,11 +35,13 @@ public class DummyCountryDao
 
     @Validate( groups = { Insert.class }, validateReturnedValue = true )
     public Country insertCountry( @NotNull( groups = { Insert.class } )
-    String name, @NotNull( groups = { Insert.class } )
-    @Size( max = 2, groups = { Insert.class, Update.class } )
-    String iso2Code, @NotNull( groups = { Insert.class } )
-    @Size( max = 3, groups = { Insert.class, Update.class } )
-    String iso3Code )
+                                  String name,
+                                  @NotNull( groups = { Insert.class } )
+                                  @Size( max = 2, groups = { Insert.class, Update.class } )
+                                  String iso2Code,
+                                  @NotNull( groups = { Insert.class } )
+                                  @Size( max = 3, groups = { Insert.class, Update.class } )
+                                  String iso3Code )
     {
         Country country = new Country();
         country.setName( name );
@@ -49,8 +51,7 @@ public class DummyCountryDao
     }
 
     @Validate( groups = { Update.class }, rethrowExceptionsAs = DummyException.class, exceptionMessage = "This is just a dummy message %s" )
-    public int updateCountry( @Valid
-    Country country )
+    public int updateCountry( @Valid Country country )
     {
         return 0;
     }
