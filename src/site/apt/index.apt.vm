@@ -180,3 +180,63 @@ public class MyService
 
   <<<exceptionMessage>>> supports <<<java.util.Formatter>>> place holders, intercepted method arguments will be used as
   message format arguments.
+
+  For example, given a generic exception:
+
++--------------------------------------+
+class DummyException
+    extends Exception
+{
+
+    public DummyException( Throwable cause )
+    {
+        super( cause );
+    }
+
+    public DummyException( String message, Throwable cause )
+    {
+        super( message, cause );
+    }
+
+}
++--------------------------------------+
+
+  Users can annotate service methods as below:
+
++--------------------------------------+
+import javax.validation.constraints.NotNull;
+
+import org.apache.onami.validation.Validate;
+
+public class MyService
+{
+
+    @Validate( rethrowExceptionsAs = DummyException.class )
+    public Country retrieve( @NotNull String name )
+    {
+        return ...;
+    }
+
+}
++--------------------------------------+
+
+  adopting that approach, the <<<DummyException( Throwable )>>> constructor will be used; otherwise:
+
++--------------------------------------+
+import javax.validation.constraints.NotNull;
+
+import org.apache.onami.validation.Validate;
+
+public class MyService
+{
+
+    @Validate( exceptionMessage = "This is just a dummy message %s", rethrowExceptionsAs = DummyException.class )
+    public Country retrieve( @NotNull String name )
+    {
+        return ...;
+    }
+
+}
++--------------------------------------+
+
+  the <<<DummyException>>> will be thrown using the <<<DummyException( String, Throwable )>>> constructor.
