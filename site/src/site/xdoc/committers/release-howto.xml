@@ -196,6 +196,9 @@ https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.xxxx-majo
 Staging repo:
 https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/
 
+Release artifact:
+https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/org/apache/onami/org.apache.onami.xxxx/major.minor.patch-incubating/org.apache.onami.xxx-major.minor.patch-incubating-source-release.zip
+
 Vote will be open for 72 hours.
 
 [ ] +1, let's get it ruuuumbleeeeee!!!
