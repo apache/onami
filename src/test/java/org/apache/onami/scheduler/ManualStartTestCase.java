@@ -23,36 +23,40 @@ import static org.junit.Assert.assertTrue;
 
 import javax.inject.Inject;
 
-import org.apache.onami.scheduler.QuartzModule;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.quartz.Scheduler;
 
-import com.google.inject.Guice;
+import com.google.inject.Module;
 
+@RunWith( OnamiRunner.class )
 public class ManualStartTestCase
 {
 
-    @Inject
-    private Scheduler scheduler;
-
-    @Inject
-    private TimedTask timedTask;
-
-    @Before
-    public void setUp()
+    @GuiceProvidedModules
+    public static Module createTestModule()
     {
-        Guice.createInjector( new QuartzModule()
+        return new QuartzModule()
         {
+
             @Override
             protected void schedule()
             {
                 configureScheduler().withManualStart();
                 scheduleJob( TimedTask.class );
             }
-        } ).getMembersInjector( ManualStartTestCase.class ).injectMembers( this );
+
+        };
     }
+
+    @Inject
+    private Scheduler scheduler;
+
+    @Inject
+    private TimedTask timedTask;
 
     @After
     public void tearDown()

@@ -19,13 +19,13 @@ package org.apache.onami.scheduler;
  * under the License.
  */
 
-import static com.google.inject.Guice.createInjector;
 import static junit.framework.Assert.assertTrue;
 
-import org.apache.onami.scheduler.QuartzModule;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -35,22 +35,17 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 
 import com.google.inject.Inject;
+import com.google.inject.Module;
 import com.google.inject.Singleton;
 
+@RunWith( OnamiRunner.class )
 public class GuartzSimpleTriggerTimerTestCase
 {
 
-    @Inject
-    private SimpleTask timedTask;
-
-    @Inject
-    private Scheduler scheduler;
-
-    @Before
-    public void setUp()
-        throws Exception
+    @GuiceProvidedModules
+    public static Module createTestModule()
     {
-        createInjector( new QuartzModule()
+        return new QuartzModule()
         {
 
             @Override
@@ -62,8 +57,14 @@ public class GuartzSimpleTriggerTimerTestCase
                 scheduleJob( SimpleTask.class ).withTrigger( trigger );
             }
 
-        } ).getMembersInjector( GuartzSimpleTriggerTimerTestCase.class ).injectMembers( this );
+        };
     }
+
+    @Inject
+    private SimpleTask timedTask;
+
+    @Inject
+    private Scheduler scheduler;
 
     @After
     public void tearDown()
