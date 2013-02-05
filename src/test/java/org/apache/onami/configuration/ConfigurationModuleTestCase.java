@@ -19,20 +19,54 @@ package org.apache.onami.configuration;
  * under the License.
  */
 
+import static org.apache.onami.configuration.Rocoto.expandVariables;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.net.URI;
+
 import javax.inject.Inject;
 
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.google.inject.Module;
 
 /**
  * @since 6.0
  */
-@RunWith( ConfigurationRunner.class )
+@RunWith( OnamiRunner.class )
 public final class ConfigurationModuleTestCase
 {
+
+    @GuiceProvidedModules
+    public static Module createTestModule()
+    {
+        return expandVariables( new ConfigurationModule()
+        {
+
+            @Override
+            protected void bindConfigurations()
+            {
+                bindEnvironmentVariables();
+                bindSystemProperties();
+
+                bindProperty( "test.suites" ).toValue( "${user.dir}/src/test/resources/testng.xml" );
+
+                bindProperties( URI.create( "classpath:/org/apache/onami/configuration/ldap.properties" ) );
+                bindProperties( "proxy.xml" ).inXMLFormat();
+
+                File parentConf = new File( "src/test/data/org/apache/onami" );
+                bindProperties( new File( parentConf, "ibatis.properties" ) );
+                bindProperties( new File( parentConf, "configuration/jdbc.properties" ) );
+                bindProperties( new File( parentConf, "configuration/configuration/memcached.xml" ) ).inXMLFormat();
+            }
+
+        } );
+    }
 
     @Inject
     private MyBatisConfiguration myBatisConfiguration;

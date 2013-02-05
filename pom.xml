@@ -83,6 +83,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.apache.onami</groupId>
+      <artifactId>org.apache.onami.test</artifactId>
+      <version>1.4.0-incubating</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>

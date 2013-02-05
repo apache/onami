@@ -19,7 +19,6 @@ package org.apache.onami.configuration.mixed;
  * under the License.
  */
 
-import static com.google.inject.Guice.createInjector;
 import static com.google.inject.name.Names.bindProperties;
 import static org.apache.onami.configuration.Rocoto.expandVariables;
 import static org.junit.Assert.assertTrue;
@@ -32,22 +31,22 @@ import javax.inject.Named;
 
 import org.apache.onami.configuration.ConfigurationModule;
 import org.apache.onami.configuration.converters.FileConverter;
-import org.junit.Before;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Module;
 
+@RunWith( OnamiRunner.class )
 public final class ConfigurationConverterTestCase
 {
 
-    @Inject
-    @Named( "test.suites" )
-    private File testSuites;
-
-    @Before
-    public void setUp()
+    @GuiceProvidedModules
+    public static Module createTestModule()
     {
-        createInjector( expandVariables( new AbstractModule()
+        return expandVariables( new AbstractModule()
         {
 
             @Override
@@ -68,8 +67,12 @@ public final class ConfigurationConverterTestCase
                 bindSystemProperties();
             }
 
-        } ), new FileConverter() ).injectMembers( this );
+        }, new FileConverter() );
     }
+
+    @Inject
+    @Named( "test.suites" )
+    private File testSuites;
 
     public void setTestSuites( File testSuites )
     {

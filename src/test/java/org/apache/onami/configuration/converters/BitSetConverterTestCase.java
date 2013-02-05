@@ -20,11 +20,14 @@ package org.apache.onami.configuration.converters;
  */
 
 import static com.google.inject.name.Names.named;
+import static com.google.inject.util.Modules.combine;
 
 import java.util.BitSet;
 
-import org.apache.onami.configuration.converters.BitSetConverter;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
@@ -34,27 +37,28 @@ import com.google.inject.name.Named;
 /**
  *
  */
+@RunWith( OnamiRunner.class )
 public final class BitSetConverterTestCase
     extends AbstractTestCase<BitSet>
 {
+
+    @GuiceProvidedModules
+    public static Module createTestModule()
+    {
+        return combine( new BitSetConverter(), new AbstractModule()
+        {
+            protected void configure()
+            {
+                bindConstant().annotatedWith( named( "bitset" ) ).to( "a, 123, ~" );
+            };
+        } );
+    }
 
     @Override
     @Inject
     public void setConvertedField( @Named( "bitset" ) BitSet convertedField )
     {
         super.setConvertedField( convertedField );
-    }
-
-    @Override
-    protected Module[] getModules()
-    {
-        return new Module[] { new BitSetConverter(), new AbstractModule()
-        {
-            protected void configure()
-            {
-                bindConstant().annotatedWith( named( "bitset" ) ).to( "a, 123, ~" );
-            };
-        } };
     }
 
     @Test

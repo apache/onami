@@ -20,11 +20,15 @@ package org.apache.onami.configuration.converters;
  */
 
 import static com.google.inject.name.Names.named;
+import static com.google.inject.util.Modules.combine;
 
 import java.util.Locale;
 
 import org.apache.onami.configuration.converters.LocaleConverter;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
@@ -34,27 +38,28 @@ import com.google.inject.name.Named;
 /**
  *
  */
+@RunWith( OnamiRunner.class )
 public final class LocaleConverterTestCase
     extends AbstractTestCase<Locale>
 {
+
+    @GuiceProvidedModules
+    public static Module createTestModule()
+    {
+        return combine( new LocaleConverter(), new AbstractModule()
+        {
+            protected void configure()
+            {
+                bindConstant().annotatedWith( named( "locale" ) ).to( "en_US" );
+            };
+        } );
+    }
 
     @Override
     @Inject
     public void setConvertedField( @Named( "locale" ) Locale convertedField )
     {
         super.setConvertedField( convertedField );
-    }
-
-    @Override
-    protected Module[] getModules()
-    {
-        return new Module[] { new LocaleConverter(), new AbstractModule()
-        {
-            protected void configure()
-            {
-                bindConstant().annotatedWith( named( "locale" ) ).to( "en_US" );
-            };
-        } };
     }
 
     @Test
