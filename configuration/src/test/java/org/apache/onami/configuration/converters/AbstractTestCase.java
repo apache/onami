@@ -19,12 +19,7 @@ package org.apache.onami.configuration.converters;
  * under the License.
  */
 
-import static com.google.inject.Guice.createInjector;
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-
-import com.google.inject.Module;
 
 /**
  *
@@ -38,14 +33,6 @@ public abstract class AbstractTestCase<T>
     {
         this.convertedField = convertedField;
     }
-
-    @Before
-    public final void init()
-    {
-        createInjector( this.getModules() ).injectMembers( this );
-    }
-
-    protected abstract Module[] getModules();
 
     protected final void verifyConversion( T expected )
     {

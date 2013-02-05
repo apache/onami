@@ -20,11 +20,14 @@ package org.apache.onami.configuration.converters;
  */
 
 import static com.google.inject.name.Names.named;
+import static com.google.inject.util.Modules.combine;
 
 import java.nio.charset.Charset;
 
-import org.apache.onami.configuration.converters.CharsetConverter;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
@@ -34,27 +37,28 @@ import com.google.inject.name.Named;
 /**
  *
  */
+@RunWith( OnamiRunner.class )
 public final class CharsetConverterTestCase
     extends AbstractTestCase<Charset>
 {
+
+    @GuiceProvidedModules
+    public static Module createTestModule()
+    {
+        return combine( new CharsetConverter(), new AbstractModule()
+        {
+            protected void configure()
+            {
+                bindConstant().annotatedWith( named( "charset" ) ).to( "UTF-8" );
+            };
+        } );
+    }
 
     @Override
     @Inject
     public void setConvertedField( @Named( "charset" ) Charset convertedField )
     {
         super.setConvertedField( convertedField );
-    }
-
-    @Override
-    protected Module[] getModules()
-    {
-        return new Module[] { new CharsetConverter(), new AbstractModule()
-        {
-            protected void configure()
-            {
-                bindConstant().annotatedWith( named( "charset" ) ).to( "UTF-8" );
-            };
-        } };
     }
 
     @Test

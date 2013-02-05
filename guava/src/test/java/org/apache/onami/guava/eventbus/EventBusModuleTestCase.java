@@ -19,23 +19,40 @@ package org.apache.onami.guava.eventbus;
  * under the License.
  */
 
-import static com.google.inject.Guice.createInjector;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.onami.guava.eventbus.EventBusModule;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.google.inject.Module;
 
+@RunWith( OnamiRunner.class )
 public final class EventBusModuleTestCase
 {
+
+    @GuiceProvidedModules
+    public static Module createTestModule()
+    {
+        return new EventBusModule()
+        {
+
+            @Override
+            protected void configure()
+            {
+                bindBus( "eventbus.test" ).toAnyBoundClass();
+            }
+
+        };
+    }
 
     @Inject
     @Named( "eventbus.test" )
@@ -52,21 +69,6 @@ public final class EventBusModuleTestCase
     public void when( ApplicationEvent applicationEvent )
     {
         eventNotified = true;
-    }
-
-    @Before
-    public void setUp()
-    {
-        createInjector(  new EventBusModule()
-        {
-
-            @Override
-            protected void configure()
-            {
-                bindBus( "eventbus.test" ).toAnyBoundClass();
-            }
-
-        } ).injectMembers( this );
     }
 
     @After

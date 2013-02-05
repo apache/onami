@@ -19,31 +19,32 @@ package org.apache.onami.scheduler;
  * under the License.
  */
 
-import static com.google.inject.Guice.createInjector;
 import static junit.framework.Assert.assertEquals;
 
 import java.util.Properties;
 
 import javax.inject.Inject;
 
-import org.apache.onami.scheduler.QuartzModule;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.quartz.Scheduler;
 
+import com.google.inject.Module;
+
+@RunWith( OnamiRunner.class )
 public class WithPropertiesTestCase
 {
     private static final String INSTANCE_NAME = "Guartz";
 
-    @Inject
-    private Scheduler scheduler;
-
-    @Before
-    public void setUp()
+    @GuiceProvidedModules
+    public static Module createTestModule()
     {
-        createInjector( new QuartzModule()
+        return new QuartzModule()
         {
+
             @Override
             protected void schedule()
             {
@@ -58,8 +59,12 @@ public class WithPropertiesTestCase
                 };
                 configureScheduler().withProperties( properties );
             }
-        } ).getMembersInjector( WithPropertiesTestCase.class ).injectMembers( this );
+
+        };
     }
+
+    @Inject
+    private Scheduler scheduler;
 
     @After
     public void tearDown()

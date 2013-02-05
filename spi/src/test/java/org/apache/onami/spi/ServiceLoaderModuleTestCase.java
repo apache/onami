@@ -19,29 +19,25 @@ package org.apache.onami.spi;
  * under the License.
  */
 
-import static com.google.inject.Guice.createInjector;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.inject.Inject;
+import com.google.inject.Module;
 import com.google.inject.name.Named;
 
+@RunWith( OnamiRunner.class )
 public final class ServiceLoaderModuleTestCase
 {
 
-    @Inject
-    private AcmeService firstAcmeService;
-
-    @Inject
-    @Named( "second" )
-    private AcmeService secondAcmeService;
-
-    @Before
-    public void setUp()
+    @GuiceProvidedModules
+    public static Module createTestModule()
     {
-        createInjector( new ServiceLoaderModule()
+        return new ServiceLoaderModule()
         {
 
             @Override
@@ -50,10 +46,15 @@ public final class ServiceLoaderModuleTestCase
                 discover( AcmeService.class );
             }
 
-        } )
-        .getMembersInjector( ServiceLoaderModuleTestCase.class )
-        .injectMembers( this );
+        };
     }
+
+    @Inject
+    private AcmeService firstAcmeService;
+
+    @Inject
+    @Named( "second" )
+    private AcmeService secondAcmeService;
 
     @Test
     public void singleServiceInjection()

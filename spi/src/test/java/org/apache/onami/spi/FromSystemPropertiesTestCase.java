@@ -1,15 +1,39 @@
 package org.apache.onami.spi;
 
-import static com.google.inject.Guice.createInjector;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.inject.Inject;
+import com.google.inject.Module;
 
+@RunWith( OnamiRunner.class )
 public final class FromSystemPropertiesTestCase
 {
+
+    @GuiceProvidedModules
+    public static Module createTestModule()
+    {
+        // This simulates the SPI specification via Java System Properties,
+        // equivalent to java -Dorg.apache.onami.spi.FooService=org.apac...
+        System.setProperty( "org.apache.onami.spi.FooService",
+                            "org.apache.onami.spi.FooServiceImpl1," +
+                            "org.apache.onami.spi.FooServiceImpl2");
+
+        return new ServiceLoaderModule()
+        {
+
+            @Override
+            protected void configureServices()
+            {
+                discover( FooService.class );
+            }
+
+        };
+    }
 
     @Inject
     @BarBindingAnnotation( 1 )
@@ -23,33 +47,10 @@ public final class FromSystemPropertiesTestCase
     {
         this.fooService1 = fooService1;
     }
-    
+
     public void setFooService2( FooService fooService2 )
     {
         this.fooService2 = fooService2;
-    }
-
-    @Before
-    public void setUp()
-    {
-        // This simulates the SPI specification via Java System Properties,
-        // equivalent to java -Dorg.apache.onami.spi.FooService=org.apac...
-        System.setProperty( "org.apache.onami.spi.FooService",
-                            "org.apache.onami.spi.FooServiceImpl1," +
-                            "org.apache.onami.spi.FooServiceImpl2");
-
-        createInjector( new ServiceLoaderModule()
-        {
-
-            @Override
-            protected void configureServices()
-            {
-                discover( FooService.class );
-            }
-
-        } )
-        .getMembersInjector( FromSystemPropertiesTestCase.class )
-        .injectMembers( this );
     }
 
     @Test
