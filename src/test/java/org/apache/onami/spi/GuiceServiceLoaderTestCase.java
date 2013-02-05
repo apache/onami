@@ -19,18 +19,28 @@ package org.apache.onami.spi;
  * under the License.
  */
 
+import static com.google.inject.util.Modules.combine;
 import static org.apache.onami.spi.GuiceServiceLoader.loadModules;
 import static org.junit.Assert.assertEquals;
-import static com.google.inject.Guice.createInjector;
 
-import org.junit.Before;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
+import com.google.inject.Module;
 
+@RunWith( OnamiRunner.class )
 public final class GuiceServiceLoaderTestCase
 {
+
+    @GuiceProvidedModules
+    public static Module createTestModule()
+    {
+        return combine( loadModules() );
+    }
 
     @Inject
     private AcmeService acmeService;
@@ -38,14 +48,6 @@ public final class GuiceServiceLoaderTestCase
     public void setAcmeService( AcmeService acmeService )
     {
         this.acmeService = acmeService;
-    }
-
-    @Before
-    public void setUp()
-    {
-        createInjector( loadModules() )
-        .getMembersInjector( GuiceServiceLoaderTestCase.class )
-        .injectMembers( this );
     }
 
     @Test
