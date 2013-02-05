@@ -19,6 +19,8 @@ package org.apache.onami.validation;
  * under the License.
  */
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -26,17 +28,17 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
-import org.apache.onami.validation.ValidationModule;
-
-import junit.framework.TestCase;
-
-import com.google.inject.Guice;
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceModules;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  *
  */
+@RunWith( OnamiRunner.class )
+@GuiceModules( ValidationModule.class )
 public final class GuiceAwareValidationTestCase
-    extends TestCase
 {
 
     @Inject
@@ -55,21 +57,7 @@ public final class GuiceAwareValidationTestCase
         this.dummyCountryDao = dummyCountryDao;
     }
 
-    @Override
-    protected void setUp()
-        throws Exception
-    {
-        Guice.createInjector( new ValidationModule() ).injectMembers( this );
-    }
-
-    @Override
-    protected void tearDown()
-        throws Exception
-    {
-        this.validator = null;
-        this.dummyCountryDao = null;
-    }
-
+    @Test
     public void testInjectedValidation()
     {
         Country country = new Country();
@@ -77,40 +65,27 @@ public final class GuiceAwareValidationTestCase
         country.setIso2Code( "it" );
         country.setIso3Code( "ita" );
 
-        Set<ConstraintViolation<Country>> violations = this.validator.validate( country );
+        Set<ConstraintViolation<Country>> violations = validator.validate( country );
         assertTrue( violations.isEmpty() );
     }
 
+    @Test
     public void testAOPInjectedValidation()
     {
-        this.dummyCountryDao.insertCountry( "Italy", "it", "ita" );
+        dummyCountryDao.insertCountry( "Italy", "it", "ita" );
     }
 
+    @Test( expected = ConstraintViolationException.class )
     public void testAOPInjectedFailedValidation()
+        throws Exception
     {
-        try
-        {
-            this.dummyCountryDao.insertCountry( "Italy", "ita", "ita" );
-            fail( "javax.validation.ConstraintViolationException expected" );
-        }
-        catch ( ConstraintViolationException cve )
-        {
-            // do nothing
-        }
+        dummyCountryDao.insertCountry( "Italy", "ita", "ita" );
     }
 
+    @Test( expected = DummyException.class )
     public void testRethrowWrappedException()
     {
-        try
-        {
-            this.dummyCountryDao.updateCountry( new Country() );
-            fail( "org.apache.bval.guice.DummyException expected" );
-        }
-        catch ( Exception e )
-        {
-            assertEquals( DummyException.class, e.getClass() );
-            assertTrue( e.getMessage().startsWith( "This is just a dummy message " ) );
-        }
+        dummyCountryDao.updateCountry( new Country() );
     }
 
 }
