@@ -39,6 +39,10 @@
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/configuration</developerConnection>
     <tag>HEAD</tag>
   </scm>
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://issues.apache.org/jira/browse/ONAMI/component/12320011</url>
+  </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
     <url>https://builds.apache.org/job/Onami-Configuration/</url>
@@ -55,6 +59,12 @@
       </notifier>
     </notifiers>
   </ciManagement>
+  <distributionManagement>
+    <site>
+      <id>apache.website.svnpub</id>
+      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/configuration</url>
+    </site>
+  </distributionManagement>
 
   <properties>
     <osgi.import>
@@ -63,13 +73,6 @@
       *
     </osgi.import>
   </properties>
-
-  <distributionManagement>
-    <site>
-      <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/configuration</url>
-    </site>
-  </distributionManagement>
 
   <dependencies>
     <dependency>
