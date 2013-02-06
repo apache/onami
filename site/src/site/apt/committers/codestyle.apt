@@ -288,6 +288,7 @@ public abstract class QuartzModule
   <scm/>
   <issueManagement/>
   <ciManagement/>
+  <distributionManagement/>
 
   <properties/>
 

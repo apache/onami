@@ -41,14 +41,10 @@
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/spi</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
-  <distributionManagement>
-    <site>
-      <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/spi</url>
-    </site>
-  </distributionManagement>
-
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://issues.apache.org/jira/browse/ONAMI/component/12320007</url>
+  </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
     <url>https://builds.apache.org/job/Onami-SPI/</url>
@@ -65,6 +61,12 @@
       </notifier>
     </notifiers>
   </ciManagement>
+  <distributionManagement>
+    <site>
+      <id>apache.website.svnpub</id>
+      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/spi</url>
+    </site>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
