@@ -22,6 +22,7 @@ package org.apache.onami.validation;
 /**
  *
  */
-public interface Update {
+public interface Update
+{
 
 }
