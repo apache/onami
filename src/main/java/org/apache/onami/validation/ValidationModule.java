@@ -19,6 +19,9 @@ package org.apache.onami.validation;
  * under the License.
  */
 
+import static com.google.inject.matcher.Matchers.annotatedWith;
+import static com.google.inject.matcher.Matchers.any;
+
 import javax.validation.ConstraintValidatorFactory;
 import javax.validation.MessageInterpolator;
 import javax.validation.TraversableResolver;
@@ -37,7 +40,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
-import com.google.inject.matcher.Matchers;
 
 /**
  * The Google-Guice Validation module.
@@ -65,7 +67,7 @@ public final class ValidationModule
         // AOP stuff
         MethodInterceptor validateMethodInterceptor = new ValidateMethodInterceptor();
         binder().requestInjection( validateMethodInterceptor );
-        bindInterceptor( Matchers.any(), Matchers.annotatedWith( Validate.class ), validateMethodInterceptor );
+        bindInterceptor( any(), annotatedWith( Validate.class ), validateMethodInterceptor );
     }
 
 }
