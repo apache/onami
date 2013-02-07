@@ -97,6 +97,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.kohsuke.metainf-services</groupId>
+      <artifactId>metainf-services</artifactId>
+      <version>1.4</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.onami</groupId>
       <artifactId>org.apache.onami.test</artifactId>
       <version>1.4.0-incubating</version>

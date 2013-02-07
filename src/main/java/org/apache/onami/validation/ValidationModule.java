@@ -31,8 +31,10 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.apache.bval.jsr303.ApacheValidationProvider;
 import org.apache.bval.jsr303.DefaultMessageInterpolator;
 import org.apache.bval.jsr303.resolver.DefaultTraversableResolver;
+import org.kohsuke.MetaInfServices;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Module;
 import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matchers;
@@ -40,6 +42,7 @@ import com.google.inject.matcher.Matchers;
 /**
  * The Google-Guice Validation module.
  */
+@MetaInfServices( Module.class )
 public final class ValidationModule
     extends AbstractModule
 {
