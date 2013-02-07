@@ -66,7 +66,7 @@ public final class ValidationModule
 
         // AOP stuff
         MethodInterceptor validateMethodInterceptor = new ValidateMethodInterceptor();
-        binder().requestInjection( validateMethodInterceptor );
+        requestInjection( validateMethodInterceptor );
         bindInterceptor( any(), annotatedWith( Validate.class ), validateMethodInterceptor );
     }
 
