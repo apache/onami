@@ -19,6 +19,7 @@ package org.apache.onami.validation;
  * under the License.
  */
 
+import static com.google.inject.Scopes.SINGLETON;
 import static com.google.inject.matcher.Matchers.annotatedWith;
 import static com.google.inject.matcher.Matchers.any;
 
@@ -38,7 +39,6 @@ import org.kohsuke.MetaInfServices;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;
-import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -56,12 +56,12 @@ public final class ValidationModule
     protected void configure()
     {
         // apache bval bootstrap
-        bind( MessageInterpolator.class ).to( DefaultMessageInterpolator.class ).in( Scopes.SINGLETON );
-        bind( TraversableResolver.class ).to( DefaultTraversableResolver.class ).in( Scopes.SINGLETON );
+        bind( MessageInterpolator.class ).to( DefaultMessageInterpolator.class ).in( SINGLETON );
+        bind( TraversableResolver.class ).to( DefaultTraversableResolver.class ).in( SINGLETON );
         bind( ConstraintValidatorFactory.class ).to( GuiceAwareConstraintValidatorFactory.class );
-        bind( new TypeLiteral<ValidationProvider<?>>(){} ).to( ApacheValidationProvider.class ).in( Scopes.SINGLETON );
-        bind( ConfigurationState.class ).toProvider( ConfigurationStateProvider.class ).in( Scopes.SINGLETON );
-        bind( ValidatorFactory.class ).toProvider( ValidatorFactoryProvider.class ).in( Scopes.SINGLETON );
+        bind( new TypeLiteral<ValidationProvider<?>>(){} ).to( ApacheValidationProvider.class ).in( SINGLETON );
+        bind( ConfigurationState.class ).toProvider( ConfigurationStateProvider.class ).in( SINGLETON );
+        bind( ValidatorFactory.class ).toProvider( ValidatorFactoryProvider.class ).in( SINGLETON );
         bind( Validator.class ).toProvider( ValidatorProvider.class );
 
         // AOP stuff
