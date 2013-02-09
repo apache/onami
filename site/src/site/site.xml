@@ -75,6 +75,7 @@
     </menu>
 
     <menu name="Sandbox">
+      <item name="Converters"               href="http://onami.incubator.apache.org/converters" />
       <item name="Factory Annotation"       href="http://onami.incubator.apache.org/factoryannotation" />
       <item name="Validation"               href="http://onami.incubator.apache.org/validation" />
     </menu>
