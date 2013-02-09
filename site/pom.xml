@@ -107,6 +107,7 @@
             <ignorePathToDelete>autobind**</ignorePathToDelete>
             <ignorePathToDelete>cache**</ignorePathToDelete>
             <ignorePathToDelete>configuration**</ignorePathToDelete>
+            <ignorePathToDelete>converters**</ignorePathToDelete>
             <ignorePathToDelete>factoryannotation**</ignorePathToDelete>
             <ignorePathToDelete>guava**</ignorePathToDelete>
             <ignorePathToDelete>lifecycle**</ignorePathToDelete>
@@ -171,10 +172,10 @@
 
                     <exec executable="svn">
                       <arg line="update --set-depth exclude ${checkoutDirectory}/autobind ${checkoutDirectory}/cache
-                      ${checkoutDirectory}/configuration ${checkoutDirectory}/guava
-                      ${checkoutDirectory}/lifecycle ${checkoutDirectory}/logging
+                      ${checkoutDirectory}/configuration ${checkoutDirectory}/converters ${checkoutDirectory}/factoryannotation
+                      ${checkoutDirectory}/guava ${checkoutDirectory}/lifecycle ${checkoutDirectory}/logging
                       ${checkoutDirectory}/scheduler ${checkoutDirectory}/spi
-                      ${checkoutDirectory}/test" />
+                      ${checkoutDirectory}/test ${checkoutDirectory}/validation" />
                     </exec>
 
                     <pathconvert pathsep=" " property="dirs">
