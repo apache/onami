@@ -38,7 +38,7 @@ import org.apache.bval.jsr303.extensions.MethodValidator;
 /**
  * Method interceptor for {@link Validate} annotation.
  */
-public final class ValidateMethodInterceptor
+final class ValidateMethodInterceptor
     implements MethodInterceptor
 {
 
@@ -51,16 +51,6 @@ public final class ValidateMethodInterceptor
      */
     @Inject
     private ValidatorFactory validatorFactory;
-
-    /**
-     * Sets the {@link ValidatorFactory} reference.
-     *
-     * @param validatorFactory the {@link ValidatorFactory} reference
-     */
-    public void setValidatorFactory( ValidatorFactory validatorFactory )
-    {
-        this.validatorFactory = validatorFactory;
-    }
 
     /**
      * {@inheritDoc}
