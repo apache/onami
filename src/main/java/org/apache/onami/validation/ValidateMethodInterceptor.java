@@ -19,6 +19,9 @@ package org.apache.onami.validation;
  * under the License.
  */
 
+import static java.lang.String.format;
+import static java.util.Arrays.deepToString;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -74,9 +77,9 @@ final class ValidateMethodInterceptor
         if ( !constraintViolations.isEmpty() )
         {
             throw getException( new ConstraintViolationException(
-                                                                  String.format( "Validation error when calling method '%s' with arguments %s",
+                                                                  format( "Validation error when calling method '%s' with arguments %s",
                                                                                  method,
-                                                                                 Arrays.deepToString( arguments ) ),
+                                                                                 deepToString( arguments ) ),
                                                                   constraintViolations ),
                                 validate.rethrowExceptionsAs(), validate.exceptionMessage(), arguments );
         }
@@ -90,7 +93,7 @@ final class ValidateMethodInterceptor
             if ( !constraintViolations.isEmpty() )
             {
                 throw getException( new ConstraintViolationException(
-                                                                      String.format( "Method '%s' returned a not valid value %s",
+                                                                      format( "Method '%s' returned a not valid value %s",
                                                                                      method, returnedValue ),
                                                                       constraintViolations ),
                                     validate.rethrowExceptionsAs(), validate.exceptionMessage(), arguments );
@@ -128,7 +131,7 @@ final class ValidateMethodInterceptor
 
         if ( exceptionMessage.length() != 0 )
         {
-            errorMessage = String.format( exceptionMessage, arguments );
+            errorMessage = format( exceptionMessage, arguments );
             initargs = new Object[] { errorMessage, exception };
             initargsType = MESSAGE_CAUSE_TYPES;
         }
@@ -149,7 +152,7 @@ final class ValidateMethodInterceptor
             catch ( Exception e )
             {
                 errorMessage =
-                    String.format( "Impossible to re-throw '%s', it needs the constructor with %s argument(s).",
+                    format( "Impossible to re-throw '%s', it needs the constructor with %s argument(s).",
                                    exceptionWrapperClass.getName(), Arrays.toString( initargsType ) );
                 rethrowEx = new RuntimeException( errorMessage, e );
             }
@@ -157,7 +160,7 @@ final class ValidateMethodInterceptor
         else
         {
             errorMessage =
-                String.format( "Impossible to re-throw '%s', it needs the constructor with %s or %s argument(s).",
+                format( "Impossible to re-throw '%s', it needs the constructor with %s or %s argument(s).",
                                exceptionWrapperClass.getName(), Arrays.toString( CAUSE_TYPES ),
                                Arrays.toString( MESSAGE_CAUSE_TYPES ) );
             rethrowEx = new RuntimeException( errorMessage );
