@@ -76,12 +76,13 @@ final class ValidateMethodInterceptor
 
         if ( !constraintViolations.isEmpty() )
         {
-            throw getException( new ConstraintViolationException(
-                                                                  format( "Validation error when calling method '%s' with arguments %s",
-                                                                                 method,
-                                                                                 deepToString( arguments ) ),
+            throw getException( new ConstraintViolationException( format( "Validation error when calling method '%s' with arguments %s",
+                                                                          method,
+                                                                          deepToString( arguments ) ),
                                                                   constraintViolations ),
-                                validate.rethrowExceptionsAs(), validate.exceptionMessage(), arguments );
+                                validate.rethrowExceptionsAs(),
+                                validate.exceptionMessage(),
+                                arguments );
         }
 
         Object returnedValue = invocation.proceed();
@@ -92,11 +93,13 @@ final class ValidateMethodInterceptor
 
             if ( !constraintViolations.isEmpty() )
             {
-                throw getException( new ConstraintViolationException(
-                                                                      format( "Method '%s' returned a not valid value %s",
-                                                                                     method, returnedValue ),
+                throw getException( new ConstraintViolationException( format( "Method '%s' returned a not valid value %s",
+                                                                              method,
+                                                                              returnedValue ),
                                                                       constraintViolations ),
-                                    validate.rethrowExceptionsAs(), validate.exceptionMessage(), arguments );
+                                    validate.rethrowExceptionsAs(),
+                                    validate.exceptionMessage(),
+                                    arguments );
             }
         }
 
@@ -141,8 +144,8 @@ final class ValidateMethodInterceptor
             initargsType = CAUSE_TYPES;
         }
 
-        Constructor<? extends Throwable> exceptionConstructor =
-            getMatchingConstructor( exceptionWrapperClass, initargsType );
+        Constructor<? extends Throwable> exceptionConstructor = getMatchingConstructor( exceptionWrapperClass,
+                                                                                        initargsType );
         if ( exceptionConstructor != null )
         {
             try
@@ -151,18 +154,17 @@ final class ValidateMethodInterceptor
             }
             catch ( Exception e )
             {
-                errorMessage =
-                    format( "Impossible to re-throw '%s', it needs the constructor with %s argument(s).",
-                                   exceptionWrapperClass.getName(), Arrays.toString( initargsType ) );
+                errorMessage = format( "Impossible to re-throw '%s', it needs the constructor with %s argument(s).",
+                                       exceptionWrapperClass.getName(),
+                                       Arrays.toString( initargsType ) );
                 rethrowEx = new RuntimeException( errorMessage, e );
             }
         }
         else
         {
-            errorMessage =
-                format( "Impossible to re-throw '%s', it needs the constructor with %s or %s argument(s).",
-                               exceptionWrapperClass.getName(), Arrays.toString( CAUSE_TYPES ),
-                               Arrays.toString( MESSAGE_CAUSE_TYPES ) );
+            errorMessage = format( "Impossible to re-throw '%s', it needs the constructor with %s or %s argument(s).",
+                                   exceptionWrapperClass.getName(), Arrays.toString( CAUSE_TYPES ),
+                                   Arrays.toString( MESSAGE_CAUSE_TYPES ) );
             rethrowEx = new RuntimeException( errorMessage );
         }
 
