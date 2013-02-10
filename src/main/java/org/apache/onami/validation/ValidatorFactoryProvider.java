@@ -35,10 +35,10 @@ final class ValidatorFactoryProvider
     implements Provider<ValidatorFactory>
 {
 
-    @Inject
-    private ConfigurationState configurationState;
+    private final ConfigurationState configurationState;
 
-    public void setConfigurationState( ConfigurationState configurationState )
+    @Inject
+    public ValidatorFactoryProvider( ConfigurationState configurationState )
     {
         this.configurationState = configurationState;
     }

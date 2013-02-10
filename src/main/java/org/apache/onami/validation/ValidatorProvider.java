@@ -36,10 +36,10 @@ final class ValidatorProvider
     /**
      * The validator reference.
      */
-    @Inject
-    private ValidatorFactory validatorFactory;
+    private final ValidatorFactory validatorFactory;
 
-    public void setValidatorFactory( ValidatorFactory validatorFactory )
+    @Inject
+    public ValidatorProvider( ValidatorFactory validatorFactory )
     {
         this.validatorFactory = validatorFactory;
     }

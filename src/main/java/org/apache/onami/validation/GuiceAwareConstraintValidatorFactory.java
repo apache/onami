@@ -34,10 +34,10 @@ final class GuiceAwareConstraintValidatorFactory
     implements ConstraintValidatorFactory
 {
 
-    @Inject
-    private Injector injector;
+    private final Injector injector;
 
-    public void setInjector( Injector injector )
+    @Inject
+    public GuiceAwareConstraintValidatorFactory( Injector injector )
     {
         this.injector = injector;
     }

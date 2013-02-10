@@ -21,6 +21,7 @@ package org.apache.onami.validation;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
+import javax.inject.Singleton;
 import javax.validation.ConstraintValidatorFactory;
 import javax.validation.MessageInterpolator;
 import javax.validation.TraversableResolver;
@@ -33,49 +34,33 @@ import org.apache.bval.jsr303.ConfigurationImpl;
 /**
  * The {@code javax.validation.spi.ConfigurationState} provider implementation.
  */
-public final class ConfigurationStateProvider
+@Singleton
+final class ConfigurationStateProvider
     implements Provider<ConfigurationState>
 {
 
     @com.google.inject.Inject( optional = true )
     private BootstrapState bootstrapState;
 
-    @Inject
-    private ValidationProvider<?> validationProvider;
+    private final ValidationProvider<?> validationProvider;
+
+    private final TraversableResolver traversableResolver;
+
+    private final MessageInterpolator messageInterpolator;
+
+    private final ConstraintValidatorFactory constraintValidatorFactory;
 
     @Inject
-    private TraversableResolver traversableResolver;
-
-    @Inject
-    private MessageInterpolator messageInterpolator;
-
-    @Inject
-    private ConstraintValidatorFactory constraintValidatorFactory;
-
-    public void setBootstrapState( BootstrapState bootstrapState )
+    public ConfigurationStateProvider( ValidationProvider<?> validationProvider,
+			TraversableResolver traversableResolver,
+			MessageInterpolator messageInterpolator,
+			ConstraintValidatorFactory constraintValidatorFactory )
     {
-        this.bootstrapState = bootstrapState;
-    }
-
-    public void setValidationProvider( ValidationProvider<?> validationProvider )
-    {
-        this.validationProvider = validationProvider;
-    }
-
-    public void setTraversableResolver( TraversableResolver traversableResolver )
-    {
-        this.traversableResolver = traversableResolver;
-    }
-
-    public void setMessageInterpolator( MessageInterpolator messageInterpolator )
-    {
-        this.messageInterpolator = messageInterpolator;
-    }
-
-    public void setConstraintValidatorFactory( ConstraintValidatorFactory constraintValidatorFactory )
-    {
-        this.constraintValidatorFactory = constraintValidatorFactory;
-    }
+		this.validationProvider = validationProvider;
+		this.traversableResolver = traversableResolver;
+		this.messageInterpolator = messageInterpolator;
+		this.constraintValidatorFactory = constraintValidatorFactory;
+	}
 
     /**
      * {@inheritDoc}
