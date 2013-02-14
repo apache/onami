@@ -24,14 +24,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import javax.inject.Qualifier;
 import javax.validation.ConstraintViolationException;
-
-import com.google.inject.BindingAnnotation;
 
 /**
  * Marker for methods which arguments have to be validated.
  */
-@BindingAnnotation
+@Qualifier
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.METHOD } )
 public @interface Validate
