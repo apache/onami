@@ -44,6 +44,7 @@ import org.apache.onami.autobind.install.BindingStage;
 import org.apache.onami.autobind.scanner.features.BindingScannerFeature;
 
 import com.google.inject.BindingAnnotation;
+import org.apache.onami.autobind.utils.ClassLoadingUtils;
 
 @Singleton
 public class AutoBindingFeature
@@ -165,7 +166,7 @@ public class AutoBindingFeature
             Class<? extends Annotation> annotation;
             try
             {
-                annotation = (Class<? extends Annotation>) Class.forName( key );
+                annotation = (Class<? extends Annotation>) ClassLoadingUtils.loadClass(key);
                 if ( annotation.isAnnotationPresent( GuiceAnnotation.class ) )
                 {
                     filtered.remove( key );

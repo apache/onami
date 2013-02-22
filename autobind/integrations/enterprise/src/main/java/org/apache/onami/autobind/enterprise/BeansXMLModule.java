@@ -40,6 +40,7 @@ import org.apache.onami.autobind.scanner.features.ScannerFeature;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
+import org.apache.onami.autobind.utils.ClassLoadingUtils;
 
 
 @GuiceModule(stage=BindingStage.INTERNAL)
@@ -80,7 +81,7 @@ public class BeansXMLModule implements Module {
 				List<String> classes = alternatives.getClasses();
 				for(String className : classes){
 					try {
-						Class<Object> clazz = (Class<Object>) Class.forName(className);
+						Class<Object> clazz = (Class<Object>) ClassLoadingUtils.loadClass(className);
 						Annotation[] annotations = clazz.getAnnotations();
 						Map<String, Annotation> map = new HashMap<String, Annotation>();
 						for(Annotation annotation : annotations){
@@ -98,7 +99,7 @@ public class BeansXMLModule implements Module {
 				classes = interceptors.getClasses();
 				for(String className : classes){
 					try {
-						Class<Object> clazz = (Class<Object>) Class.forName(className);
+						Class<Object> clazz = (Class<Object>) ClassLoadingUtils.loadClass(className);
 						Annotation[] annotations = clazz.getAnnotations();
 						Map<String, Annotation> map = new HashMap<String, Annotation>();
 						for(Annotation annotation : annotations){
