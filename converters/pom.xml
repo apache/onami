@@ -120,7 +120,7 @@
           <configuration>
             <checkoutDirectory>${onami.converters.scmPubCheckoutDirectory}</checkoutDirectory>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/converters</pubScmUrl>
-            <checkinComment>Onami Logging site deployment</checkinComment>
+            <checkinComment>Onami Converters site deployment</checkinComment>
             <content>${onami.converters.siteFilePath}</content>
             <tryUpdate>true</tryUpdate>
           </configuration>
