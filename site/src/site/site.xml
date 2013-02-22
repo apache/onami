@@ -66,18 +66,18 @@
       <item name="Autobind"       href="http://onami.incubator.apache.org/autobind" />
       <item name="Cache"          href="http://onami.incubator.apache.org/cache" />
       <item name="Configuration"  href="http://onami.incubator.apache.org/configuration" />
+      <item name="Converters"     href="http://onami.incubator.apache.org/converters" />
       <item name="Guava"          href="http://onami.incubator.apache.org/guava" />
       <item name="Lifecycle"      href="http://onami.incubator.apache.org/lifecycle" />
       <item name="Logging"        href="http://onami.incubator.apache.org/logging" />
       <item name="Scheduler"      href="http://onami.incubator.apache.org/scheduler" />
       <item name="SPI"            href="http://onami.incubator.apache.org/spi" />
       <item name="Test"           href="http://onami.incubator.apache.org/test" />
+      <item name="Validation"     href="http://onami.incubator.apache.org/validation" />
     </menu>
 
     <menu name="Sandbox">
-      <item name="Converters"               href="http://onami.incubator.apache.org/converters" />
       <item name="Factory Annotation"       href="http://onami.incubator.apache.org/factoryannotation" />
-      <item name="Validation"               href="http://onami.incubator.apache.org/validation" />
     </menu>
 
     <menu ref="reports" />
