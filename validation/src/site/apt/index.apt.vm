@@ -1,0 +1,242 @@
+                                    ------
+                                    Home
+                                    ------
+                                    The Apache Onami developers team
+                                    ------
+                                     2013
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+Welcome to ${project.name}!
+
+  ${project.name} is a Java5 compatible JSR303 (Bean Validation) integration extension for Google Guice, using
+  {{{Apache BVal}http://bval.apache.org/}} provider implementation.
+
+  That module has multiple purposes, such as:
+
+   * obtain <<<javax.validation.ConstraintValidator>>> instances using the Google Guice Injector to easily support DI;
+
+   * easily inject the <<<javax.validation.Validator>>> reference into components that require it;
+
+   * easily intercept methods and validate method arguments.
+
+Before starting
+
+  ${project.name} is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
+
++--------------------------------------+
+<dependencies>
+  ...
+  <dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}</version>
+  </dependency>
+  ...
+</dependencies>
++--------------------------------------+
+
+Bootstrap
+
+  Simply, the <<<org.apache.onami.validation.ValidationModule>>> is the Google Guice module that bootstraps Apache BVal.
+  All users have to do is add this module when creating the Google <<<Guice Injector>>>:
+
++--------------------------------------+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import org.apache.onami.validation.ValidationModule;
+
+Injector injector = Guice.createInjector([...],
+    new ValidationModule(),
+    [...]
+);
++--------------------------------------+
+
+Obtain <<<javax.validation.ConstraintValidator>>> instances
+
+  Users can now implement <<<javax.validation.ConstraintValidator>>> classes that require <Dependency Injection> by Google Guice:
+
++--------------------------------------+
+import javax.validation.ConstraintValidator;
+
+public class MyCustomValidator
+    implements ConstraintValidator<MyAssert, MyType>
+{
+
+    private final MyExternalService service;
+
+    @javax.inject.Inject
+    public MyCustomValidator( MyExternalService service )
+    {
+        this.service = service;
+    }
+
+    public void initialize( MyAssert annotation )
+    {
+        // do something
+    }
+
+    public boolean isValid( MyType value, ConstraintValidatorContext context )
+    {
+        return value == null || service.doSomething( value );
+    }
+
+}
++--------------------------------------+
+
+  Don't forget to bind the <<<MyExternalService>>> class in the Google Guice <<<Binder>>>!!!
+
+Inject the <<<javax.validation.Validator>>> reference
+
+  Clients can easily inject <<<javax.validation.Validator>>> instances into their custom components just marking it using <<<@Inject>>> annotation:
+
++--------------------------------------+
+import javax.validation.Validator;
+
+public class MyValidatorClient
+{
+
+    @Inject
+    private Validator validator;
+
+    public void setValidator( Validator validator )
+    {
+       this.validator = validator;
+    }
+
+    // ...
+
+}
++--------------------------------------+
+
+  When obtaining <<<MyValidatorClient>>> instances from the <<<Injector>>>, the <<<javax.validation.Validator>>> will be automagically bound.
+
+Intercept methods and validate method arguments
+
+  Taking advantage of the Apache BVal extension to validate method arguments, the <<<ValidationModule>>> comes with an
+  AOP interceptor, automatically initialized in the <<<org.apache.onami.validation.ValidationModule>>>, that makes easy
+  method arguments validation.
+
+  All users have to do is annotate interested methods with <<<org.apache.onami.validation.Validate>>> annotation, then
+  annotate arguments with constraints, as follows below:
+
++--------------------------------------+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.apache.onami.validation.Validate;
+
+public class MyService
+{
+
+    @Validate( groups = { MyGroup.class }, validateReturnedValue = true )
+    public Country insertCountry( @NotNull(groups = { MyGroup.class })
+                                  String name,
+                                  @NotNull(groups = { MyGroup.class })
+                                  @Size(max = 2, groups = { MyGroup.class, MyOtherGroup.class })
+                                  String iso2Code,
+                                  @NotNull(groups = { MyGroup.class })
+                                  @Size(max = 3, groups = { MyGroup.class, MyOtherGroup.class })
+                                  String iso3Code )
+    {
+        return ...;
+    }
+
+}
++--------------------------------------+
+
+  The <<<@Validate>>> annotation supports following arguments:
+
+  * <<<groups>>> Class array, <<<{}>>> by default, that specifies the groups to be validated;
+
+  * <<<validateReturnedValue>>> flag, <<<false>>> by default, indicating whether the method's return value should be validated.
+
+* Re-throwing exceptions
+
+  <<<@Validate>>> annotations supports special configuration settings to re-throw validations error in a custom exception.
+
+  When specifying <<<rethrowExceptionsAs>>> parameter, it is required that the target exception type has the constructor
+  with <<<Throwable>>> single argument; when specifying both <<<rethrowExceptionsAs>>> and <<<exceptionMessage>>>
+  parameters, it is required that the target exception type has the constructor with <<<String, Throwable>>> arguments;
+  specifying the <<<exceptionMessage>>> parameter only, doesn't have any effect.
+
+  <<<exceptionMessage>>> supports <<<java.util.Formatter>>> place holders, intercepted method arguments will be used as
+  message format arguments.
+
+  For example, given a generic exception:
+
++--------------------------------------+
+class DummyException
+    extends Exception
+{
+
+    public DummyException( Throwable cause )
+    {
+        super( cause );
+    }
+
+    public DummyException( String message, Throwable cause )
+    {
+        super( message, cause );
+    }
+
+}
++--------------------------------------+
+
+  Users can annotate service methods as below:
+
++--------------------------------------+
+import javax.validation.constraints.NotNull;
+
+import org.apache.onami.validation.Validate;
+
+public class MyService
+{
+
+    @Validate( rethrowExceptionsAs = DummyException.class )
+    public Country retrieve( @NotNull String name )
+    {
+        return ...;
+    }
+
+}
++--------------------------------------+
+
+  adopting that approach, the <<<DummyException( Throwable )>>> constructor will be used; otherwise:
+
++--------------------------------------+
+import javax.validation.constraints.NotNull;
+
+import org.apache.onami.validation.Validate;
+
+public class MyService
+{
+
+    @Validate( exceptionMessage = "This is just a dummy message %s", rethrowExceptionsAs = DummyException.class )
+    public Country retrieve( @NotNull String name )
+    {
+        return ...;
+    }
+
+}
++--------------------------------------+
+
+  the <<<DummyException>>> will be thrown using the <<<DummyException( String, Throwable )>>> constructor.
