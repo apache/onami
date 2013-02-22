@@ -21,12 +21,6 @@
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
   name="${project.name}">
 
-  <custom>
-    <fluidoSkin>
-      <profile>sandbox</profile>
-    </fluidoSkin>
-  </custom>
-
   <body>
     <head>
       <link rel="meta" title="DOAP" href="${project.url}/doap.rdf" type="application/rdf+xml" />

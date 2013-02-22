@@ -36,9 +36,9 @@
   <inceptionYear>2013</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/sandbox/validation</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/sandbox/validation</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/sandbox/validation</developerConnection>
+    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/validation</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/validation</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/validation</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
