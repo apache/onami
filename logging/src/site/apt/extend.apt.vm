@@ -33,14 +33,14 @@ Extend Apache Onami Logging
 
 +--------------------------------------+
 <dependency>
-  <groupId>org.apache.onami.logging</groupId>
-  <artifactId>onami-logging-core</artifactId>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.groupId}.core</artifactId>
   <version>${project.version}</version>
   <scope>compile</scope>
 </dependency>
 +--------------------------------------+
 
-  [[2]] Extend the <<<org.nnsoft.guice.sli4j.core.AbstractLoggerInjector>>>,
+  [[2]] Extend the <<<or.apache.onami.logging.core.AbstractLoggerInjector>>>,
         that's the class responsibile of creating and injecting the desired
         Logger, specifying the Logger type:
 
