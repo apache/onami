@@ -1,0 +1,72 @@
+   ------
+   Apache Onami Converters | Net
+   ------
+   The Apache Onami Team
+   ------
+   2013
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+Apache Onami Converters - Net
+
+  The <<Net>> module contains <<<java.net>>> converters implementations.
+
+  Users that want to use the <Format> module, have to add the following dependency in the <<<pom.xml>>>:
+
++--------------------------------------+
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.groupId}.net</artifactId>
+  <version>${project.version}</version>
+  <scope>compile</scope>
+</dependency>
++--------------------------------------+
+
+* The Converters
+
+** InetAddressConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.net.InetAddress>>>
+
+** URIConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.net.URI>>>.
+
+** URLConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.net.URL>>>, supporting the <classpath://> pseudo protocol, to load
+  resources from the the class path.
+
+  Users that need to load classpath resources, have to specify the full qualified
+  name of the resource. For example, given the class path resource:
+
++--------------------------------------+
+com.acme.myapplication.JDBC.properties
++--------------------------------------+
+
+  following URLs point to the same resource:
+
++--------------------------------------+
+classpath://com/acme/myapplication/JDBC.properties
+classpath:///com/acme/myapplication/JDBC.properties
++--------------------------------------+

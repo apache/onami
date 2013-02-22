@@ -1,0 +1,101 @@
+   ------
+   Apache Onami Converters | i18n
+   ------
+   The Apache Onami Team
+   ------
+   2013
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+Apache Onami Converters - i18n
+
+  The <<i18n>> module contains useful i18n converters implementations.
+
+  Users that want to use the <Format> module, have to add the following dependency in the <<<pom.xml>>>:
+
++--------------------------------------+
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.groupId}.i18n</artifactId>
+  <version>${project.version}</version>
+  <scope>compile</scope>
+</dependency>
++--------------------------------------+
+
+* The Converters
+
+** CurrencyConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Currency>>>.
+
+** DateConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Calendar>>> and to <<<java.util.Date>>>.
+
+  By default, this converter manages the following ISO Date format representation:
+
+  * yyyy;
+
+  * yyyy-MM;
+
+  * yyyy-MM-dd;
+
+  * yyyy-MM-dd'T'hh:mmZ;
+
+  * yyyy-MM-dd'T'hh:mm:ssZ;
+
+  * yyyy-MM-dd'T'hh:mm:ss.sZ
+
+  If users need to add new supported date formats, first they have to retrieve
+  the <DateConverter>, then add a new pattern:
+
++--------------------------------------+
+DateConverter dateConverter = module.lookup( Date.class, DateConverter.class );
+dateConverter.addPattern( "EEE, MMM d, ''yy" );
++--------------------------------------+
+
+  If users need to set the <<<java.util.Locale>>> and/or the
+  <<<java.util.TimeZone>>>, first they have to retrieve the <DateConverter>,
+  then set their preferences:
+
++--------------------------------------+
+import java.util.Locale;
+import java.util.TimeZone;
+...
+DateConverter dateConverter = module.lookup( Date.class, DateConverter.class );
+dateConverter.setLocale( Locale.getDefault() );
+dateConverter.setTimeZone( TimeZone.getDefault() );
++--------------------------------------+
+
+** LocaleConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Locale>>>
+
+  The converter checks first if the input String matches with the pattern
+  <languageCode_counrtyCode> to create the <<<java.util.Locale>>> otherwise
+  will use the input value as Locale language.
+
+** TimeZoneConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.TimeZone>>>.

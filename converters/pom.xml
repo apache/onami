@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ | Licensed to the Apache Software Foundation (ASF) under one
+ | or more contributor license agreements.  See the NOTICE file
+ | distributed with this work for additional information
+ | regarding copyright ownership.  The ASF licenses this file
+ | to you under the Apache License, Version 2.0 (the
+ | "License"); you may not use this file except in compliance
+ | with the License.  You may obtain a copy of the License at
+ |
+ |   http://www.apache.org/licenses/LICENSE-2.0
+ |
+ | Unless required by applicable law or agreed to in writing,
+ | software distributed under the License is distributed on an
+ | "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ | KIND, either express or implied.  See the License for the
+ | specific language governing permissions and limitations
+ | under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.onami</groupId>
+    <artifactId>org.apache.onami.parent</artifactId>
+    <version>2-incubating</version>
+  </parent>
+
+  <groupId>org.apache.onami.converters</groupId>
+  <artifactId>org.apache.onami.converters.parent</artifactId>
+  <version>1.0.0-incubating-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Apache Onami-Converters - Parent</name>
+  <description>Apache Onami-Converters is a set of Guice converters</description>
+  <url>http://onami.incubator.apache.org/converters</url>
+
+  <modules>
+    <module>core</module>
+    <module>format</module>
+    <module>i18n</module>
+    <module>net</module>
+    <module>numbers</module>
+    <module>sql</module>
+    <module>system</module>
+  </modules>
+
+  <scm>
+    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/converters</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/converters</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/converters</developerConnection>
+  </scm>
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://issues.apache.org/jira/browse/ONAMI/component/12320379</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>https://builds.apache.org/job/Onami-Converters/</url>
+    <notifiers>
+      <notifier>
+        <type>mail</type>
+        <sendOnError>true</sendOnError>
+        <sendOnFailure>true</sendOnFailure>
+        <sendOnSuccess>false</sendOnSuccess>
+        <sendOnWarning>false</sendOnWarning>
+        <configuration>
+          <address>dev@onami.incubator.apache.org</address>
+        </configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  <distributionManagement>
+    <site>
+      <id>apache.website</id>
+      <url>${onami.converters.siteUrlDeployment}</url>
+    </site>
+  </distributionManagement>
+
+  <properties>
+    <onami.converters.siteFilePath>${user.home}/onami-sites/onami-converters-site/</onami.converters.siteFilePath>
+    <onami.converters.siteUrlDeployment>file://${onami.converters.siteFilePath}</onami.converters.siteUrlDeployment>
+    <onami.converters.scmPubCheckoutDirectory>${user.home}/onami-sites/onami-converters-site-content
+    </onami.converters.scmPubCheckoutDirectory>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.kohsuke.metainf-services</groupId>
+      <artifactId>metainf-services</artifactId>
+      <version>1.4</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.onami</groupId>
+      <artifactId>org.apache.onami.test</artifactId>
+      <version>1.4.0-incubating</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <configuration>
+            <checkoutDirectory>${onami.converters.scmPubCheckoutDirectory}</checkoutDirectory>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/converters</pubScmUrl>
+            <checkinComment>Onami Logging site deployment</checkinComment>
+            <content>${onami.converters.siteFilePath}</content>
+            <tryUpdate>true</tryUpdate>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>aggregate</report>
+              <report>test-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <modules>
+        <module>all</module>
+      </modules>
+    </profile>
+  </profiles>
+
+</project>

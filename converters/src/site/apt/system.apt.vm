@@ -1,0 +1,87 @@
+   ------
+   Apache Onami Converters | System
+   ------
+   The Apache Onami Team
+   ------
+   2013
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+Apache Onami Converters - System
+
+  The <<System>> module contains generic system java converters implementations.
+
+  Users that want to use the <System> module, have to add the following dependency in the <<<pom.xml>>>:
+
++--------------------------------------+
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.groupId}.system</artifactId>
+  <version>${project.version}</version>
+  <scope>compile</scope>
+</dependency>
++--------------------------------------+
+
+* The Converters
+
+** BitSetConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.BitSet>>>.
+
+  String representation is typically a CSV String mixed o chars and numbers, i.e:
+
++--------------------------------------+
+a, 123, ~
++--------------------------------------+
+
+  in the example, <<<a>>> is taken in consideration as a <<<char>>>, <<<123>>>
+  as an <<<int>>>, <<<~>>> as a <<<char>>>.
+
+  <<Note>> non numerical fragments with length great than 1 are not allowed!!!
+
+** CharsetConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.nio.charset.Charset>>>.
+
+** FileConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.io.File>>>
+
+** PatternConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.regex.Pattern>>>
+
+** PropertiesConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.Properties>>>
+
+  <<Note>> Input string has to match with the pattern <key1=value1\nkey2=value2...>
+  encoded using the <<<ISO-8859-1>>> charset, according to <<<java.util.Properties>>>
+  recommendation.
+
+** UUIDConverter
+
+  Is the converter that converts a <<<java.lang.String>>> representation to a
+  <<<java.util.UUID>>>.
