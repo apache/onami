@@ -33,32 +33,50 @@
 
   <properties>
     <site.skip>true</site.skip>
-    <osgi.export>
-      org.apache.onami.converters.core;version=${project.version}
-      org.apache.onami.converters.net;version=${project.version}
-      org.apache.onami.converters.numbers;version=${project.version}
-      org.apache.onami.converters.sql;version=${project.version}
-    </osgi.export>
-    <osgi.import>com.google.inject</osgi.import>
+    <osgi.export>org.apache.onami.converters.*;version=${project.version}</osgi.export>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>org.apache.onami.converters.format</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>org.apache.onami.converters.i18n</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>org.apache.onami.converters.net</artifactId>
       <version>${project.version}</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>org.apache.onami.converters.numbers</artifactId>
       <version>${project.version}</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>org.apache.onami.converters.sql</artifactId>
       <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>org.apache.onami.converters.system</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -76,29 +94,44 @@
     </resources>
 
     <plugins>
+      <!-- in order to create the 'all' package, 'release' profile must be active -->
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>jarjar-maven-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <id>src-dependencies</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <classifier>sources</classifier>
+              <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+              <includeGroupIds>${project.groupId}</includeGroupIds>
+              <excludes>META-INF/*</excludes>
+              <outputDirectory>${project.build.directory}/sources</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
         <version>1.7</version>
         <executions>
           <execution>
-            <phase>package</phase>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
             <goals>
-              <goal>jarjar</goal>
+              <goal>add-source</goal>
             </goals>
             <configuration>
-              <excludes>
-                <exclude>com.google.inject:guice</exclude>
-                <exclude>org.kohsuke.metainf-services:metainf-services</exclude>
-                <exclude>org.apache.onami:org.apache.onami.test</exclude>
-                <exclude>junit:junit</exclude>
-                <exclude>org.hamcrest:hamcrest-core</exclude>
-              </excludes>
-              <rules>
-                <keep>
-                  <pattern>org.apache.onami.converters.**</pattern>
-                </keep>
-              </rules>
+              <sources>
+                <source>${project.build.directory}/sources</source>
+              </sources>
             </configuration>
           </execution>
         </executions>

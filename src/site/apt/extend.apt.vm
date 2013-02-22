@@ -1,0 +1,62 @@
+   ------
+   Apache Onami Converters | Extend
+   ------
+   The Apache Onami Team
+   ------
+   2013
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+Extend Apache Onami Converters
+
+  Users that have the need to integrate not already implemented converters,
+  can easily do it by following the listed steps:
+
+  [[1]] add the <<<core>>> dependency in the <<<pom.xml>>>:
+
++--------------------------------------+
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.groupId}.core</artifactId>
+  <version>${project.version}</version>
+  <scope>compile</scope>
+</dependency>
++--------------------------------------+
+
+  [[2]] Extend the <<<org.apache.onami.converters.core.AbstractConverter>>>,
+        that's the class responsible for the conversion and self-binding, specifying the converted type:
+
++--------------------------------------+
+public final class DecimalFormatConverter
+    extends AbstractConverter<DecimalFormat>
+{
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object convert( String value, TypeLiteral<?> toType )
+    {
+        return new DecimalFormat( value );
+    }
+
+}
++--------------------------------------+
+
+  [[3]] Plug your new logging module and enjoy ;)
