@@ -26,14 +26,22 @@
     <version>2-incubating</version>
   </parent>
 
-  <artifactId>org.apache.onami.spi</artifactId>
+  <groupId>org.apache.onami.spi</groupId>
+  <artifactId>org.apache.onami.spi.parent</artifactId>
   <version>1.0.0-incubating-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>Apache Onami-SPI</name>
   <description>Apache Onami-SPI is a Java5 compatible small collection of reusable tools to make easier the integration
   with the Service Provider Interface pattern.</description>
   <url>http://onami.incubator.apache.org/spi/</url>
   <inceptionYear>2012</inceptionYear>
+
+  <modules>
+    <module>core</module>
+    <module>modules</module>
+    <module>services</module>
+  </modules>
 
   <scm>
     <url>https://svn.apache.org/viewvc/incubator/onami/trunk/spi</url>
@@ -68,6 +76,12 @@
     </site>
   </distributionManagement>
 
+  <properties>
+    <onami.spi.siteFilePath>${user.home}/onami-sites/onami-spi-site/</onami.spi.siteFilePath>
+    <onami.spi.siteUrlDeployment>file://${onami.spi.siteFilePath}</onami.spi.siteUrlDeployment>
+    <onami.spi.scmPubCheckoutDirectory>${user.home}/onami-sites/onami-spi-site-content</onami.spi.scmPubCheckoutDirectory>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.inject</groupId>
@@ -89,53 +103,48 @@
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <configuration>
+            <checkoutDirectory>${onami.spi.scmPubCheckoutDirectory}</checkoutDirectory>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/spi</pubScmUrl>
+            <checkinComment>Onami SPI site deployment</checkinComment>
+            <content>${onami.spi.siteFilePath}</content>
+            <tryUpdate>true</tryUpdate>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <locales>en</locales>
-          <skipDeploy>true</skipDeploy>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-descriptor</id>
-            <goals>
-              <goal>attach-descriptor</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>stage-for-scm-publish</id>
-            <phase>post-site</phase>
-            <goals>
-              <goal>stage</goal>
-            </goals>
-            <configuration>
-              <skipDeploy>false</skipDeploy>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-scm-publish-plugin</artifactId>
-        <inherited>false</inherited>
-        <configuration>
-          <checkinComment>Onami SPI site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-sites/onami-spi-site</checkoutDirectory>
-        </configuration>
-        <executions>
-          <execution>
-            <id>scm-publish</id>
-            <phase>site-deploy</phase>
-            <goals>
-              <goal>publish-scm</goal>
-            </goals>
-          </execution>
-        </executions>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>aggregate</report>
+              <report>test-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
     </plugins>
-  </build>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <modules>
+        <module>all</module>
+      </modules>
+    </profile>
+  </profiles>
 
 </project>

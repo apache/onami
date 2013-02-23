@@ -1,9 +1,9 @@
-                                    ------
-                                    Home
-                                    ------
-                                    The Apache Onami developers team
-                                    ------
-                                     2012
+   ------
+   Apache Onami SPI | All
+   ------
+   The Apache Onami Team
+   ------
+   2013
 
 ~~
 ~~ Licensed to the Apache Software Foundation (ASF) under one
@@ -24,11 +24,17 @@
 ~~ under the License.
 ~~
 
-Welcome to ${project.name}!
+Apache Onami SPI - All
 
-  ${project.name} is a Java5 compatible small collection of reusable tools for <Google Guice> to make
-  easier the integration with the Service Provider Interface pattern.
+  The <<All>> module is a special module that contains all <<<${project.groupId}>>> converters implementations.
 
-  It tries to take the best from the past experiences in
-  {{{http://commons.apache.org/discovery}Apache Commons Discovery}} and
-  {{{http://99soft.github.com/backport-spi/}Backport SPI}}.
+  Users that want to use the <All> module, have to add the following dependency in the <<<pom.xml>>>:
+
++--------------------------------------+
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.groupId}.all</artifactId>
+  <version>${project.version}</version>
+  <scope>compile</scope>
+</dependency>
++--------------------------------------+
