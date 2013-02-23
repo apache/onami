@@ -30,6 +30,7 @@
       <item name="Home" href="index.html" />
       <item name="Load Modules" href="modules.html" />
       <item name="Bind Services" href="services.html" />
+      <item name="The complete SPI module" href="./all.html" />
       <item name="API doc" href="apidocs/index.html" />
     </menu>
 
