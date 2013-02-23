@@ -24,41 +24,24 @@
 ~~ under the License.
 ~~
 
-Welcome to Rocoto!
+Welcome to ${project.name}!
 
-  Rocoto is a small collection of reusable Modules for <Google Guice> to make
+  ${project.name} is a small collection of reusable Modules for <Google Guice> to make
   easier the task of loading <<<java.util.Properties>>> by reading configuration
   files.
 
-  Rocoto is one of the most spicy pepper in South America, very popular in Peru
-  and well known since the age of Incas... it adds some spice to Google Guice
-  through configuration files!
-
 Before starting
 
-  Rocoto is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
+  ${project.name} is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
 
 +--------------------------------------+
 <dependencies>
   ...
   <dependency>
-    <groupId>org.99soft.guice</groupId>
-    <artifactId>rocoto</artifactId>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
     <version>${project.version}</version>
   </dependency>
   ...
 </dependencies>
 +--------------------------------------+
-
-Acknowledgements
-
-  A big <Thank You> goes to: {{{http://devsurf.wordpress.com/}Daniel Manzke}}, thanks to his suggestion under the user
-  point of view, helped me making the new Rocoto design much more flexible; Marzia Forli, for testing and bug reporting;
-  {{{http://mcculls.blogspot.com/}Stuart McCulloch}} for priceless suggestions for the design;
-  Ioannis Canellos for making Rocoto as a valid OSGi bundle.
-
-  This work is dedicated to our city, L'Aquila, destroyed by a terrible
-  earthquake the 6th April, 2009... That day more than 300 people were killed
-  because buildings collapsed after a magnitudo 6.3 earthquake at 3:32 am.
-
-  We'll never forget that episode.
