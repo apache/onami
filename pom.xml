@@ -38,12 +38,14 @@
     <module>autobind</module>
     <module>cache</module>
     <module>configuration</module>
+    <module>converters</module>
     <module>guava</module>
     <module>lifecycle</module>
     <module>logging</module>
     <module>scheduler</module>
     <module>spi</module>
     <module>test</module>
+    <module>validation</module>
   </modules>
 
   <build>
