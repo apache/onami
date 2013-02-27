@@ -102,6 +102,20 @@
             <p><a class="btn btn-primary pull-right" href="./autobind">Learn more</a></p>
           </div>
         </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Converters</h1>
+            <p>Auxiliary <code>TypeConverter</code> implementations</p>
+            <p><a class="btn btn-primary pull-right" href="./converters">Learn more</a></p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Validation</h1>
+            <p>JSR303 (Bean Validation) integration extension for Google Guice</p>
+            <p><a class="btn btn-primary pull-right" href="./validation">Learn more</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
