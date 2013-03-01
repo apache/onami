@@ -211,7 +211,7 @@
       <id>randgalt</id>
       <name>Jordan Zimmerman</name>
       <email>randgalt@apache.org</email>
-      <timezone>+1</timezone>
+      <timezone>−8</timezone>
       <roles>
         <role>Committer</role>
       </roles>
