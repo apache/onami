@@ -206,6 +206,17 @@
       </roles>
       <url>http://people.apache.org/~simonetripodi/</url>
     </developer>
+
+    <developer>
+      <id>randgalt</id>
+      <name>Jordan Zimmerman</name>
+      <email>randgalt@apache.org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+      </roles>
+      <url>http://www.jordanzimmerman.com/</url>
+    </developer>
   </developers>
   <contributors>
     <contributor>
