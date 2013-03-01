@@ -114,6 +114,7 @@
             <ignorePathToDelete>logging**</ignorePathToDelete>
             <ignorePathToDelete>scheduler**</ignorePathToDelete>
             <ignorePathToDelete>spi**</ignorePathToDelete>
+            <ignorePathToDelete>scopes**</ignorePathToDelete>
             <ignorePathToDelete>test**</ignorePathToDelete>
             <ignorePathToDelete>validation**</ignorePathToDelete>
           </ignorePathsToDelete>
@@ -174,7 +175,7 @@
                       <arg line="update --set-depth exclude ${checkoutDirectory}/autobind ${checkoutDirectory}/cache
                       ${checkoutDirectory}/configuration ${checkoutDirectory}/converters ${checkoutDirectory}/factoryannotation
                       ${checkoutDirectory}/guava ${checkoutDirectory}/lifecycle ${checkoutDirectory}/logging
-                      ${checkoutDirectory}/scheduler ${checkoutDirectory}/spi
+                      ${checkoutDirectory}/scheduler ${checkoutDirectory}/spi ${checkoutDirectory}/scopes
                       ${checkoutDirectory}/test ${checkoutDirectory}/validation" />
                     </exec>
 
