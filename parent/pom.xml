@@ -195,6 +195,17 @@
     </developer>
 
     <developer>
+      <id>randgalt</id>
+      <name>Jordan Zimmerman</name>
+      <email>randgalt@apache.org</email>
+      <timezone>-8</timezone>
+      <roles>
+        <role>Committer</role>
+      </roles>
+      <url>http://www.jordanzimmerman.com/</url>
+    </developer>
+
+    <developer>
       <id>simonetripodi</id>
       <name>Simone Tripodi</name>
       <email>simonetripodi@apache.org</email>
@@ -205,17 +216,6 @@
         <role>Champion</role>
       </roles>
       <url>http://people.apache.org/~simonetripodi/</url>
-    </developer>
-
-    <developer>
-      <id>randgalt</id>
-      <name>Jordan Zimmerman</name>
-      <email>randgalt@apache.org</email>
-      <timezone>−8</timezone>
-      <roles>
-        <role>Committer</role>
-      </roles>
-      <url>http://www.jordanzimmerman.com/</url>
     </developer>
   </developers>
   <contributors>
