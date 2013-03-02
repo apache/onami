@@ -31,6 +31,7 @@ import java.util.Map;
 class ConcurrentLazySingletonScopeImpl
     implements Scope
 {
+
     private static final Object NULL = new Object();
 
     private static final Map<Key<?>, LockRecord> locks = new HashMap<Key<?>, LockRecord>();
@@ -92,8 +93,8 @@ class ConcurrentLazySingletonScopeImpl
 
                 Object localInstance = instance;
                 // This is safe because instance has type T or is equal to NULL
-                @SuppressWarnings({ "unchecked", "UnnecessaryLocalVariable" }) T returnedInstance =
-                    ( localInstance != NULL ) ? (T) localInstance : null;
+                @SuppressWarnings({ "unchecked", "UnnecessaryLocalVariable" })
+                T returnedInstance = ( localInstance != NULL ) ? (T) localInstance : null;
                 return returnedInstance;
             }
 
@@ -140,4 +141,5 @@ class ConcurrentLazySingletonScopeImpl
     {
         return "ConcurrentLazySingletonScope.SCOPE";
     }
+
 }

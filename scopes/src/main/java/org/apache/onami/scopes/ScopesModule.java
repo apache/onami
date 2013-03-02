@@ -27,10 +27,12 @@ import com.google.inject.AbstractModule;
 public class ScopesModule
     extends AbstractModule
 {
+
     @Override
     protected void configure()
     {
         bindScope( LazySingleton.class, LazySingletonScope.get() );
         bindScope( ConcurrentLazySingleton.class, ConcurrentLazySingletonScope.get() );
     }
+
 }

@@ -28,6 +28,7 @@ import com.google.inject.Scope;
  */
 public class ConcurrentLazySingletonScope
 {
+
     private static final Scope instance = new ConcurrentLazySingletonScopeImpl();
 
     /**
@@ -39,4 +40,5 @@ public class ConcurrentLazySingletonScope
     {
         return instance;
     }
+
 }

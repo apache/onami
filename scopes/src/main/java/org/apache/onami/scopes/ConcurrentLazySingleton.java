@@ -35,8 +35,8 @@ import java.lang.annotation.Target;
  * on the object key and, thus, can construct multiple types of singletons
  * concurrently.
  */
-@Target({ ElementType.TYPE, ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
+@Target( { ElementType.TYPE, ElementType.METHOD } )
+@Retention( RetentionPolicy.RUNTIME )
 @ScopeAnnotation
 public @interface ConcurrentLazySingleton
 {

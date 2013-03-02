@@ -26,6 +26,7 @@ import com.google.inject.Scope;
  */
 public class LazySingletonScope
 {
+
     /**
      * Returns the scope
      *
@@ -41,4 +42,5 @@ public class LazySingletonScope
     private LazySingletonScope()
     {
     }
+
 }

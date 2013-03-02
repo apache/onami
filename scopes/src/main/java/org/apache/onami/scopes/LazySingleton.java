@@ -30,8 +30,8 @@ import java.lang.annotation.Target;
  * Scope annotation that marks a class as singleton that should NOT be
  * allocated eagerly
  */
-@Target({ ElementType.TYPE, ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
+@Target( { ElementType.TYPE, ElementType.METHOD } )
+@Retention( RetentionPolicy.RUNTIME )
 @ScopeAnnotation
 public @interface LazySingleton
 {

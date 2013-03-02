@@ -30,8 +30,10 @@ import com.google.inject.Scopes;
 final class LazySingletonScopeImpl
     implements Scope
 {
+
     public <T> Provider<T> scope( Key<T> key, Provider<T> unscoped )
     {
         return Scopes.SINGLETON.scope( key, unscoped );
     }
+
 }
