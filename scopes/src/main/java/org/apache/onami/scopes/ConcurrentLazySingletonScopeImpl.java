@@ -97,7 +97,6 @@ class ConcurrentLazySingletonScopeImpl
         };
     }
 
-    @SuppressWarnings( "SynchronizationOnLocalVariableOrMethodParameter" )
     private LockRecord getLock( Key<?> key )
     {
         synchronized ( locks )
