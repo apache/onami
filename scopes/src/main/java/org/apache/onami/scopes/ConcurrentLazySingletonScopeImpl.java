@@ -52,9 +52,9 @@ class ConcurrentLazySingletonScopeImpl
             {
                 if ( instance == null )
                 {
+                    final LockRecord lock = getLock( key );
                     try
                     {
-                        final Object lock = getLock( key );
                         //noinspection SynchronizationOnLocalVariableOrMethodParameter
                         synchronized ( lock )
                         {
@@ -80,7 +80,7 @@ class ConcurrentLazySingletonScopeImpl
                     }
                     finally
                     {
-                        releaseLock( key );
+                        releaseLock( lock, key );
                     }
                 }
 
@@ -104,7 +104,7 @@ class ConcurrentLazySingletonScopeImpl
     }
 
     @SuppressWarnings( "SynchronizationOnLocalVariableOrMethodParameter" )
-    private Object getLock( Key<?> key )
+    private LockRecord getLock( Key<?> key )
     {
         synchronized ( locks )
         {
@@ -115,21 +115,17 @@ class ConcurrentLazySingletonScopeImpl
                 locks.put( key, lock );
             }
             ++lock.useCount;
-            return lock.lock;
+            return lock;
         }
     }
 
-    private void releaseLock( Key<?> key )
+    private void releaseLock( LockRecord lock, Key<?> key )
     {
         synchronized ( locks )
         {
-            LockRecord lock = locks.get( key );
-            if ( lock != null )
+            if ( --lock.useCount <= 0 )
             {
-                if ( --lock.useCount <= 0 )
-                {
-                    locks.remove( key );
-                }
+                locks.remove( key );
             }
         }
     }
@@ -144,8 +140,6 @@ class ConcurrentLazySingletonScopeImpl
 =======
     private static class LockRecord
     {
-        private final Object lock = new Object();
-
         private int useCount = 0;
     }
 >>>>>>> ONAMI-93 - locks field doesn't need to be static
