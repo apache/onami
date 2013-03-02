@@ -71,6 +71,7 @@
       <item name="Lifecycle"      href="http://onami.incubator.apache.org/lifecycle" />
       <item name="Logging"        href="http://onami.incubator.apache.org/logging" />
       <item name="Scheduler"      href="http://onami.incubator.apache.org/scheduler" />
+      <item name="Scopes"         href="http://onami.incubator.apache.org/scopes" />
       <item name="SPI"            href="http://onami.incubator.apache.org/spi" />
       <item name="Test"           href="http://onami.incubator.apache.org/test" />
       <item name="Validation"     href="http://onami.incubator.apache.org/validation" />

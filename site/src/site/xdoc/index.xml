@@ -116,6 +116,13 @@
             <p><a class="btn btn-primary pull-right" href="./validation">Learn more</a></p>
           </div>
         </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Scopes</h1>
+            <p>Auxiliary useful Google Guice Scopes</p>
+            <p><a class="btn btn-primary pull-right" href="./scopes">Learn more</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
