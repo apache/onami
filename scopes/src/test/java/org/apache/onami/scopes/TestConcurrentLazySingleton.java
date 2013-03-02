@@ -32,6 +32,7 @@ import org.junit.runner.RunWith;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @RunWith(OnamiRunner.class)
@@ -65,17 +66,25 @@ public class TestConcurrentLazySingleton
             throws InterruptedException
         {
             final CountDownLatch latch = new CountDownLatch( 1 );
-            Executors.newSingleThreadExecutor().submit( new Callable<Object>()
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            try
             {
-                public Object call()
-                    throws Exception
+                executorService.submit( new Callable<Object>()
                 {
-                    injector.getInstance( AnnotatedConcurrentLazySingletonObject.class );
-                    latch.countDown();
-                    return null;
-                }
-            } );
-            latch.await();
+                    public Object call()
+                        throws Exception
+                    {
+                        injector.getInstance( AnnotatedConcurrentLazySingletonObject.class );
+                        latch.countDown();
+                        return null;
+                    }
+                } );
+                latch.await();
+            }
+            finally
+            {
+                executorService.shutdownNow();
+            }
         }
     }
 
