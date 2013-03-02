@@ -34,14 +34,7 @@ class ConcurrentLazySingletonScopeImpl
 
     private static final Object NULL = new Object();
 
-    private static final Map<Key<?>, LockRecord> locks = new HashMap<Key<?>, LockRecord>();
-
-    private static class LockRecord
-    {
-        private final Object lock = new Object();
-
-        private int useCount = 0;
-    }
+    private final Map<Key<?>, LockRecord> locks = new HashMap<Key<?>, LockRecord>();
 
     public <T> Provider<T> scope( final Key<T> key, final Provider<T> creator )
     {
@@ -54,7 +47,7 @@ class ConcurrentLazySingletonScopeImpl
             private volatile Object instance;
 
             // DCL on a volatile is safe as of Java 5, which we obviously require.
-            @SuppressWarnings("DoubleCheckedLocking")
+            @SuppressWarnings( "DoubleCheckedLocking" )
             public T get()
             {
                 if ( instance == null )
@@ -93,8 +86,13 @@ class ConcurrentLazySingletonScopeImpl
 
                 Object localInstance = instance;
                 // This is safe because instance has type T or is equal to NULL
+<<<<<<< HEAD
                 @SuppressWarnings({ "unchecked", "UnnecessaryLocalVariable" })
                 T returnedInstance = ( localInstance != NULL ) ? (T) localInstance : null;
+=======
+                @SuppressWarnings( { "unchecked", "UnnecessaryLocalVariable" } ) T returnedInstance =
+                    ( localInstance != NULL ) ? (T) localInstance : null;
+>>>>>>> ONAMI-93 - locks field doesn't need to be static
                 return returnedInstance;
             }
 
@@ -105,7 +103,7 @@ class ConcurrentLazySingletonScopeImpl
         };
     }
 
-    @SuppressWarnings("SynchronizationOnLocalVariableOrMethodParameter")
+    @SuppressWarnings( "SynchronizationOnLocalVariableOrMethodParameter" )
     private Object getLock( Key<?> key )
     {
         synchronized ( locks )
@@ -142,4 +140,13 @@ class ConcurrentLazySingletonScopeImpl
         return "ConcurrentLazySingletonScope.SCOPE";
     }
 
+<<<<<<< HEAD
+=======
+    private static class LockRecord
+    {
+        private final Object lock = new Object();
+
+        private int useCount = 0;
+    }
+>>>>>>> ONAMI-93 - locks field doesn't need to be static
 }
