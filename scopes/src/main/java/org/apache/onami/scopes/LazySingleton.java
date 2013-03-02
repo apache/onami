@@ -27,8 +27,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Scope annotation that marks a class as singleton that should NOT be
- * allocated eagerly
+ * {@code com.google.inject.Scope} annotation that marks a class as singleton that should NOT be
+ * allocated eagerly.
  */
 @Target( { ElementType.TYPE, ElementType.METHOD } )
 @Retention( RetentionPolicy.RUNTIME )

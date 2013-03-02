@@ -22,7 +22,7 @@ package org.apache.onami.scopes;
 import com.google.inject.Scope;
 
 /**
- * A singleton factory that returns a Guice {@link Scope} that enables lazy singletons
+ * A singleton factory that returns a Guice {@code com.google.inject.Scope} that enables lazy singletons.
  */
 public class LazySingletonScope
 {

@@ -25,7 +25,7 @@ import com.google.inject.Scope;
 import com.google.inject.Scopes;
 
 /**
- * A Guice {@link Scope} that enables lazy singletons
+ * A Guice {@code com.google.inject.Scope} that enables lazy singletons.
  */
 final class LazySingletonScopeImpl
     implements Scope
