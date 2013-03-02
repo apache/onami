@@ -43,10 +43,10 @@
     <module>lifecycle</module>
     <module>logging</module>
     <module>scheduler</module>
+    <module>scopes</module>
     <module>spi</module>
     <module>test</module>
     <module>validation</module>
-    <module>scopes</module>
   </modules>
 
   <build>
