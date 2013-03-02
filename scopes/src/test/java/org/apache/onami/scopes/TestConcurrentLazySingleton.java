@@ -19,21 +19,24 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import com.google.inject.Provider;
-import org.apache.onami.lifecycle.AfterInjectionModule;
-import org.apache.onami.test.OnamiRunner;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.apache.onami.lifecycle.AfterInjectionModule;
+import org.apache.onami.test.OnamiRunner;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Provider;
 
 @RunWith(OnamiRunner.class)
 public class TestConcurrentLazySingleton
@@ -94,7 +97,7 @@ public class TestConcurrentLazySingleton
     {
         Injector injector = Guice.createInjector( new ScopesModule() );
         injector.getInstance( DeadLockTester.class ); // if ConcurrentLazySingleton is not used, this line will deadlock
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
     }
 
     @Test
@@ -102,20 +105,20 @@ public class TestConcurrentLazySingleton
     {
         Injector injector = Guice.createInjector( new AfterInjectionModule(), new ScopesModule() );
 
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 0 );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 0 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 0 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 0 );
 
         AnnotatedConcurrentLazySingletonObject instance =
             injector.getInstance( AnnotatedConcurrentLazySingletonObject.class );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
 
         AnnotatedConcurrentLazySingletonObject instance2 =
             injector.getInstance( AnnotatedConcurrentLazySingletonObject.class );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
 
-        Assert.assertSame( instance, instance2 );
+        assertSame( instance, instance2 );
     }
 
     @Test
@@ -123,21 +126,21 @@ public class TestConcurrentLazySingleton
     {
         Injector injector = Guice.createInjector( new AfterInjectionModule(), new ScopesModule() );
 
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 0 );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 0 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 0 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 0 );
 
         InjectedAnnotatedProvider injectedProvider = injector.getInstance( InjectedAnnotatedProvider.class );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 0 );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 0 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 0 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 0 );
 
         AnnotatedConcurrentLazySingletonObject instance = injectedProvider.provider.get();
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
 
         AnnotatedConcurrentLazySingletonObject instance2 = injectedProvider.provider.get();
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
-        Assert.assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.constructorCount.get(), 1 );
+        assertEquals( AnnotatedConcurrentLazySingletonObject.postConstructCount.get(), 1 );
 
-        Assert.assertSame( instance, instance2 );
+        assertSame( instance, instance2 );
     }
 }
