@@ -27,7 +27,8 @@
     </head>
 
     <menu name="Apache Onami™ Scopes">
-      <item name="Home" href="./index.html" />
+      <item name="Home" href="index.html" />
+      <item name="User guide" href="userguide.html" />
     </menu>
 
     <menu ref="reports"/>

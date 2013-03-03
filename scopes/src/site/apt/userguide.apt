@@ -1,0 +1,89 @@
+                                    ------
+                                    User Guide
+                                    ------
+                                    The Apache Onami developers team
+                                    ------
+                                     2011-2013
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+User's guide
+
+  <<<org.apache.onami.scopes>>> adds useful Guice Scopes. Include these scopes
+  by adding the ScopesModule to your injector:
+
++--------------------------------------+
+Guice.createInjector( ..., ..., new ScopesModule(), ...);
++--------------------------------------+
+
+* LazySingleton
+
+  Guice can inject instances as a singletons. Depending on the mode that Guice is in,
+  it will lazily create the singletons (i.e. only when they are needed) or eagerly
+  create them (i.e. when the Injector is created). When the Guice mode is set to
+  Stage.PRODUCTION singletons are eagerly created. Guice does not provide a lazy
+  singleton scope.
+
+  You can use lazy singleton either by annotating a class with <<<@LazySingleton>>>
+  or using the <<<LazySingletonScope>>> when binding. E.g.
+
++--------------------------------------+
+binder.bind(IFace.class).to(Impl.class).in(LazySingletonScope.get())
++--------------------------------------+
+
+** Example Usage
+
+  LazySingleton comes in handy when you need to have fine grained control over when an
+  instance is created. You can do this by using a provider in conjunction with
+  LazySingleton. E.g.
+
++--------------------------------------+
+// an example class
+@LazySingleton
+public class MyClass
+  ...
+
+// inject a provider instead of the instance
+public class Foo
+{
+  private final Provider<MyClass> myClassProvider;
+
+  @Inject
+  public foo(Provider<MyClass> myClassProvider)
+  {
+     this.myClassProvider = myClassProvider;
+  }
+
+  ...
+
+  // somewhere else in the class
+  myClassProvider.get();   // object will be created here
+}
++--------------------------------------+
+
+* ConcurrentLazySingleton
+
+  ConcurrentLazySingleton behaves just like LazySingleton with the addition that it
+  has fine grained concurrency support. Users of Guice may be surprised to learn that
+  Guice's default singleton scope creates objects using a very coarse lock. What this
+  means in practice is that singletons cannot be injected at the same time by two
+  different threads. ConcurrentLazySingleton synchronizes on the object key and, thus,
+  can construct multiple types of singletons concurrently.
+
