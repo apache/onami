@@ -53,7 +53,7 @@ public abstract class EventBusModule
                 to( any() );
             }
 
-            public void to( Matcher<Object> matcher )
+            public void to( Matcher<? super TypeLiteral<?>> matcher )
             {
                 checkArgument( matcher != null, "Event bus matcher must be not null" );
 

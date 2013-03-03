@@ -19,6 +19,7 @@ package org.apache.onami.guava.eventbus;
  * under the License.
  */
 
+import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
 
 /**
@@ -37,6 +38,6 @@ public interface BusMatcher
      *
      * @param matcher the bound classes filter.
      */
-    void to( Matcher<Object> matcher );
+    void to( Matcher<? super TypeLiteral<?>> matcher );
 
 }
