@@ -26,7 +26,7 @@ import java.lang.annotation.Annotation;
  * invoking {@link Stageable#stage(StageHandler)}.
  * <p/>
  * Order of disposal is specified by the concrete implementation of this
- * interface via {@link org.apache.onami.lifecycle.DefaultStager.Order}.
+ * interface via {@link org.apache.onami.lifecycle.core.DefaultStager.Order}.
  * <p/>
  * Implementations must be thread-safe because registration can be done from
  * any thread.

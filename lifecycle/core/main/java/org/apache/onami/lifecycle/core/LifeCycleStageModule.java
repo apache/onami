@@ -42,6 +42,8 @@ public final class LifeCycleStageModule<A extends Annotation>
 
     private final Stager<A> stager;
 
+    private final StageableTypeMapper<A> typeMapper;
+
     /**
      * Creates a new module which register methods annotated with input annotation on methods in any type.
      *
@@ -63,6 +65,7 @@ public final class LifeCycleStageModule<A extends Annotation>
     {
         super( stager.getStage(), typeMatcher );
         this.stager = stager;
+        typeMapper = new NoOpStageableTypeMapper<A>();
     }
 
     /**
@@ -74,6 +77,7 @@ public final class LifeCycleStageModule<A extends Annotation>
     {
         super( builder.stager.getStage(), builder.typeMatcher );
         this.stager = builder.stager;
+        this.typeMapper = builder.typeMapper;
     }
 
     /**
@@ -135,6 +139,7 @@ public final class LifeCycleStageModule<A extends Annotation>
                     {
                         Stageable stageable = new StageableMethod( stageMethod, injectee );
                         stager.register( stageable );
+                        typeMapper.registerType( stageable, parentType );
                     }
 
                 } );
@@ -152,6 +157,8 @@ public final class LifeCycleStageModule<A extends Annotation>
         private Matcher<? super TypeLiteral<?>> typeMatcher = any();
 
         private Stager<A> stager;
+
+        private StageableTypeMapper<A> typeMapper = new NoOpStageableTypeMapper<A>();
 
         Builder( Class<A> annotationClass )
         {
@@ -198,6 +205,18 @@ public final class LifeCycleStageModule<A extends Annotation>
         public Builder<A> withStager( Stager<A> stager )
         {
             this.stager = checkNotNull( stager, "Argument 'stager' must be not null." );
+            return this;
+        }
+
+        /**
+         * Sets the container to register mappings from {@link Stageable}s to the types that created them.
+         *
+         * @param typeMapper container to map {@link Stageable}s to types
+         * @return self
+         */
+        public Builder<A> withTypeMapper( StageableTypeMapper<A> typeMapper )
+        {
+            this.typeMapper = checkNotNull( typeMapper, "Argument 'typeMapper' must be not null." );
             return this;
         }
 
