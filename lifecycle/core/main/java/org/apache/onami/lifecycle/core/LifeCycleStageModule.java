@@ -42,8 +42,6 @@ public final class LifeCycleStageModule<A extends Annotation>
 
     private final Stager<A> stager;
 
-    private final StageableFactory stageableFactory;
-
     /**
      * Creates a new module which register methods annotated with input annotation on methods in any type.
      *
@@ -65,7 +63,6 @@ public final class LifeCycleStageModule<A extends Annotation>
     {
         super( stager.getStage(), typeMatcher );
         this.stager = stager;
-        stageableFactory = new DefaultStageableFactory();
     }
 
     /**
@@ -77,7 +74,6 @@ public final class LifeCycleStageModule<A extends Annotation>
     {
         super( builder.stager.getStage(), builder.typeMatcher );
         this.stager = builder.stager;
-        this.stageableFactory = builder.stageableFactory;
     }
 
     /**
@@ -137,9 +133,7 @@ public final class LifeCycleStageModule<A extends Annotation>
 
                     public void afterInjection( I injectee )
                     {
-                        Stageable stageable =
-                            stageableFactory.newStageable( injectee, stageMethod, parentType, encounter,
-                                                           annotationType );
+                        Stageable stageable = new StageableMethod( stageMethod, injectee );
                         stager.register( stageable );
                     }
 
@@ -158,8 +152,6 @@ public final class LifeCycleStageModule<A extends Annotation>
         private Matcher<? super TypeLiteral<?>> typeMatcher = any();
 
         private Stager<A> stager;
-
-        private StageableFactory stageableFactory = new DefaultStageableFactory();
 
         Builder( Class<A> annotationClass )
         {
@@ -206,18 +198,6 @@ public final class LifeCycleStageModule<A extends Annotation>
         public Builder<A> withStager( Stager<A> stager )
         {
             this.stager = checkNotNull( stager, "Argument 'stager' must be not null." );
-            return this;
-        }
-
-        /**
-         * Sets the StageableFactory
-         *
-         * @param stageableFactory the StageableFactory
-         * @return self
-         */
-        public Builder<A> withStageableMethodFactory( StageableFactory stageableFactory )
-        {
-            this.stageableFactory = checkNotNull( stageableFactory, "Argument 'stageableFactory' must be not null." );
             return this;
         }
 
