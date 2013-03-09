@@ -19,25 +19,12 @@ package org.apache.onami.lifecycle.standard;
  * under the License.
  */
 
+import org.apache.onami.lifecycle.core.StageHandler;
+
 /**
- * A {@link org.apache.onami.lifecycle.standard.DisposeHandler} instance is used to track dispose progresses.
+ * Used to track dispose progresses. It's merely a synonym for
+ * {@link StageHandler}
  */
-public interface DisposeHandler
+public interface DisposeHandler extends StageHandler
 {
-
-    /**
-     * Tracks the input injectee successfully released the resources.
-     *
-     * @param injectee the injectee to be released
-     */
-    <I> void onSuccess( I injectee );
-
-    /**
-     * Tracks an error occurred while the input injectee released the resources.
-     *
-     * @param injectee the injectee to be released
-     * @param error the exception occurred
-     */
-    <I, E extends Throwable> void onError( I injectee, E error );
-
 }
