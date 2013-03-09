@@ -1,4 +1,4 @@
-package org.apache.onami.scopes;
+package org.apache.onami.lifecycle.core;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,24 +19,14 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.standard.AfterInjection;
+import com.google.inject.TypeLiteral;
+import com.google.inject.spi.TypeEncounter;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 
-public class LazySingletonObject
+public interface StageableFactory
 {
-    public static final AtomicInteger constructorCount = new AtomicInteger( 0 );
-
-    public static final AtomicInteger postConstructCount = new AtomicInteger( 0 );
-
-    public LazySingletonObject()
-    {
-        constructorCount.incrementAndGet();
-    }
-
-    @AfterInjection
-    public void postConstruct()
-    {
-        postConstructCount.incrementAndGet();
-    }
+    public <I> Stageable newStageable( I injectee, Method stageMethod, TypeLiteral<I> parentType,
+                                       TypeEncounter<I> encounter, Class<? extends Annotation> annotationType );
 }

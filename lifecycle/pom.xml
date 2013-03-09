@@ -28,11 +28,17 @@
 
   <artifactId>org.apache.onami.lifecycle</artifactId>
   <version>0.2.0-incubating-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>Apache Onami-Lifecycle</name>
   <description>Apache Onami-Lifecycle allows objects lifecycle management made easy with Google Guice</description>
   <url>http://onami.incubator.apache.org/lifecycle/</url>
   <inceptionYear>2012</inceptionYear>
+
+  <modules>
+    <module>core</module>
+    <module>standard</module>
+  </modules>
 
   <scm>
     <url>https://svn.apache.org/viewvc/incubator/onami/trunk/lifecycle</url>

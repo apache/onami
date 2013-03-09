@@ -1,4 +1,4 @@
-package org.apache.onami.scopes;
+package org.apache.onami.lifecycle.standard;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,24 +19,18 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.standard.AfterInjection;
+import com.google.inject.AbstractModule;
+import org.apache.onami.lifecycle.core.LifeCycleModule;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class LazySingletonObject
+/**
+ * Guice module to register methods to be invoked after injection is complete.
+ */
+public class AfterInjectionModule
+    extends AbstractModule
 {
-    public static final AtomicInteger constructorCount = new AtomicInteger( 0 );
-
-    public static final AtomicInteger postConstructCount = new AtomicInteger( 0 );
-
-    public LazySingletonObject()
+    @Override
+    protected void configure()
     {
-        constructorCount.incrementAndGet();
-    }
-
-    @AfterInjection
-    public void postConstruct()
-    {
-        postConstructCount.incrementAndGet();
+        binder().install( new LifeCycleModule( AfterInjection.class ) );
     }
 }

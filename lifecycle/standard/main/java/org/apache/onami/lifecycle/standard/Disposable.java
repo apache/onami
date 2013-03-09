@@ -1,4 +1,4 @@
-package org.apache.onami.scopes;
+package org.apache.onami.lifecycle.standard;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,24 +19,21 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.standard.AfterInjection;
-
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class LazySingletonObject
+/**
+ * Object that knows how to dispose some resources.
+ *
+ * @since 0.2.0
+ */
+public interface Disposable
 {
-    public static final AtomicInteger constructorCount = new AtomicInteger( 0 );
 
-    public static final AtomicInteger postConstructCount = new AtomicInteger( 0 );
+    /**
+     * Disposes allocated resources, tracking progresses in the
+     * input {@code DisposeHandler}.
+     *
+     * @param disposeHandler the handler to track dispose progresses.
+     * @since 0.2.0
+     */
+    void dispose( DisposeHandler disposeHandler );
 
-    public LazySingletonObject()
-    {
-        constructorCount.incrementAndGet();
-    }
-
-    @AfterInjection
-    public void postConstruct()
-    {
-        postConstructCount.incrementAndGet();
-    }
 }

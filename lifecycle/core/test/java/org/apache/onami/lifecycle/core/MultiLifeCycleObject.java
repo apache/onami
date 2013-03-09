@@ -1,4 +1,4 @@
-package org.apache.onami.scopes;
+package org.apache.onami.lifecycle.core;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,24 +19,58 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.standard.AfterInjection;
+import com.google.inject.Singleton;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class LazySingletonObject
+@Singleton
+public class MultiLifeCycleObject
 {
-    public static final AtomicInteger constructorCount = new AtomicInteger( 0 );
+    private final StringBuilder str = new StringBuilder();
 
-    public static final AtomicInteger postConstructCount = new AtomicInteger( 0 );
-
-    public LazySingletonObject()
+    @TestAnnotationC
+    public void foo()
     {
-        constructorCount.incrementAndGet();
+        str.append( "c" );
     }
 
-    @AfterInjection
-    public void postConstruct()
+    @TestAnnotationA
+    public void aaa()
     {
-        postConstructCount.incrementAndGet();
+        str.append( "a" );
+    }
+
+    @TestAnnotationB
+    public void bbb()
+    {
+        str.append( "b" );
+    }
+
+    @TestAnnotationA
+    public void mmm()
+    {
+        str.append( "a" );
+    }
+
+    @TestAnnotationB
+    public void nnn()
+    {
+        str.append( "b" );
+    }
+
+    @TestAnnotationB
+    public void qqq()
+    {
+        str.append( "b" );
+    }
+
+    @TestAnnotationA
+    public void zzz()
+    {
+        str.append( "a" );
+    }
+
+    @Override
+    public String toString()
+    {
+        return str.toString();
     }
 }

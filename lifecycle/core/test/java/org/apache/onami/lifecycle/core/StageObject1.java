@@ -1,4 +1,4 @@
-package org.apache.onami.scopes;
+package org.apache.onami.lifecycle.core;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,24 +19,27 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.standard.AfterInjection;
+import com.google.inject.Inject;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class LazySingletonObject
+public class StageObject1
 {
-    public static final AtomicInteger constructorCount = new AtomicInteger( 0 );
+    private final StringBuilder str;
 
-    public static final AtomicInteger postConstructCount = new AtomicInteger( 0 );
-
-    public LazySingletonObject()
+    @Inject
+    public StageObject1( StringBuilder str )
     {
-        constructorCount.incrementAndGet();
+        this.str = str;
     }
 
-    @AfterInjection
-    public void postConstruct()
+    @TestAnnotationA
+    public void stageA()
     {
-        postConstructCount.incrementAndGet();
+        str.append( "1a" );
+    }
+
+    @TestAnnotationB
+    public void stageB()
+    {
+        str.append( "1b" );
     }
 }

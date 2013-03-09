@@ -19,7 +19,7 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.AfterInjection;
+import org.apache.onami.lifecycle.standard.AfterInjection;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

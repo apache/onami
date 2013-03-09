@@ -22,7 +22,7 @@ package org.apache.onami.scopes;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
-import org.apache.onami.lifecycle.AfterInjectionModule;
+import org.apache.onami.lifecycle.standard.AfterInjectionModule;
 import org.apache.onami.test.OnamiRunner;
 import org.junit.Before;
 import org.junit.Test;

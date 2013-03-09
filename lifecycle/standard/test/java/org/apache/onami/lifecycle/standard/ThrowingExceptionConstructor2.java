@@ -1,4 +1,4 @@
-package org.apache.onami.scopes;
+package org.apache.onami.lifecycle.standard;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,24 +19,16 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.standard.AfterInjection;
+import javax.inject.Inject;
+import java.util.concurrent.ExecutorService;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class LazySingletonObject
+public final class ThrowingExceptionConstructor2
 {
-    public static final AtomicInteger constructorCount = new AtomicInteger( 0 );
 
-    public static final AtomicInteger postConstructCount = new AtomicInteger( 0 );
-
-    public LazySingletonObject()
+    @Inject
+    public ThrowingExceptionConstructor2( ExecutorService executorService )
     {
-        constructorCount.incrementAndGet();
+        throw new IllegalArgumentException( "Expected exception" );
     }
 
-    @AfterInjection
-    public void postConstruct()
-    {
-        postConstructCount.incrementAndGet();
-    }
 }

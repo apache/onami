@@ -81,7 +81,7 @@
 
     <dependency>
       <groupId>org.apache.onami</groupId>
-      <artifactId>org.apache.onami.lifecycle</artifactId>
+      <artifactId>org.apache.onami.lifecycle.standard</artifactId>
       <version>0.2.0-incubating-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>

@@ -27,7 +27,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.onami.lifecycle.AfterInjectionModule;
+import org.apache.onami.lifecycle.standard.AfterInjectionModule;
 import org.apache.onami.test.OnamiRunner;
 import org.junit.Before;
 import org.junit.Test;

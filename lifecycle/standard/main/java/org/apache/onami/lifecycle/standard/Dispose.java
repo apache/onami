@@ -1,4 +1,4 @@
-package org.apache.onami.scopes;
+package org.apache.onami.lifecycle.standard;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,24 +19,20 @@ package org.apache.onami.scopes;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.standard.AfterInjection;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-public class LazySingletonObject
+/**
+ * The method annotated with {@code Dispose} is typically used to release resources that it has been holding.
+ */
+@Documented
+@Retention(RUNTIME)
+@Target(METHOD)
+public @interface Dispose
 {
-    public static final AtomicInteger constructorCount = new AtomicInteger( 0 );
 
-    public static final AtomicInteger postConstructCount = new AtomicInteger( 0 );
-
-    public LazySingletonObject()
-    {
-        constructorCount.incrementAndGet();
-    }
-
-    @AfterInjection
-    public void postConstruct()
-    {
-        postConstructCount.incrementAndGet();
-    }
 }
