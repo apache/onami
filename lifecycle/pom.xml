@@ -73,6 +73,12 @@
     </site>
   </distributionManagement>
 
+  <properties>
+    <onami.lifecycle.siteFilePath>${user.home}/onami-sites/onami-lifecycle-site/</onami.lifecycle.siteFilePath>
+    <onami.lifecycle.siteUrlDeployment>file://${onami.lifecycle.siteFilePath}</onami.lifecycle.siteUrlDeployment>
+    <onami.lifecycle.scmPubCheckoutDirectory>${user.home}/onami-sites/onami-lifecycle-site-content</onami.lifecycle.scmPubCheckoutDirectory>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.inject</groupId>
@@ -87,53 +93,39 @@
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <configuration>
+            <checkoutDirectory>${onami.lifecycle.scmPubCheckoutDirectory}</checkoutDirectory>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/lifecycle</pubScmUrl>
+            <checkinComment>Onami Lifecycle site deployment</checkinComment>
+            <content>${onami.lifecycle.siteFilePath}</content>
+            <tryUpdate>true</tryUpdate>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <locales>en</locales>
-          <skipDeploy>true</skipDeploy>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-descriptor</id>
-            <goals>
-              <goal>attach-descriptor</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>stage-for-scm-publish</id>
-            <phase>post-site</phase>
-            <goals>
-              <goal>stage</goal>
-            </goals>
-            <configuration>
-              <skipDeploy>false</skipDeploy>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-scm-publish-plugin</artifactId>
-        <inherited>false</inherited>
-        <configuration>
-          <checkinComment>Onami Lifecycle site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-sites/onami-lifecycle-site</checkoutDirectory>
-        </configuration>
-        <executions>
-          <execution>
-            <id>scm-publish</id>
-            <phase>site-deploy</phase>
-            <goals>
-              <goal>publish-scm</goal>
-            </goals>
-          </execution>
-        </executions>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>aggregate</report>
+              <report>test-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
     </plugins>
-  </build>
+  </reporting>
 
 </project>
