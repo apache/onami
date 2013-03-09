@@ -20,8 +20,10 @@ package org.apache.onami.lifecycle.core;
  */
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -41,27 +43,51 @@ public class DefaultStager<A extends Annotation>
      * @param stage the annotation that specifies this stage
      * @param mode  execution order
      */
-    public DefaultStager( Class<A> stage, Order mode )
+    protected DefaultStager( Class<A> stage, Order mode )
     {
         this.stage = stage;
 
         Queue<Stageable> localStageables;
-        if ( mode == Order.FIRST_IN_LAST_OUT )
+        switch ( mode )
         {
-            localStageables = Collections.asLifoQueue( new LinkedList<Stageable>() );
-        }
-        else
-        {
-            localStageables = new LinkedList<Stageable>();
+            case FIRST_IN_FIRST_OUT:
+            {
+                localStageables = new LinkedList<Stageable>();
+                break;
+            }
+
+            case FIRST_IN_LAST_OUT:
+            {
+                localStageables = Collections.asLifoQueue( new LinkedList<Stageable>() );
+                break;
+            }
+
+            default:
+            {
+                throw new IllegalArgumentException( "Unknown mode: " + mode );
+            }
         }
         stageables = localStageables;
     }
 
+    /**
+     * Allocate a new stager
+     *
+     * @param stage the stage annotation
+     * @return stager
+     */
     public static <A extends Annotation> Stager<A> newStager( Class<A> stage )
     {
         return newStager( stage, Order.FIRST_IN_FIRST_OUT );
     }
 
+    /**
+     * Allocate a new stager
+     *
+     * @param stage the stage annotation
+     * @param mode  execution order
+     * @return stager
+     */
     public static <A extends Annotation> Stager<A> newStager( Class<A> stage, Order mode )
     {
         return new DefaultStager<A>( stage, mode );
@@ -72,7 +98,7 @@ public class DefaultStager<A extends Annotation>
      */
     public synchronized void register( Stageable stageable )
     {
-        stageables.offer( stageable );
+        stageables.add( stageable );
     }
 
     /**
@@ -86,16 +112,23 @@ public class DefaultStager<A extends Annotation>
     /**
      * {@inheritDoc}
      */
-    public synchronized void stage( StageHandler stageHandler )
+    public void stage( StageHandler stageHandler )
     {
         if ( stageHandler == null )
         {
             stageHandler = new NoOpStageHandler();
         }
 
-        while ( !stageables.isEmpty() )
+        List<Stageable> localStageables;
+        synchronized ( this )
         {
-            stageables.remove().stage( stageHandler );
+            localStageables = new ArrayList<Stageable>(stageables);
+            stageables.clear();
+        }
+
+        for ( Stageable stageable : localStageables )
+        {
+            stageable.stage( stageHandler );
         }
     }
 
