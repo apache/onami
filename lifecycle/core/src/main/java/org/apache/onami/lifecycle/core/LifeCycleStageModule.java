@@ -113,7 +113,9 @@ public final class LifeCycleStageModule<A extends Annotation>
         MoreTypes.ParameterizedTypeImpl parameterizedType =
             new MoreTypes.ParameterizedTypeImpl( null, Stager.class, stage );
         //noinspection unchecked
-        return (TypeLiteral<Stager<A>>) TypeLiteral.get( parameterizedType );
+        @SuppressWarnings( "unchecked" ) // TODO
+        TypeLiteral<Stager<A>> stagerType = (TypeLiteral<Stager<A>>) TypeLiteral.get( parameterizedType );
+        return stagerType;
     }
 
     /**
