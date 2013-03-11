@@ -124,7 +124,7 @@ public final class LifeCycleStageModule<A extends Annotation>
     @Override
     protected void configure()
     {
-        binder().bind( type( stager.getStage() ) ).toInstance( stager );
+        bind( type( stager.getStage() ) ).toInstance( stager );
 
         bindListener( getTypeMatcher(), new AbstractMethodTypeListener( getAnnotationTypes() )
         {
