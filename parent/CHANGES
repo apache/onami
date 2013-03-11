@@ -22,6 +22,21 @@
 
 ===========================================================================================
 
+    3-incubating - 2013-03-11 (yyyy-MM-dd)
+
+Bug
+[ONAMI-53] - Add lifecycle-mapping in onami-parent to avoid red cross in m2eclipse
+[ONAMI-54] - Move extensions list menu item from parent site descriptor to site
+
+Dependency upgrade
+[ONAMI-30] - Upgrade JUnit and doclava in parent POM
+
+Improvement
+[ONAMI-78] - Enable the sources.jar generation during SNAPSHOT builds
+[ONAMI-81] - Remove nouses directive from the maven-bundle-plguin configuration
+
+===========================================================================================
+
     2-incubating - 2013-01-19 (yyyy-MM-dd)
 
 Bug
