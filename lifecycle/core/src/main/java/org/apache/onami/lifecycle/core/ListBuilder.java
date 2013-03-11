@@ -73,7 +73,12 @@ public class ListBuilder
         return new ArrayList<Class<? extends Annotation>>( list );
     }
 
+    /**
+     * Hidden constructor, this class must be not instantiated directly.
+     */
     private ListBuilder()
     {
+        // do nothing
     }
+
 }
