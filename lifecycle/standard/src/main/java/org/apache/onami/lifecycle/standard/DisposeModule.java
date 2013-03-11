@@ -82,7 +82,7 @@ public class DisposeModule
     @Override
     protected void configure()
     {
-        bind(Disposer.class).toInstance( disposer );
+        bind( Disposer.class ).toInstance( disposer );
         install( lifeCycleStageModule );
     }
 
