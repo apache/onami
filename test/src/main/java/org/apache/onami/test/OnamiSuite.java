@@ -44,11 +44,11 @@ import org.apache.onami.test.mock.MockEngine;
 import org.apache.onami.test.mock.guice.MockTypeListener;
 import org.apache.onami.test.reflection.ClassVisitor;
 import org.apache.onami.test.reflection.HandleException;
+import org.junit.runner.Runner;
 import org.junit.runner.notification.RunNotifier;
-import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.Suite;
-import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
+import org.junit.runners.model.RunnerBuilder;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -60,7 +60,7 @@ import com.google.inject.util.Modules;
 
 /**
  * <p>
- * It's a {@link BlockJUnit4ClassRunner} runner.
+ * It's a {@link Suite} runner.
  * </p>
  * <p>
  * This class creates a Google Guice {@link Injector} configured by {@link GuiceModules} annotation (only fr modules
@@ -71,8 +71,9 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;org.junit.runner.RunWith( OnamiRunner.class )
+ * &#064;org.junit.runner.RunWith( OnamiSuite.class )
  * &#064;GuiceModules( SimpleModule.class )
+ * &#064;SuiteClasses({ .class })
  * public class AcmeTestCase
  * {
  * 
@@ -91,7 +92,7 @@ import com.google.inject.util.Modules;
  * 
  * <pre>
  * 
- * &#064;org.junit.runner.RunWith( OnamiRunner.class )
+ * &#064;org.junit.runner.RunWith( OnamiSuite.class )
  * public class AcmeTestCase
  *     extends com.google.inject.AbstractModule
  * {
@@ -122,11 +123,11 @@ import com.google.inject.util.Modules;
  * 
  * @see GuiceMockModule
  */
-public class OnamiRunner
-    extends BlockJUnit4ClassRunner
+public class OnamiSuite
+    extends Suite
 {
 
-    private static final Logger LOGGER = Logger.getLogger( OnamiRunner.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( OnamiSuite.class.getName() );
 
     private Injector injector;
 
@@ -136,6 +137,13 @@ public class OnamiRunner
 
     private MockType mockFramework = MockType.EASY_MOCK;
 
+    private static Class<?>[] getAnnotatedClasses(Class<?> klass) throws InitializationError {
+        SuiteClasses annotation= klass.getAnnotation(SuiteClasses.class);
+        if (annotation == null)
+            throw new InitializationError(String.format("class '%s' must have a SuiteClasses annotation", klass.getName()));
+        return annotation.value();
+    }
+
     /**
      * OnamiRunner constructor to create the core JUnice class.
      * 
@@ -143,55 +151,33 @@ public class OnamiRunner
      * @param klass The test case class to run.
      * @throws org.junit.runners.model.InitializationError if any error occurs.
      */
-    public OnamiRunner( Class<?> klass )
+    public OnamiSuite( Class<?> klass, RunnerBuilder builder )
         throws InitializationError
     {
-        super( klass );
+        this(builder, klass, getAnnotatedClasses(klass));
 
-        try
-        {
-            if ( LOGGER.isLoggable( Level.FINER ) )
-            {
-                LOGGER.finer( "Inizializing injector for test class: " + klass.getName() );
-            }
-
-            this.allModules = inizializeInjector( klass );
-
-            if ( LOGGER.isLoggable( Level.FINER ) )
-            {
-                LOGGER.finer( "done..." );
-            }
-        }
-        catch ( Exception e )
-        {
-            final List<Throwable> throwables = new LinkedList<Throwable>();
-            throwables.add( e );
-            throw new InitializationError( throwables );
-        }
     }
 
     /**
-     * OnamiRunner constructor to create the runner needed
-     * by the OnamiSuite class.
+     * Called by this class and subclasses once the classes making up the suite have been determined
      * 
-     * @see org.junit.runner.RunWith
-     * @param suite The suite test case class to run.
-     * @param test The test case class to run.
-     * @throws org.junit.runners.model.InitializationError if any error occurs.
+     * @param builder builds runners for classes in the suite
+     * @param klass the root of the suite
+     * @param suiteClasses the classes in the suite
+     * @throws InitializationError
      */
-    public OnamiRunner( Class<?> suite, Class<?> test )
-        throws InitializationError
+    protected OnamiSuite( RunnerBuilder builder, Class<?> suite, Class<?>[] suiteClasses ) 
+        throws InitializationError 
     {
-        super( test );
-
+        super( suite, runners( suite, suiteClasses ) );
         try
         {
             if ( LOGGER.isLoggable( Level.FINER ) )
             {
-                LOGGER.finer( "Inizializing injector for test class: " + test.getName() );
+                LOGGER.finer( "Inizializing injector for siote class: " + suite.getName() );
             }
 
-            this.allModules = inizializeInjector( suite, test );
+            this.allModules = inizializeInjector( suite );
 
             if ( LOGGER.isLoggable( Level.FINER ) )
             {
@@ -205,7 +191,7 @@ public class OnamiRunner
             throw new InitializationError( throwables );
         }
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -227,6 +213,16 @@ public class OnamiRunner
         }
     }
 
+    private static List<Runner> runners( Class<?> suite, Class<?>[] children ) throws InitializationError {
+        ArrayList<Runner> runners= new ArrayList<Runner>();
+        for (Class<?> each : children) {
+            Runner childRunner= new OnamiRunner( suite, each );
+            if (childRunner != null)
+                runners.add(childRunner);
+        }
+        return runners;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -238,36 +234,20 @@ public class OnamiRunner
     }
 
     @Override
-    protected void runChild( FrameworkMethod method, RunNotifier notifier )
+    protected void runChild( Runner runner, RunNotifier notifier )
     {
         if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            LOGGER.finer( " +++ invoke test method: " + method.getName() + " +++ " );
+            LOGGER.finer( " +++ invoke runner: " + runner + " +++ " );
         }
 
-        super.runChild( method, notifier );
+        super.runChild( runner, notifier );
         resetAllResetAfterMocks();
 
         if ( LOGGER.isLoggable( Level.FINER ) )
         {
-            LOGGER.finer( " --- end test method: " + method.getName() + " --- " );
+            LOGGER.finer( " --- end runner: " + runner + " --- " );
         }
-    }
-
-    /**
-     * Creates test instance via Google-Guice to inject all not-static dependencies.
-     * @return The instance of the test case.
-     * @throws Exception when an error occurs.
-     */
-    @Override
-    protected Object createTest()
-        throws Exception
-    {
-        if ( LOGGER.isLoggable( Level.FINER ) )
-        {
-            LOGGER.finer( " Create and inject test class: " + getTestClass().getJavaClass() );
-        }
-        return this.injector.getInstance( getTestClass().getJavaClass() );
     }
 
     /**
@@ -279,30 +259,6 @@ public class OnamiRunner
     protected Injector createInjector( List<Module> modules )
     {
         return Guice.createInjector( modules );
-    }
-
-    /**
-     * This method collects modules from {@link GuiceModules}, {@link GuiceProvidedModules}, {@link Mock}
-     * and {@ OnamiSuite}.
-     *
-     * @param <T> whatever input type is accepted
-     * @param suite the input suite to be analyzed
-     * @param test the input class has to be analyzed
-     * @return a List of Guice Modules built after input class analysis.
-     * @throws IllegalAccessException when a n error occurs.
-     * @throws InstantiationException when a n error occurs.
-     * @throws HandleException when a n error occurs.
-     */
-    protected <T> List<Module> inizializeInjector( Class<?> suite, Class<T> test)
-        throws HandleException, InstantiationException, IllegalAccessException
-    {
-        final List<Module> modules = inizializeInjector(test);
-        Module m = visitClass( suite );
-        if ( m != null )
-        {
-            modules.add( m );
-        }
-        return modules;
     }
 
     /**
