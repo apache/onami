@@ -26,7 +26,6 @@ import org.apache.onami.lifecycle.core.StageHandler;
 import org.apache.onami.lifecycle.core.Stageable;
 import org.apache.onami.lifecycle.core.StageableTypeMapper;
 import org.apache.onami.lifecycle.core.Stager;
-import sun.java2d.Disposer;
 
 import java.lang.annotation.Annotation;
 import java.util.Collections;
@@ -38,11 +37,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-/**
- * Default {@link Disposer} implementation.
- *
- * @since 0.2.0
- */
 public class WarmUper<A extends Annotation>
     implements Stager<A>, StageableTypeMapper<A>
 {

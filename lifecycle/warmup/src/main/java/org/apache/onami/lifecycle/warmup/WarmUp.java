@@ -26,6 +26,10 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Marks a method as a warm up method. Onami will execute warm up methods
+ * in parallel via the {@link WarmUpModule}.
+ */
 @Documented
 @Retention( RUNTIME )
 @Target( METHOD )
