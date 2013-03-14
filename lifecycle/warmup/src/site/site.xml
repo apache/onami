@@ -28,6 +28,7 @@
 
     <menu name="Apache Onami™ Lifecycle Warm Up">
       <item name="Home" href="index.html" />
+      <item name="User Guide" href="warmup.html" />
     </menu>
 
     <menu ref="reports"/>
