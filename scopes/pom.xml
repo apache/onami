@@ -128,7 +128,7 @@
         <artifactId>maven-scm-publish-plugin</artifactId>
         <inherited>false</inherited>
         <configuration>
-          <checkinComment>Onami Scheduler site deployment</checkinComment>
+          <checkinComment>Onami Scopes site deployment</checkinComment>
           <checkoutDirectory>${user.home}/onami-sites/onami-scopes-site</checkoutDirectory>
         </configuration>
         <executions>
