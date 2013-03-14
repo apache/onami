@@ -30,6 +30,8 @@
 
   <artifactId>org.apache.onami.lifecycle.standard</artifactId>
 
+  <name>Apache Onami-Lifecycle Standard</name>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.onami</groupId>

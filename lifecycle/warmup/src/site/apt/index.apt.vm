@@ -38,6 +38,9 @@ Welcome to Apache Onami-Lifecycle Warm Up!
 
  * Objects B and C’s warm up methods will execute in parallel.
 
+ Warm up methods are use for things such as cache warming, etc. i.e. tasks that happen after an
+ object is constructed, that take some time and can execute in parallel.
+
 Before starting
 
   Lifecycle Warm Up is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:

@@ -26,6 +26,8 @@
 
 Welcome to ${project.name}!
 
-  This is the parent project for Onami modules related to lifecycle management.
-  Select one of the modules in the menu at the left for details on the various
-  components that make up Onami Lifecycle.
+  The Lifecycle Core module is the basis for the other Onami Lifecycle
+  modules. It contains common functionality. As such, you may not use
+  it directly. However, you can use it as the basis for your own
+  Lifecycle modules. Use the Onami Lifecycle modules as examples.
+      

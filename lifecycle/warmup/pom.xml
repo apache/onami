@@ -12,6 +12,8 @@
 
   <artifactId>org.apache.onami.lifecycle.warmup</artifactId>
 
+  <name>Apache Onami-Lifecycle Warm Up</name>
+
   <dependencies>
     <dependency>
       <!-- if you are using Java 7 you can remove this and switch to the JDK version -->

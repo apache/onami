@@ -30,4 +30,6 @@
 
   <artifactId>org.apache.onami.lifecycle.core</artifactId>
 
+  <name>Apache Onami-Lifecycle Core</name>
+
 </project>

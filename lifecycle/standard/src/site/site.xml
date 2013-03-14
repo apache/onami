@@ -26,12 +26,14 @@
       <link rel="meta" title="DOAP" href="${project.url}/doap.rdf" type="application/rdf+xml" />
     </head>
 
-    <menu name="Apache Onami™ Lifecycle">
+    <menu name="Apache Onami™ Lifecycle Standard">
       <item name="Home" href="index.html" />
+      <item name="After Injection" href="after-injection.html" />
+      <item name="Dispose" href="dispose.html" />
+      <item name="Back" href="../index.html" />
     </menu>
 
-    <menu ref="modules" />
-    <menu ref="reports" />
+    <menu ref="reports"/>
 
     <footer>
       <div class="row span12">

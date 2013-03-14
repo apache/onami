@@ -26,6 +26,32 @@
 
 Welcome to ${project.name}!
 
-  This is the parent project for Onami modules related to lifecycle management.
-  Select one of the modules in the menu at the left for details on the various
-  components that make up Onami Lifecycle.
+  People often complained the Google Guice lack of support of EJB3.0 <<<@PostConstruct>>> and <<<@PreDestroy>>>
+  annotations to manage the injected objects lifecycle.
+
+  This small library aims to add that support in a lightweight yet dynamic way, allowing users define the annotations
+  type they want to use to mark methods to execute once the injection is performed and when shutting down the
+  application.
+
+Before starting
+
+  ${project.name} is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
+
++--------------------------------------+
+<dependencies>
+  ...
+  <dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}</version>
+  </dependency>
+  ...
+</dependencies>
++--------------------------------------+
+
+Features
+
+ * {{{./after-injection.html}After Injection support}}
+
+ * {{{./dispose.html}Dispose support}}
+
