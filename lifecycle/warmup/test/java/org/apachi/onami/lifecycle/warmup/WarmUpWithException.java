@@ -1,4 +1,4 @@
-package org.apache.onami.lifecycle.warmup;
+package org.apachi.onami.lifecycle.warmup;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,17 +19,18 @@ package org.apache.onami.lifecycle.warmup;
  * under the License.
  */
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import org.apache.onami.lifecycle.warmup.WarmUp;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@Documented
-@Retention( RUNTIME )
-@Target( METHOD )
-public @interface WarmUp
+public class WarmUpWithException
 {
+    @WarmUp
+    public void warmUp()
+    {
+        System.out.println( getNull().toString() );   // generate NPE
+    }
 
+    private Object getNull()
+    {
+        return null;
+    }
 }

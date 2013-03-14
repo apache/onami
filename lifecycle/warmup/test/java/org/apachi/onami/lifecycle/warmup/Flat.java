@@ -1,4 +1,4 @@
-package org.apache.onami.lifecycle.warmup;
+package org.apachi.onami.lifecycle.warmup;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,17 +19,38 @@ package org.apache.onami.lifecycle.warmup;
  * under the License.
  */
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import com.google.inject.Singleton;
+import org.apache.onami.lifecycle.warmup.WarmUp;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@Documented
-@Retention( RUNTIME )
-@Target( METHOD )
-public @interface WarmUp
+public class Flat
 {
+    /*
+        Root classes without dependencies
+     */
 
+    @Singleton
+    public static class A
+    {
+        public volatile Recorder recorder;
+
+        @WarmUp
+        public void warmUp()
+            throws InterruptedException
+        {
+            recorder.record( "A" );
+        }
+    }
+
+    @Singleton
+    public static class B
+    {
+        public volatile Recorder recorder;
+
+        @WarmUp
+        public void warmUp()
+            throws InterruptedException
+        {
+            recorder.record( "B" );
+        }
+    }
 }
