@@ -34,6 +34,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
+/**
+ * Fork-join task that performs the warm ups
+ */
 class WarmUpTask
     extends RecursiveAction
 {
@@ -45,6 +48,14 @@ class WarmUpTask
 
     private final ConcurrentMap<TypeLiteral<?>, WarmUpTask> inProgress;
 
+    static final TypeLiteral<?> ROOT = new TypeLiteral<Object>(){};
+
+    /**
+     * @param stageHandler the stage handler passed to {@link org.apache.onami.lifecycle.core.Stager#stage(org.apache.onami.lifecycle.core.StageHandler)}
+     * @param typeLiteral the type associated with the object being warmed up
+     * @param reverseLookup the full list of types-to-stagers that were registered
+     * @param inProgress which tasks are already warming up (to avoid duplicates)
+     */
     WarmUpTask( StageHandler stageHandler, TypeLiteral<?> typeLiteral,
                 Map<TypeLiteral<?>, Set<Stageable>> reverseLookup, ConcurrentMap<TypeLiteral<?>, WarmUpTask> inProgress )
     {
@@ -58,8 +69,9 @@ class WarmUpTask
     protected void compute()
     {
         List<WarmUpTask> tasksToJoin = new ArrayList<WarmUpTask>();
-        if ( typeLiteral == null )
+        if ( typeLiteral == ROOT )
         {
+            // this is the root task - just start all the known tasks
             computeRoot( tasksToJoin );
         }
         else
@@ -67,10 +79,13 @@ class WarmUpTask
             internalCompute( tasksToJoin );
         }
 
+        // wait for dependent tasks to finish
         for ( WarmUpTask task : tasksToJoin )
         {
             task.join();
         }
+
+        // finally do the execution
 
         Set<Stageable> stageables = reverseLookup.get( typeLiteral );
         if ( stageables != null )
@@ -88,11 +103,6 @@ class WarmUpTask
         {
             WarmUpTask warmUpTask = new WarmUpTask( stageHandler, typeLiteral, reverseLookup, inProgress );
             startTask( tasksToJoin, warmUpTask );
-        }
-
-        for ( WarmUpTask task : tasksToJoin )
-        {
-            task.join();
         }
     }
 
@@ -132,6 +142,9 @@ class WarmUpTask
             List<Dependency<?>> dependencies = injectionPoint.getDependencies();
             for ( Dependency<?> dependency : dependencies )
             {
+                // create a task for any dependencies. Note: even if the dependency isn't
+                // a registered stager it must be created as a task as its dependencies
+                // may be stagers
                 TypeLiteral<?> dependencyTypeLiteral = dependency.getKey().getTypeLiteral();
                 childTasks.add(
                     new WarmUpTask( stageHandler, dependencyTypeLiteral, reverseLookup, inProgress ) );

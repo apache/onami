@@ -30,6 +30,9 @@ import java.util.concurrent.TimeUnit;
 
 import static com.google.inject.matcher.Matchers.any;
 
+/**
+ * The module for preparing for warm ups.
+ */
 public class WarmUpModule<A extends Annotation>
     extends AbstractModule
 {
@@ -37,6 +40,12 @@ public class WarmUpModule<A extends Annotation>
 
     private static final long DEFAULT_WAIT_MS = TimeUnit.DAYS.toMillis( Integer.MAX_VALUE );    // essentially forever
 
+    /**
+     * Creates a new module which register methods annotated with input annotation on methods
+     * in types filtered by the input matcher.
+     *
+     * @param stage       the annotation to be searched.
+     */
     public WarmUpModule( Class<A> stage )
     {
         this( stage, any() );
@@ -46,7 +55,7 @@ public class WarmUpModule<A extends Annotation>
      * Creates a new module which register methods annotated with input annotation on methods
      * in types filtered by the input matcher.
      *
-     * @param stage       the <i>Dispose</i> annotation to be searched.
+     * @param stage       the annotation to be searched.
      * @param typeMatcher the filter for injectee types.
      */
     public WarmUpModule( Class<A> stage, Matcher<? super TypeLiteral<?>> typeMatcher )
@@ -57,22 +66,44 @@ public class WarmUpModule<A extends Annotation>
                 stager ).build();
     }
 
+    /**
+     * Return a new standard warm up module
+     *
+     * @return warm up module
+     */
     public static WarmUpModule<WarmUp> newWarmUpModule()
     {
         return new WarmUpModule<WarmUp>( WarmUp.class );
     }
 
+    /**
+     * Return a new standard warm up module
+     *
+     * @param typeMatcher     the filter for injectee types.
+     * @return warm up module
+     */
     public static WarmUpModule<WarmUp> newWarmUpModule( Matcher<? super TypeLiteral<?>> typeMatcher )
     {
         return new WarmUpModule<WarmUp>( WarmUp.class, typeMatcher );
     }
 
+    /**
+     * Allows one to create WarmUpModule with builder pattern.
+     *
+     * @return builder for WarmUpModule.
+     */
     public static Builder<WarmUp> builder()
     {
         WarmUper<WarmUp> stager = new WarmUper<WarmUp>( WarmUp.class, DEFAULT_WAIT_MS );
         return new Builder<WarmUp>( WarmUp.class, stager ).withTypeMapper( stager );
     }
 
+    /**
+     * Allows one to create WarmUpModule with builder pattern.
+     *
+     * @param stage       the annotation to be searched.
+     * @return builder for WarmUpModule.
+     */
     public static <A extends Annotation> Builder<A> builder( Class<A> stage )
     {
         WarmUper<A> stager = new WarmUper<A>( stage, DEFAULT_WAIT_MS );

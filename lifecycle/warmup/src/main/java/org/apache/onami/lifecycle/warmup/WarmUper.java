@@ -37,6 +37,10 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * A {@link Stager} that handles the warm up process. For Warm Up, you
+ * <strong>must</strong> use WarmUper.
+ */
 public class WarmUper<A extends Annotation>
     implements Stager<A>, StageableTypeMapper<A>
 {
@@ -47,6 +51,13 @@ public class WarmUper<A extends Annotation>
 
     private volatile long maxMs;
 
+    /**
+     * @param stage the annotation to mark this stage
+     * @param maxMs when {@link #stage()} is called, this is the maximum time
+     *              to wait for warmups to complete. If time expires, a
+     *              {@link TimeoutException} (wrapped in a {@link RuntimeException}
+     *              is thrown.
+     */
     public WarmUper( Class<A> stage, long maxMs )
     {
         this.stage = stage;
@@ -55,7 +66,9 @@ public class WarmUper<A extends Annotation>
 
     /**
      * When the warm up is staged, it will wait until this maximum time for warm ups to finish.
-     * The default is to wait forever
+     * The default is to wait forever. If time expires, a
+     * {@link TimeoutException} (wrapped in a {@link RuntimeException}
+     * is thrown.
      *
      * @param maxWait max time to wait
      * @param unit    time unit
@@ -65,6 +78,9 @@ public class WarmUper<A extends Annotation>
         this.maxMs = unit.toMillis( maxWait );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public <I> void registerType( Stageable stageable, TypeLiteral<I> parentType )
     {
         Set<Stageable> newList = Collections.newSetFromMap( new ConcurrentHashMap<Stageable, Boolean>() );
@@ -74,16 +90,25 @@ public class WarmUper<A extends Annotation>
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void register( Stageable stageable )
     {
         // this is a NOP for warm up. Use registerType instead
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void stage()
     {
         stage( new NoOpStageHandler() );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void stage( StageHandler stageHandler )
     {
         Map<TypeLiteral<?>, Set<Stageable>> localCopy = new HashMap<TypeLiteral<?>, Set<Stageable>>();
@@ -92,7 +117,7 @@ public class WarmUper<A extends Annotation>
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         ConcurrentMap<TypeLiteral<?>, WarmUpTask> inProgress = new ConcurrentHashMap<TypeLiteral<?>, WarmUpTask>();
-        forkJoinPool.submit( new WarmUpTask( stageHandler, null, localCopy, inProgress ) );
+        forkJoinPool.submit( new WarmUpTask( stageHandler, WarmUpTask.ROOT, localCopy, inProgress ) );
         forkJoinPool.shutdown();
 
         try
@@ -111,6 +136,9 @@ public class WarmUper<A extends Annotation>
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Class<A> getStage()
     {
         return stage;
