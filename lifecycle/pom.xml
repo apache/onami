@@ -38,6 +38,7 @@
   <modules>
     <module>core</module>
     <module>standard</module>
+    <module>warmup</module>
   </modules>
 
   <scm>
