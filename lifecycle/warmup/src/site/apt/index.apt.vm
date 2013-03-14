@@ -24,7 +24,7 @@
 ~~ under the License.
 ~~
 
-Welcome to ${project.name}!
+Welcome to Apache Onami-Lifecycle Warm Up!
 
  Methods annotated with @WarmUp will be called in parallel
  (using the Java Fork-Join framework). Object
@@ -40,7 +40,7 @@ Welcome to ${project.name}!
 
 Before starting
 
-  ${project.name} is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
+  Lifecycle Warm Up is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
 
 +--------------------------------------+
 <dependencies>
@@ -64,4 +64,25 @@ Injector injector = Guice.createInjector( WarmUpModule().newWarmUpModule() );
 // ...
 Stager<WarmUp> warmUpStager = injector.get( LifeCycleStageModule.key(WarmUp.class) );
 warmUpStager.stage(); // causes all injected object's @WarmUp methods to get called
++--------------------------------------+
+
+ Of course, instead of getting the stager from the injector you can declare it as a dependency:
+
++--------------------------------------+
+public class MyClass
+{
+    private final Stager<WarmUp> stager;
+
+    @Inject
+    public MyClass(Stager<WarmUp> stager)
+    {
+        this.stager = stager;
+    }
+
+    @AfterInjection
+    public void start()
+    {
+        stager.stage();
+    }
+}
 +--------------------------------------+
