@@ -43,6 +43,7 @@
     <module>numbers</module>
     <module>sql</module>
     <module>system</module>
+    <module>all</module>
   </modules>
 
   <scm>
@@ -146,14 +147,5 @@
       </plugin>
     </plugins>
   </reporting>
-
-  <profiles>
-    <profile>
-      <id>release</id>
-      <modules>
-        <module>all</module>
-      </modules>
-    </profile>
-  </profiles>
 
 </project>
