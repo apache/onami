@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>2-incubating</version>
+    <version>3-incubating</version>
   </parent>
 
   <groupId>org.apache.onami.autobind</groupId>
