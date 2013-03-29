@@ -19,8 +19,8 @@ package org.apache.onami.converters.system;
  * under the License.
  */
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Properties;
 
 import org.apache.onami.converters.core.AbstractConverter;
@@ -39,43 +39,20 @@ public final class PropertiesConverter
 {
 
     /**
-     * Default properties encoding {@code ISO-8859-1}.
-     *
-     * Properties.load(stream) expects it.
-     */
-    private static final String PROPERTIES_ENCODING = "ISO-8859-1";
-
-    /**
      * {@inheritDoc}
      */
     public Object convert( String value, TypeLiteral<?> toType )
     {
         Properties properties = new Properties();
-        ByteArrayInputStream bais = null;
 
         try
         {
-            bais = new ByteArrayInputStream( value.getBytes( PROPERTIES_ENCODING ) );
-            properties.load( bais );
+            properties.load( new StringReader( value ) );
         }
         catch ( IOException e )
         {
             // Should never happen.
-            throw new ProvisionException( "Failed to parse " + value + "' into Properties", e );
-        }
-        finally
-        {
-            if ( bais != null )
-            {
-                try
-                {
-                    bais.close();
-                }
-                catch ( IOException e )
-                {
-                    // close quietly
-                }
-            }
+            throw new ProvisionException( "Failed to parse '" + value + "' into Properties", e );
         }
 
         return properties;
