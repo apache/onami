@@ -20,10 +20,8 @@ package org.apache.onami.lifecycle.core;
  */
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 /**
@@ -96,9 +94,12 @@ public class DefaultStager<A extends Annotation>
     /**
      * {@inheritDoc}
      */
-    public synchronized void register( Stageable stageable )
+    public void register( Stageable stageable )
     {
-        stageables.add( stageable );
+        synchronized ( stageables )
+        {
+            stageables.add( stageable );
+        }
     }
 
     /**
@@ -119,15 +120,17 @@ public class DefaultStager<A extends Annotation>
             stageHandler = new NoOpStageHandler();
         }
 
-        List<Stageable> localStageables;
-        synchronized ( this )
+        while ( true )
         {
-            localStageables = new ArrayList<Stageable>(stageables);
-            stageables.clear();
-        }
-
-        for ( Stageable stageable : localStageables )
-        {
+            Stageable stageable;
+            synchronized ( stageables )
+            {
+                stageable = stageables.poll();
+            }
+            if ( stageable == null )
+            {
+                break;
+            }
             stageable.stage( stageHandler );
         }
     }
