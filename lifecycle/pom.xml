@@ -26,7 +26,8 @@
     <version>3-incubating</version>
   </parent>
 
-  <artifactId>org.apache.onami.lifecycle</artifactId>
+  <groupId>org.apache.onami.lifecycle</groupId>
+  <artifactId>org.apache.onami.lifecycle.parent</artifactId>
   <version>0.2.0-incubating-SNAPSHOT</version>
   <packaging>pom</packaging>
 

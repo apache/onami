@@ -23,8 +23,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.onami</groupId>
-    <artifactId>org.apache.onami.lifecycle</artifactId>
+    <groupId>org.apache.onami.lifecycle</groupId>
+    <artifactId>org.apache.onami.lifecycle.parent</artifactId>
     <version>0.2.0-incubating-SNAPSHOT</version>
   </parent>
 
@@ -41,9 +41,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.onami</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>org.apache.onami.lifecycle.core</artifactId>
-      <version>0.2.0-incubating-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 </project>
