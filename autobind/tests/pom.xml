@@ -34,14 +34,12 @@
       <groupId>org.apache.onami.autobind.scanner</groupId>
       <artifactId>org.apache.onami.autobind.scanner.asm</artifactId>
       <version>${project.version}</version>
-      <type>jar</type>
       <scope>test</scope>
     </dependency>
     <dependency>
     	<groupId>org.apache.onami.autobind</groupId>
     	<artifactId>org.apache.onami.autobind.configuration</artifactId>
     	<version>${project.version}</version>
-      	<type>jar</type>
     </dependency>
   </dependencies>
 

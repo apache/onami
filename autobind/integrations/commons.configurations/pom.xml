@@ -46,14 +46,12 @@
       <groupId>commons-configuration</groupId>
       <artifactId>commons-configuration</artifactId>
       <version>1.6</version>
-      <scope>compile</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.onami.autobind.scanner</groupId>
       <artifactId>org.apache.onami.autobind.scanner.asm</artifactId>
       <version>${project.version}</version>
-      <type>jar</type>
       <scope>test</scope>
     </dependency>
   </dependencies>

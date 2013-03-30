@@ -41,14 +41,12 @@
       <groupId>${project.parent.groupId}</groupId>
       <artifactId>org.apache.onami.logging.core</artifactId>
       <version>${project.parent.version}</version>
-      <scope>compile</scope>
     </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
-      <scope>compile</scope>
     </dependency>
 
     <dependency>

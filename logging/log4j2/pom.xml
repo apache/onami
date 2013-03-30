@@ -40,7 +40,6 @@
       <groupId>${project.parent.groupId}</groupId>
       <artifactId>org.apache.onami.logging.core</artifactId>
       <version>${project.parent.version}</version>
-      <scope>compile</scope>
     </dependency>
 
     <dependency>

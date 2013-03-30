@@ -40,15 +40,12 @@
       <groupId>aopalliance</groupId>
       <artifactId>aopalliance</artifactId>
       <version>1.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.onami.autobind.scanner</groupId>
       <artifactId>org.apache.onami.autobind.scanner.asm</artifactId>
       <version>${project.version}</version>
-      <type>jar</type>
       <scope>test</scope>
     </dependency>
   </dependencies>

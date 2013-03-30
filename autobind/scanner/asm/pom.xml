@@ -39,7 +39,6 @@
       <groupId>org.apache.onami.autobind</groupId>
       <artifactId>org.apache.onami.autobind.configuration</artifactId>
       <version>${project.version}</version>
-      <type>jar</type>
       <!--scope>test</scope-->
     </dependency>
   </dependencies>

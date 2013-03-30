@@ -34,8 +34,6 @@
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
       <version>4.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>

@@ -34,7 +34,6 @@
       <groupId>org.apache.onami.autobind.scanner</groupId>
       <artifactId>org.apache.onami.autobind.scanner.asm</artifactId>
       <version>${project.version}</version>
-      <type>jar</type>
       <scope>test</scope>
     </dependency>
 
@@ -48,15 +47,12 @@
       <groupId>com.google.inject.extensions</groupId>
       <artifactId>guice-servlet</artifactId>
       <version>2.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
     </dependency>
 
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
       <version>6.0</version>
-      <type>jar</type>
       <scope>provided</scope>
     </dependency>
   </dependencies>
