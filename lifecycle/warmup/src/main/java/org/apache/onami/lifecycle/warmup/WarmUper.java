@@ -116,10 +116,15 @@ public class WarmUper<A extends Annotation>
         reverseLookup.clear();
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        ConcurrentMap<TypeLiteral<?>, WarmUpTask> inProgress = new ConcurrentHashMap<TypeLiteral<?>, WarmUpTask>();
-        forkJoinPool.submit( new WarmUpTask( stageHandler, WarmUpTask.ROOT, localCopy, inProgress ) );
-        forkJoinPool.shutdown();
-
+        try
+        {
+            ConcurrentMap<TypeLiteral<?>, WarmUpTask> inProgress = new ConcurrentHashMap<TypeLiteral<?>, WarmUpTask>();
+            forkJoinPool.submit( new WarmUpTask( stageHandler, WarmUpTask.ROOT, localCopy, inProgress ) );
+        }
+        finally
+        {
+            forkJoinPool.shutdown();
+        }
         try
         {
             boolean success = forkJoinPool.awaitTermination( maxMs, TimeUnit.MILLISECONDS );
