@@ -63,7 +63,6 @@ public class Recorder
         catch ( InterruptedException e )
         {
             interruptions.add( s );
-            Thread.currentThread().interrupt();
             throw e;
         }
         finally
