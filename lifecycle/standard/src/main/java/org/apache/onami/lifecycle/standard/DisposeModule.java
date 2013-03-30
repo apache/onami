@@ -64,14 +64,22 @@ public class DisposeModule
                 .build();
     }
 
-    @SuppressWarnings( "unchecked" )
     protected DisposeModule( Builder builder )
     {
         disposer = builder.disposer;
-        StagerWrapper wrapper = new StagerWrapper( builder.disposer, builder.disposeAnnotationType );
-        lifeCycleStageModule =
-            LifeCycleStageModule.builder( builder.disposeAnnotationType ).withStager( wrapper ).withTypeMatcher(
-                builder.typeMatcher ).build();
+        lifeCycleStageModule = buildModule( builder.disposer, builder.disposeAnnotationType,
+                builder.typeMatcher );
+    }
+
+    // Wildcard capturing method. Bloch, item 28.
+    private static <A extends Annotation> LifeCycleStageModule<A> buildModule( Disposer disposer,
+    	    Class<A> stage, Matcher<? super TypeLiteral<?>> typeMatcher )
+    {
+    	StagerWrapper<A> wrapper = new StagerWrapper<A>( disposer, stage );
+    	return LifeCycleStageModule.builder( stage )
+                .withStager( wrapper )
+                .withTypeMatcher( typeMatcher )
+                .build();
     }
 
     public static Builder builder()

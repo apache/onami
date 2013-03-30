@@ -12,7 +12,7 @@ class StagerWrapper<A extends Annotation> implements Stager<A>
 
     private final Class<A> stage;
 
-    StagerWrapper(Disposer disposer, Class<A> stage)
+    StagerWrapper( Disposer disposer, Class<A> stage )
     {
         this.disposer = disposer;
         this.stage = stage;
