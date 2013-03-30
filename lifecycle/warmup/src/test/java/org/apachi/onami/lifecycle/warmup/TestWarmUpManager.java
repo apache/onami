@@ -242,6 +242,13 @@ public class TestWarmUpManager
             succeeded = false;
             Assert.assertTrue( e.getCause() instanceof TimeoutException );
         }
+
+        // Wait for all interrupted warmup tasks to finish
+        // and add themselfs to recorder.
+        // This fixes race between test thread and interrupted tasks
+        // threads. This workaround is good enough for test.
+        Thread.sleep( 1000 );
+
         Recorder recorder = injector.getInstance( Recorder.class );
 
         System.out.println( recorder.getRecordings() );

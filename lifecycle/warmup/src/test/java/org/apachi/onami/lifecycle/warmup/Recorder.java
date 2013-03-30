@@ -52,13 +52,13 @@ public class Recorder
 
         recordings.add( s );
 
-        Long sleepMs = recorderSleepSettings.getSleepMsFor( s );
+        long sleepMs = recorderSleepSettings.getSleepMsFor( s );
 
         activeConcurrents.add( s );
         try
         {
             concurrents.add( new HashSet<String>( activeConcurrents ) );
-            wait( sleepMs );
+            Thread.sleep( sleepMs );
         }
         catch ( InterruptedException e )
         {
