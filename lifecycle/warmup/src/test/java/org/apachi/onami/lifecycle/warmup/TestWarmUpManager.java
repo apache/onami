@@ -55,7 +55,7 @@ public class TestWarmUpManager
             @Override
             protected void configure()
             {
-                binder().bind( WarmUpWithException.class ).asEagerSingleton();
+                bind( WarmUpWithException.class ).asEagerSingleton();
             }
         };
         Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule(), module );
