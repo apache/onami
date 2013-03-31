@@ -85,8 +85,8 @@ class ConcurrentLazySingletonScopeImpl
 
                 Object localInstance = instance;
                 // This is safe because instance has type T or is equal to NULL
-                @SuppressWarnings( { "unchecked", "UnnecessaryLocalVariable" } ) T returnedInstance =
-                    ( localInstance != NULL ) ? (T) localInstance : null;
+                @SuppressWarnings( { "unchecked", "UnnecessaryLocalVariable" } )
+                T returnedInstance = ( localInstance != NULL ) ? (T) localInstance : null;
                 return returnedInstance;
             }
 
