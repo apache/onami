@@ -19,17 +19,9 @@ package org.apachi.onami.lifecycle.warmup;
  * under the License.
  */
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import org.apache.onami.lifecycle.core.LifeCycleStageModule;
-import org.apache.onami.lifecycle.core.StageHandler;
-import org.apache.onami.lifecycle.core.Stager;
-import org.apache.onami.lifecycle.warmup.WarmUp;
-import org.apache.onami.lifecycle.warmup.WarmUpModule;
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -37,6 +29,18 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.apache.onami.lifecycle.core.LifeCycleStageModule;
+import org.apache.onami.lifecycle.core.StageHandler;
+import org.apache.onami.lifecycle.core.Stager;
+import org.apache.onami.lifecycle.warmup.WarmUp;
+import org.apache.onami.lifecycle.warmup.WarmUpModule;
+import org.junit.Test;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Module;
 
 public class TestWarmUpManager
 {
@@ -69,7 +73,7 @@ public class TestWarmUpManager
             }
         };
         injector.getInstance( LifeCycleStageModule.key( WarmUp.class ) ).stage( stageHandler );
-        Assert.assertEquals( errorCount.get(), 1 );
+        assertEquals( errorCount.get(), 1 );
     }
 
     @Test
@@ -88,7 +92,7 @@ public class TestWarmUpManager
         assertNotConcurrent( recorder, "A", "B" );
         assertNotConcurrent( recorder, "A", "C" );
 
-        Assert.assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( recorder.getInterruptions().size(), 0 );
         assertOrdering( recorder, "A", "B" );
         assertOrdering( recorder, "A", "C" );
     }
@@ -122,7 +126,7 @@ public class TestWarmUpManager
         assertNotConcurrent( recorder, "B3", "C3" );
         assertNotConcurrent( recorder, "B4", "C3" );
 
-        Assert.assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( recorder.getInterruptions().size(), 0 );
         assertOrdering( recorder, "A1", "B1" );
         assertOrdering( recorder, "B1", "C1" );
         assertOrdering( recorder, "A1", "B2" );
@@ -156,7 +160,7 @@ public class TestWarmUpManager
         assertNotConcurrent( recorder, "A", "B" );
         assertNotConcurrent( recorder, "A", "C" );
 
-        Assert.assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( recorder.getInterruptions().size(), 0 );
         assertOrdering( recorder, "A", "C" );
         assertOrdering( recorder, "C", "D" );
         assertOrdering( recorder, "A", "D" );
@@ -187,7 +191,7 @@ public class TestWarmUpManager
         System.out.println( recorder.getConcurrents() );
 
         assertSingleExecution( recorder );
-        Assert.assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( recorder.getInterruptions().size(), 0 );
         assertOrdering( recorder, "D", "E" );
         assertOrdering( recorder, "C", "E" );
         assertOrdering( recorder, "B", "D" );
@@ -208,9 +212,9 @@ public class TestWarmUpManager
         System.out.println( recorder.getConcurrents() );
 
         assertSingleExecution( recorder );
-        Assert.assertEquals( recorder.getInterruptions().size(), 0 );
-        Assert.assertTrue( recorder.getRecordings().indexOf( "A" ) >= 0 );
-        Assert.assertTrue( recorder.getRecordings().indexOf( "B" ) >= 0 );
+        assertEquals( recorder.getInterruptions().size(), 0 );
+        assertTrue( recorder.getRecordings().indexOf( "A" ) >= 0 );
+        assertTrue( recorder.getRecordings().indexOf( "B" ) >= 0 );
     }
 
     @Test
@@ -241,7 +245,7 @@ public class TestWarmUpManager
         catch ( RuntimeException e )
         {
             succeeded = false;
-            Assert.assertTrue( e.getCause() instanceof TimeoutException );
+            assertTrue( e.getCause() instanceof TimeoutException );
         }
 
         // Wait for all interrupted warmup tasks to finish
@@ -256,9 +260,9 @@ public class TestWarmUpManager
         System.out.println( recorder.getConcurrents() );
 
         assertSingleExecution( recorder );
-        Assert.assertFalse( succeeded );
-        Assert.assertTrue( recorder.getRecordings().contains( "B" ) );
-        Assert.assertEquals( recorder.getInterruptions(), Arrays.asList( "C" ) );
+        assertFalse( succeeded );
+        assertTrue( recorder.getRecordings().contains( "B" ) );
+        assertEquals( recorder.getInterruptions(), Arrays.asList( "C" ) );
     }
 
     private void assertSingleExecution( Recorder recorder )
@@ -266,7 +270,7 @@ public class TestWarmUpManager
         Set<String> duplicateCheck = new HashSet<String>();
         for ( String s : recorder.getRecordings() )
         {
-            Assert.assertFalse( s + " ran more than once: " + recorder.getRecordings(), duplicateCheck.contains( s ) );
+            assertFalse( s + " ran more than once: " + recorder.getRecordings(), duplicateCheck.contains( s ) );
             duplicateCheck.add( s );
         }
     }
@@ -276,9 +280,9 @@ public class TestWarmUpManager
         int baseIndex = recorder.getRecordings().indexOf( base );
         int dependencyIndex = recorder.getRecordings().indexOf( dependency );
 
-        Assert.assertTrue( baseIndex >= 0 );
-        Assert.assertTrue( dependencyIndex >= 0 );
-        Assert.assertTrue( "baseIndex: " + baseIndex + " - dependencyIndex: " + dependencyIndex,
+        assertTrue( baseIndex >= 0 );
+        assertTrue( dependencyIndex >= 0 );
+        assertTrue( "baseIndex: " + baseIndex + " - dependencyIndex: " + dependencyIndex,
                            baseIndex > dependencyIndex );
     }
 
@@ -286,7 +290,7 @@ public class TestWarmUpManager
     {
         for ( Set<String> s : recorder.getConcurrents() )
         {
-            Assert.assertTrue( String.format( "Incorrect concurrency for %s and %s: %s", task1, task2, s ),
+            assertTrue( String.format( "Incorrect concurrency for %s and %s: %s", task1, task2, s ),
                                !s.contains( task1 ) || !s.contains( task2 ) );
         }
     }
