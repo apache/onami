@@ -40,6 +40,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestWarmUpManager
 {
+
     @SuppressWarnings( "ThrowableResultOfMethodCallIgnored" )
     @Test
     public void testErrors()
@@ -289,4 +290,5 @@ public class TestWarmUpManager
                                !s.contains( task1 ) || !s.contains( task2 ) );
         }
     }
+
 }
