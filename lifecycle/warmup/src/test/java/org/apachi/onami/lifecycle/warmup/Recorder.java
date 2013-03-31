@@ -30,6 +30,7 @@ import java.util.Set;
 @Singleton
 public class Recorder
 {
+
     private final List<String> recordings = new ArrayList<String>();
 
     private final List<String> interruptions = new ArrayList<String>();
@@ -85,4 +86,5 @@ public class Recorder
     {
         return new HashSet<Set<String>>( concurrents );
     }
+
 }
