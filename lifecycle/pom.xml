@@ -104,7 +104,7 @@
             <checkoutDirectory>${onami.lifecycle.scmPubCheckoutDirectory}</checkoutDirectory>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/lifecycle</pubScmUrl>
             <checkinComment>Onami Lifecycle site deployment</checkinComment>
-            <content>${onami.lifecycle.siteFilePath}</content>
+            <content>${project.build.directory}/staging</content>
             <tryUpdate>true</tryUpdate>
           </configuration>
         </plugin>

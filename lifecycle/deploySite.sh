@@ -19,4 +19,5 @@
 # under the License.
 #
 
-mvn clean site-deploy scm-publish:publish-scm $@
+mvn clean site
+mvn scm-publish:publish-scm $@
