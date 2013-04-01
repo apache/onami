@@ -36,6 +36,6 @@ public interface StageableTypeMapper<A extends Annotation>
      * @param stageable stageable
      * @param parentType     the owning type being heard
      */
-    public <I> void registerType( Stageable stageable, TypeLiteral<I> parentType );
+    <I> void registerType( Stageable stageable, TypeLiteral<I> parentType );
 
 }
