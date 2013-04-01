@@ -230,7 +230,7 @@ public class TestWarmUpManager
     public void testStuck()
         throws Exception
     {
-    final CountDownLatch latch = new CountDownLatch( 2 );
+        final CountDownLatch latch = new CountDownLatch( 2 );
         Module module = new AbstractModule()
         {
             @Override
