@@ -79,6 +79,8 @@
     <onami.lifecycle.siteFilePath>${user.home}/onami-sites/onami-lifecycle-site/</onami.lifecycle.siteFilePath>
     <onami.lifecycle.siteUrlDeployment>file://${onami.lifecycle.siteFilePath}</onami.lifecycle.siteUrlDeployment>
     <onami.lifecycle.scmPubCheckoutDirectory>${user.home}/onami-sites/onami-lifecycle-site-content</onami.lifecycle.scmPubCheckoutDirectory>
+    <javac.src.version>1.6</javac.src.version>
+    <javac.target.version>1.6</javac.target.version>
   </properties>
 
   <dependencies>

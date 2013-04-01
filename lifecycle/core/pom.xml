@@ -32,9 +32,4 @@
 
   <name>Apache Onami-Lifecycle Core</name>
 
-  <properties>
-    <javac.src.version>1.6</javac.src.version>
-    <javac.target.version>1.6</javac.target.version>
-  </properties>
-
 </project>
