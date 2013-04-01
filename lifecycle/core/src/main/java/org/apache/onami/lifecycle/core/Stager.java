@@ -39,12 +39,12 @@ public interface Stager<A extends Annotation>
      *
      * @param stageable object to be invoked to stage resources.
      */
-    public void register( Stageable stageable );
+    void register( Stageable stageable );
 
     /**
      * Stages resources invoking {@link Stageable#stage(StageHandler)}.
      */
-    public void stage();
+    void stage();
 
     /**
      * Stages resources invoking {@link Stageable#stage(StageHandler)}.
@@ -52,13 +52,13 @@ public interface Stager<A extends Annotation>
      * @param stageHandler the {@link StageHandler} instance that tracks progresses.
      * @since 0.2.0
      */
-    public void stage( StageHandler stageHandler );
+    void stage( StageHandler stageHandler );
 
     /**
      * Returns the annotation that represents this stage.
      *
      * @return stage annotation.
      */
-    public Class<A> getStage();
+    Class<A> getStage();
 
 }
