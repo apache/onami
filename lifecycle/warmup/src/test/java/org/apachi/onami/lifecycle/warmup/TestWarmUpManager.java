@@ -230,7 +230,7 @@ public class TestWarmUpManager
     public void testStuck()
         throws Exception
     {
-        final CountDownLatch latch = new CountDownLatch( 2 );
+        final CountDownLatch latch = new CountDownLatch( 3 );
         Module module = new AbstractModule()
         {
             @Override
@@ -260,7 +260,7 @@ public class TestWarmUpManager
         }
 
         // Wait for all warmup methods to finish after interruption
-        assertTrue( latch.await( 1, TimeUnit.MINUTES ) );
+        latch.await( 2, TimeUnit.SECONDS );
 
         Recorder recorder = injector.getInstance( Recorder.class );
 
@@ -271,8 +271,9 @@ public class TestWarmUpManager
         assertFalse( succeeded );
         assertTrue( recorder.getRecordings().contains( "B" ) );
         // What is interrupted depends on warmup order
-        assertTrue( Arrays.asList( "C" ).equals( recorder.getInterruptions() ) ||
-                Arrays.asList( "C", "B" ).equals( recorder.getInterruptions() ) );
+        // But C should always be present
+        assertTrue( recorder.getInterruptions().toString(),
+                recorder.getInterruptions().contains( "C" ) );
     }
 
     private void assertSingleExecution( Recorder recorder )
