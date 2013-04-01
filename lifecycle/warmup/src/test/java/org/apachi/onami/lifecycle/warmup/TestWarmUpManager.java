@@ -269,7 +269,7 @@ public class TestWarmUpManager
 
         assertSingleExecution( recorder );
         assertFalse( succeeded );
-        assertTrue( recorder.getRecordings().contains( "B" ) );
+        assertTrue( recorder.getRecordings().toString(), recorder.getRecordings().contains( "C" ) );
         // What is interrupted depends on warmup order
         // But C should always be present
         assertTrue( recorder.getInterruptions().toString(),
