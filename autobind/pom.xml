@@ -112,7 +112,7 @@
             <checkoutDirectory>${onami.autobind.scmPubCheckoutDirectory}</checkoutDirectory>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/autobind</pubScmUrl>
             <checkinComment>Onami Autobind site deployment</checkinComment>
-            <content>${onami.autobind.siteFilePath}</content>
+            <content>${project.build.directory}/staging</content>
             <tryUpdate>true</tryUpdate>
           </configuration>
         </plugin>
