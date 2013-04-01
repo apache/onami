@@ -29,6 +29,7 @@ import java.lang.annotation.Annotation;
  */
 public interface StageableTypeMapper<A extends Annotation>
 {
+
     /**
      * Register a new {@link Stageable} with the type that created it
      *
@@ -36,4 +37,5 @@ public interface StageableTypeMapper<A extends Annotation>
      * @param parentType     the owning type being heard
      */
     public <I> void registerType( Stageable stageable, TypeLiteral<I> parentType );
+
 }
