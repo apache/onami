@@ -136,6 +136,7 @@ public class WarmUper<A extends Annotation>
         }
         catch ( InterruptedException e )
         {
+            forkJoinPool.shutdownNow();
             Thread.currentThread().interrupt();
         }
 

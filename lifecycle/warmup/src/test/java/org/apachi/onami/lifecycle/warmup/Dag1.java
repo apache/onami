@@ -19,6 +19,8 @@ package org.apachi.onami.lifecycle.warmup;
  * under the License.
  */
 
+import java.util.concurrent.CountDownLatch;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.apache.onami.lifecycle.warmup.WarmUp;
@@ -40,18 +42,27 @@ public class Dag1
     public static class A
     {
         private final Recorder recorder;
+        private final CountDownLatch latch;
 
         @Inject
-        public A( Recorder recorder, B b, C c )
+        public A( Recorder recorder, B b, C c, CountDownLatch latch )
         {
             this.recorder = recorder;
+            this.latch = latch;
         }
 
         @WarmUp
         public void warmUp()
             throws InterruptedException
         {
-            recorder.record( "A" );
+            try
+            {
+                recorder.record( "A" );
+            }
+            finally
+            {
+                latch.countDown();
+            }
         }
     }
 
@@ -59,18 +70,27 @@ public class Dag1
     public static class B
     {
         private final Recorder recorder;
+        private final CountDownLatch latch;
 
         @Inject
-        public B( Recorder recorder )
+        public B( Recorder recorder, CountDownLatch latch )
         {
             this.recorder = recorder;
+            this.latch = latch;
         }
 
         @WarmUp
         public void warmUp()
             throws InterruptedException
         {
-            recorder.record( "B" );
+            try
+            {
+                recorder.record( "B" );
+            }
+            finally
+            {
+                latch.countDown();
+            }
         }
     }
 
@@ -78,18 +98,27 @@ public class Dag1
     public static class C
     {
         private final Recorder recorder;
+        private final CountDownLatch latch;
 
         @Inject
-        public C( Recorder recorder )
+        public C( Recorder recorder, CountDownLatch latch )
         {
             this.recorder = recorder;
+            this.latch = latch;
         }
 
         @WarmUp
         public void warmUp()
             throws InterruptedException
         {
-            recorder.record( "C" );
+            try
+            {
+                recorder.record( "C" );
+            }
+            finally
+            {
+                latch.countDown();
+            }
         }
     }
 }

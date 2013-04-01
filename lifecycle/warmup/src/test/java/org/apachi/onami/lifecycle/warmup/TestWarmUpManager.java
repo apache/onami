@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -73,14 +74,22 @@ public class TestWarmUpManager
             }
         };
         injector.getInstance( LifeCycleStageModule.key( WarmUp.class ) ).stage( stageHandler );
-        assertEquals( errorCount.get(), 1 );
+        assertEquals( 1, errorCount.get() );
     }
 
     @Test
     public void testDag1()
         throws Exception
     {
-        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule() );
+        Module module = new AbstractModule()
+        {
+            @Override
+            protected void configure()
+            {
+                bind( CountDownLatch.class ).toInstance( new CountDownLatch( 3 ) );
+            }
+        };
+        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule(), module );
         injector.getInstance( Dag1.A.class );
         injector.getInstance( LifeCycleStageModule.key( WarmUp.class ) ).stage();
         Recorder recorder = injector.getInstance( Recorder.class );
@@ -92,7 +101,7 @@ public class TestWarmUpManager
         assertNotConcurrent( recorder, "A", "B" );
         assertNotConcurrent( recorder, "A", "C" );
 
-        assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( 0, recorder.getInterruptions().size() );
         assertOrdering( recorder, "A", "B" );
         assertOrdering( recorder, "A", "C" );
     }
@@ -126,7 +135,7 @@ public class TestWarmUpManager
         assertNotConcurrent( recorder, "B3", "C3" );
         assertNotConcurrent( recorder, "B4", "C3" );
 
-        assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( 0, recorder.getInterruptions().size() );
         assertOrdering( recorder, "A1", "B1" );
         assertOrdering( recorder, "B1", "C1" );
         assertOrdering( recorder, "A1", "B2" );
@@ -160,7 +169,7 @@ public class TestWarmUpManager
         assertNotConcurrent( recorder, "A", "B" );
         assertNotConcurrent( recorder, "A", "C" );
 
-        assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( 0, recorder.getInterruptions().size() );
         assertOrdering( recorder, "A", "C" );
         assertOrdering( recorder, "C", "D" );
         assertOrdering( recorder, "A", "D" );
@@ -191,7 +200,7 @@ public class TestWarmUpManager
         System.out.println( recorder.getConcurrents() );
 
         assertSingleExecution( recorder );
-        assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( 0, recorder.getInterruptions().size() );
         assertOrdering( recorder, "D", "E" );
         assertOrdering( recorder, "C", "E" );
         assertOrdering( recorder, "B", "D" );
@@ -212,7 +221,7 @@ public class TestWarmUpManager
         System.out.println( recorder.getConcurrents() );
 
         assertSingleExecution( recorder );
-        assertEquals( recorder.getInterruptions().size(), 0 );
+        assertEquals( 0, recorder.getInterruptions().size() );
         assertTrue( recorder.getRecordings().indexOf( "A" ) >= 0 );
         assertTrue( recorder.getRecordings().indexOf( "B" ) >= 0 );
     }
@@ -221,6 +230,7 @@ public class TestWarmUpManager
     public void testStuck()
         throws Exception
     {
+    final CountDownLatch latch = new CountDownLatch( 2 );
         Module module = new AbstractModule()
         {
             @Override
@@ -229,6 +239,7 @@ public class TestWarmUpManager
                 RecorderSleepSettings recorderSleepSettings = new RecorderSleepSettings();
                 recorderSleepSettings.setBaseSleepFor( "C", 1, TimeUnit.DAYS );
                 bind( RecorderSleepSettings.class ).toInstance( recorderSleepSettings );
+                bind( CountDownLatch.class ).toInstance( latch );
             }
         };
         LifeCycleStageModule<WarmUp> warmUpModule = WarmUpModule.builder().withMaxWait( 1, TimeUnit.SECONDS ).build();
@@ -248,11 +259,8 @@ public class TestWarmUpManager
             assertTrue( e.getCause() instanceof TimeoutException );
         }
 
-        // Wait for all interrupted warmup tasks to finish
-        // and add themselfs to recorder.
-        // This fixes race between test thread and interrupted tasks
-        // threads. This workaround is good enough for test.
-        Thread.sleep( 1000 );
+        // Wait for all warmup methods to finish after interruption
+        assertTrue( latch.await( 1, TimeUnit.MINUTES ) );
 
         Recorder recorder = injector.getInstance( Recorder.class );
 
@@ -262,7 +270,9 @@ public class TestWarmUpManager
         assertSingleExecution( recorder );
         assertFalse( succeeded );
         assertTrue( recorder.getRecordings().contains( "B" ) );
-        assertEquals( recorder.getInterruptions(), Arrays.asList( "C" ) );
+        // What is interrupted depends on warmup order
+        assertTrue( Arrays.asList( "C" ).equals( recorder.getInterruptions() ) ||
+                Arrays.asList( "C", "B" ).equals( recorder.getInterruptions() ) );
     }
 
     private void assertSingleExecution( Recorder recorder )
