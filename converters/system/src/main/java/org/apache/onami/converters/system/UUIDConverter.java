@@ -27,7 +27,6 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -43,14 +42,7 @@ public final class UUIDConverter
      */
     public Object convert( String value, TypeLiteral<?> toType )
     {
-        try
-        {
-            return fromString( value );
-        }
-        catch ( Throwable t )
-        {
-            throw new ProvisionException( "String value '" + value + "' is not a valid UUID", t );
-        }
+        return fromString( value );
     }
 
 }

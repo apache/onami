@@ -26,7 +26,6 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -60,7 +59,7 @@ public final class URLConverter
             {
                 classLoader = Thread.currentThread().getContextClassLoader();
             }
-            catch ( Throwable t )
+            catch ( SecurityException t )
             {
                 // Cannot access thread context ClassLoader - falling back to system class loader...
             }
@@ -72,7 +71,7 @@ public final class URLConverter
             URL url = classLoader.getResource( path );
             if ( url == null )
             {
-                throw new ProvisionException( "class path resource '"
+                throw new IllegalArgumentException( "class path resource '"
                                               + path
                                               + "' cannot be resolved to URL because it does not exist" );
             }
@@ -86,7 +85,7 @@ public final class URLConverter
         }
         catch ( MalformedURLException e )
         {
-            throw new ProvisionException( "String value '" + value + "' is not a valid URL", e );
+            throw new IllegalArgumentException( "String value '" + value + "' is not a valid URL", e );
         }
     }
 

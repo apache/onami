@@ -27,7 +27,6 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -52,7 +51,7 @@ public final class PropertiesConverter
         catch ( IOException e )
         {
             // Should never happen.
-            throw new ProvisionException( "Failed to parse '" + value + "' into Properties", e );
+            throw new IllegalArgumentException( "Failed to parse '" + value + "' into Properties", e );
         }
 
         return properties;

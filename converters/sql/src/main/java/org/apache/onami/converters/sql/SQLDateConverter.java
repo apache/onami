@@ -25,7 +25,6 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -41,14 +40,7 @@ public final class SQLDateConverter
      */
     public Object convert( String value, TypeLiteral<?> toType )
     {
-        try
-        {
-            return Date.valueOf( value );
-        }
-        catch ( Throwable t )
-        {
-            throw new ProvisionException( "String must be in JDBC format [yyyy-MM-dd] to create a java.sql.Date" );
-        }
+        return Date.valueOf( value );
     }
 
 }

@@ -28,7 +28,7 @@ import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
 
 /**
- * Converter implementation for {@code java.math.BigDecimal}.
+ * Converter implementation for {@code java.math.BigInteger}.
  */
 @MetaInfServices( Module.class )
 public final class BigIntegerConverter

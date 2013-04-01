@@ -25,7 +25,6 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -43,7 +42,7 @@ public final class CharsetConverter
     {
         if ( value.length() == 0 )
         {
-            throw new ProvisionException( "Impossible to convert an empty value to a Charset" );
+            throw new IllegalArgumentException( "Impossible to convert an empty value to a Charset" );
         }
         return Charset.forName( value );
     }
