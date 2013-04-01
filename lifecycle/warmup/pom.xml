@@ -32,6 +32,11 @@
 
   <name>Apache Onami-Lifecycle Warm Up</name>
 
+  <properties>
+    <javac.src.version>1.6</javac.src.version>
+    <javac.target.version>1.6</javac.target.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <!-- if you are using Java 7 you can remove this and switch to the JDK version -->
