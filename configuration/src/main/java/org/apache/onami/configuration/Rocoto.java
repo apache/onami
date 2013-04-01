@@ -27,6 +27,8 @@ import static java.util.Arrays.asList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.apache.onami.configuration.variables.AntStyleParser;
+import org.apache.onami.configuration.variables.Parser;
 import org.apache.onami.configuration.variables.VariablesMap;
 
 import com.google.inject.AbstractModule;
@@ -50,27 +52,54 @@ public final class Rocoto
         return expandVariables( asList( baseModules ) );
     }
 
+    /**
+     *
+     * @param parser
+     * @param baseModules
+     * @return
+     * @since 6.3.0
+     */
+    public static Module expandVariables( Parser parser, Module...baseModules )
+    {
+        return expandVariables( parser, asList( baseModules ) );
+    }
+
     public static Module expandVariables( Iterable<? extends Module> baseModules )
     {
-        return override( baseModules ).with( new Rocoto( getElements( baseModules ) ) );
+        return expandVariables( new AntStyleParser(), baseModules );
+    }
+
+    /**
+     *
+     * @param parser
+     * @param baseModules
+     * @return
+     * @since 6.3.0
+     */
+    public static Module expandVariables( Parser parser, Iterable<? extends Module> baseModules )
+    {
+        return override( baseModules ).with( new Rocoto( parser, getElements( baseModules ) ) );
     }
 
     private final TypeLiteral<String> stringLiteral = new TypeLiteral<String>(){};
+
+    private final Parser parser;
 
     private final List<Element> elements;
 
     /**
      * Do nothing, this class cannot be instantiated
      */
-    private Rocoto( List<Element> elements )
+    private Rocoto( Parser parser, List<Element> elements )
     {
+        this.parser = parser;
         this.elements = elements;
     }
 
     @Override
     protected void configure()
     {
-        final VariablesMap variablesMap = new VariablesMap();
+        final VariablesMap variablesMap = new VariablesMap( parser );
 
         for ( final Element element : elements )
         {
