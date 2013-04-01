@@ -33,7 +33,6 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -128,7 +127,7 @@ public final class DateConverter
 
                 return date;
             }
-            catch ( Exception ex )
+            catch ( RuntimeException ex )
             {
                 if ( firstEx == null )
                 {
@@ -156,7 +155,7 @@ public final class DateConverter
             {
                 msg += " using pattern '" + ( (SimpleDateFormat) format ).toPattern() + "'";
             }
-            throw new ProvisionException( msg );
+            throw new IllegalArgumentException( msg );
         }
 
         return parsedDate;

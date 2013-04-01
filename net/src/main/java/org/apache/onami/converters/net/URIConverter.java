@@ -19,14 +19,14 @@ package org.apache.onami.converters.net;
  * under the License.
  */
 
+import static java.net.URI.create;
+
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -42,14 +42,7 @@ public final class URIConverter
      */
     public Object convert( String value, TypeLiteral<?> toType )
     {
-        try
-        {
-            return new URI( value );
-        }
-        catch ( URISyntaxException e )
-        {
-            throw new ProvisionException( "String value '" + value + "' is not a valid URI", e );
-        }
+        return create( value );
     }
 
 }

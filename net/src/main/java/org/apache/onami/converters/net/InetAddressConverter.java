@@ -26,7 +26,6 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -48,7 +47,7 @@ public final class InetAddressConverter
         }
         catch ( UnknownHostException e )
         {
-            throw new ProvisionException( "String value '" + value + "' is not a valid InetAddress", e );
+            throw new IllegalArgumentException( "String value '" + value + "' is not a valid InetAddress", e );
         }
     }
 

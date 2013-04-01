@@ -25,11 +25,10 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
- * Converter implementation for {@code java.sql.Date}.
+ * Converter implementation for {@code java.sql.Time}.
  */
 @MetaInfServices( Module.class )
 public final class SQLTimeConverter
@@ -41,14 +40,7 @@ public final class SQLTimeConverter
      */
     public Object convert( String value, TypeLiteral<?> toType )
     {
-        try
-        {
-            return Time.valueOf( value );
-        }
-        catch ( Throwable t )
-        {
-            throw new ProvisionException( "String must be in JDBC format [HH:mm:ss] to create a java.sql.Time" );
-        }
+        return Time.valueOf( value );
     }
 
 }

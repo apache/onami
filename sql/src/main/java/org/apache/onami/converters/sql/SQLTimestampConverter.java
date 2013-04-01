@@ -25,11 +25,10 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
- * Converter implementation for {@code java.sql.Date}.
+ * Converter implementation for {@code java.sql.Timestamp}.
  */
 @MetaInfServices( Module.class )
 public final class SQLTimestampConverter
@@ -41,14 +40,7 @@ public final class SQLTimestampConverter
      */
     public Object convert( String value, TypeLiteral<?> toType )
     {
-        try
-        {
-            return Timestamp.valueOf( value );
-        }
-        catch ( Throwable t )
-        {
-            throw new ProvisionException( "String must be in JDBC format [yyyy-MM-dd HH:mm:ss.fffffffff] to create a java.sql.Timestamp" );
-        }
+        return Timestamp.valueOf( value );
     }
 
 }

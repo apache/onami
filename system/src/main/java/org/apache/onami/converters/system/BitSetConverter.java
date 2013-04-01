@@ -26,11 +26,10 @@ import org.apache.onami.converters.core.AbstractConverter;
 import org.kohsuke.MetaInfServices;
 
 import com.google.inject.Module;
-import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 
 /**
- * Converter implementation for {@code java.util.UUID}.
+ * Converter implementation for {@code java.util.BitSet}.
  */
 @MetaInfServices( Module.class )
 public final class BitSetConverter
@@ -56,7 +55,7 @@ public final class BitSetConverter
 
             if ( current.length() == 0 )
             {
-                throw new ProvisionException( "Input '" + value
+                throw new IllegalArgumentException( "Input '" + value
                     + "' is not a valid java.util.BitSet, fragment at position " + currentIndex + " is empty" );
             }
 
@@ -70,7 +69,7 @@ public final class BitSetConverter
                 {
                     if ( !Character.isDigit( current.charAt( i ) ) )
                     {
-                        throw new ProvisionException( "Input '"
+                        throw new IllegalArgumentException( "Input '"
                                                       + value
                                                       + "' is not a valid java.util.BitSet, fragment '"
                                                       + current
