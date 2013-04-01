@@ -113,7 +113,7 @@ public class WarmUpModule<A extends Annotation>
     @Override
     protected void configure()
     {
-        binder().install( lifeCycleStageModule );
+        install( lifeCycleStageModule );
     }
 
     public static class Builder<A extends Annotation>
