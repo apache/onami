@@ -47,13 +47,13 @@ public final class AfterInjectionTestCase
     }
 
     @Test( expected = ConfigurationException.class )
-    public void afterInjectionAnnotatedMehthodRequiresNoArgs()
+    public void afterInjectionAnnotatedMethodRequiresNoArgs()
     {
         createInjector( new AfterInjectionModule() ).getInstance( WrongAfterInjectionMethod.class );
     }
 
     @Test( expected = ProvisionException.class )
-    public void afterInjectionAnnotatedMehthodThrowsException()
+    public void afterInjectionAnnotatedMethodThrowsException()
     {
         createInjector( new AfterInjectionModule() ).getInstance( ThrowingExceptionAfterInjectionMethod.class );
     }
