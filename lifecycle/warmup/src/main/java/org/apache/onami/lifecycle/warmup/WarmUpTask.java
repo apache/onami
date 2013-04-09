@@ -92,12 +92,10 @@ class WarmUpTask
         {
             for ( Stageable stageable : stageables )
             {
-                if ( Thread.interrupted() )
+                if ( Thread.currentThread().isInterrupted() )
                 {
                     // Warmup is taking too long - thread was interrupted.
                     // Skip other stageables.
-                    // Maintain interruption state to let other tasks know about it.
-                    Thread.currentThread().interrupt();
                     break;
                 }
                 stageable.stage( stageHandler );
