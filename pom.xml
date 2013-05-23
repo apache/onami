@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>3-incubating</version>
+    <version>4-SNAPSHOT</version>
   </parent>
 
   <artifactId>org.apache.onami.validation</artifactId>
