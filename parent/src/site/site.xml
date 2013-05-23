@@ -37,18 +37,18 @@
     </links>
 
     <menu name="Community" inherit="bottom">
-      <item name="Volunteering"          href="http://onami.incubator.apache.org/community/volunteering.html" />
-      <item name="Contributing Patches"  href="http://onami.incubator.apache.org/community/patches.html" />
-      <item name="Mailing lists"         href="http://onami.incubator.apache.org/community/mail-lists.html" />
+      <item name="Volunteering"          href="http://onami.apache.org/community/volunteering.html" />
+      <item name="Contributing Patches"  href="http://onami.apache.org/community/patches.html" />
+      <item name="Mailing lists"         href="http://onami.apache.org/community/mail-lists.html" />
     </menu>
 
     <menu name="Committers" inherit="bottom">
-      <item name="SVN conventions"             href="http://onami.incubator.apache.org/committers/svn-conventions.html" />
-      <item name="Maven settings"              href="http://onami.incubator.apache.org/committers/maven-settings.html" />
-      <item name="GPG keys"                    href="http://onami.incubator.apache.org/committers/gpg-keys.html" />
-      <item name="JIRA conventions"            href="http://onami.incubator.apache.org/committers/jira-conventions.html" />
-      <item name="Code style recommendations"  href="http://onami.incubator.apache.org/committers/codestyle.html" />
-      <item name="Release HowTo"               href="http://onami.incubator.apache.org/committers/release-howto.html" />
+      <item name="SVN conventions"             href="http://onami.apache.org/committers/svn-conventions.html" />
+      <item name="Maven settings"              href="http://onami.apache.org/committers/maven-settings.html" />
+      <item name="GPG keys"                    href="http://onami.apache.org/committers/gpg-keys.html" />
+      <item name="JIRA conventions"            href="http://onami.apache.org/committers/jira-conventions.html" />
+      <item name="Code style recommendations"  href="http://onami.apache.org/committers/codestyle.html" />
+      <item name="Release HowTo"               href="http://onami.apache.org/committers/release-howto.html" />
     </menu>
 
     <menu name="ASF" inherit="bottom">

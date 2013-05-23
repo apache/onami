@@ -22,7 +22,7 @@
 
   <properties>
     <title>Release HowTo</title>
-    <author email="onami-dev@incubator.apache.org">Apache Onami Documentation Team</author>
+    <author email="dev@onami.apache.org">Apache Onami Documentation Team</author>
   </properties>
 
   <body>
@@ -75,7 +75,7 @@
           A branch can be made by running:
           <pre>mvn release:branch -DbranchName=1.0.x</pre></li>
           <li>Checkout a clean copy of the branch to release using command line svn:
-          <pre>svn checkout https://svn.apache.org/repos/asf/incubator/onami/branches/${module}-${version}</pre></li>
+          <pre>svn checkout https://svn.apache.org/repos/asf/onami/branches/${module}-${version}</pre></li>
         </ol>
       </subsection>
 
@@ -177,9 +177,9 @@ gpg: Signature made ...</source>
 
       <subsection name="Vote the Release">
         <ol>
-          <li>Create a <code>VOTE</code> email thread on <a href="mailto:dev@onami.incubator.apache.org">dev@</a>
+          <li>Create a <code>VOTE</code> email thread on <a href="mailto:dev@onami.apache.org">dev@</a>
           to record votes as replies, e.g.:
-            <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.incubator.apache.org>
+            <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.apache.org>
 Subject: [VOTE] Release Apache Onami XXXX major.minor.patch-incubating
 
 Hi,
@@ -191,7 +191,7 @@ There are still a couple of issues left in JIRA:
 http://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&pid=12311100&status=1
 
 SVN source tag
-https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.xxxx-major.minor.patch-incubating/
+https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.xxxx-major.minor.patch-incubating/
 
 Staging repo:
 https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/
@@ -207,7 +207,7 @@ Vote will be open for 72 hours.
           </li>
 
           <li>Create a <code>DISCUSS</code> email thread on <code>dev@</code> for any vote questions, e.g.:
-            <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.incubator.apache.org>
+            <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.apache.org>
 Subject: [DISCUSS] Apache Onami XXXX major.minor.patch-incubating
 
 Discussion thread for vote on &lt;version&gt; release candidate, with SVN source tag.
@@ -219,7 +219,7 @@ Some of the things to check before voting are:
  - can you build the contents of source-release.zip and svn tag
  - do all of the staged jars/zips contain the required LICENSE and NOTICE files
  - are all of the staged jars signed and the signature verifiable
- - is the signing key in the project's KEYS file and on a public server (i.e. http://www.apache.org/dist/incubator/onami/)]]>
+ - is the signing key in the project's KEYS file and on a public server (i.e. http://www.apache.org/dist/onami/)]]>
             </pre>
           </li>
 
@@ -233,7 +233,7 @@ Some of the things to check before voting are:
           <li>After the vote has been open for at least 72 hours, has at least three +1 PMC votes and no -1 votes, then
           post the results to the vote thread, replying to the initial email prepending <code>[RESULT]</code> to the
           original subject and include a list of every binding <code>+1</code>, <code>0</code> and <code>-1</code> vote.
-          <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.incubator.apache.org>
+          <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.apache.org>
 Subject: [RESULT] [VOTE] Release Onami XXXX major.minor.patch-incubating
 
 Hi,
@@ -282,10 +282,10 @@ I will promote the artifacts to the central repo.]]></pre>
 
           <li><h1>FIXME</h1>Add the distribution artifacts to the distribution area
             <source>ssh asf-id@people.apache.org
-cd /x1/www/www.apache.org/dist/incubator/onami/
+cd /x1/www/www.apache.org/dist/onami/
 
-mv /x1/builds/incubator/onami/sources/* sources/
-mv /x1/builds/incubator/onami/binaries/* binaries/</source>
+mv /x1/builds/onami/sources/* sources/
+mv /x1/builds/onami/binaries/* binaries/</source>
           </li>
 
           <li>Update the
@@ -297,15 +297,15 @@ mv /x1/builds/incubator/onami/binaries/* binaries/</source>
 
       <subsection name="Announce the Release">
         <p>Make an announcement about the release on the
-        <a href="mailto:user@onami.incubator.apache.org">user@</a>,
-        <a href="mailto:dev@onami.incubator.apache.org">dev@</a>, and
+        <a href="mailto:user@onami.apache.org">user@</a>,
+        <a href="mailto:dev@onami.apache.org">dev@</a>, and
         <a href="mailto:announce@apache.org">announce@</a> lists as per
         <a href="http://www.apache.org/foundation/mailinglists.html#foundation-announce]">the Apache Announcement Mailing Lists page</a>
         </p>
 
         <pre><![CDATA[From: YOUR_APACHE_USERNAME@apache.org
-To: "ASF Announcements" <announce@apache.org>, "Apache Onami Users List" <user@onami.incubator.apache.org>
-CC: "Apache Onami Developers List" <dev@onami.incubator.apache.org>, "Google Guice Users List" <google-guice@googlegroups.com>
+To: "ASF Announcements" <announce@apache.org>, "Apache Onami Users List" <user@onami.apache.org>
+CC: "Apache Onami Developers List" <dev@onami.apache.org>, "Google Guice Users List" <google-guice@googlegroups.com>
 Subject: [ANNOUNCE] Apache Onami XXXX major.minor.patch-incubating
 
 The Apache Onami Team is pleased to announce the release of Apache Onami XXXX major.minor.patch-incubating.
@@ -332,7 +332,7 @@ Have Fun,
         </li>
 
         <li>Delete the svn tag created by the <code>release:perform</code> step:
-        <pre>svn rm https://svn.apache.org/repos/asf/incubator/onami/tags/org.apache.onami.xxxx-major.minor.patch-incubating -m "deleting tag from rolled back release"</pre></li>
+        <pre>svn rm https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.xxxx-major.minor.patch-incubating -m "deleting tag from rolled back release"</pre></li>
 
         <li>Drop the Nexus staging repo:
           <ol>

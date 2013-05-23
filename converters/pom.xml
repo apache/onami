@@ -33,7 +33,7 @@
 
   <name>Apache Onami-Converters - Parent</name>
   <description>Apache Onami-Converters is a set of Guice converters</description>
-  <url>http://onami.incubator.apache.org/converters</url>
+  <url>http://onami.apache.org/converters</url>
 
   <modules>
     <module>core</module>
@@ -47,9 +47,9 @@
   </modules>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/converters</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/converters</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/converters</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/converters</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/converters</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/converters</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
@@ -66,7 +66,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -120,7 +120,7 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <configuration>
             <checkoutDirectory>${onami.converters.scmPubCheckoutDirectory}</checkoutDirectory>
-            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/converters</pubScmUrl>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/onami/site/converters</pubScmUrl>
             <checkinComment>Onami Converters site deployment</checkinComment>
             <content>${onami.converters.siteFilePath}</content>
             <tryUpdate>true</tryUpdate>

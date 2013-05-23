@@ -32,7 +32,7 @@
 
   <name>Apache Onami-Guava</name>
   <description>Apache Onami-Guava is a set of Google Guice modules for Google Guava integration</description>
-  <url>http://onami.incubator.apache.org/guava/</url>
+  <url>http://onami.apache.org/guava/</url>
   <inceptionYear>2012</inceptionYear>
 
   <contributors>
@@ -43,9 +43,9 @@
   </contributors>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/guava</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/guava</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/guava</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/guava</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/guava</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/guava</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
@@ -63,7 +63,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -71,7 +71,7 @@
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/guava</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/guava</url>
     </site>
   </distributionManagement>
 

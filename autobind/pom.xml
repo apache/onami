@@ -34,7 +34,7 @@
   <name>Apache Onami Autobind</name>
   <description>Apache Onami-Autobind is the automatic Injection/Binding for Google Guice, an extension which add the
   support for Classpath Scanner and auto registration for Guice-Modules and Beans</description>
-  <url>http://onami.incubator.apache.org/autobind/</url>
+  <url>http://onami.apache.org/autobind/</url>
   <inceptionYear>2010</inceptionYear>
 
   <modules>
@@ -48,9 +48,9 @@
   </modules>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/autobind</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/autobind</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/autobind</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/autobind</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/autobind</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/autobind</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
@@ -68,7 +68,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -110,7 +110,7 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <configuration>
             <checkoutDirectory>${onami.autobind.scmPubCheckoutDirectory}</checkoutDirectory>
-            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/autobind</pubScmUrl>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/onami/site/autobind</pubScmUrl>
             <checkinComment>Onami Autobind site deployment</checkinComment>
             <content>${project.build.directory}/staging</content>
             <tryUpdate>true</tryUpdate>

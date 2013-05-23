@@ -22,7 +22,7 @@
 
   <properties>
     <title>Home</title>
-    <author email="onami-dev@incubator.apache.org">Apache Onami Documentation Team</author>
+    <author email="dev@onami.apache.org">Apache Onami Documentation Team</author>
   </properties>
 
   <body>
@@ -133,17 +133,6 @@
 
     <section name="Acknowledgements" class="alert alert-info">
       <p>The Apache Onami logo has been kindly donated by <a href="mailto:mnesarco[at]gmail[dot]com">Frank David Martínez</a>.</p>
-    </section>
-
-    <section name="Disclaimer" class="alert">
-      <p>Apache Onami is an effort undergoing <a href="http://incubator.apache.org/">incubation</a> at
-      The Apache Software Foundation (ASF), sponsored by the Apache Incubator PMC. Incubation is required of all newly
-      accepted projects until a further review indicates that the infrastructure, communications, and decision making
-      process have stabilized in a manner consistent with other successful ASF projects.
-      While incubation status is not necessarily a reflection of the completeness or stability of the code,
-      it does indicate that the project has yet to be fully endorsed by the ASF.</p>
-      <p>You can view our current <a href="http://incubator.apache.org/projects/amber.html">incubation status</a>
-      for more details.</p>
     </section>
   </body>
 </document>

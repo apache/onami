@@ -33,7 +33,7 @@
 
   <name>Apache Onami-Logging - Parent</name>
   <description>Apache Onami-Logging is a Logging Injector for Java</description>
-  <url>http://onami.incubator.apache.org/logging</url>
+  <url>http://onami.apache.org/logging</url>
 
   <modules>
     <module>core</module>
@@ -46,9 +46,9 @@
   </modules>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/logging</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/logging</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/logging</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/logging</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/logging</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/logging</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
@@ -65,7 +65,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -104,7 +104,7 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <configuration>
             <checkoutDirectory>${onami.logging.scmPubCheckoutDirectory}</checkoutDirectory>
-            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/logging</pubScmUrl>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/onami/site/logging</pubScmUrl>
             <checkinComment>Onami Logging site deployment</checkinComment>
             <content>${onami.logging.siteFilePath}</content>
             <tryUpdate>true</tryUpdate>

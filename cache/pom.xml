@@ -31,20 +31,20 @@
 
   <name>Apache Onami-Cache</name>
   <description>Apache Onami-Cache is a lightweight yet powerful Google Guice - JCache bridge integration</description>
-  <url>http://onami.incubator.apache.org/cache/</url>
+  <url>http://onami.apache.org/cache/</url>
   <inceptionYear>2012</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/cache</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/cache</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/cache</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/cache</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/cache</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/cache</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/cache</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/cache</url>
     </site>
   </distributionManagement>
   <issueManagement>
@@ -62,7 +62,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>

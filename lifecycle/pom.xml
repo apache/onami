@@ -33,7 +33,7 @@
 
   <name>Apache Onami-Lifecycle</name>
   <description>Apache Onami-Lifecycle allows objects lifecycle management made easy with Google Guice</description>
-  <url>http://onami.incubator.apache.org/lifecycle/</url>
+  <url>http://onami.apache.org/lifecycle/</url>
   <inceptionYear>2012</inceptionYear>
 
   <modules>
@@ -43,9 +43,9 @@
   </modules>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/lifecycle</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/lifecycle</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/lifecycle</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/lifecycle</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/lifecycle</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/lifecycle</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
@@ -63,7 +63,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -71,7 +71,7 @@
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/lifecycle</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/lifecycle</url>
     </site>
   </distributionManagement>
 
@@ -104,7 +104,7 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <configuration>
             <checkoutDirectory>${onami.lifecycle.scmPubCheckoutDirectory}</checkoutDirectory>
-            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/lifecycle</pubScmUrl>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/onami/site/lifecycle</pubScmUrl>
             <checkinComment>Onami Lifecycle site deployment</checkinComment>
             <content>${project.build.directory}/staging</content>
             <tryUpdate>true</tryUpdate>
