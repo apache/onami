@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>3-incubating</version>
+    <version>4-SNAPSHOT</version>
   </parent>
 
   <artifactId>org.apache.onami.site</artifactId>
@@ -33,16 +33,16 @@
 
   <name>Apache Onami</name>
   <description>Apache Onami is a project focused on the development and maintenance of a set of Google Guice extensions.</description>
-  <url>http://onami.incubator.apache.org</url>
+  <url>http://onami.apache.org</url>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/site</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/site</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/site</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/site</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/site</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/site</developerConnection>
   </scm>
 
   <properties>
-    <svnUrl>https://svn.apache.org/repos/asf/incubator/onami/site/</svnUrl>
+    <svnUrl>https://svn.apache.org/repos/asf/onami/site/</svnUrl>
     <checkoutDirectory>site-publish</checkoutDirectory>
   </properties>
 
