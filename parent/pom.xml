@@ -318,10 +318,10 @@
     <!--
      | shared build/report plugins version
     -->
-    <surefire.version>2.12.4</surefire.version>
+    <surefire.version>2.14.1</surefire.version>
     <javadoc.version>2.9</javadoc.version>
     <cobertura.version>2.5.2</cobertura.version>
-    <plexus-utils.version>3.0.8</plexus-utils.version>
+    <plexus-utils.version>3.0.10</plexus-utils.version>
     <!--
      | it makes easier to manage Google Guice extensions, such as multibindings, ...
     -->
@@ -426,7 +426,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>2.3</version>
+          <version>2.4</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
@@ -439,7 +439,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.4</version>
+          <version>2.4.1</version>
           <configuration>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <useReleaseProfile>false</useReleaseProfile>
@@ -553,7 +553,7 @@
           <dependency>
             <groupId>org.tmatesoft.svnkit</groupId>
             <artifactId>svnkit</artifactId>
-            <version>1.7.6</version>
+            <version>1.7.8</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -561,7 +561,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.1.1</version>
+        <version>1.2</version>
         <executions>
           <execution>
             <id>enforce-java</id>
@@ -595,7 +595,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>3.1</version>
         <configuration>
           <source>${javac.src.version}</source>
           <target>${javac.target.version}</target>
@@ -798,7 +798,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>2.10</version>
         <configuration>
           <configLocation>config/maven_checks.xml</configLocation>
           <headerLocation>config/maven-header.txt</headerLocation>
@@ -840,7 +840,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>2.7.1</version>
+        <version>3.0.1</version>
         <configuration>
           <linkXref>true</linkXref>
           <minimumTokens>100</minimumTokens>
