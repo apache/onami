@@ -28,7 +28,7 @@
   </parent>
 
   <artifactId>org.apache.onami.scopes</artifactId>
-  <version>1.0.0-incubating-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>Apache Onami-Scopes</name>
   <description>Apache Onami-Scopes adds useful Scopes to Google Guice</description>
@@ -82,7 +82,7 @@
     <dependency>
       <groupId>org.apache.onami</groupId>
       <artifactId>org.apache.onami.lifecycle.standard</artifactId>
-      <version>0.2.0-incubating-SNAPSHOT</version>
+      <version>0.2.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
 

@@ -28,7 +28,7 @@
   </parent>
 
   <artifactId>org.apache.onami.test</artifactId>
-  <version>1.4.1-incubating-SNAPSHOT</version>
+  <version>1.4.1-SNAPSHOT</version>
 
   <name>Apache Onami-Test</name>
   <description>Apache Onami-Test is a simple library to inject a Junit4 test classess via Google-Guice.</description>

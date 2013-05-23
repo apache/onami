@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.apache.onami.logging</groupId>
     <artifactId>org.apache.onami.logging.parent</artifactId>
-    <version>3.4.1-incubating-SNAPSHOT</version>
+    <version>3.4.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>org.apache.onami.logging.log4j2</artifactId>

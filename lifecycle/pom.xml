@@ -28,7 +28,7 @@
 
   <groupId>org.apache.onami.lifecycle</groupId>
   <artifactId>org.apache.onami.lifecycle.parent</artifactId>
-  <version>0.2.0-incubating-SNAPSHOT</version>
+  <version>0.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami-Lifecycle</name>

@@ -28,7 +28,7 @@
   </parent>
 
   <artifactId>org.apache.onami.site</artifactId>
-  <version>3-incubating-SNAPSHOT</version>
+  <version>3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami</name>

@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.cache</artifactId>
-  <version>0.1.0-incubating-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
 
   <name>Apache Onami-Cache</name>
   <description>Apache Onami-Cache is a lightweight yet powerful Google Guice - JCache bridge integration</description>

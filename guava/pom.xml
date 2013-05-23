@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.guava</artifactId>
-  <version>0.2.0-incubating-SNAPSHOT</version>
+  <version>0.2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Apache Onami-Guava</name>
