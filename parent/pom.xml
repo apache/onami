@@ -479,11 +479,7 @@
             </doapOptions>
             <asfExtOptions>
               <charter>${project.description}</charter>
-              <!--
-               | 'chair' parameter is required
-               | putting Mentors ATM just to let the plugin fail
-              -->
-              <chair>Christian Grobmeier, Mohammad Nour El-Din, Olivier Lamy</chair>
+              <chair>Simone Tripodi</chair>
             </asfExtOptions>
           </configuration>
         </plugin>
