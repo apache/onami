@@ -28,7 +28,7 @@
 
   <groupId>org.apache.onami.converters</groupId>
   <artifactId>org.apache.onami.converters.parent</artifactId>
-  <version>1.0.0-incubating-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami-Converters - Parent</name>
