@@ -80,7 +80,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.onami</groupId>
+      <groupId>org.apache.onami.lifecycle</groupId>
       <artifactId>org.apache.onami.lifecycle.standard</artifactId>
       <version>0.2.0-SNAPSHOT</version>
       <scope>test</scope>
