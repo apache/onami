@@ -34,7 +34,7 @@
 
   <name>Apache Onami</name>
   <description>Apache Onami is a project focused on the development and maintenance of a set of Google Guice extensions.</description>
-  <url>http://onami.incubator.apache.org</url>
+  <url>http://onami.apache.org</url>
   <inceptionYear>2012</inceptionYear>
 
   <developers>
@@ -231,30 +231,30 @@
   <mailingLists>
     <mailingList>
       <name>Dev Mailing List</name>
-      <post>dev@onami.incubator.apache.org</post>
-      <subscribe>dev-subscribe@onami.incubator.apache.org</subscribe>
-      <unsubscribe>dev-unsubscribe@onami.incubator.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-dev/</archive>
+      <post>dev@onami.apache.org</post>
+      <subscribe>dev-subscribe@onami.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@onami.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/onami-dev/</archive>
       <otherArchives>
         <otherArchive>http://onami-dev.markmail.org/</otherArchive>
       </otherArchives>
     </mailingList>
     <mailingList>
       <name>User Mailing List</name>
-      <post>user@onami.incubator.apache.org</post>
-      <subscribe>user-subscribe@onami.incubator.apache.org</subscribe>
-      <unsubscribe>user-unsubscribe@onami.incubator.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-user/</archive>
+      <post>user@onami.apache.org</post>
+      <subscribe>user-subscribe@onami.apache.org</subscribe>
+      <unsubscribe>user-unsubscribe@onami.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/onami-user/</archive>
       <otherArchives>
         <otherArchive>http://onami-user.markmail.org/</otherArchive>
       </otherArchives>
     </mailingList>
     <mailingList>
       <name>Commits Mailing List</name>
-      <post>commits@onami.incubator.apache.org</post>
-      <subscribe>commits-subscribe@onami.incubator.apache.org</subscribe>
-      <unsubscribe>commits-unsubscribe@onami.incubator.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/incubator-onami-commits/</archive>
+      <post>commits@onami.apache.org</post>
+      <subscribe>commits-subscribe@onami.apache.org</subscribe>
+      <unsubscribe>commits-unsubscribe@onami.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/onami-commits/</archive>
       <otherArchives>
         <otherArchive>http://onami-commits.markmail.org/</otherArchive>
       </otherArchives>
@@ -262,9 +262,9 @@
   </mailingLists>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/parent</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/parent</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/parent</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/parent</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/parent</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/parent</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
@@ -281,7 +281,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -446,7 +446,7 @@
             <preparationGoals>clean install</preparationGoals>
             <goals>deploy</goals>
             <arguments>-Prelease,apache</arguments>
-            <tagBase>https://svn.apache.org/repos/asf/incubator/onami/tags</tagBase>
+            <tagBase>https://svn.apache.org/repos/asf/onami/tags</tagBase>
           </configuration>
         </plugin>
 
@@ -757,7 +757,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.7</version>
       </plugin>
 
       <plugin>

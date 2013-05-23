@@ -25,12 +25,6 @@
 
   <version position="left" />
 
-  <bannerRight>
-    <name>Apache Incubator</name>
-    <src>http://incubator.apache.org/images/apache-incubator-logo.png</src>
-    <href>http://incubator.apache.org/</href>
-  </bannerRight>
-
   <skin>
     <groupId>org.apache.maven.skins</groupId>
     <artifactId>maven-fluido-skin</artifactId>
