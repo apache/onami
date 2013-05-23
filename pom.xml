@@ -31,12 +31,12 @@
 
   <name>Apache Onami-Configuration</name>
   <description>Apache Onami-Configuration adds some spice to Google Guice through configuration files!</description>
-  <url>http://onami.incubator.apache.org/configuration/</url>
+  <url>http://onami.apache.org/configuration/</url>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/configuration</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/configuration</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/configuration</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/configuration</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/configuration</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/configuration</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
@@ -54,7 +54,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -62,7 +62,7 @@
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/configuration</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/configuration</url>
     </site>
   </distributionManagement>
 
