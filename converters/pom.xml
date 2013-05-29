@@ -28,7 +28,7 @@
 
   <groupId>org.apache.onami.converters</groupId>
   <artifactId>org.apache.onami.converters.parent</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami-Converters - Parent</name>
@@ -47,9 +47,9 @@
   </modules>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/onami/trunk/converters</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/converters</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/converters</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/tags/org.apache.onami.converters.parent-1.0.0</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.converters.parent-1.0.0</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.converters.parent-1.0.0</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
