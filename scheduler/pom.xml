@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>org.apache.onami.scheduler</artifactId>
-  <version>1.4.0</version>
+  <version>1.4.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Apache Onami-Scheduler</name>
@@ -36,10 +36,9 @@
   <inceptionYear>2011</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/onami/tags/org.apache.onami.scheduler-1.4.0</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.scheduler-1.4.0</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.scheduler-1.4.0</developerConnection>
-    <tag>HEAD</tag>
+    <url>https://svn.apache.org/viewvc/onami/trunk/scheduler</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/scheduler</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/scheduler</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
