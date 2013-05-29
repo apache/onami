@@ -41,6 +41,7 @@
     <module>core</module>
     <module>modules</module>
     <module>services</module>
+    <module>all</module>
   </modules>
 
   <scm>
