@@ -36,9 +36,9 @@
   <inceptionYear>2011</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/scheduler</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/scheduler</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/scheduler</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/scheduler</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/scheduler</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/scheduler</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
