@@ -28,7 +28,7 @@
   </parent>
 
   <artifactId>org.apache.onami.validation</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>Apache Onami-Validation</name>
   <description>Apache Onami-Validation is a Java5 compatible JSR303 (Bean Validation) integration extension for Google Guice</description>
@@ -36,9 +36,9 @@
   <inceptionYear>2013</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/onami/trunk/validation</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/validation</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/validation</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/tags/org.apache.onami.validation-1.0.0</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.validation-1.0.0</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.validation-1.0.0</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
