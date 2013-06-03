@@ -36,6 +36,7 @@
       <item name="System converters" href="./system.html" />
       <item name="The complete converters module" href="./all.html" />
       <item name="Extend Onami Converters" href="./extend.html" />
+      <item name="Release Notes" href="./changes.html" />
     </menu>
 
     <menu ref="reports"/>

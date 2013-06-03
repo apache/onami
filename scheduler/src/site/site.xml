@@ -34,6 +34,7 @@
     <menu name="Apache Onami™ Scheduler">
       <item name="Home" href="index.html" />
       <item name="User guide" href="userguide.html" />
+      <item name="Release Notes" href="./changes.html" />
     </menu>
 
     <menu ref="reports"/>
