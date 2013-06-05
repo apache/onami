@@ -27,7 +27,7 @@
 Welcome to ${project.name}!
 
   ${project.name} is a small collection of reusable tools for <Google Guice> to make
-  easier the integration with {{{Google Guava}http://code.google.com/p/guava-libraries/}}.
+  easier the integration with {{{http://code.google.com/p/guava-libraries/}Google Guava}}.
 
 Before starting
 
