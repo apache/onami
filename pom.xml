@@ -27,16 +27,16 @@
   </parent>
 
   <artifactId>org.apache.onami.configuration</artifactId>
-  <version>6.3.0-SNAPSHOT</version>
+  <version>6.3.0</version>
 
   <name>Apache Onami-Configuration</name>
   <description>Apache Onami-Configuration adds some spice to Google Guice through configuration files!</description>
   <url>http://onami.apache.org/configuration/</url>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/onami/trunk/configuration</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/configuration</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/configuration</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/tags/org.apache.onami.configuration-6.3.0</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.configuration-6.3.0</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.configuration-6.3.0</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
