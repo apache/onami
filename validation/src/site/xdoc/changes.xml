@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ | Licensed to the Apache Software Foundation (ASF) under one
+ | or more contributor license agreements.  See the NOTICE file
+ | distributed with this work for additional information
+ | regarding copyright ownership.  The ASF licenses this file
+ | to you under the Apache License, Version 2.0 (the
+ | "License"); you may not use this file except in compliance
+ | with the License.  You may obtain a copy of the License at
+ |
+ |   http://www.apache.org/licenses/LICENSE-2.0
+ |
+ | Unless required by applicable law or agreed to in writing,
+ | software distributed under the License is distributed on an
+ | "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ | KIND, either express or implied.  See the License for the
+ | specific language governing permissions and limitations
+ | under the License.
+-->
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Release Notes</title>
+    <author email="dev@onami.apache.org">Apache Onami Documentation Team</author>
+  </properties>
+
+  <body>
+    <section name="Release Notes">
+      <subsection name="1.0.0">
+        <h5>        Bug
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-74'>ONAMI-74</a>] -         Add the @Validate re-throw exception behaviour in documentation
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-75'>ONAMI-75</a>] -         Update tests from pure JUnit to use Onami-Test to avoid boilerplate code
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-77'>ONAMI-77</a>] -         Make the ValidationModule discoverable with the ServiceLoader
+</li>
+</ul>
+                
+<h5>        Improvement
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-79'>ONAMI-79</a>] -         Make validation-related objects immutable
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-80'>ONAMI-80</a>] -         Make interceptor package private
+</li>
+</ul>
+                            
+<h5>        Task
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-65'>ONAMI-65</a>] -         Copy the bval-guice module on oanmi sandbox
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-66'>ONAMI-66</a>] -         Align the pom to current Onami development
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-67'>ONAMI-67</a>] -         Add missing legal files
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-68'>ONAMI-68</a>] -         Add missing site descriptor
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-69'>ONAMI-69</a>] -         Add javax.validation dependency to fix compilation issues
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-70'>ONAMI-70</a>] -         move org.apache.bval.guice to org.apache.onami.validation
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-71'>ONAMI-71</a>] -         Create the Jenkins job to Onami view
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-72'>ONAMI-72</a>] -         Update code format in order to be aligned to the Onami conventions
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-73'>ONAMI-73</a>] -         import documentation from BVal site
+</li>
+</ul>
+      </subsection>
+    </section>
+  </body>
+</document>
