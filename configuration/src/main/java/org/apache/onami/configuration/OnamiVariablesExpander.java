@@ -43,7 +43,7 @@ import com.google.inject.spi.Element;
 /**
  * @since 6.0
  */
-public final class Rocoto
+public final class OnamiVariablesExpander
     extends AbstractModule
 {
 
@@ -78,7 +78,7 @@ public final class Rocoto
      */
     public static Module expandVariables( Parser parser, Iterable<? extends Module> baseModules )
     {
-        return override( baseModules ).with( new Rocoto( parser, getElements( baseModules ) ) );
+        return override( baseModules ).with( new OnamiVariablesExpander( parser, getElements( baseModules ) ) );
     }
 
     private final TypeLiteral<String> stringLiteral = new TypeLiteral<String>(){};
@@ -90,7 +90,7 @@ public final class Rocoto
     /**
      * Do nothing, this class cannot be instantiated
      */
-    private Rocoto( Parser parser, List<Element> elements )
+    private OnamiVariablesExpander( Parser parser, List<Element> elements )
     {
         this.parser = parser;
         this.elements = elements;

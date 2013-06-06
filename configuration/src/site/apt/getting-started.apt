@@ -24,25 +24,25 @@
 ~~ under the License.
 ~~
 
-Rocoto getting started
+Apache Onami-Configuration getting started
 
-  The <Rocoto> library is a small <Google Guice> extension that allows expanding <<<com.google.inject.name.Names>>>
+  The Apache Onami-Configuration library is a small <Google Guice> extension that allows expanding <<<com.google.inject.name.Names>>>
   variables. That means that users can define properties with placeholders and let <Guice> resolve them to be injected
   with replaced values.
 
-  Users have just to invoke the <<<org.nnsoft.guice.rocoto.Rocoto.expandVariables>>> method
+  Users have just to invoke the <<<org.apache.onami.configuration.OnamiVariablesExpander.expandVariables>>> method
   grouping the <<<Module>>>s where properties have been bound, like in the sample below:
 
 +--------------------------------------+
+import static org.apache.onami.configuration.OnamiVariablesExpander.expandVariables;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.name.Names;
 
-import org.nnsoft.guice.rocoto.Rocoto;
-
 ...
 
-Injector injector = Guice.createInjector( Rocoto.expandVariables( new AbstractModule()
+Injector injector = Guice.createInjector( expandVariables( new AbstractModule()
         {
 
             @Override
@@ -90,7 +90,7 @@ public final class JdbcConfiguration
 
 * $\{\}, the <Apache Ant> variables style
 
-  Rocoto supports the well known <$\{\}> expression to define placeholders, which scope is the whole
+  Apache Onami-Configuration supports the well known <$\{\}> expression to define placeholders, which scope is the whole
   configuration, that means that users can define some commons properties in one properties file:
 
 +--------------------------------------+
@@ -114,7 +114,7 @@ ldap.port=${commons.port}
   {{{http://download.oracle.com/javase/6/docs/api/java/util/Properties.html#getProperty(java.lang.String, java.lang.String)}Properties#getProperty(java.lang.String, java.lang.String)}}
   method.
 
-  Rocoto allows doing the same, users can specify a key using the pipe character <<<|>>> to separate the key name from
+  Apache Onami-Configuration allows doing the same, users can specify a key using the pipe character <<<|>>> to separate the key name from
   the default value:
 
 +--------------------------------------+
@@ -187,5 +187,5 @@ gg=${h}${4|${${2g}2}}
 
   I didn't like that approach at all, it doesn't allow users to split configurations
   in different modules even if some keys are shared by two or more modules.
-  Rocoto users won't have these problems at all,
+  Apache Onami-Configuration users won't have these problems at all,
   they can load <<<*.properties>>> files from different locations and obtain the same result.
