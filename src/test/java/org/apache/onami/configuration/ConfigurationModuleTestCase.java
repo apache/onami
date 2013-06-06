@@ -19,7 +19,7 @@ package org.apache.onami.configuration;
  * under the License.
  */
 
-import static org.apache.onami.configuration.Rocoto.expandVariables;
+import static org.apache.onami.configuration.OnamiVariablesExpander.expandVariables;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
