@@ -185,7 +185,7 @@
       <id>olamy</id>
       <name>Olivier Lamy</name>
       <email>olamy@apache.org</email>
-      <timezone>+1</timezone>
+      <timezone>Australia/Melbourne</timezone>
       <roles>
         <role>Committer</role>
         <role>PPMC Member</role>
