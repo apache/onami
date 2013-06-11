@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ | Licensed to the Apache Software Foundation (ASF) under one
+ | or more contributor license agreements.  See the NOTICE file
+ | distributed with this work for additional information
+ | regarding copyright ownership.  The ASF licenses this file
+ | to you under the Apache License, Version 2.0 (the
+ | "License"); you may not use this file except in compliance
+ | with the License.  You may obtain a copy of the License at
+ |
+ |   http://www.apache.org/licenses/LICENSE-2.0
+ |
+ | Unless required by applicable law or agreed to in writing,
+ | software distributed under the License is distributed on an
+ | "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ | KIND, either express or implied.  See the License for the
+ | specific language governing permissions and limitations
+ | under the License.
+-->
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Release Notes</title>
+    <author email="dev@onami.apache.org">Apache Onami Documentation Team</author>
+  </properties>
+
+  <body>
+    <section name="Release Notes">
+      <subsection name="6.3.0">
+        <h5>        Bug
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-28'>ONAMI-28</a>] -         Do not use code from com.google.inject.internal
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-33'>ONAMI-33</a>] -         org.apache.onami.configuration.configuration package has to be collapsed to org.apache.onami.configuration
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-34'>ONAMI-34</a>] -         rename the Rocoto class
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-75'>ONAMI-75</a>] -         Update tests from pure JUnit to use Onami-Test to avoid boilerplate code
+</li>
+</ul>
+                
+<h5>        Improvement
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-88'>ONAMI-88</a>] -         Consistent policy for exception handling
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-106'>ONAMI-106</a>] -         The main variable expander doesn&#39;t expose an API to allow user plug the custom Parse instance
+</li>
+</ul>
+                            
+<h5>        Task
+</h5>
+<ul>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-4'>ONAMI-4</a>] -         Import Rocato donated codebase
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-26'>ONAMI-26</a>] -         Make all artifactId OSGi name compliant
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-31'>ONAMI-31</a>] -         Update parent pom reference to released 1-incubating version
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-36'>ONAMI-36</a>] -         remove groupId in components where it is inherited from the parent
+</li>
+<li>[<a href='https://issues.apache.org/jira/browse/ONAMI-84'>ONAMI-84</a>] -         Drop the `converters` package since they have been moved in a separate extension
+</li>
+</ul>
+      </subsection>
+    </section>
+  </body>
+</document>
