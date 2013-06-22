@@ -276,6 +276,7 @@ wget -e robots=off -nH --cut-dirs=7 -np --no-check-certificate -m -A *.zip*  -R 
 https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/org/apache/onami/org.apache.onami.xxxx/major.minor.patch/
 svn add major.minor.patch
 svn commit -m "Promoting the voted release artifacts" major.minor.patch</source>
+            Please keep the distribution area clean. Remove any "old" release soon after it is superseded by a "new" release in the same development branch.
           </li>
 
           <li>Promote the staged nexus artifacts:
