@@ -263,6 +263,22 @@ I will promote the artifacts to the central repo.]]></pre>
 
       <subsection name="Finalize the Release">
         <ol>
+          <li>Add the distribution artifacts to the distribution area
+            <source>svn co https://dist.apache.org/repos/dist/release/onami onami-dist
+cd onami-dist
+
+# if the component dir already exist
+cd org.apache.onami.xxxx
+
+# if the component dir doesn't exist
+svn mkdir org.apache.onami.xxxx
+
+wget -e robots=off -nH --cut-dirs=7 -np --no-check-certificate -m -A *.zip*  -R .asc.sha1,.asc.md5 \
+https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/org/apache/onami/org.apache.onami.xxxx/major.minor.patch/
+svn add major.minor.patch
+svn commit -m "Promoting the voted release artifacts" major.minor.patch</source>
+          </li>
+
           <li>Promote the staged nexus artifacts:
             <ol>
               <li><a href="https://repository.apache.org/index.html">https://repository.apache.org/</a></li>
@@ -279,14 +295,6 @@ I will promote the artifacts to the central repo.]]></pre>
               <li>if the component is a single-module project, then run <code>mvn site-deploy -Dusername=${committer.id} -Dpassword=${committer.password}</code></li>
               <li>if the component is a multi-module project, then run <code>sh ./deploySite.sh -Dusername=${committer.id} -Dpassword=${committer.password}</code></li>
             </ol>
-          </li>
-
-          <li><h1>FIXME</h1>Add the distribution artifacts to the distribution area
-            <source>ssh asf-id@people.apache.org
-cd /x1/www/www.apache.org/dist/onami/
-
-mv /x1/builds/onami/sources/* sources/
-mv /x1/builds/onami/binaries/* binaries/</source>
           </li>
 
           <li>Update the
