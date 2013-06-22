@@ -267,11 +267,10 @@ I will promote the artifacts to the central repo.]]></pre>
             <source>svn co https://dist.apache.org/repos/dist/release/onami onami-dist
 cd onami-dist
 
-# if the component dir already exist
-cd org.apache.onami.xxxx
-
 # if the component dir doesn't exist
 svn mkdir org.apache.onami.xxxx
+
+cd org.apache.onami.xxxx
 
 wget -e robots=off -nH --cut-dirs=7 -np --no-check-certificate -m -A *.zip*  -R .asc.sha1,.asc.md5 \
 https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/org/apache/onami/org.apache.onami.xxxx/major.minor.patch/
