@@ -180,7 +180,7 @@ gpg: Signature made ...</source>
           <li>Create a <code>VOTE</code> email thread on <a href="mailto:dev@onami.apache.org">dev@</a>
           to record votes as replies, e.g.:
             <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.apache.org>
-Subject: [VOTE] Release Apache Onami XXXX major.minor.patch-incubating
+Subject: [VOTE] Release Apache Onami XXXX major.minor.patch
 
 Hi,
 
@@ -191,13 +191,13 @@ There are still a couple of issues left in JIRA:
 http://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&pid=12311100&status=1
 
 SVN source tag
-https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.xxxx-major.minor.patch-incubating/
+https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.xxxx-major.minor.patch/
 
 Staging repo:
 https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/
 
 Release artifact:
-https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/org/apache/onami/org.apache.onami.xxxx/major.minor.patch-incubating/org.apache.onami.xxx-major.minor.patch-incubating-source-release.zip
+https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/org/apache/onami/org.apache.onami.xxxx/major.minor.patch/org.apache.onami.xxx-major.minor.patch-source-release.zip
 
 Vote will be open for 72 hours.
 
@@ -208,7 +208,7 @@ Vote will be open for 72 hours.
 
           <li>Create a <code>DISCUSS</code> email thread on <code>dev@</code> for any vote questions, e.g.:
             <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.apache.org>
-Subject: [DISCUSS] Apache Onami XXXX major.minor.patch-incubating
+Subject: [DISCUSS] Apache Onami XXXX major.minor.patch
 
 Discussion thread for vote on &lt;version&gt; release candidate, with SVN source tag.
 
@@ -234,7 +234,7 @@ Some of the things to check before voting are:
           post the results to the vote thread, replying to the initial email prepending <code>[RESULT]</code> to the
           original subject and include a list of every binding <code>+1</code>, <code>0</code> and <code>-1</code> vote.
           <pre><![CDATA[To: "Apache Onami Developers List" <dev@onami.apache.org>
-Subject: [RESULT] [VOTE] Release Onami XXXX major.minor.patch-incubating
+Subject: [RESULT] [VOTE] Release Onami XXXX major.minor.patch
 
 Hi,
 The vote has passed with the following result :
@@ -304,9 +304,9 @@ mv /x1/builds/onami/binaries/* binaries/</source>
         <pre><![CDATA[From: YOUR_APACHE_USERNAME@apache.org
 To: "ASF Announcements" <announce@apache.org>, "Apache Onami Users List" <user@onami.apache.org>
 CC: "Apache Onami Developers List" <dev@onami.apache.org>, "Google Guice Users List" <google-guice@googlegroups.com>
-Subject: [ANNOUNCE] Apache Onami XXXX major.minor.patch-incubating
+Subject: [ANNOUNCE] Apache Onami XXXX major.minor.patch
 
-The Apache Onami Team is pleased to announce the release of Apache Onami XXXX major.minor.patch-incubating.
+The Apache Onami Team is pleased to announce the release of Apache Onami XXXX major.minor.patch.
 
 (put XXXX extension description here)
 
@@ -330,7 +330,7 @@ Have Fun,
         </li>
 
         <li>Delete the svn tag created by the <code>release:perform</code> step:
-        <pre>svn rm https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.xxxx-major.minor.patch-incubating -m "deleting tag from rolled back release"</pre></li>
+        <pre>svn rm https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.xxxx-major.minor.patch -m "deleting tag from rolled back release"</pre></li>
 
         <li>Drop the Nexus staging repo:
           <ol>
