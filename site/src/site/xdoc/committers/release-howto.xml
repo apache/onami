@@ -199,6 +199,9 @@ https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITO
 Release artifact:
 https://repository.apache.org/content/repositories/orgapacheonami-[YOUR REPOSITORY ID]/org/apache/onami/org.apache.onami.xxxx/major.minor.patch/org.apache.onami.xxx-major.minor.patch-source-release.zip
 
+PGP release keys (signed using ABCDEFG):
+http://www.apache.org/dist/onami/KEYS
+
 Vote will be open for 72 hours.
 
 [ ] +1, let's get it ruuuumbleeeeee!!!
