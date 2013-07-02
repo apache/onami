@@ -32,7 +32,7 @@
 
   <name>Apache Onami-Scheduler</name>
   <description>Apache Onami-Scheduler is the Google Guice extension for Quartz Scheduler</description>
-  <url>http://onami.incubator.apache.org/scheduler</url>
+  <url>http://onami.apache.org/scheduler</url>
   <inceptionYear>2011</inceptionYear>
 
   <scm>
@@ -55,7 +55,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -63,7 +63,7 @@
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/scheduler</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/scheduler</url>
     </site>
   </distributionManagement>
 

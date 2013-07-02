@@ -32,13 +32,13 @@
 
   <name>Apache Onami-Test</name>
   <description>Apache Onami-Test is a simple library to inject a Junit4 test classess via Google-Guice.</description>
-  <url>http://onami.incubator.apache.org/test</url>
+  <url>http://onami.apache.org/test</url>
   <inceptionYear>2010</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/test</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/test</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/test</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/test</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/test</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/test</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
@@ -55,7 +55,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -63,7 +63,7 @@
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/test</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/test</url>
     </site>
   </distributionManagement>
 
