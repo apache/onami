@@ -34,7 +34,7 @@
   <name>Apache Onami-SPI</name>
   <description>Apache Onami-SPI is a Java5 compatible small collection of reusable tools to make easier the integration
   with the Service Provider Interface pattern.</description>
-  <url>http://onami.incubator.apache.org/spi/</url>
+  <url>http://onami.apache.org/spi/</url>
   <inceptionYear>2012</inceptionYear>
 
   <modules>
@@ -45,9 +45,9 @@
   </modules>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/incubator/onami/trunk/spi</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/spi</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/trunk/spi</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/spi</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/spi</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/spi</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
@@ -65,7 +65,7 @@
         <sendOnSuccess>false</sendOnSuccess>
         <sendOnWarning>false</sendOnWarning>
         <configuration>
-          <address>dev@onami.incubator.apache.org</address>
+          <address>dev@onami.apache.org</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -73,7 +73,7 @@
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/spi</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/spi</url>
     </site>
   </distributionManagement>
 
@@ -111,7 +111,7 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <configuration>
             <checkoutDirectory>${onami.spi.scmPubCheckoutDirectory}</checkoutDirectory>
-            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/incubator/onami/site/spi</pubScmUrl>
+            <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/onami/site/spi</pubScmUrl>
             <checkinComment>Onami SPI site deployment</checkinComment>
             <content>${onami.spi.siteFilePath}</content>
             <tryUpdate>true</tryUpdate>
