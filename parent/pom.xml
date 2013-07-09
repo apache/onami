@@ -217,6 +217,17 @@
       </roles>
       <url>http://people.apache.org/~simonetripodi/</url>
     </developer>
+
+    <developer>
+      <id>sclassen</id>
+      <name>Stephan Classen</name>
+      <email>sclassen@apache.org</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Committer</role>
+      </roles>
+      <url>http://people.apache.org/~sclassen/</url>
+    </developer>
   </developers>
   <contributors>
     <contributor>
