@@ -73,7 +73,7 @@
   <distributionManagement>
     <site>
       <id>apache.website.svnpub</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/onami/site/spi</url>
+      <url>${onami.spi.siteUrlDeployment}</url>
     </site>
   </distributionManagement>
 
