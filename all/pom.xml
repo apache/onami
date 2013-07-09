@@ -31,13 +31,16 @@
   <name>Apache Onami-SPI - All</name>
   <description>Apache Onami-SPI all modules in one single package</description>
 
+  <properties>
+    <site.skip>true</site.skip>
+  </properties>
+
   <!-- in order to create the 'all' package, 'release' profile must be active -->
   <profiles>
     <profile>
       <id>release</id>
 
       <properties>
-        <site.skip>true</site.skip>
         <osgi.export>!org.apache.onami.spi.core,org.apache.onami.spi.*;version=${project.version}</osgi.export>
       </properties>
 
