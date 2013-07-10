@@ -77,7 +77,7 @@
     <dependency>
       <groupId>javax.cache</groupId>
       <artifactId>cache-api</artifactId>
-      <version>0.5</version>
+      <version>0.61</version>
     </dependency>
 
     <dependency>
