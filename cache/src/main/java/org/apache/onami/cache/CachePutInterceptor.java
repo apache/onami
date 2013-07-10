@@ -25,8 +25,6 @@ import javax.cache.annotation.CacheKey;
 import javax.cache.annotation.CacheKeyInvocationContext;
 import javax.cache.annotation.CachePut;
 
-import org.aopalliance.intercept.MethodInvocation;
-
 final class CachePutInterceptor
     extends AfterBeforeInvocationInterceptor<CachePut>
 {
