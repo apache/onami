@@ -69,7 +69,7 @@ class UserTransactionFacade
         }
         catch ( SystemException e )
         {
-            throw new RuntimeException( "unexpected error occured", e );
+            throw new RuntimeException( "unexpected error occurred", e );
         }
     }
 
@@ -104,7 +104,7 @@ class UserTransactionFacade
         }
         catch ( SystemException e )
         {
-            throw new RuntimeException( "unexpected error occured", e );
+            throw new RuntimeException( "unexpected error occurred", e );
         }
     }
 
@@ -127,7 +127,7 @@ class UserTransactionFacade
         }
         catch ( SystemException e )
         {
-            throw new RuntimeException( "unexpected error occured", e );
+            throw new RuntimeException( "unexpected error occurred", e );
         }
     }
 
@@ -146,7 +146,7 @@ class UserTransactionFacade
         }
         catch ( SystemException e )
         {
-            throw new RuntimeException( "unexpected error occured", e );
+            throw new RuntimeException( "unexpected error occurred", e );
         }
     }
 
@@ -174,22 +174,7 @@ class UserTransactionFacade
         }
         catch ( SystemException e )
         {
-            throw new RuntimeException( "unexpected error occured", e );
-        }
-    }
-
-    /**
-     * @see {@link UserTransaction#setTransactionTimeout(int)}.
-     */
-    void setTransactionTimeout( int seconds )
-    {
-        try
-        {
-            txn.setTransactionTimeout( seconds );
-        }
-        catch ( SystemException e )
-        {
-            throw new RuntimeException( "unexpected error occured", e );
+            throw new RuntimeException( "unexpected error occurred", e );
         }
     }
 }
