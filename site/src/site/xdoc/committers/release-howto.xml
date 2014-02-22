@@ -40,7 +40,7 @@
         walk you though this.</li>
 
         <li>Install <a href="http://maven.apache.org/">Apache Maven</a> 2.2.1 or higher. 2.2.0 has a bug that will
-        produce invalid checksums; we strongly encourage our committers to install Apache Maven 3.0.4.</li>
+        produce invalid checksums; we strongly encourage our committers to install latest Apache Maven version.</li>
 
         <li>Configure Apache Maven <a href="./maven-settings.html">settings</a>.</li>
       </ul>
@@ -55,7 +55,7 @@
           <li> Update the text files in a working copy of the project root:
             <ol>
               <li>Update the <tt>CHANGES</tt> based on the Text release reports from JIRA.</li>
-              <li>Commit any changes back to svn: <pre>svn commit -m "updating files for release"</pre>.</li>
+              <li>Commit any changes back to svn: <pre>svn commit -m "updating files for release"</pre></li>
             </ol>
           </li>
           <li>Perform a full build and deploy the SNAPSHOT artifacts: <pre>mvn clean deploy</pre></li>

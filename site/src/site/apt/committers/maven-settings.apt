@@ -63,7 +63,7 @@ Introduction
       </activation>
       <properties>
         <mavenExecutorId>forked-path</mavenExecutorId>
-        <gpg.keyname>${gpg.keyname}</gpg.keyname>\
+        <gpg.keyname>${gpg.keyname}</gpg.keyname>
         <!-- optional -->
         <gpg.passphrase>${gpg.passphrase}</gpg.passphrase>
       </properties>
