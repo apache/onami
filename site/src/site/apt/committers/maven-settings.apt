@@ -75,5 +75,5 @@ Introduction
 
  You also need to be a member of the group <<<apcvs>>> and <<<maven>>> on <<<people.apache.org>>>.
 
- A copy of a <<<settings.xml>>> emplate file can be downloaded from {{{https://svn.apache.org/repos/asf/incubator/onami/committers/maven/settings.xml}SVN}}.
+ A copy of a <<<settings.xml>>> emplate file can be downloaded from {{{https://svn.apache.org/repos/asf/onami/committers/maven/settings.xml}SVN}}.
  

@@ -35,7 +35,7 @@ Code Style And Code Conventions
  All working files (java, xml, others) should respect the following conventions:
 
  * <<License Header>>: Always add the current {{{http://www.apache.org/legal/src-headers.html#headers}ASF license header}}
- in all versioned files. A {{{https://svn.apache.org/repos/asf/incubator/onami/committers/LICENSE-header}file}} on SVN
+ in all versioned files. A {{{https://svn.apache.org/repos/asf/onami/committers/LICENSE-header}file}} on SVN
  contains a header template for different formats.
 
  * <<Trailing Whitespaces>>: Remove all trailing whitespaces. If your are an Eclipse user, you could use the
@@ -146,7 +146,7 @@ public abstract class QuartzModule
 
 *** IntelliJ IDEA 4.5+
 
- Download <<<{{{https://svn.apache.org/repos/asf/incubator/onami/committers/intellij/onami-idea-codestyle.xml}onami-idea-codestyle.xml}}>>> and copy it to
+ Download <<<{{{https://svn.apache.org/repos/asf/onami/committers/intellij/onami-idea-codestyle.xml}onami-idea-codestyle.xml}}>>> and copy it to
  <<<~/.IntelliJIDEA/config/codestyles>>> then restart IDEA. On Windows, try
  <<<C:\Documents and Settings\<username>\.IntelliJIDEA\config\codestyles>>>
 
@@ -154,7 +154,7 @@ public abstract class QuartzModule
 
 *** Eclipse 3.2+
 
- Download <<<{{{https://svn.apache.org/repos/asf/incubator/onami/committers/eclipse/onami-eclipse-codestyle.xml}onami-eclipse-codestyle.xml}}>>>.
+ Download <<<{{{https://svn.apache.org/repos/asf/onami/committers/eclipse/onami-eclipse-codestyle.xml}onami-eclipse-codestyle.xml}}>>>.
 
  After this, select Window \> Preferences, and open up the configuration for Java \> Code
  Style \> Code Formatter. Click on the button labeled Import... and select the file you

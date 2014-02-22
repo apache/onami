@@ -34,7 +34,7 @@ SVN Convention
  Before committing files in subversion repository, you need to read the
  {{{http://www.apache.org/dev/version-control.html#https-svn}Committer Subversion Access}}
  document and you must set your svn client with this
- {{{https://svn.apache.org/repos/asf/incubator/onami/committers/subversion/config}config}} file by copying it under
+ {{{https://svn.apache.org/repos/asf/onami/committers/subversion/config}config}} file by copying it under
  <<<~/.subversion>>>.
 
 * {Commit Message Template}

@@ -27,7 +27,7 @@
 
 Introduction
 
- You need to add your GPG keys in {{https://svn.apache.org/repos/asf/incubator/onami/committers/KEYS}} before a release. Here are some
+ You need to add your GPG keys in {{https://svn.apache.org/repos/asf/onami/committers/KEYS}} before a release. Here are some
  useful {{{http://www.gnupg.org/}GnuPG}} commands to generate your Keys.
 
 * gpg --gen-key
@@ -154,7 +154,7 @@ dcC0KEtNPufKywDTzA==
 -----END PGP PUBLIC KEY BLOCK-----
 +-----+
 
- You need to append this result to {{https://svn.apache.org/repos/asf/incubator/onami/committers/KEYS}}.
+ You need to append this result to {{https://svn.apache.org/repos/asf/onami/committers/KEYS}}.
 
  A quick way to append this result would be executing the command below:
 
