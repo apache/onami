@@ -21,13 +21,14 @@ package org.apache.onami.lifecycle.core;
 
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
-import com.google.inject.internal.MoreTypes;
 import com.google.inject.matcher.Matcher;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
+import com.google.inject.util.Types;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 
 import static com.google.inject.matcher.Matchers.any;
 
@@ -110,8 +111,7 @@ public final class LifeCycleStageModule<A extends Annotation>
 
     private static <A extends Annotation> TypeLiteral<Stager<A>> type( Class<A> stage )
     {
-        MoreTypes.ParameterizedTypeImpl parameterizedType =
-            new MoreTypes.ParameterizedTypeImpl( null, Stager.class, stage );
+        ParameterizedType parameterizedType = Types.newParameterizedTypeWithOwner( null, Stager.class, stage );
         //noinspection unchecked
         @SuppressWarnings( "unchecked" ) // TODO
         TypeLiteral<Stager<A>> stagerType = (TypeLiteral<Stager<A>>) TypeLiteral.get( parameterizedType );

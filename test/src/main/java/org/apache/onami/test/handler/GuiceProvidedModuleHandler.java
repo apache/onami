@@ -34,7 +34,6 @@ import org.apache.onami.test.reflection.MethodHandler;
 
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
-import com.google.inject.internal.MoreTypes;
 
 /**
  * Handler class to handle all {@link GuiceProvidedModules} annotations.
@@ -90,15 +89,15 @@ public final class GuiceProvidedModuleHandler
             {
                 modules.add( (Module) method.invoke( type ) );
             }
-            else if ( MoreTypes.getRawType( new TypeLiteral<Iterable<Module>>()
+            else if ( new TypeLiteral<Iterable<Module>>()
             {
-            }.getType() ).isAssignableFrom( returnType ) )
+            }.getRawType().isAssignableFrom( returnType ) )
             {
                 addModules( (Iterable<Module>) method.invoke( type ) );
             }
-            else if ( MoreTypes.getRawType( new TypeLiteral<Module[]>()
+            else if ( new TypeLiteral<Module[]>()
             {
-            }.getType() ).isAssignableFrom( returnType ) )
+            }.getRawType().isAssignableFrom( returnType ) )
             {
                 addModules( (Module[]) method.invoke( type ) );
             }
