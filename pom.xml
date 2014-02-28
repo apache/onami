@@ -162,7 +162,7 @@
         <inherited>false</inherited>
         <configuration>
           <checkinComment>Onami Persist site deployment</checkinComment>
-          <checkoutDirectory>${user.home}/onami-sites/?????</checkoutDirectory> <!-- TODO -->
+          <checkoutDirectory>${user.home}/onami-sites/onami-persist-site</checkoutDirectory>
         </configuration>
         <executions>
           <execution>
