@@ -79,6 +79,7 @@
 
     <menu name="Sandbox">
       <item name="Factory Annotation"       href="http://onami.apache.org/factoryannotation" />
+      <item name="Persist"                  href="http://onami.apache.org/persist" />
     </menu>
 
     <menu ref="reports" />
