@@ -54,7 +54,7 @@
   </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://builds.apache.org/job/?????/</url> <!-- TODO -->
+    <url>http://svn.apache.org/repos/asf/onami/sandbox/persist</url>
     <notifiers>
       <notifier>
         <type>mail</type>
