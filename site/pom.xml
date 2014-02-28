@@ -175,6 +175,7 @@
                       <arg line="update --set-depth exclude ${checkoutDirectory}/autobind ${checkoutDirectory}/cache
                       ${checkoutDirectory}/configuration ${checkoutDirectory}/converters ${checkoutDirectory}/factoryannotation
                       ${checkoutDirectory}/guava ${checkoutDirectory}/lifecycle ${checkoutDirectory}/logging
+                      ${checkoutDirectory}/persist
                       ${checkoutDirectory}/scheduler ${checkoutDirectory}/spi ${checkoutDirectory}/scopes
                       ${checkoutDirectory}/test ${checkoutDirectory}/validation" />
                     </exec>
