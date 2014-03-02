@@ -33,7 +33,7 @@
 
   <properties>
     <site.skip>true</site.skip>
-    <slf4j.version>1.7.2</slf4j.version>
+    <slf4j.version>1.7.6</slf4j.version>
   </properties>
 
   <dependencies>
