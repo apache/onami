@@ -49,7 +49,7 @@ public final class URLConverterTestCase
         {
             protected void configure()
             {
-                bindConstant().annotatedWith( named( "classpathResource" ) ).to( "classpath:///testng.xml" );
+                bindConstant().annotatedWith( named( "classpathResource" ) ).to( "classpath:///test.properties" );
             };
         } );
     }
@@ -66,7 +66,7 @@ public final class URLConverterTestCase
     @Test
     public void classpathResource()
     {
-        assertEquals( getClass().getResource( "/testng.xml" ), convertedURL );
+        assertEquals( getClass().getResource( "/test.properties" ), convertedURL );
     }
 
 }
