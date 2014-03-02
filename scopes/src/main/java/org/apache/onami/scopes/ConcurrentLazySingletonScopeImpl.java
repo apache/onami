@@ -23,7 +23,6 @@ import com.google.inject.Key;
 import com.google.inject.Provider;
 import com.google.inject.ProvisionException;
 import com.google.inject.Scope;
-import com.google.inject.internal.CircularDependencyProxy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,13 +60,24 @@ class ConcurrentLazySingletonScopeImpl
                             {
                                 T provided = creator.get();
 
-                                // don't remember proxies; these exist only to serve circular dependencies
-                                if ( provided instanceof CircularDependencyProxy )
-                                {
-                                    return provided;
-                                }
+								Object providedOrSentinel;
+								if ( provided == null )
+								{
+									providedOrSentinel = NULL;
+								}
+								else
+								{
+									for ( Class<?> clazz : provided.getClass().getInterfaces() )
+									{
+										// don't remember proxies; these exist only to serve circular dependencies
+										if ( clazz.getName().equals("com.google.inject.internal.CircularDependencyProxy") )
+										{
+											return provided;
+										}
+									}
+									providedOrSentinel = provided;
+								}
 
-                                Object providedOrSentinel = ( provided == null ) ? NULL : provided;
                                 if ( ( instance != null ) && ( instance != providedOrSentinel ) )
                                 {
                                     throw new ProvisionException( "Provider was reentrant while creating a singleton" );
