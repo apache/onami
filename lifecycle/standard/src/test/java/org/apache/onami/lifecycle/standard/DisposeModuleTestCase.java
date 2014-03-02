@@ -29,7 +29,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import static com.google.inject.Guice.createInjector;
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
 public final class DisposeModuleTestCase
 {

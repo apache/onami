@@ -24,7 +24,7 @@ import com.google.inject.ProvisionException;
 import org.junit.Test;
 
 import static com.google.inject.Guice.createInjector;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 public final class AfterInjectionTestCase
 {

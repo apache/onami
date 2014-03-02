@@ -19,7 +19,7 @@ package org.apache.onami.scheduler;
  * under the License.
  */
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.GuiceProvidedModules;

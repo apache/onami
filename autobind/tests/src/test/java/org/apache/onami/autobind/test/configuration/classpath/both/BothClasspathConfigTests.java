@@ -22,8 +22,6 @@ import java.util.Properties;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import junit.framework.Assert;
-
 import org.apache.onami.autobind.annotations.Bind;
 import org.apache.onami.autobind.configuration.Configuration;
 import org.apache.onami.autobind.configuration.Configuration.Type;
@@ -32,6 +30,7 @@ import org.apache.onami.autobind.configuration.StartupModule;
 import org.apache.onami.autobind.configuration.features.ConfigurationFeature;
 import org.apache.onami.autobind.scanner.PackageFilter;
 import org.apache.onami.autobind.scanner.asm.ASMClasspathScanner;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.google.inject.Guice;

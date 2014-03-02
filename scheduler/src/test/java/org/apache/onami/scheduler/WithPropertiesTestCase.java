@@ -19,7 +19,7 @@ package org.apache.onami.scheduler;
  * under the License.
  */
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Properties;
 

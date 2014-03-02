@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.google.inject.Guice.createInjector;
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.fail;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public final class DisposeTestCase
 {
