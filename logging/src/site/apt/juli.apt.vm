@@ -40,7 +40,7 @@ JULI - Java Utils Logging
 +--------------------------------------+
 
   then, when creating the <<<com.google.inject.Injector>>>, add the
-  <<<org.nnsoft.guice.sli4j.juli.JuliLoggingModule>>> module; please take note
+  <<<org.apache.onami.logging.juli.JuliLoggingModule>>> module; please take note
   that users have to specify the classes <<<com.google.inject.matcher.Matcher>>>
   for whom the logging injection has to be applied:
 
