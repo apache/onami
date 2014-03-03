@@ -133,6 +133,21 @@
     </plugins>
   </build>
 
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <webAccessUrl>https://svn.apache.org/viewvc/onami/trunk/</webAccessUrl>
+          <anonymousConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/</anonymousConnection>
+          <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/</developerConnection>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
   <repositories>
     <repository>
       <id>apache.snapshots</id>
