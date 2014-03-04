@@ -24,6 +24,7 @@
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
     <version>4</version>
+    <relativePath></relativePath>
   </parent>
 
   <groupId>org.apache.onami.converters</groupId>
@@ -113,6 +114,13 @@
   </dependencies>
 
   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.3</version>
+      </plugin>
+    </plugins>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -122,7 +130,7 @@
             <checkoutDirectory>${onami.converters.scmPubCheckoutDirectory}</checkoutDirectory>
             <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/onami/site/converters</pubScmUrl>
             <checkinComment>Onami Converters site deployment</checkinComment>
-            <content>${onami.converters.siteFilePath}</content>
+            <content>${project.build.directory}/staging</content>
             <tryUpdate>true</tryUpdate>
           </configuration>
         </plugin>
