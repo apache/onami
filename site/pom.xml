@@ -141,6 +141,7 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.7</version>
         <configuration>
+          <checkoutDirectoryName>org.apache.onami</checkoutDirectoryName>
           <webAccessUrl>https://svn.apache.org/viewvc/onami/trunk/</webAccessUrl>
           <anonymousConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/</anonymousConnection>
           <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/</developerConnection>
