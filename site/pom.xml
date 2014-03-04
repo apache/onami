@@ -117,6 +117,7 @@
             <ignorePathToDelete>scopes**</ignorePathToDelete>
             <ignorePathToDelete>test**</ignorePathToDelete>
             <ignorePathToDelete>validation**</ignorePathToDelete>
+            <ignorePathToDelete>persist**</ignorePathToDelete>
           </ignorePathsToDelete>
           <checkoutDirectory>${checkoutDirectory}</checkoutDirectory>
         </configuration>
