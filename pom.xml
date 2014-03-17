@@ -29,7 +29,7 @@
 
   <groupId>org.apache.onami</groupId>
   <artifactId>org.apache.onami.parent</artifactId>
-  <version>5-SNAPSHOT</version>
+  <version>5</version>
   <packaging>pom</packaging>
 
   <name>Apache Onami</name>
@@ -273,9 +273,9 @@
   </mailingLists>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/onami/trunk/parent</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/parent</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/parent</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/tags/org.apache.onami.parent-5</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.parent-5</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/tags/org.apache.onami.parent-5</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>
