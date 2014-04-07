@@ -19,55 +19,46 @@ package org.apache.onami.persist;
  * under the License.
  */
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.Properties;
 
 import static org.apache.onami.persist.Preconditions.checkNotNull;
+
 
 /**
  * Implementation of {@link PersistenceService} and {@link EntityManagerFactoryProvider} for
  * application managed persistence units.
+ * <p/>
+ * This class is a singleton and all methods of the {@link PersistenceService} interface are synchronized.
  */
-final class ApplicationManagedEntityManagerFactoryProvider
+@Singleton
+class ApplicationManagedEntityManagerFactoryProvider
     implements EntityManagerFactoryProvider, PersistenceService
 {
 
-    // ---- Members
-
     /**
-     * Name of the persistence unit as defined in the persistence.xml.
+     * Factory for creating the {@link EntityManagerFactory}.
      */
-    private final String puName;
+    private final EntityManagerFactoryFactory emfFactory;
 
     /**
-     * Additional properties. Theses override the ones defined in the persistence.xml.
-     */
-    private final Properties properties;
-
-    /**
-     * EntityManagerFactory.
+     * Currently active entity manager factory.
+     * Is {@code null} when the persistence service is not running.
      */
     private EntityManagerFactory emf;
-
-    // ---- Constructor
 
     /**
      * Constructor.
      *
-     * @param puName     the name of the persistence unit as defined in the persistence.xml. Must not be {@code null}.
-     * @param properties the additional properties. Theses override the ones defined in the persistence.xml. Must not be {@code null}.
+     * @param emfFactory the factory for the  {@link EntityManagerFactory}. Must not be {@code null}.
      */
-    public ApplicationManagedEntityManagerFactoryProvider( String puName, Properties properties )
+    @Inject
+    ApplicationManagedEntityManagerFactoryProvider( EntityManagerFactoryFactory emfFactory )
     {
-        checkNotNull( puName );
-        checkNotNull( properties );
-
-        this.puName = puName;
-        this.properties = properties;
+        this.emfFactory = checkNotNull( emfFactory, "emfFactory is mandatory!" );
     }
-
-    // ---- Methods
 
     /**
      * {@inheritDoc}
@@ -87,20 +78,20 @@ final class ApplicationManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public void start()
+    public synchronized void start()
     {
         if ( isRunning() )
         {
             throw new IllegalStateException( "PersistenceService is already running." );
         }
-        emf = Persistence.createEntityManagerFactory( puName, properties );
+        emf = emfFactory.createApplicationManagedEntityManagerFactory();
     }
 
     /**
      * {@inheritDoc}
      */
     // @Override
-    public boolean isRunning()
+    public synchronized boolean isRunning()
     {
         return null != emf;
     }
@@ -109,12 +100,18 @@ final class ApplicationManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public void stop()
+    public synchronized void stop()
     {
         if ( isRunning() )
         {
-            emf.close();
-            emf = null;
+            try
+            {
+                emf.close();
+            }
+            finally
+            {
+                emf = null;
+            }
         }
     }
 

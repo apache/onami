@@ -19,47 +19,33 @@ package org.apache.onami.persist;
  * under the License.
  */
 
+import com.google.inject.Singleton;
 import org.aopalliance.intercept.MethodInvocation;
 
 import java.lang.reflect.Method;
 
 /**
- * Reader which obtains the concrete @{@link Transactional} annotation on a method. The reader may use some sort of
- * caching.
+ * Reader which obtains the concrete {@link Transactional @Transactional} annotation of a method.
  */
+@Singleton
 class TransactionalAnnotationReader
 {
-    private static final Transactional DEFAULT_TRANSACTIONAL = DefaultTransactional.class.getAnnotation( Transactional.class );
-
     /**
-     * cache for {@link Transactional} annotations per method.
+     * Constant holding the a transactional instance with all default values.
      */
-    final TransactionalCache transactionalCache = new TransactionalCache();
-
+    private static final Transactional DEFAULT_TRANSACTIONAL =
+        DefaultTransactional.class.getAnnotation( Transactional.class );
 
     /**
-     * Reads the @{@link Transactional} of a given method invocation.
+     * Reads the {@link Transactional @Transactional} of a given method invocation.
      *
-     * @param methodInvocation the method invocation for which to obtain the @{@link Transactional}.
-     * @return the @{@link Transactional} of the given method invocation. Never {@code null}.
+     * @param methodInvocation the method invocation for which to obtain the {@link Transactional @Transactional}.
+     * @return the {@link Transactional @Transactional} of the given method invocation. Never {@code null}.
      */
     Transactional readAnnotationFrom( MethodInvocation methodInvocation )
     {
+        Transactional result;
         final Method method = methodInvocation.getMethod();
-        Transactional result;
-
-        result = transactionalCache.get( method );
-        if ( null == result )
-        {
-            result = getTransactional( methodInvocation, method );
-            transactionalCache.put( method, result );
-        }
-        return result;
-    }
-
-    private Transactional getTransactional( MethodInvocation methodInvocation, Method method )
-    {
-        Transactional result;
         result = method.getAnnotation( Transactional.class );
         if ( null == result )
         {
@@ -74,23 +60,10 @@ class TransactionalAnnotationReader
     }
 
     /**
-     * Helper class for obtaining the default of @{@link Transactional}.
+     * Helper class for obtaining the default of {@link Transactional @Transactional}.
      */
     @Transactional
     private static class DefaultTransactional
     {
-    }
-
-    private static class TransactionalCache
-    {
-        Transactional get( Method method )
-        {
-            return null;
-        }
-
-        void put( Method method, Transactional annotation )
-        {
-            // nop
-        }
     }
 }

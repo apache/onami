@@ -20,245 +20,146 @@ package org.apache.onami.persist;
  */
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Key;
+import com.google.inject.Provider;
+import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
-import com.google.inject.matcher.Matchers;
-import org.aopalliance.intercept.MethodInterceptor;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.transaction.UserTransaction;
 import java.lang.reflect.AnnotatedElement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-import static org.apache.onami.persist.Preconditions.checkNotNull;
+import static com.google.inject.matcher.Matchers.annotatedWith;
 import static com.google.inject.matcher.Matchers.any;
+import static org.apache.onami.persist.Preconditions.checkNotNull;
 
 /**
- * Main module of the jpa-persistence guice extension.
+ * Main module of the onami persist guice extension.
  * <p/>
- * Add either a {@link ApplicationManagedPersistenceUnitModule} or a
- * {@link ContainerManagedPersistenceUnitModule} per persistence unit using the methods
+ * Add persistence unit using the methods
  * <ul>
- * <li>{@link #add(ApplicationManagedPersistenceUnitModule)}</li>
  * <li>{@link #addApplicationManagedPersistenceUnit(String)}</li>
- * <li>{@link #addApplicationManagedPersistenceUnit(String, Properties)}</li>
- * <li>{@link #add(ContainerManagedPersistenceUnitModule)}</li>
- * <li>{@link #addContainerManagedPersistenceUnit(String)}</li>
- * <li>{@link #addContainerManagedPersistenceUnit(String, Properties)}</li>
+ * <li>{@link #addContainerManagedPersistenceUnitWithJndiName(String)}</li>
+ * <li>{@link #addContainerManagedPersistenceUnit(EntityManagerFactory)}</li>
+ * <li>{@link #addContainerManagedPersistenceUnitProvidedBy(Provider<EntityManagerFactory>)}</li>
  * </ul>
- * <p/>
- * If container managed persistence units have been added and JTA transactions are supported.
- * Use {@link #setUserTransactionJndiName(String)} to define the JNDI name of the
- * {@link UserTransaction} provided by the container.
  */
-public final class PersistenceModule
+public abstract class PersistenceModule
     extends AbstractModule
 {
 
-    // ---- Members
+    private List<PersistenceUnitModule> puModules;
 
-    /**
-     * List of all module builders.
-     */
-    private final List<PersistenceUnitBuilder> moduleBuilders = new ArrayList<PersistenceUnitBuilder>();
+    private final PersistenceUnitContainer container = new PersistenceUnitContainer();
+    private final Matcher<AnnotatedElement> transactionalMatcher = annotatedWith( Transactional.class );
+    private final Matcher<Object> anyMatcher = any();
 
-    /**
-     * List of all persistence unit modules.
-     * If this list is empty it means that configure has not yet been called
-     */
-    private final List<AbstractPersistenceUnitModule> modules = new ArrayList<AbstractPersistenceUnitModule>();
-
-    /**
-     * Container for holding all registered persistence units.
-     */
-    private final PersistenceUnitContainer puContainer = new PersistenceUnitContainer();
-
-    /**
-     * The JNDI name to lookup the {@link UserTransaction}.
-     */
-    private String utJndiName;
-
-    /**
-     * The {@link UserTransactionFacade}.
-     */
-    private UserTransactionFacade utFacade = null;
-
-    // ---- Methods
-
-    /**
-     * Adds an application managed persistence unit.
-     *
-     * @param puName the name of the persistence unit as specified in the persistence.xml. Must not be {@code null}.
-     * @return a builder to further configure the persistence unit.
-     */
-    public PersistenceUnitBuilder addApplicationManagedPersistenceUnit( String puName )
-    {
-        checkNotNull( puName );
-        return add( new ApplicationManagedPersistenceUnitModule( puName ) );
-    }
-
-    /**
-     * Adds an application managed persistence unit.
-     *
-     * @param puName     the name of the persistence unit as specified in the persistence.xml. Must not be {@code null}.
-     * @param properties the properties to pass to the {@link EntityManagerFactory}. Must not be {@code null}.
-     * @return a builder to further configure the persistence unit.
-     */
-    public PersistenceUnitBuilder addApplicationManagedPersistenceUnit( String puName, Properties properties )
-    {
-        checkNotNull( puName );
-        checkNotNull( properties );
-        return add( new ApplicationManagedPersistenceUnitModule( puName, properties ) );
-    }
-
-    /**
-     * Adds an application managed persistence unit.
-     *
-     * @param module the module of the persistence unit. Must not be {@code null}.
-     * @return a builder to further configure the persistence unit.
-     */
-    public PersistenceUnitBuilder add( ApplicationManagedPersistenceUnitModule module )
-    {
-        ensureConfigurHasNotYetBeenExecuted();
-        checkNotNull( module );
-        final PersistenceUnitBuilder builder = new PersistenceUnitBuilder( module );
-        moduleBuilders.add( builder );
-        return builder;
-    }
-
-    /**
-     * Adds an container managed persistence unit.
-     *
-     * @param emfJndiName the JNDI name of the {@link EntityManagerFactory}. Must not be {@code null}.
-     * @return a builder to further configure the persistence unit.
-     */
-    public PersistenceUnitBuilder addContainerManagedPersistenceUnit( String emfJndiName )
-    {
-        checkNotNull( emfJndiName );
-        return add( new ContainerManagedPersistenceUnitModule( emfJndiName ) );
-    }
-
-    /**
-     * Adds an container managed persistence unit.
-     *
-     * @param emfJndiName the JNDI name of the {@link EntityManagerFactory}. Must not be {@code null}.
-     * @param properties  the properties to pass to the {@link EntityManager}. Must not be {@code null}.
-     * @return a builder to further configure the persistence unit.
-     */
-    public PersistenceUnitBuilder addContainerManagedPersistenceUnit( String emfJndiName, Properties properties )
-    {
-        checkNotNull( emfJndiName );
-        checkNotNull( properties );
-        return add( new ContainerManagedPersistenceUnitModule( emfJndiName, properties ) );
-    }
-
-    /**
-     * Adds an container managed persistence unit.
-     *
-     * @param module the module of the persistence unit. Must not be {@code null}.
-     * @return a builder to further configure the persistence unit.
-     */
-    public PersistenceUnitBuilder add( ContainerManagedPersistenceUnitModule module )
-    {
-        ensureConfigurHasNotYetBeenExecuted();
-        checkNotNull( module );
-        final PersistenceUnitBuilder builder = new PersistenceUnitBuilder( module );
-        moduleBuilders.add( builder );
-        return builder;
-    }
-
-    /**
-     * Setter for defining the JNDI name of the container managed {@link UserTransaction}.
-     *
-     * @param utJndiName the JNDI name of the container managed {@link UserTransaction}.
-     */
-    public void setUserTransactionJndiName( String utJndiName )
-    {
-        ensureConfigurHasNotYetBeenExecuted();
-        this.utJndiName = utJndiName;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    protected void configure()
+    protected final void configure()
     {
-        if ( configureHasNotBeenExecutedYet() )
+        if ( puModules != null )
         {
-            if ( 0 == moduleBuilders.size() )
-            {
-                addError( "no persistence units defined. At least one persistence unit is required." );
-                return;
-            }
-            initUserTransactionFacade();
-            for ( PersistenceUnitBuilder builder : moduleBuilders )
-            {
-                final AbstractPersistenceUnitModule module = builder.build();
-                puContainer.add( module.getPersistenceService(), module.getUnitOfWork() );
-                modules.add( module );
-            }
+            throw new RuntimeException( "cannot reenter the configure method" );
         }
-
-        for ( AbstractPersistenceUnitModule module : modules )
-        {
-            install( module );
-
-            final Matcher<AnnotatedElement> matcher = Matchers.annotatedWith( Transactional.class );
-            final MethodInterceptor transactionInterceptor = module.getTransactionInterceptor( utFacade );
-
-            bindInterceptor( matcher, any(), transactionInterceptor );
-            bindInterceptor( any(), matcher, transactionInterceptor );
+        try {
+            puModules = new ArrayList<PersistenceUnitModule>();
+            doConfigure();
         }
-
-        bind( PersistenceService.class ).annotatedWith( AllPersistenceUnits.class ).toInstance( puContainer );
-        bind( UnitOfWork.class ).annotatedWith( AllPersistenceUnits.class ).toInstance( puContainer );
-        bind( PersistenceFilter.class ).toInstance( new PersistenceFilter( puContainer ) );
-    }
-
-    /**
-     * @return {@code true} if {@link #configure()} has not yet been invoked.
-     */
-    private boolean configureHasNotBeenExecutedYet()
-    {
-        return modules.size() == 0;
-    }
-
-    /**
-     * Make sure that the {@link #configure()} method has not been executed yet.
-     */
-    private void ensureConfigurHasNotYetBeenExecuted()
-    {
-        if ( configureHasNotBeenExecutedYet() )
+        finally
         {
-            return;
-        }
-        throw new IllegalStateException( "cannot change a module after creating the injector." );
-    }
-
-    /**
-     * Initializes the field {@link #utFacade} with the {@link UserTransaction} obtained by a
-     * JNDI lookup.
-     */
-    private void initUserTransactionFacade()
-    {
-        if ( null != utJndiName )
-        {
-            try
-            {
-                final InitialContext ctx = new InitialContext();
-                final UserTransaction txn = (UserTransaction) ctx.lookup( utJndiName );
-                utFacade = new UserTransactionFacade( txn );
-            }
-            catch ( NamingException e )
-            {
-                addError( "lookup for UserTransaction with JNDI name '%s' failed", utJndiName );
-            }
+            puModules = null;
         }
     }
 
+    private void doConfigure()
+    {
+        configurePersistence();
+
+        for(PersistenceUnitModule pu : puModules)
+        {
+            final TxnInterceptor txnInterceptor = new TxnInterceptor();
+            pu.setPersistenceUnitContainer( container );
+            pu.setTransactionInterceptor( txnInterceptor );
+            install( pu );
+            bindInterceptor( anyMatcher, transactionalMatcher, txnInterceptor );
+            bindInterceptor( transactionalMatcher, anyMatcher, txnInterceptor );
+        }
+    }
+
+    protected abstract void configurePersistence();
+
+    protected UnannotatedPersistenceUnitBuilder addApplicationManagedPersistenceUnit( String puName )
+    {
+        checkNotNull( puModules,
+                      "calling addApplicationManagedPersistenceUnit outside of configurePersistence is not supported" );
+        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        configurator.setPuName(puName);
+        return configurator;
+    }
+
+    protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnit( EntityManagerFactory emf )
+    {
+        checkNotNull( puModules,
+                      "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
+        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        configurator.setEmf( emf );
+        return configurator;
+    }
+
+    protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitWithJndiName( String jndiName )
+    {
+        checkNotNull( puModules,
+                      "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
+        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        configurator.setEmfJndiName( jndiName );
+        return configurator;
+    }
+
+    protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
+        Provider<EntityManagerFactory> emfProvider )
+    {
+        checkNotNull( puModules,
+                      "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
+        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        configurator.setEmfProvider( emfProvider );
+        return configurator;
+    }
+
+    protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
+        Class<? extends Provider<EntityManagerFactory>> emfProviderClass )
+    {
+        checkNotNull( puModules,
+                      "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
+        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        configurator.setEmfProviderClass( emfProviderClass );
+        return configurator;
+    }
+
+    protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
+        TypeLiteral<? extends Provider<EntityManagerFactory>> emfProviderType )
+    {
+        checkNotNull( puModules,
+                      "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
+        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        configurator.setEmfProviderType( emfProviderType );
+        return configurator;
+    }
+
+    protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
+        Key<? extends Provider<EntityManagerFactory>> emfProviderKey )
+    {
+        checkNotNull( puModules,
+                      "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
+        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        configurator.setEmfProviderKey( emfProviderKey );
+        return configurator;
+    }
+
+    private PersistenceUnitModuleConfigurator createAndAddPuModule()
+    {
+        final PersistenceUnitModuleConfigurator configurator = new PersistenceUnitModuleConfigurator();
+        puModules.add( configurator.getPuModule() );
+        return configurator;
+    }
 }

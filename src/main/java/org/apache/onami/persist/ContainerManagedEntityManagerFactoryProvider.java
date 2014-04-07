@@ -19,46 +19,46 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import javax.persistence.EntityManagerFactory;
 
 import static org.apache.onami.persist.Preconditions.checkNotNull;
 
+
 /**
  * Implementation of {@link PersistenceService} and {@link EntityManagerFactoryProvider} for
  * container managed entity manager factories.
+ * <p/>
+ * This class is a singleton and all methods of the {@link PersistenceService} interface are synchronized.
  */
-final class ContainerManagedEntityManagerFactoryProvider
+@Singleton
+class ContainerManagedEntityManagerFactoryProvider
     implements EntityManagerFactoryProvider, PersistenceService
 {
 
-    // ---- Members
-
     /**
-     * The JNDI name of the {@link EntityManagerFactory}.
+     * The source for retrieving the entity manager factory instance.
      */
-    private final String emfJndiName;
+    private final EntityManagerFactorySource emfSource;
 
     /**
-     * The {@link EntityManagerFactory}.
+     * Currently active entity manager factory.
+     * Is {@code null} when the persistence service is not running.
      */
     private EntityManagerFactory emf;
-
-    // ---- Constructor
 
     /**
      * Constructor.
      *
-     * @param emfJndiName the JNDI name of the {@link EntityManagerFactory}. Must not be {@code null}.
+     * @param emfSource the source for the  {@link EntityManagerFactory}. Must not be {@code null}.
      */
-    public ContainerManagedEntityManagerFactoryProvider( String emfJndiName )
+    @Inject
+    ContainerManagedEntityManagerFactoryProvider( EntityManagerFactorySource emfSource )
     {
-        checkNotNull( emfJndiName );
-        this.emfJndiName = emfJndiName;
+        this.emfSource = checkNotNull( emfSource, "emfSource is mandatory!" );
     }
-
-    // ---- Methods
 
     /**
      * {@inheritDoc}
@@ -78,29 +78,21 @@ final class ContainerManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public void start()
+    public synchronized void start()
     {
         if ( isRunning() )
         {
             throw new IllegalStateException( "PersistenceService is already running." );
         }
-        try
-        {
-            final InitialContext ctx = new InitialContext();
-            emf = (EntityManagerFactory) ctx.lookup( emfJndiName );
-        }
-        catch ( NamingException e )
-        {
-            throw new RuntimeException( "lookup for EntityManagerFactory with JNDI name '" + emfJndiName + "' failed",
-                                        e );
-        }
+
+        emf = emfSource.getEntityManagerFactory();
     }
 
     /**
      * {@inheritDoc}
      */
     // @Override
-    public boolean isRunning()
+    public synchronized boolean isRunning()
     {
         return null != emf;
     }
@@ -109,9 +101,12 @@ final class ContainerManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public void stop()
+    public synchronized void stop()
     {
         emf = null;
+        // the entity manager factory must NOT be closed:
+        // - because it was created by the container and it is therefore the responsibility of the container to close it
+        // - because we cannot know if another part of the application has obtained the same instance over JNDI
     }
 
 }

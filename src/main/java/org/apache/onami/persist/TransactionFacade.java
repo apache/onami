@@ -19,12 +19,9 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-import javax.persistence.EntityTransaction;
-import javax.transaction.UserTransaction;
-
 /**
  * Interface which hides away the details of inner (nested) and outer transactions as well
- * as the details between {@link EntityTransaction} and {@link UserTransaction}.
+ * as the details between {@link javax.persistence.EntityTransaction} and {@link javax.transaction.UserTransaction}.
  */
 interface TransactionFacade
 {

@@ -22,15 +22,15 @@ package org.apache.onami.persist;
 /**
  * This is the main control to the entire persistence engine. Before calling any other method
  * of either {@link UnitOfWork}, {@link EntityManagerProvider}, or any method annotated with
- * @{@link Transactional} the persistence service must be started.
+ * {@link Transactional @Transactional} the persistence service must be started.
  */
 public interface PersistenceService
 {
 
     /**
-     * Starts the underlying persistence engine and makes jpa-persist ready for use.
-     * This method must be called by your code prior to using any other jpa-persist artifacts.
-     * If you are using jpa-persist in a web container {@link PersistenceFilter} will call this
+     * Starts the underlying persistence engine and makes onami-persist ready for use.
+     * This method must be called by your code prior to using any other onami-persist artifacts.
+     * If you are using onami-persist in a web container {@link PersistenceFilter} will call this
      * method upon initialization of the web application.
      *
      * @throws IllegalArgumentException if the service is already running.

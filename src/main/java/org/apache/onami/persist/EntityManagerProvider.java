@@ -35,7 +35,7 @@ import javax.persistence.EntityManager;
  * be used.
  * <p/>
  * It is a good practice to store this provider in a instance/member variable and only obtain an
- * {@link EntityManager} instance in a Method where it is used. This ensures that the method always
+ * {@link EntityManager} instance in a method where it is used. This ensures that the method always
  * has access to a valid {@link EntityManager}.
  * <p/>
  * The {@link EntityManagerProvider} is thread save.

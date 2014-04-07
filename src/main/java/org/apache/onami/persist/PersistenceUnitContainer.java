@@ -19,6 +19,9 @@ package org.apache.onami.persist;
  * under the License.
  */
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,14 +29,12 @@ import static org.apache.onami.persist.Preconditions.checkNotNull;
 
 /**
  * Container of persistence units. This is a convenience wrapper for multiple
- * persistence units. calling any method of either {@link PersistenceService} or
- * {@link UnitOfWork} will propagate this call to all added persistence units.
+ * persistence units.
  */
+@Singleton
 class PersistenceUnitContainer
-    implements PersistenceService, UnitOfWork
+    implements AllPersistenceServices, AllUnitsOfWork
 {
-
-    // ---- Members
 
     /**
      * Collection of all known persistence services.
@@ -45,14 +46,13 @@ class PersistenceUnitContainer
      */
     private final Set<UnitOfWork> unitsOfWork = new HashSet<UnitOfWork>();
 
-    // ---- Methods
-
     /**
      * Adds a persistence service and a unit of work to this container.
      *
      * @param ps  the persistence service to add. Must not be {@code null}.
      * @param uow the unit of work to add. Must not be {@code null}.
      */
+    @Inject
     void add( PersistenceService ps, UnitOfWork uow )
     {
         checkNotNull( ps );
@@ -65,81 +65,94 @@ class PersistenceUnitContainer
      * {@inheritDoc}
      */
     // @Override
-    public synchronized void start()
+    public void startAllStoppedPersistenceServices()
     {
+        AggregatedException.Builder exceptionBuilder = new AggregatedException.Builder();
         for ( PersistenceService ps : persistenceServices )
         {
-            ps.start();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    // @Override
-    public synchronized boolean isRunning()
-    {
-        for ( PersistenceService ps : persistenceServices )
-        {
-            if ( !ps.isRunning() )
+            try
             {
-                return false;
+                if(! ps.isRunning())
+                {
+                    ps.start();
+                }
+            }
+            catch ( Exception e )
+            {
+                exceptionBuilder.add( e );
             }
         }
-        return true;
+        exceptionBuilder.throwRuntimeExceptionIfHasCauses(
+            "multiple exception occurred while starting the persistence service" );
     }
 
     /**
      * {@inheritDoc}
      */
     // @Override
-    public synchronized void stop()
+    public void stopAllRunningPersistenceServices()
     {
+        AggregatedException.Builder exceptionBuilder = new AggregatedException.Builder();
         for ( PersistenceService ps : persistenceServices )
         {
-            ps.stop();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    // @Override
-    public void begin()
-    {
-        for ( UnitOfWork unitOfWork : unitsOfWork )
-        {
-            unitOfWork.begin();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    // @Override
-    public boolean isActive()
-    {
-        for ( UnitOfWork unitOfWork : unitsOfWork )
-        {
-            if ( !unitOfWork.isActive() )
+            try
             {
-                return false;
+                ps.stop();
+            }
+            catch ( Exception e )
+            {
+                exceptionBuilder.add( e );
             }
         }
-        return true;
+        exceptionBuilder.throwRuntimeExceptionIfHasCauses(
+            "multiple exception occurred while stopping the persistence service" );
     }
 
     /**
      * {@inheritDoc}
      */
     // @Override
-    public void end()
+    public void beginAllInactiveUnitsOfWork()
     {
+        AggregatedException.Builder exceptionBuilder = new AggregatedException.Builder();
         for ( UnitOfWork unitOfWork : unitsOfWork )
         {
-            unitOfWork.end();
+            try
+            {
+                if(! unitOfWork.isActive())
+                {
+                    unitOfWork.begin();
+                }
+            }
+            catch ( Exception e )
+            {
+                exceptionBuilder.add( e );
+            }
         }
+        exceptionBuilder.throwRuntimeExceptionIfHasCauses(
+            "multiple exception occurred while starting the unit of work" );
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    // @Override
+    public void endAllUnitsOfWork()
+    {
+        AggregatedException.Builder exceptionBuilder = new AggregatedException.Builder();
+        for ( UnitOfWork unitOfWork : unitsOfWork )
+        {
+            try
+            {
+                unitOfWork.end();
+            }
+            catch ( Exception e )
+            {
+                exceptionBuilder.add( e );
+            }
+        }
+        exceptionBuilder.throwRuntimeExceptionIfHasCauses(
+            "multiple exception occurred while ending the unit of work" );
     }
 
 }

@@ -22,13 +22,12 @@ package org.apache.onami.persist;
 import javax.persistence.EntityManagerFactory;
 
 /**
- * Provider for {@link EntityManagerFactoryProvider}.
+ * Provider for {@link EntityManagerFactory}.
  */
 interface EntityManagerFactoryProvider
 {
 
     /**
-     * @return the provider for {@link EntityManagerFactory}.
      * @throws IllegalStateException if {@link PersistenceService#isRunning()} returns {@code false}.
      */
     EntityManagerFactory get()

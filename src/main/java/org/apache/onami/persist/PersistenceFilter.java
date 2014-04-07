@@ -19,6 +19,8 @@ package org.apache.onami.persist;
  * under the License.
  */
 
+import com.google.inject.Inject;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -49,19 +51,22 @@ public class PersistenceFilter
     implements Filter
 {
 
-    // ---- Members
-
+    /**
+     * Container of all known persistence unit and units of work.
+     */
     private final PersistenceUnitContainer persistenceUnitsContainer;
 
-    // ---- Constructor
-
+    /**
+     * Constructor.
+     *
+     * @param persistenceUnitsContainer container of all known persistence unit and units of work.
+     */
+    @Inject
     PersistenceFilter( PersistenceUnitContainer persistenceUnitsContainer )
     {
         checkNotNull( persistenceUnitsContainer );
         this.persistenceUnitsContainer = persistenceUnitsContainer;
     }
-
-    // ---- Methods
 
     /**
      * {@inheritDoc}
@@ -72,12 +77,12 @@ public class PersistenceFilter
     {
         try
         {
-            persistenceUnitsContainer.begin();
+            persistenceUnitsContainer.beginAllInactiveUnitsOfWork();
             chain.doFilter( request, response );
         }
         finally
         {
-            persistenceUnitsContainer.end();
+            persistenceUnitsContainer.endAllUnitsOfWork();
         }
     }
 
@@ -88,7 +93,7 @@ public class PersistenceFilter
     public void init( FilterConfig filterConfig )
         throws ServletException
     {
-        persistenceUnitsContainer.start();
+        persistenceUnitsContainer.startAllStoppedPersistenceServices();
     }
 
     /**
@@ -97,6 +102,6 @@ public class PersistenceFilter
     // @Override
     public void destroy()
     {
-        persistenceUnitsContainer.stop();
+        persistenceUnitsContainer.stopAllRunningPersistenceServices();
     }
 }

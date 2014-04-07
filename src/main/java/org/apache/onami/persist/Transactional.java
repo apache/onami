@@ -39,20 +39,20 @@ import java.lang.annotation.Target;
  * transaction will be marked as rollbackOnly.
  * <p/>
  * Guice uses AOP to enhance a method annotated with @{@link Transactional} with a wrapper.
- * This means the @{@link Transactional} only works as expected when:
+ * This means the {@link Transactional @Transactional} only works as expected when:
  * <ul>
  * <li>
- * The object on which the method is called has been created by guice.
+ * The object on which the method is called has been created by guice.<br/>
  * This can be achieved by having it (or a {@link Provider}) injected into your class
  * or by calling {@link Injector#getInstance(Class)} or {@link Injector#getInstance(Key)}.
  * </li>
  * <li>
- * The method which should be run transactional is not private and not final
+ * The method which should be run transactional is not private, not static and not final.
  * </li>
  * </ul>
  */
-@Target({ ElementType.METHOD, ElementType.TYPE })
-@Retention(RetentionPolicy.RUNTIME)
+@Target( { ElementType.METHOD, ElementType.TYPE } )
+@Retention( RetentionPolicy.RUNTIME )
 @Inherited
 public @interface Transactional
 {
