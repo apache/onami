@@ -28,7 +28,7 @@ import org.apache.onami.persist.test.transaction.testframework.exceptions.TestEx
 /**
  * Task which stores an entity and will:
  * - never roll back.
- * - throw a new {@link org.apache.onami.persist.test.transaction.testframework.exceptions.TestException}.
+ * - throw a new {@link TestException}.
  */
 public class TaskRollingBackOnNoneThrowingTestException
     extends TransactionalTask

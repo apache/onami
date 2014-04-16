@@ -23,5 +23,5 @@ import java.util.Properties;
 
 public interface UnconfiguredPersistenceUnitBuilder
 {
-    void addProperties( Properties properties );
+    void setProperties( Properties properties );
 }

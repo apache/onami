@@ -49,26 +49,29 @@ public abstract class PersistenceModule
     extends AbstractModule
 {
 
-    private List<PersistenceUnitModule> puModules;
+    private List<PersistenceUnitModuleConfigurator> configurators;
 
     private final PersistenceUnitContainer container = new PersistenceUnitContainer();
+
     private final Matcher<AnnotatedElement> transactionalMatcher = annotatedWith( Transactional.class );
+
     private final Matcher<Object> anyMatcher = any();
 
     @Override
     protected final void configure()
     {
-        if ( puModules != null )
+        if ( configurators != null )
         {
             throw new RuntimeException( "cannot reenter the configure method" );
         }
-        try {
-            puModules = new ArrayList<PersistenceUnitModule>();
+        try
+        {
+            configurators = new ArrayList<PersistenceUnitModuleConfigurator>();
             doConfigure();
         }
         finally
         {
-            puModules = null;
+            configurators = null;
         }
     }
 
@@ -76,12 +79,15 @@ public abstract class PersistenceModule
     {
         configurePersistence();
 
-        for(PersistenceUnitModule pu : puModules)
+        for ( PersistenceUnitModuleConfigurator config : configurators )
         {
+            final PersistenceUnitModule pu = config.createPuModule();
             final TxnInterceptor txnInterceptor = new TxnInterceptor();
             pu.setPersistenceUnitContainer( container );
             pu.setTransactionInterceptor( txnInterceptor );
+
             install( pu );
+
             bindInterceptor( anyMatcher, transactionalMatcher, txnInterceptor );
             bindInterceptor( transactionalMatcher, anyMatcher, txnInterceptor );
         }
@@ -91,27 +97,27 @@ public abstract class PersistenceModule
 
     protected UnannotatedPersistenceUnitBuilder addApplicationManagedPersistenceUnit( String puName )
     {
-        checkNotNull( puModules,
+        checkNotNull( configurators,
                       "calling addApplicationManagedPersistenceUnit outside of configurePersistence is not supported" );
-        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
-        configurator.setPuName(puName);
+        final PersistenceUnitModuleConfigurator configurator = createAndAddConfigurator();
+        configurator.setPuName( puName );
         return configurator;
     }
 
     protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnit( EntityManagerFactory emf )
     {
-        checkNotNull( puModules,
+        checkNotNull( configurators,
                       "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
-        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        final PersistenceUnitModuleConfigurator configurator = createAndAddConfigurator();
         configurator.setEmf( emf );
         return configurator;
     }
 
     protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitWithJndiName( String jndiName )
     {
-        checkNotNull( puModules,
+        checkNotNull( configurators,
                       "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
-        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        final PersistenceUnitModuleConfigurator configurator = createAndAddConfigurator();
         configurator.setEmfJndiName( jndiName );
         return configurator;
     }
@@ -119,9 +125,9 @@ public abstract class PersistenceModule
     protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
         Provider<EntityManagerFactory> emfProvider )
     {
-        checkNotNull( puModules,
+        checkNotNull( configurators,
                       "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
-        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        final PersistenceUnitModuleConfigurator configurator = createAndAddConfigurator();
         configurator.setEmfProvider( emfProvider );
         return configurator;
     }
@@ -129,9 +135,9 @@ public abstract class PersistenceModule
     protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
         Class<? extends Provider<EntityManagerFactory>> emfProviderClass )
     {
-        checkNotNull( puModules,
+        checkNotNull( configurators,
                       "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
-        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        final PersistenceUnitModuleConfigurator configurator = createAndAddConfigurator();
         configurator.setEmfProviderClass( emfProviderClass );
         return configurator;
     }
@@ -139,9 +145,9 @@ public abstract class PersistenceModule
     protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
         TypeLiteral<? extends Provider<EntityManagerFactory>> emfProviderType )
     {
-        checkNotNull( puModules,
+        checkNotNull( configurators,
                       "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
-        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        final PersistenceUnitModuleConfigurator configurator = createAndAddConfigurator();
         configurator.setEmfProviderType( emfProviderType );
         return configurator;
     }
@@ -149,17 +155,17 @@ public abstract class PersistenceModule
     protected UnannotatedPersistenceUnitBuilder addContainerManagedPersistenceUnitProvidedBy(
         Key<? extends Provider<EntityManagerFactory>> emfProviderKey )
     {
-        checkNotNull( puModules,
+        checkNotNull( configurators,
                       "calling addContainerManagedPersistenceUnit outside of configurePersistence is not supported" );
-        final PersistenceUnitModuleConfigurator configurator = createAndAddPuModule();
+        final PersistenceUnitModuleConfigurator configurator = createAndAddConfigurator();
         configurator.setEmfProviderKey( emfProviderKey );
         return configurator;
     }
 
-    private PersistenceUnitModuleConfigurator createAndAddPuModule()
+    private PersistenceUnitModuleConfigurator createAndAddConfigurator()
     {
         final PersistenceUnitModuleConfigurator configurator = new PersistenceUnitModuleConfigurator();
-        puModules.add( configurator.getPuModule() );
+        configurators.add( configurator );
         return configurator;
     }
 }

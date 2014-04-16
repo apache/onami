@@ -1,5 +1,24 @@
 package org.apache.onami.persist;
 
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import com.google.inject.Key;
 import com.google.inject.Provider;
 import com.google.inject.TypeLiteral;
@@ -13,6 +32,8 @@ class PersistenceUnitModuleConfigurator
     implements UnannotatedPersistenceUnitBuilder, AnnotatedPersistenceUnitBuilder, UnconfiguredPersistenceUnitBuilder
 {
     private Class<? extends Annotation> annotation;
+
+    private boolean isJta = false;
 
     private UserTransaction userTransaction;
 
@@ -34,7 +55,7 @@ class PersistenceUnitModuleConfigurator
 
     private Key<? extends Provider<EntityManagerFactory>> emfProviderKey;
 
-    PersistenceUnitModule getPuModule()
+    PersistenceUnitModule createPuModule()
     {
         return new PersistenceUnitModule( this );
     }
@@ -47,24 +68,27 @@ class PersistenceUnitModuleConfigurator
 
     public UnconfiguredPersistenceUnitBuilder useLocalTransaction()
     {
-        // does nothing
+        isJta = false;
         return this;
     }
 
     public UnconfiguredPersistenceUnitBuilder useGlobalTransaction( UserTransaction userTransaction )
     {
+        this.isJta = true;
         this.userTransaction = userTransaction;
         return this;
     }
 
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionWithJndiName( String utJndiName )
     {
+        this.isJta = true;
         this.utJndiName = utJndiName;
         return this;
     }
 
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy( Provider<UserTransaction> utProvider )
     {
+        this.isJta = true;
         this.utProvider = utProvider;
         return this;
     }
@@ -72,25 +96,24 @@ class PersistenceUnitModuleConfigurator
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         Class<? extends Provider<UserTransaction>> utProviderClass )
     {
-        utProviderKey = Key.get( utProviderClass );
-        return this;
+        return useGlobalTransactionProvidedBy( Key.get( utProviderClass ) );
     }
 
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         TypeLiteral<? extends Provider<UserTransaction>> utProviderType )
     {
-        utProviderKey = Key.get( utProviderType );
-        return this;
+        return useGlobalTransactionProvidedBy( Key.get( utProviderType ) );
     }
 
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         Key<? extends Provider<UserTransaction>> utProviderKey )
     {
+        this.isJta = true;
         this.utProviderKey = utProviderKey;
         return this;
     }
 
-    public void addProperties( Properties properties )
+    public void setProperties( Properties properties )
     {
         this.properties = properties;
     }
@@ -208,7 +231,7 @@ class PersistenceUnitModuleConfigurator
 
     public boolean isJta()
     {
-        return utJndiName != null || userTransaction != null || utProvider != null || utProviderKey != null;
+        return isJta;
     }
 
     public boolean isUserTransactionProvidedByJndiLookup()
