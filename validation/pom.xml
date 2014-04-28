@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
-    <version>4</version>
+    <version>5</version>
   </parent>
 
   <artifactId>org.apache.onami.validation</artifactId>
