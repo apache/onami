@@ -35,8 +35,14 @@ class EntityManagerFactorySourceByJndiLookup
     implements EntityManagerFactorySource
 {
 
+    /**
+     * The JNDI name of the persistence unit.
+     */
     private final String jndiName;
 
+    /**
+     * Helper for JNDI lookup.
+     */
     private final JndiLookupHelper jndiLookupHelper;
 
     /**

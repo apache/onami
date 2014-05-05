@@ -30,7 +30,7 @@ import static org.apache.onami.persist.Preconditions.checkNotNull;
  * Provider fro {@link UserTransaction} which retrieves the value from the JNDI context.
  */
 @Singleton
-public class UserTransactionProviderByJndiLookup
+class UserTransactionProviderByJndiLookup
     implements Provider<UserTransaction>
 {
 

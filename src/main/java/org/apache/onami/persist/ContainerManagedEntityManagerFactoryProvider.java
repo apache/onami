@@ -29,9 +29,7 @@ import static org.apache.onami.persist.Preconditions.checkNotNull;
 
 /**
  * Implementation of {@link PersistenceService} and {@link EntityManagerFactoryProvider} for
- * container managed entity manager factories.
- * <p/>
- * This class is a singleton and all methods of the {@link PersistenceService} interface are synchronized.
+ * container managed persistence units.
  */
 @Singleton
 class ContainerManagedEntityManagerFactoryProvider
@@ -78,7 +76,7 @@ class ContainerManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public synchronized void start()
+    public void start()
     {
         if ( isRunning() )
         {
@@ -92,7 +90,7 @@ class ContainerManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public synchronized boolean isRunning()
+    public boolean isRunning()
     {
         return null != emf;
     }
@@ -101,12 +99,12 @@ class ContainerManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public synchronized void stop()
+    public void stop()
     {
         emf = null;
         // the entity manager factory must NOT be closed:
-        // - because it was created by the container and it is therefore the responsibility of the container to close it
-        // - because we cannot know if another part of the application has obtained the same instance over JNDI
+        // - it was created by the container and it is therefore the responsibility of the container to close it
+        // - we cannot know if another part of the application has obtained the same instance
     }
 
 }

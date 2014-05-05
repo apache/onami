@@ -51,7 +51,7 @@ class PersistenceUnitModule
     /**
      * Persistence unit container which can be passed in from the outside for adding this persistence unit to it.
      */
-    private PersistenceUnitContainer container;
+    private AllPersistenceUnits container;
 
     /**
      * Constructor.
@@ -78,7 +78,7 @@ class PersistenceUnitModule
      *
      * @param container the container to which to add the persistence unit.
      */
-    void setPersistenceUnitContainer( PersistenceUnitContainer container )
+    void setPersistenceUnitContainer( AllPersistenceUnits container )
     {
         this.container = container;
     }

@@ -45,12 +45,12 @@ public class JndiLookupHelper
         try
         {
             final InitialContext ctx = new InitialContext();
-            final T emf = (T) ctx.lookup( jndiName );
+            final T result = (T) ctx.lookup( jndiName );
 
-            Preconditions.checkNotNull( emf, "lookup for " + type.getSimpleName() + " with JNDI name '" + jndiName
+            Preconditions.checkNotNull( result, "lookup for " + type.getSimpleName() + " with JNDI name '" + jndiName
                 + "' returned null" );
 
-            return emf;
+            return result;
         }
         catch ( NamingException e )
         {

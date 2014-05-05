@@ -33,10 +33,10 @@ public interface PersistenceService
      * If you are using onami-persist in a web container {@link PersistenceFilter} will call this
      * method upon initialization of the web application.
      *
-     * @throws IllegalArgumentException if the service is already running.
+     * @throws IllegalStateException if the service is already running.
      */
     void start()
-        throws IllegalArgumentException;
+        throws IllegalStateException;
 
     /**
      * @return {@code true} if the underlying persistence engine is running.

@@ -49,9 +49,10 @@ public abstract class PersistenceModule
     extends AbstractModule
 {
 
+    /**
+     * List of configurators. Each configurator can be used to build a {@link PersistenceUnitModule}.
+     */
     private List<PersistenceUnitModuleConfigurator> configurators;
-
-    private final PersistenceUnitContainer container = new PersistenceUnitContainer();
 
     private final Matcher<AnnotatedElement> transactionalMatcher = annotatedWith( Transactional.class );
 
@@ -78,6 +79,10 @@ public abstract class PersistenceModule
     private void doConfigure()
     {
         configurePersistence();
+
+        final AllPersistenceUnits container = new AllPersistenceUnits();
+        bind( AllPersistenceServices.class ).toInstance( container );
+        bind( AllUnitsOfWork.class ).toInstance( container );
 
         for ( PersistenceUnitModuleConfigurator config : configurators )
         {

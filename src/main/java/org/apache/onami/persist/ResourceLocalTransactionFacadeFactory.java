@@ -71,7 +71,7 @@ class ResourceLocalTransactionFacadeFactory
     /**
      * TransactionFacade representing an inner (nested) transaction.
      * Starting and committing a transaction has no effect.
-     * This Facade will set the rollbackOnly flag in case of a roll back.
+     * This facade will set the rollbackOnly flag in case of a roll back.
      */
     private static class Inner
         implements TransactionFacade
@@ -113,9 +113,8 @@ class ResourceLocalTransactionFacadeFactory
 
     /**
      * TransactionFacade representing an outer transaction.
-     * This Facade starts and ends the transaction.
-     * If an inner transaction has set the rollbackOnly flag the transaction will be rolled back
-     * in any case.
+     * This facade starts and ends the transaction.
+     * If an inner transaction has set the rollbackOnly flag the transaction will be rolled back in any case.
      */
     private static class Outer
         implements TransactionFacade

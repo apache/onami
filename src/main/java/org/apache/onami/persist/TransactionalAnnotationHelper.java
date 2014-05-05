@@ -38,7 +38,7 @@ class TransactionalAnnotationHelper
     /**
      * Annotation of the persistence unit.
      */
-    private final Class<? extends Annotation> puAnntoation;
+    private final Class<? extends Annotation> puAnnotation;
 
     /**
      * Reader for {@link Transactional @Transactional} annotations.
@@ -54,7 +54,7 @@ class TransactionalAnnotationHelper
     @Inject
     TransactionalAnnotationHelper( AnnotationHolder annotationHolder, TransactionalAnnotationReader txnAnnoReader )
     {
-        this.puAnntoation = annotationHolder.getAnnotation();
+        this.puAnnotation = annotationHolder.getAnnotation();
         this.txnAnnoReader = checkNotNull( txnAnnoReader, "txnAnnoReader is mandatory!" );
     }
 
@@ -66,9 +66,9 @@ class TransactionalAnnotationHelper
      * @param methodInvocation the method invocation which may be wrapped in a transaction.
      * @return {@code true} if the current persistence unit participates in a transaction for the given method.
      */
-    public boolean persistenceUnitParticipatesInTransactionFor( MethodInvocation methodInvocation )
+    boolean persistenceUnitParticipatesInTransactionFor( MethodInvocation methodInvocation )
     {
-        return puAnntoation == null || participates( methodInvocation );
+        return puAnnotation == null || participates( methodInvocation );
     }
 
     /**
@@ -82,7 +82,7 @@ class TransactionalAnnotationHelper
     {
         final Transactional transactional = txnAnnoReader.readAnnotationFrom( methodInvocation );
         final Class<? extends Annotation>[] onUnits = transactional.onUnits();
-        return isEmpty( onUnits ) || contains( onUnits, puAnntoation );
+        return isEmpty( onUnits ) || contains( onUnits, puAnnotation );
     }
 
     /**
@@ -115,7 +115,7 @@ class TransactionalAnnotationHelper
      * @param exc              the exception which was thrown
      * @return {@code true} if the transaction needs to be rolled back.
      */
-    public boolean isRollbackNecessaryFor( MethodInvocation methodInvocation, Throwable exc )
+    boolean isRollbackNecessaryFor( MethodInvocation methodInvocation, Throwable exc )
     {
         final Transactional transactional = txnAnnoReader.readAnnotationFrom( methodInvocation );
         return isRollbackNecessaryFor( transactional, exc );
@@ -130,32 +130,26 @@ class TransactionalAnnotationHelper
      */
     private boolean isRollbackNecessaryFor( Transactional transactional, Throwable exc )
     {
-        for ( Class<? extends Exception> rollbackOn : transactional.rollbackOn() )
+        return containsSuper( transactional.rollbackOn(), exc ) && !containsSuper( transactional.ignore(), exc );
+    }
+
+    /**
+     * Decides if the array of classes contains a super class of exc.
+     *
+     * @param classes the classes in which to look fore
+     * @param exc     the class to search for
+     * @return {@code true} when the array contains a super class of exc.
+     */
+    private boolean containsSuper( Class<? extends Exception>[] classes, Throwable exc )
+    {
+        for ( Class<? extends Exception> c : classes )
         {
-            if ( rollbackOn.isInstance( exc ) )
+            if ( c.isInstance( exc ) )
             {
-                return isNotIgnoredForRollback( transactional, exc );
+                return true;
             }
         }
         return false;
     }
 
-    /**
-     * Decides if a rollback is not performed for the given transactional annotation and a thrown exception.
-     *
-     * @param transactional the transactional annotation of the method during which an exception was thrown.
-     * @param exc           the exception which was thrown
-     * @return {@code true} if the transaction needs to be rolled back.
-     */
-    private boolean isNotIgnoredForRollback( Transactional transactional, Throwable exc )
-    {
-        for ( Class<? extends Exception> ignore : transactional.ignore() )
-        {
-            if ( ignore.isInstance( exc ) )
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 }

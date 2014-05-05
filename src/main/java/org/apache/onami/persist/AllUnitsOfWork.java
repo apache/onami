@@ -26,12 +26,12 @@ public interface AllUnitsOfWork
 {
 
     /**
-     * Calls {@link UnitOfWork#begin()} on all units of work which are not active
+     * Calls {@link UnitOfWork#begin()} on all units of work which are not active.
      */
     void beginAllInactiveUnitsOfWork();
 
     /**
-     * Calls {@link UnitOfWork#end()} on all units of work
+     * Calls {@link UnitOfWork#end()} on all units of work.
      */
     void endAllUnitsOfWork();
 }

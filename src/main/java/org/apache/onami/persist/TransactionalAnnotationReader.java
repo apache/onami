@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
 class TransactionalAnnotationReader
 {
     /**
-     * Constant holding the a transactional instance with all default values.
+     * Constant holding a transactional instance with all default values.
      */
     private static final Transactional DEFAULT_TRANSACTIONAL =
         DefaultTransactional.class.getAnnotation( Transactional.class );

@@ -26,12 +26,12 @@ public interface AllPersistenceServices
 {
 
     /**
-     * Calls {@link PersistenceService#start()} on all stopped persistence services.
+     * Calls {@link PersistenceService#start()} on all persistence services which are not running.
      */
     void startAllStoppedPersistenceServices();
 
     /**
      * Calls {@link PersistenceService#stop()} on all persistence services.
      */
-    void stopAllRunningPersistenceServices();
+    void stopAllPersistenceServices();
 }

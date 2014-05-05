@@ -24,7 +24,7 @@ import java.lang.annotation.Annotation;
 /**
  * Object to hold the annotation of a persistence unit. may contain {@code null}.
  */
-public class AnnotationHolder
+class AnnotationHolder
 {
 
     /**
@@ -45,7 +45,8 @@ public class AnnotationHolder
     /**
      * @return the annotation for the current persistence unit. May return {@code null}.
      */
-    Class<? extends Annotation> getAnnotation() {
+    Class<? extends Annotation> getAnnotation()
+    {
         return annotation;
     }
 }

@@ -28,11 +28,10 @@ import java.util.Set;
 import static org.apache.onami.persist.Preconditions.checkNotNull;
 
 /**
- * Container of persistence units. This is a convenience wrapper for multiple
- * persistence units.
+ * All persistence units. This is a convenience wrapper for multiple persistence units.
  */
 @Singleton
-class PersistenceUnitContainer
+class AllPersistenceUnits
     implements AllPersistenceServices, AllUnitsOfWork
 {
 
@@ -47,7 +46,7 @@ class PersistenceUnitContainer
     private final Set<UnitOfWork> unitsOfWork = new HashSet<UnitOfWork>();
 
     /**
-     * Adds a persistence service and a unit of work to this container.
+     * Adds a persistence service and a unit of work to this collection.
      *
      * @param ps  the persistence service to add. Must not be {@code null}.
      * @param uow the unit of work to add. Must not be {@code null}.
@@ -72,7 +71,7 @@ class PersistenceUnitContainer
         {
             try
             {
-                if(! ps.isRunning())
+                if ( !ps.isRunning() )
                 {
                     ps.start();
                 }
@@ -90,7 +89,7 @@ class PersistenceUnitContainer
      * {@inheritDoc}
      */
     // @Override
-    public void stopAllRunningPersistenceServices()
+    public void stopAllPersistenceServices()
     {
         AggregatedException.Builder exceptionBuilder = new AggregatedException.Builder();
         for ( PersistenceService ps : persistenceServices )
@@ -119,7 +118,7 @@ class PersistenceUnitContainer
         {
             try
             {
-                if(! unitOfWork.isActive())
+                if ( !unitOfWork.isActive() )
                 {
                     unitOfWork.begin();
                 }

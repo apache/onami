@@ -24,7 +24,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
 /**
- * Interceptor for methods and classes annotated with @{@link Transactional} annotation.
+ * Interceptor for methods and classes annotated with {@link Transactional @Transactional} annotation.
  */
 class TxnInterceptor
     implements MethodInterceptor
@@ -69,6 +69,14 @@ class TxnInterceptor
 
     }
 
+    /**
+     * Decides if the current persistence unit participates in a transaction for the given method invocation.
+     * For a detailed description of when a persistence unit participates see the documentation at the
+     * {@link Transactional @Transactional} annotation.
+     *
+     * @param methodInvocation the method invocation which may be wrapped in a transaction.
+     * @return {@code true} if the current persistence unit participates in a transaction for the given method.
+     */
     private boolean persistenceUnitParticipatesInTransactionFor( MethodInvocation methodInvocation )
     {
         return txnAnnotationHelper.persistenceUnitParticipatesInTransactionFor( methodInvocation );
@@ -104,18 +112,20 @@ class TxnInterceptor
         {
             if ( weStartedTheUnitOfWork )
             {
-                endUnitOfWorkAndThrow( originalException );
+                endUnitOfWork( originalException );
             }
         }
     }
 
     /**
-     * Ends the unit of work and throws the original exception if not null.
+     * Ends the unit of work. If an exception occurs while ending the unit of work it is neglected in preference of an
+     * original exception.
      *
-     * @param originalException the original transaction to throw if not null.
-     * @throws Throwable the original exception or an exception which occurred when closing the unit of work.
+     * @param originalException the original exception. will be thrown in preference to an exception occurring during
+     *                          execution of this method.
+     * @throws Throwable if an exception happened while ending the unit of work.
      */
-    private void endUnitOfWorkAndThrow( Throwable originalException )
+    private void endUnitOfWork( Throwable originalException )
         throws Throwable
     {
         try
@@ -205,6 +215,13 @@ class TxnInterceptor
         }
     }
 
+    /**
+     * Decides if a rollback is necessary for the given method invocation and a thrown exception.
+     *
+     * @param methodInvocation the method invocation during which an exception was thrown.
+     * @param exc              the exception which was thrown
+     * @return {@code true} if the transaction needs to be rolled back.
+     */
     private boolean isRollbackNecessaryFor( MethodInvocation methodInvocation, Throwable exc )
     {
         return txnAnnotationHelper.isRollbackNecessaryFor( methodInvocation, exc );

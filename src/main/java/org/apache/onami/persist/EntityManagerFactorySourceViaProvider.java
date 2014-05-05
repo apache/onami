@@ -30,7 +30,8 @@ import javax.persistence.EntityManagerFactory;
  * The sourced instance is provided by guice.
  */
 @Singleton
-public class EntityManagerFactorySourceViaProvider implements EntityManagerFactorySource
+class EntityManagerFactorySourceViaProvider
+    implements EntityManagerFactorySource
 {
     private final Provider<EntityManagerFactory> emfProvider;
 

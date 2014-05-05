@@ -28,11 +28,11 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 /**
- * Test for {@link PersistenceUnitContainer}.
+ * Test for {@link AllPersistenceUnits}.
  */
-public class PersistenceUnitContainerTest
+public class AllPersistenceUnitsTest
 {
-    private PersistenceUnitContainer sut;
+    private AllPersistenceUnits sut;
 
     private PersistenceService ps1;
 
@@ -46,7 +46,7 @@ public class PersistenceUnitContainerTest
     public void setUp()
         throws Exception
     {
-        sut = new PersistenceUnitContainer();
+        sut = new AllPersistenceUnits();
 
         ps1 = mock( PersistenceService.class );
         ps2 = mock( PersistenceService.class );
@@ -117,7 +117,7 @@ public class PersistenceUnitContainerTest
         throws Exception
     {
         // when
-        sut.stopAllRunningPersistenceServices();
+        sut.stopAllPersistenceServices();
 
         // then
         verify( ps1 ).stop();
@@ -135,7 +135,7 @@ public class PersistenceUnitContainerTest
         // when
         try
         {
-            sut.stopAllRunningPersistenceServices();
+            sut.stopAllPersistenceServices();
         }
 
         // then

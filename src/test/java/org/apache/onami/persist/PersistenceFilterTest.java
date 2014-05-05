@@ -37,13 +37,13 @@ public class PersistenceFilterTest
 {
     private PersistenceFilter sut;
 
-    private PersistenceUnitContainer persistenceUnitsContainer;
+    private AllPersistenceUnits persistenceUnitsContainer;
 
     @Before
     public void setUp()
         throws Exception
     {
-        persistenceUnitsContainer = mock( PersistenceUnitContainer.class );
+        persistenceUnitsContainer = mock( AllPersistenceUnits.class );
         sut = new PersistenceFilter( persistenceUnitsContainer );
     }
 
@@ -59,7 +59,7 @@ public class PersistenceFilterTest
     public void destroyShouldStopService()
     {
         sut.destroy();
-        verify( persistenceUnitsContainer ).stopAllRunningPersistenceServices();
+        verify( persistenceUnitsContainer ).stopAllPersistenceServices();
     }
 
     @Test

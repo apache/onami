@@ -40,7 +40,7 @@ import static org.apache.onami.persist.Preconditions.checkNotNull;
  * <pre>
  *  public class MyModule extends ServletModule {
  *    public void configure() {
- *      // bind your persistence units here
+ *      // other bindings
  *
  *      filter("/*").through(PersistenceFilter.class);
  *    }
@@ -54,7 +54,7 @@ public class PersistenceFilter
     /**
      * Container of all known persistence unit and units of work.
      */
-    private final PersistenceUnitContainer persistenceUnitsContainer;
+    private final AllPersistenceUnits persistenceUnitsContainer;
 
     /**
      * Constructor.
@@ -62,7 +62,7 @@ public class PersistenceFilter
      * @param persistenceUnitsContainer container of all known persistence unit and units of work.
      */
     @Inject
-    PersistenceFilter( PersistenceUnitContainer persistenceUnitsContainer )
+    PersistenceFilter( AllPersistenceUnits persistenceUnitsContainer )
     {
         checkNotNull( persistenceUnitsContainer );
         this.persistenceUnitsContainer = persistenceUnitsContainer;
@@ -102,6 +102,6 @@ public class PersistenceFilter
     // @Override
     public void destroy()
     {
-        persistenceUnitsContainer.stopAllRunningPersistenceServices();
+        persistenceUnitsContainer.stopAllPersistenceServices();
     }
 }

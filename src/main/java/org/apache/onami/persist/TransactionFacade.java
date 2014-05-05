@@ -20,8 +20,8 @@ package org.apache.onami.persist;
  */
 
 /**
- * Interface which hides away the details of inner (nested) and outer transactions as well
- * as the details between {@link javax.persistence.EntityTransaction} and {@link javax.transaction.UserTransaction}.
+ * Interface which hides away the details of inner (nested) and outer transactions as well as the details between
+ * {@link javax.persistence.EntityTransaction} and {@link javax.transaction.UserTransaction}.
  */
 interface TransactionFacade
 {
@@ -29,25 +29,22 @@ interface TransactionFacade
     /**
      * Starts a transaction.
      * <p/>
-     * The first call to begin will start the actual transaction. Subsequent calls will start a
-     * 'nested' transaction.
+     * The first call to begin will start the outer transaction. Subsequent calls will start a inner transaction.
      */
     void begin();
 
     /**
      * Commits a transaction.
      * <p/>
-     * Only the actual transaction can be committed. Calls to commit on nested transactions have
-     * no effect.
+     * Only the outer transaction can be committed. Calls to commit on inner transactions have no effect.
      */
     void commit();
 
     /**
      * Rolls a transaction back.
      * <p/>
-     * Only the actual transaction can be rolled back. Calls to rollback on nested transactions will
-     * set the onlyRollBack flag on the actual transaction. Setting this flag wil cause an actual
-     * transaction to be rolled back in any case.
+     * Only the outer transaction can be rolled back. Calls to rollback on inner transactions will set the rollbackOnly
+     * flag on the outer transaction. Setting this flag wil cause an outer transaction to be rolled back in any case.
      */
     void rollback();
 

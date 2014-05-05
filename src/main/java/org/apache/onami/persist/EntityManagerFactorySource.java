@@ -24,10 +24,10 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  * Source for {@link EntityManagerFactory}.
- *
+ * <p/>
  * A source indicates that the instance is not created within the instance (compared to factory)
  */
-public interface EntityManagerFactorySource
+interface EntityManagerFactorySource
 {
 
     /**

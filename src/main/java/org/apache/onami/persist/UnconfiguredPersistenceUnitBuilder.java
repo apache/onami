@@ -21,7 +21,17 @@ package org.apache.onami.persist;
 
 import java.util.Properties;
 
+/**
+ * 4th step of the persistence unit builder process.
+ * Define properties.
+ */
 public interface UnconfiguredPersistenceUnitBuilder
 {
+
+    /**
+     * Defines additional properties to use. These properties overrule the ones defined in the persistence.xml
+     *
+     * @param properties the properties to use for the persistence unit.
+     */
     void setProperties( Properties properties );
 }

@@ -61,10 +61,9 @@ public interface UnitOfWork
 
     /**
      * Starts the unit of work.
-     * When the unit of work has already been started for the current thread an
-     * {@link IllegalStateException} is thrown.
+     * When a unit of work has already been started for the current thread an {@link IllegalStateException} is thrown.
      *
-     * @throws IllegalStateException if the unit of work is already running for this thread.
+     * @throws IllegalStateException if a unit of work is already active for this thread.
      */
     void begin()
         throws IllegalStateException;

@@ -25,23 +25,69 @@ import com.google.inject.TypeLiteral;
 
 import javax.transaction.UserTransaction;
 
+/**
+ * 3rd step of the persistence unit builder process.
+ * Define the transaction type.
+ */
 public interface AnnotatedPersistenceUnitBuilder
     extends UnconfiguredPersistenceUnitBuilder
 {
+
+    /**
+     * Mark the persistence unit to use resource local transactions.
+     *
+     * @return the next builder step.
+     */
     UnconfiguredPersistenceUnitBuilder useLocalTransaction();
 
+    /**
+     * Mark the persistence unit to use JTA transactions.
+     *
+     * @param userTransaction the instance of the UserTransaction object to use.
+     * @return the next builder step.
+     */
     UnconfiguredPersistenceUnitBuilder useGlobalTransaction( UserTransaction userTransaction );
 
+    /**
+     * Mark the persistence unit to use JTA transactions.
+     *
+     * @param utJndiName the JNDI name to use for looking up the user transaction instance.
+     * @return the next builder step.
+     */
     UnconfiguredPersistenceUnitBuilder useGlobalTransactionWithJndiName( String utJndiName );
 
+    /**
+     * Mark the persistence unit to use JTA transactions.
+     *
+     * @param utProvider a provider to retrieve the user transaction instance.
+     * @return the next builder step.
+     */
     UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy( Provider<UserTransaction> utProvider );
 
+    /**
+     * Mark the persistence unit to use JTA transactions.
+     *
+     * @param utProviderClass a provider to retrieve the user transaction instance.
+     * @return the next builder step.
+     */
     UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         Class<? extends Provider<UserTransaction>> utProviderClass );
 
+    /**
+     * Mark the persistence unit to use JTA transactions.
+     *
+     * @param utProviderType a provider to retrieve the user transaction instance.
+     * @return the next builder step.
+     */
     UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         TypeLiteral<? extends Provider<UserTransaction>> utProviderType );
 
+    /**
+     * Mark the persistence unit to use JTA transactions.
+     *
+     * @param utProviderKey a provider to retrieve the user transaction instance.
+     * @return the next builder step.
+     */
     UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         Key<? extends Provider<UserTransaction>> utProviderKey );
 }

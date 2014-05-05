@@ -34,9 +34,8 @@ class AggregatedException
     extends RuntimeException
 {
 
-    private static final Throwable[] EMPTY = new Throwable[0];
-
     private static final long serialVersionUID = 1L;
+
 
     /**
      * Builder for AggregatedException
@@ -44,13 +43,15 @@ class AggregatedException
     static class Builder
     {
 
+        private static final Throwable[] EMPTY = new Throwable[0];
+
         /**
-         * list of causes for the aggregated exception
+         * list of causes for the aggregated exception.
          */
         private List<Throwable> causes = new ArrayList<Throwable>();
 
         /**
-         * Add an exception to the list of aggregated exceptions
+         * Adds an exception to the list of aggregated exceptions.
          *
          * @param cause the exception to add
          */
@@ -62,7 +63,7 @@ class AggregatedException
         /**
          * Throws a runtime exception if the builder has causes.
          *
-         * @param msg the message to of the aggregated exception.
+         * @param msg the message of the aggregated exception.
          */
         void throwRuntimeExceptionIfHasCauses( String msg )
         {
@@ -82,10 +83,10 @@ class AggregatedException
         /**
          * Converts the collected causes into a runtime exception
          *
-         * @param msg the message to of the aggregated exception.
+         * @param msg the message of the aggregated exception.
          * @return the exception to throw
          */
-        RuntimeException getRuntimeException( String msg )
+        private RuntimeException getRuntimeException( String msg )
         {
             if ( causes.size() == 1 )
             {
@@ -110,11 +111,16 @@ class AggregatedException
     private final int numCauses;
 
     /**
-     * @return the number of causes collected into this exception
+     * Constructor.
+     *
+     * @param message the message
+     * @param causes  all the causes
      */
-    public int getNumCauses()
+    private AggregatedException( String message, Throwable[] causes )
     {
-        return numCauses;
+        super( message );
+        this.causes = causes;
+        this.numCauses = this.causes.length;
     }
 
     /**
@@ -126,16 +132,11 @@ class AggregatedException
     }
 
     /**
-     * Constructor.
-     *
-     * @param message the message
-     * @param causes  all the causes
+     * @return the number of causes collected into this exception
      */
-    private AggregatedException( String message, Throwable[] causes )
+    public int getNumCauses()
     {
-        super( message );
-        this.causes = causes;
-        this.numCauses = this.causes.length;
+        return numCauses;
     }
 
     /**
@@ -157,14 +158,7 @@ class AggregatedException
             for ( int i = 0; i < numCauses; i++ )
             {
                 s.println( "Cause " + ( i + 1 ) + ":" );
-                if ( causes[i] == null )
-                {
-                    s.println( "<null>" );
-                }
-                else
-                {
-                    causes[i].printStackTrace( s );
-                }
+                causes[i].printStackTrace( s );
             }
         }
     }
@@ -188,14 +182,7 @@ class AggregatedException
             for ( int i = 0; i < numCauses; i++ )
             {
                 s.println( "Cause " + ( i + 1 ) + ":" );
-                if ( causes[i] == null )
-                {
-                    s.println( "<null>" );
-                }
-                else
-                {
-                    causes[i].printStackTrace( s );
-                }
+                causes[i].printStackTrace( s );
             }
         }
     }

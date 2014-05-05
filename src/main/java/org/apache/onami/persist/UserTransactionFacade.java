@@ -177,10 +177,10 @@ class UserTransactionFacade
     }
 
     /**
+     * Retries several times when the status is {@link Status#STATUS_UNKNOWN}.
+     * Will abort retrying after approximately one second.
+     *
      * @see {@link javax.transaction.UserTransaction#getStatus()}.
-     *      <p/>
-     *      Retries several times when the status is {@link Status#STATUS_UNKNOWN}.
-     *      Will abort retrying after aproximatly one second.
      */
     private int getStatus()
     {

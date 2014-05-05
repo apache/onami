@@ -30,8 +30,6 @@ import static org.apache.onami.persist.Preconditions.checkNotNull;
 /**
  * Implementation of {@link PersistenceService} and {@link EntityManagerFactoryProvider} for
  * application managed persistence units.
- * <p/>
- * This class is a singleton and all methods of the {@link PersistenceService} interface are synchronized.
  */
 @Singleton
 class ApplicationManagedEntityManagerFactoryProvider
@@ -78,7 +76,7 @@ class ApplicationManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public synchronized void start()
+    public void start()
     {
         if ( isRunning() )
         {
@@ -91,7 +89,7 @@ class ApplicationManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public synchronized boolean isRunning()
+    public boolean isRunning()
     {
         return null != emf;
     }
@@ -100,7 +98,7 @@ class ApplicationManagedEntityManagerFactoryProvider
      * {@inheritDoc}
      */
     // @Override
-    public synchronized void stop()
+    public void stop()
     {
         if ( isRunning() )
         {

@@ -49,7 +49,8 @@ class EntityManagerFactoryFactory
      * Constructor.
      *
      * @param puName     the name of the persistence unit as defined in the persistence.xml. Must not be {@code null}.
-     * @param properties the additional properties. Theses override the ones defined in the persistence.xml. Must not be {@code null}.
+     * @param properties the additional properties. Theses override the ones defined in the persistence.xml.
+     *                   Must not be {@code null}.
      */
     @Inject
     EntityManagerFactoryFactory( @ForApplicationManaged String puName,
