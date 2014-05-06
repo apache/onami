@@ -34,6 +34,14 @@
 
     <menu name="Apache Onami™ Persist">
       <item name="Home" href="index.html" />
+      <item name="DAO Example" href="daoExample.html" />
+      <item name="Onami Persist vs. Guice Persist" href="guicePersist.html" />
+      <item name="EntityManagerProvider" href="emProvider.html" />
+    </menu>
+
+    <menu name="Samples">
+      <item name="Standalone Application" href="standaloneApp.html" />
+      <item name="Simple Web Application" href="simpleWebApp.html" />
     </menu>
 
     <menu ref="reports" />
