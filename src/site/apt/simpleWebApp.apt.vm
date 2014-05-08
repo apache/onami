@@ -34,7 +34,7 @@ public class BootstrapServletListener extends GuiceServletContextListener {
         final PersistenceModule persistenceModule = new PersistenceModule() {
             @Override
             protected void configurePersistence() {
-                addContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/puJndiName");
+                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/puJndiName");
             }
         };
 

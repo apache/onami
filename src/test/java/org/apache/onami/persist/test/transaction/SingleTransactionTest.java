@@ -70,7 +70,7 @@ public class SingleTransactionTest
             @Override
             protected void configurePersistence()
             {
-                addApplicationManagedPersistenceUnit( "testUnit" );
+                bindApplicationManagedPersistenceUnit( "testUnit" );
             }
         };
     }

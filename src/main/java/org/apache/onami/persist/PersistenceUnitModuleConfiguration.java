@@ -28,7 +28,10 @@ import javax.transaction.UserTransaction;
 import java.lang.annotation.Annotation;
 import java.util.Properties;
 
-class PersistenceUnitModuleConfigurator
+/**
+ * Class holding the configuration for a single persistence unit.
+ */
+class PersistenceUnitModuleConfiguration
     implements UnannotatedPersistenceUnitBuilder, AnnotatedPersistenceUnitBuilder, UnconfiguredPersistenceUnitBuilder
 {
     private Class<? extends Annotation> annotation;
@@ -55,23 +58,27 @@ class PersistenceUnitModuleConfigurator
 
     private Key<? extends Provider<EntityManagerFactory>> emfProviderKey;
 
-    PersistenceUnitModule createPuModule()
-    {
-        return new PersistenceUnitModule( this );
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     public AnnotatedPersistenceUnitBuilder annotatedWith( Class<? extends Annotation> annotation )
     {
         this.annotation = annotation;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UnconfiguredPersistenceUnitBuilder useLocalTransaction()
     {
         isJta = false;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UnconfiguredPersistenceUnitBuilder useGlobalTransaction( UserTransaction userTransaction )
     {
         this.isJta = true;
@@ -79,6 +86,9 @@ class PersistenceUnitModuleConfigurator
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionWithJndiName( String utJndiName )
     {
         this.isJta = true;
@@ -86,6 +96,9 @@ class PersistenceUnitModuleConfigurator
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy( Provider<UserTransaction> utProvider )
     {
         this.isJta = true;
@@ -93,18 +106,27 @@ class PersistenceUnitModuleConfigurator
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         Class<? extends Provider<UserTransaction>> utProviderClass )
     {
         return useGlobalTransactionProvidedBy( Key.get( utProviderClass ) );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         TypeLiteral<? extends Provider<UserTransaction>> utProviderType )
     {
         return useGlobalTransactionProvidedBy( Key.get( utProviderType ) );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         Key<? extends Provider<UserTransaction>> utProviderKey )
     {
@@ -113,47 +135,50 @@ class PersistenceUnitModuleConfigurator
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setProperties( Properties properties )
     {
         this.properties = properties;
     }
 
-    public void setPuName( String puName )
+    void setPuName( String puName )
     {
         this.puName = puName;
     }
 
-    public void setEmf( EntityManagerFactory emf )
+    void setEmf( EntityManagerFactory emf )
     {
         this.emf = emf;
     }
 
-    public void setEmfJndiName( String emfJndiName )
+    void setEmfJndiName( String emfJndiName )
     {
         this.emfJndiName = emfJndiName;
     }
 
-    public void setEmfProvider( Provider<EntityManagerFactory> emfProvider )
+    void setEmfProvider( Provider<EntityManagerFactory> emfProvider )
     {
         this.emfProvider = emfProvider;
     }
 
-    public void setEmfProviderClass( Class<? extends Provider<EntityManagerFactory>> emfProviderClass )
+    void setEmfProviderClass( Class<? extends Provider<EntityManagerFactory>> emfProviderClass )
     {
         this.emfProviderKey = Key.get( emfProviderClass );
     }
 
-    public void setEmfProviderType( TypeLiteral<? extends Provider<EntityManagerFactory>> emfProviderType )
+    void setEmfProviderType( TypeLiteral<? extends Provider<EntityManagerFactory>> emfProviderType )
     {
         this.emfProviderKey = Key.get( emfProviderType );
     }
 
-    public void setEmfProviderKey( Key<? extends Provider<EntityManagerFactory>> emfProviderKey )
+    void setEmfProviderKey( Key<? extends Provider<EntityManagerFactory>> emfProviderKey )
     {
         this.emfProviderKey = emfProviderKey;
     }
 
-    public boolean isApplicationManagedPersistenceUnit()
+    boolean isApplicationManagedPersistenceUnit()
     {
         return puName != null;
     }
@@ -209,58 +234,58 @@ class PersistenceUnitModuleConfigurator
         return emfProviderKey;
     }
 
-    public boolean isEmfProvidedByJndiLookup()
+    boolean isEmfProvidedByJndiLookup()
     {
         return emfJndiName != null;
     }
 
-    public boolean isEmfProvidedByInstance()
+    boolean isEmfProvidedByInstance()
     {
         return emf != null;
     }
 
-    public boolean isEmfProvidedByProvider()
+    boolean isEmfProvidedByProvider()
     {
         return emfProvider != null;
     }
 
-    public boolean isEmfProvidedByProviderKey()
+    boolean isEmfProvidedByProviderKey()
     {
         return emfProviderKey != null;
     }
 
-    public boolean isJta()
+    boolean isJta()
     {
         return isJta;
     }
 
-    public boolean isUserTransactionProvidedByJndiLookup()
+    boolean isUserTransactionProvidedByJndiLookup()
     {
         return utJndiName != null;
     }
 
 
-    public boolean isUserTransactionProvidedByInstance()
+    boolean isUserTransactionProvidedByInstance()
     {
         return userTransaction != null;
     }
 
-    public boolean isUserTransactionProvidedByProvider()
+    boolean isUserTransactionProvidedByProvider()
     {
         return utProvider != null;
     }
 
-    public boolean isUserTransactionProvidedByProviderKey()
+    boolean isUserTransactionProvidedByProviderKey()
     {
         return utProviderKey != null;
     }
 
-    public boolean isAnnotated()
+    boolean isAnnotated()
     {
         return annotation != null;
     }
 
-    public AnnotationHolder getAnnotationHolder()
+    AnnotationHolder getAnnotationHolder()
     {
         return new AnnotationHolder( annotation );
     }

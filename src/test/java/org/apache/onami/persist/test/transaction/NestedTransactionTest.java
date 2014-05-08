@@ -408,7 +408,7 @@ public class NestedTransactionTest
             @Override
             protected void configurePersistence()
             {
-                addApplicationManagedPersistenceUnit( "testUnit" );
+                bindApplicationManagedPersistenceUnit( "testUnit" );
             }
         };
     }

@@ -41,46 +41,31 @@ class PersistenceUnitModule
     /**
      * The configuration for the persistence unit.
      */
-    private final PersistenceUnitModuleConfigurator config;
+    private final PersistenceUnitModuleConfiguration config;
 
     /**
-     * Transaction interceptor which can be passed in from the outside for injecting dependencies
+     * Transaction interceptor for this persistence unit.
      */
-    private TxnInterceptor transactionInterceptor;
+    private final TxnInterceptor transactionInterceptor;
 
     /**
-     * Persistence unit container which can be passed in from the outside for adding this persistence unit to it.
+     * Container for adding this persistence unit.
      */
-    private AllPersistenceUnits container;
+    private final AllPersistenceUnits allPersistenceUnits;
 
     /**
      * Constructor.
      *
-     * @param configurator the configuration holding all configs.
+     * @param configurator           the configuration holding all configs.
+     * @param transactionInterceptor interceptor for the transactional annotation.
+     * @param allPersistenceUnits    container holding all persistence units.
      */
-    PersistenceUnitModule( PersistenceUnitModuleConfigurator configurator )
+    PersistenceUnitModule( PersistenceUnitModuleConfiguration configurator, TxnInterceptor transactionInterceptor,
+                           AllPersistenceUnits allPersistenceUnits )
     {
         this.config = checkNotNull( configurator, "config is mandatory!" );
-    }
-
-    /**
-     * Sets the transaction interceptor for injection of dependencies.
-     *
-     * @param transactionInterceptor the interceptor into which to inject dependencies.
-     */
-    void setTransactionInterceptor( TxnInterceptor transactionInterceptor )
-    {
-        this.transactionInterceptor = transactionInterceptor;
-    }
-
-    /**
-     * Sets the persistence unit container for adding this persistence unit to it.
-     *
-     * @param container the container to which to add the persistence unit.
-     */
-    void setPersistenceUnitContainer( AllPersistenceUnits container )
-    {
-        this.container = container;
+        this.transactionInterceptor = checkNotNull( transactionInterceptor, "transactionInterceptor is mandatory!" );
+        this.allPersistenceUnits = checkNotNull( allPersistenceUnits, "allPersistenceUnits is mandatory!" );
     }
 
     /**
@@ -105,10 +90,10 @@ class PersistenceUnitModule
             requestInjection( transactionInterceptor );
         }
 
-        // request injection into persistence unit container - this adds the current persistence unit to the container.
-        if ( container != null )
+        // request injection into allPersistenceUnits - this adds the current persistence unit to the allPersistenceUnits.
+        if ( allPersistenceUnits != null )
         {
-            requestInjection( container );
+            requestInjection( allPersistenceUnits );
         }
     }
 

@@ -34,15 +34,15 @@ public class BootstrapServletListener extends GuiceServletContextListener {
         final PersistenceModule persistenceModule = new PersistenceModule() {
             @Override
             protected void configurePersistence() {
-                addContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/mainPuJndiName")
+                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/mainPuJndiName")
                     .annotatedWith(MainPU.class)
                     .useGlobalTransactionWithJndiName("java:comp/env/UserTransaction");
 
-                addContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/alternativePUJndiName")
+                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/alternativePUJndiName")
                     .annotatedWith(AlternativePU.class)
                     .useGlobalTransactionWithJndiName("java:comp/env/UserTransaction");
 
-                addContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/systemPuJndiName")
+                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/systemPuJndiName")
                     .annotatedWith(SystemPU.class)
                     .useLocalTransaction();
             }

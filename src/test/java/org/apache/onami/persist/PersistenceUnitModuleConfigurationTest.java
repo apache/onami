@@ -35,25 +35,17 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
 /**
- * Test for {@link PersistenceUnitModuleConfigurator}.
+ * Test for {@link PersistenceUnitModuleConfiguration}.
  */
-public class PersistenceUnitModuleConfiguratorTest
+public class PersistenceUnitModuleConfigurationTest
 {
-    private PersistenceUnitModuleConfigurator sut;
+    private PersistenceUnitModuleConfiguration sut;
 
     @Before
     public void setUp()
         throws Exception
     {
-        sut = new PersistenceUnitModuleConfigurator();
-    }
-
-    @Test
-    public void createShouldReturnNotNull()
-        throws Exception
-    {
-        final PersistenceUnitModule result = sut.createPuModule();
-        assertThat( result, notNullValue() );
+        sut = new PersistenceUnitModuleConfiguration();
     }
 
     @Test

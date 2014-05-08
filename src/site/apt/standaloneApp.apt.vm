@@ -33,7 +33,7 @@ public static void main(String[] args) {
     final PersistenceModule persistenceModule = new PersistenceModule() {
         @Override
         protected void configurePersistence() {
-            addApplicationManagedPersistenceUnit( "puName" );
+            bindApplicationManagedPersistenceUnit( "puName" );
         }
     };
     final Injector injector = Guice.createInjector(persistenceModule, getApplicationSpecificModules());
