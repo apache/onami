@@ -28,27 +28,27 @@ Onami-Persist vs. Guice-Persist
 
   Onami-Persist is inspired and based upon Guice-Persist. Most of the concepts and ideas have been adapted and/or reused.
 
-  *  UnitOfWork as the life cycle manager for EntityManagers.
+  * UnitOfWork as the life cycle manager for EntityManagers.
 
-  *  PersistFilter for spanning a UnitOfWork around a request.
+  * PersistFilter for spanning a UnitOfWork around a request.
 
-  *  PersistenceService for starting and stopping the entire persistence engine.
+  * PersistenceService for starting and stopping the entire persistence engine.
 
-  *  @Transactional annotation on methods to span a transaction around the method.
+  * @Transactional annotation on methods to span a transaction around the method.
 
   []
 
   The most notable changes to guice-persist:
 
-  *  EntityManager cannot be injected. Instead an EntityManagerProvider has to be injected. ({{{./emProvider.html}details}}).
+  * Integrated support for multiple persistence units, JTA and custom annotation.
 
-  *  @Transactional annotation allows to specify which persistence units are involved in the transaction.
+  * EntityManager cannot be injected. Instead an EntityManagerProvider has to be injected ({{{./emProvider.html}details}}).
 
-  *  UnitOfWork has a new method isActive()
+  * @Transactional annotation allows to specify which persistence units are involved in the transaction.
 
-  *  Retrieving an EntityManager does not start a UnitOfWork. Instead it will throw an Exception if the UnitOfWork is not active.
+  * UnitOfWork has a new method isActive()
 
-  *  PersistenceService can be restarted after it has been stopped.
+  * Retrieving an EntityManager does not start a UnitOfWork. Instead it will throw an Exception if the UnitOfWork is not active.
 
-  *  @Finder annotation is not yet supported
+  * PersistenceService can be restarted after it has been stopped.
 

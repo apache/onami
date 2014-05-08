@@ -53,10 +53,24 @@ Why Onami-Persist
 
   It supports:
 
-  *  multiple persistence units
+  * multiple persistence units
 
-  *  application manged and container managed persistence units
+  * application manged and container managed persistence units
 
-  *  resource local and JTA transactions.
+  * resource local and JTA transactions.
 
+Overview
+
+  {{{./daoExample.html}Here}} you find a sample code of how a DAO or service may look if it uses guice-jpa
+
+  If you have used guice-persist before you may be interested in the
+  {{{./guicePersist.html}differences between guice-jpa and guice-persist.}}
+
+  The most difficult part to get right is the configuration and setup of the persistence unit. Some examples are provided:
+
+  * {{{./standaloneApp.html}Standalone Application Setup}}
+
+  * {{{./simpleWebApp.html}Simple Web Application Setup}}
+
+  * {{{./complexWebApp.html}Multi Datasource Web Application Setup}}
 

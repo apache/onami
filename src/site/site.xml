@@ -42,6 +42,7 @@
     <menu name="Samples">
       <item name="Standalone Application" href="standaloneApp.html" />
       <item name="Simple Web Application" href="simpleWebApp.html" />
+      <item name="Multi Datasource Web Application" href="complexWebApp.html" />
     </menu>
 
     <menu ref="reports" />

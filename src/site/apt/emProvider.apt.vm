@@ -53,11 +53,12 @@ public class ExampleService {
 +--------------------------------------+
 
   The above implementation will always use the very same EntityManager for all threads and all calls to its methods.
-  This won't work. To make it more obvious that the EntityManager should not be injected into a class guice-jpa does
-  not bind the EntityManager. Instead it binds an EntityManagerProvider. The EntityManagerProvider has only one method
+  This won't work. To prevent injection of the EntityManager into a field or constructor Onami-Persist does not
+  bind the EntityManager. Instead it binds an EntityManagerProvider. The EntityManagerProvider has only one method
   get() which returns the EntityManager. This EntityManager should be used by the calling thread to access the
   persistence unit.
 
+  EntityManagerProvider extends Provider\<EntityManager\>.
   If you need the EntityManager to be bound in the injector you can do this as follows:
 
 +--------------------------------------+
@@ -67,20 +68,9 @@ public class MyPersistenceModule extends PersistenceModule {
     protected void configurePersistence() {
         addApplicationManagedPersistenceUnit("main").annotatedWith(MainPU.class);
 
-        bind(EntityManager.class).annotatedWith(MainPU.class).toProvider(MainEntityManagerExposingProvider.class);
-    }
-}
-
-public class MainEntityManagerExposingProvider implements Provider<EntityManager> {
-    private final EntityManagerProvider emProvider;
-
-    @Inject
-    public MainEntityManagerExposingProvider(@MainPU EntityManagerProvider emProvider) {
-        this.emProvider = emProvider;
-    }
-
-    public EntityManager get() {
-        ret emProvider.get();
+        bind(EntityManager.class)
+            .annotatedWith(MainPU.class)
+            .toProvider(Key.get(EntityManagerProvider.class, MainPU.class));
     }
 }
 +--------------------------------------+

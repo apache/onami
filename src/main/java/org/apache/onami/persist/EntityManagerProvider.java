@@ -40,7 +40,7 @@ import javax.persistence.EntityManager;
  * <p/>
  * The {@link EntityManagerProvider} is thread save.
  */
-public interface EntityManagerProvider
+public interface EntityManagerProvider extends Provider<EntityManager>
 {
 
     /**
