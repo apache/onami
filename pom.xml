@@ -36,9 +36,9 @@
   <inceptionYear>2013</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/onami/trunk/sandbox/persist</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/sandbox/persist</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/sandbox/persist</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/sandbox/persist</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/sandbox/persist</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/sandbox/persist</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
@@ -54,7 +54,7 @@
   </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
-    <url>http://svn.apache.org/repos/asf/onami/sandbox/persist</url>
+    <url>https://builds.apache.org/job/Onami-Persist/</url>
     <notifiers>
       <notifier>
         <type>mail</type>
