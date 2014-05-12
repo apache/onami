@@ -28,7 +28,7 @@ import javax.naming.NamingException;
  * Helper class which does a JNDI lookup and handles exceptions.
  */
 @Singleton
-public class JndiLookupHelper
+class JndiLookupHelper
 {
 
     /**

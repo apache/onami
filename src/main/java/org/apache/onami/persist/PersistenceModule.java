@@ -72,6 +72,8 @@ public abstract class PersistenceModule
     {
         configurePersistence();
 
+        bind( PersistenceFilter.class ).to( PersistenceFilterImpl.class );
+
         final AllPersistenceUnits allPersistenceUnits = new AllPersistenceUnits();
         bind( AllPersistenceServices.class ).toInstance( allPersistenceUnits );
         bind( AllUnitsOfWork.class ).toInstance( allPersistenceUnits );

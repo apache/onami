@@ -31,11 +31,11 @@ import javax.servlet.ServletResponse;
 import static org.mockito.Mockito.*;
 
 /**
- * Test for {@link PersistenceFilter}.
+ * Test for {@link PersistenceFilterImpl}.
  */
-public class PersistenceFilterTest
+public class PersistenceFilterImplTest
 {
-    private PersistenceFilter sut;
+    private PersistenceFilterImpl sut;
 
     private AllPersistenceUnits persistenceUnitsContainer;
 
@@ -44,7 +44,7 @@ public class PersistenceFilterTest
         throws Exception
     {
         persistenceUnitsContainer = mock( AllPersistenceUnits.class );
-        sut = new PersistenceFilter( persistenceUnitsContainer );
+        sut = new PersistenceFilterImpl( persistenceUnitsContainer );
     }
 
     @Test

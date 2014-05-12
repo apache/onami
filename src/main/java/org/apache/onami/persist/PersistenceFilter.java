@@ -19,17 +19,7 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-import com.google.inject.Inject;
-
 import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import java.io.IOException;
-
-import static org.apache.onami.persist.Preconditions.checkNotNull;
 
 /**
  * Filter for use in container.
@@ -47,61 +37,7 @@ import static org.apache.onami.persist.Preconditions.checkNotNull;
  *  }
  * </pre>
  */
-public class PersistenceFilter
-    implements Filter
+public interface PersistenceFilter
+    extends Filter
 {
-
-    /**
-     * Container of all known persistence unit and units of work.
-     */
-    private final AllPersistenceUnits persistenceUnitsContainer;
-
-    /**
-     * Constructor.
-     *
-     * @param persistenceUnitsContainer container of all known persistence unit and units of work.
-     */
-    @Inject
-    PersistenceFilter( AllPersistenceUnits persistenceUnitsContainer )
-    {
-        checkNotNull( persistenceUnitsContainer );
-        this.persistenceUnitsContainer = persistenceUnitsContainer;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    // @Override
-    public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain )
-        throws IOException, ServletException
-    {
-        try
-        {
-            persistenceUnitsContainer.beginAllInactiveUnitsOfWork();
-            chain.doFilter( request, response );
-        }
-        finally
-        {
-            persistenceUnitsContainer.endAllUnitsOfWork();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    // @Override
-    public void init( FilterConfig filterConfig )
-        throws ServletException
-    {
-        persistenceUnitsContainer.startAllStoppedPersistenceServices();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    // @Override
-    public void destroy()
-    {
-        persistenceUnitsContainer.stopAllPersistenceServices();
-    }
 }
