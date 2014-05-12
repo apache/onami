@@ -21,7 +21,6 @@ package org.apache.onami.persist;
 
 import com.google.inject.Inject;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
@@ -34,7 +33,7 @@ import static org.apache.onami.persist.Preconditions.checkNotNull;
 /**
  * Implementation of {@link PersistenceFilter}.
  */
-public class PersistenceFilterImpl
+class PersistenceFilterImpl
     implements PersistenceFilter
 {
 
