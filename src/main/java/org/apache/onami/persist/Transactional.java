@@ -38,7 +38,7 @@ import java.lang.annotation.Target;
  * If a rollback happens for a method which did not start the transaction the already existing
  * transaction will be marked as rollbackOnly.
  * <p/>
- * Guice uses AOP to enhance a method annotated with @{@link Transactional} with a wrapper.
+ * Guice uses AOP to enhance a method annotated with {@link Transactional @Transactional} with a wrapper.
  * This means the {@link Transactional @Transactional} only works as expected when:
  * <ul>
  * <li>

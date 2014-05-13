@@ -26,8 +26,9 @@ import javax.persistence.EntityManager;
 /**
  * Provider for {@link EntityManager}.
  * <p/>
- * This class does not implement the {@link Provider} interface because the {@link EntityManager}
- * objects do have a life cycle and should therefore not be stored in instance/member variables.
+ * Even though this class extends the {@link Provider} interface it is not bound as a provider of
+ * {@link EntityManager}. The reason for this is that the {@link EntityManager} objects do have a
+ * life cycle and should therefore not be stored in instance/member variables.
  * <p/>
  * The {@link UnitOfWork} defines the life cycle of the {@link EntityManager}. An entity manager
  * will be created when the unit of work is started. It is open and valid for use during the entire

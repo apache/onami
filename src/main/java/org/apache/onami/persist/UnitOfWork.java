@@ -32,7 +32,7 @@ import javax.persistence.EntityManager;
  * For applications running in a container the {@link PersistenceFilter} is recommended.
  * It will start a unit of work for every incoming request and properly close it at the end.
  * <p/>
- * For stand alone application it is recommended to relay on the @{@link Transactional} annotation.
+ * For stand alone application it is recommended to relay on the {@link Transactional @Transactional} annotation.
  * The transaction handler will automatically span a unit of work around a transaction.
  * <p/>
  * The most likely scenario in which one would want to take manual control over the unit of work
@@ -60,7 +60,7 @@ public interface UnitOfWork
 {
 
     /**
-     * Starts the unit of work.
+     * Begins the unit of work.
      * When a unit of work has already been started for the current thread an {@link IllegalStateException} is thrown.
      *
      * @throws IllegalStateException if a unit of work is already active for this thread.
@@ -69,13 +69,13 @@ public interface UnitOfWork
         throws IllegalStateException;
 
     /**
-     * @return {@code true} if the unit of work is already running for this thread
+     * @return {@code true} if the unit of work is active for the current thread
      *         {@code false} otherwise.
      */
     boolean isActive();
 
     /**
-     * Stops the unit of work.
+     * Ends the unit of work.
      * When the unit of work is not active this method will do nothing.
      */
     void end();
