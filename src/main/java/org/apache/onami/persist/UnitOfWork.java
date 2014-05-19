@@ -65,8 +65,7 @@ public interface UnitOfWork
      *
      * @throws IllegalStateException if a unit of work is already active for this thread.
      */
-    void begin()
-        throws IllegalStateException;
+    void begin();
 
     /**
      * @return {@code true} if the unit of work is active for the current thread

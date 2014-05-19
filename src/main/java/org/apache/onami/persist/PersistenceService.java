@@ -35,8 +35,7 @@ public interface PersistenceService
      *
      * @throws IllegalStateException if the service is already running.
      */
-    void start()
-        throws IllegalStateException;
+    void start();
 
     /**
      * @return {@code true} if the underlying persistence engine is running.
