@@ -36,19 +36,23 @@ EntityManagerProvider vs. Provider of EntityManager
   People not familiar with the life cycle of the EntityManager tend to build a DAO or service like this:
 
 +--------------------------------------+
-public class ExampleService {
+public class ExampleService
+{
 
     private final EntityManager em;
 
     @Inject
-    public ExamleService(EntityManager em) {
+    public ExamleService( EntityManager em )
+    {
         this.em = em;
     }
 
     @Transactional
-    public Foo getFooByName(String name) {
+    public Foo getFooByName( String name )
+    {
         // retrieve foo from the DB using the EntityManager.
     }
+
 }
 +--------------------------------------+
 
@@ -62,15 +66,19 @@ public class ExampleService {
   If you need the EntityManager to be bound in the injector you can do this as follows:
 
 +--------------------------------------+
-public class MyPersistenceModule extends PersistenceModule {
+public class MyPersistenceModule
+    extends PersistenceModule
+{
 
     @Override
-    protected void configurePersistence() {
-        addApplicationManagedPersistenceUnit("main").annotatedWith(MainPU.class);
+    protected void configurePersistence()
+    {
+        addApplicationManagedPersistenceUnit( "main" ).annotatedWith( MainPU.class );
 
-        bind(EntityManager.class)
-            .annotatedWith(MainPU.class)
-            .toProvider(Key.get(EntityManagerProvider.class, MainPU.class));
+        bind( EntityManager.class )
+            .annotatedWith( MainPU.class )
+            .toProvider( Key.get( EntityManagerProvider.class, MainPU.class ) );
     }
+
 }
 +--------------------------------------+

@@ -29,20 +29,29 @@ Simple Web Application
 * java code
 
 +--------------------------------------+
-public class BootstrapServletListener extends GuiceServletContextListener {
-    protected Injector getInjector() {
-        final PersistenceModule persistenceModule = new PersistenceModule() {
+public class BootstrapServletListener
+extends GuiceServletContextListener
+{
+
+    protected Injector getInjector()
+    {
+        final PersistenceModule persistenceModule = new PersistenceModule()
+        {
+
             @Override
-            protected void configurePersistence() {
-                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/puJndiName");
+            protected void configurePersistence()
+            {
+                bindContainerManagedPersistenceUnitWithJndiName( "java:comp/env/foobar/puJndiName" );
             }
+
         };
 
-        final ServletModule servletModule = new ServletModule() {
-            filter("/*").through(PersistenceFilter.class);
+        final ServletModule servletModule = new ServletModule()
+        {
+            filter( "/*" ).through( PersistenceFilter.class );
         };
 
-        return Guice.createInjector(servletModule, persistenceModule, getApplicationSpecificModules());
+        return Guice.createInjector( servletModule, persistenceModule, getApplicationSpecificModules() );
     }
 +--------------------------------------+
 
@@ -53,18 +62,23 @@ public class BootstrapServletListener extends GuiceServletContextListener {
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>FooBar App</display-name>
+
     <filter>
         <filter-name>guiceFilter</filter-name>
         <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
     </filter>
+
     <filter-mapping>
         <filter-name>guiceFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <listener>
         <listener-class>foo.bar.BootstrapServletListener</listener-class>
     </listener>
+
     <!-- More config. -->
+
 </web-app>
 +--------------------------------------+
 
@@ -73,9 +87,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
 +--------------------------------------+
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+
     <persistence-unit name="puName" transaction-type="RESOURCE_LOCAL">
         <!-- your configuration -->
     </peristence-unit>
+
 </peristence>
 +--------------------------------------+
 
@@ -127,4 +143,3 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
 |    |    |    + guice.jar
 |    |    |    + onami-persist.jar
 +--------------------------------------+
-

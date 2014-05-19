@@ -29,25 +29,35 @@ Standalone Application
 * java code
 
 +--------------------------------------+
-public static void main(String[] args) {
-    final PersistenceModule persistenceModule = new PersistenceModule() {
+public static void main( String[] args )
+{
+
+    final PersistenceModule persistenceModule = new PersistenceModule()
+    {
+
         @Override
-        protected void configurePersistence() {
+        protected void configurePersistence()
+        {
             bindApplicationManagedPersistenceUnit( "puName" );
         }
+
     };
-    final Injector injector = Guice.createInjector(persistenceModule, getApplicationSpecificModules());
 
-    final PersistenceService persistenceService = injector.getInstance(PersistenceService.class);
+    final Injector injector = Guice.createInjector( persistenceModule, getApplicationSpecificModules() );
 
-    try {
+    final PersistenceService persistenceService = injector.getInstance( PersistenceService.class );
+
+    try
+    {
         persistenceService.start();
 
-        while(notTerminated()) {
+        while( notTerminated() )
+        {
             // run application
         }
     }
-    finally {
+    finally
+    {
         persistenceService.stop();
     }
 }
@@ -82,4 +92,3 @@ public static void main(String[] args) {
 |    |    |    + Main.class
 |    |    |    + App.class
 +--------------------------------------+
-

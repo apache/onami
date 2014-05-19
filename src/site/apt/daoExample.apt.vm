@@ -29,23 +29,28 @@ DAO Example
   The following code snippet is a little example on how to use Onami-Persist to access a persistence unit.
 
 +--------------------------------------+
-public class FooDao {
+public class FooDao
+{
 
     private final EntityManagerProvider emProvider;
 
     @Inject
-    public FooDao(EntityManagerProvider emProvider) {
+    public FooDao( EntityManagerProvider emProvider )
+    {
         this.emProvider = emProvider;
     }
 
     @Transactional
-    public Foo getFooByName(String name) {
+    public Foo getFooByName( String name )
+    {
         final EntityManager em = emProvider.get();
         return getFooByName(name, em);
     }
 
-    private Foo getFooByName(String name, EntityManager em) {
+    private Foo getFooByName( String name, EntityManager em )
+    {
         // retrieve foo from the DB using the entity manager...
     }
+
 }
 +--------------------------------------+

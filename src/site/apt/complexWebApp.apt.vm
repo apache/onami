@@ -29,31 +29,41 @@ Multi Datasource Web Application
 * java code
 
 +--------------------------------------+
-public class BootstrapServletListener extends GuiceServletContextListener {
-    protected Injector getInjector() {
+public class BootstrapServletListener
+    extends GuiceServletContextListener
+{
+
+    protected Injector getInjector()
+    {
         final PersistenceModule persistenceModule = new PersistenceModule() {
+
             @Override
-            protected void configurePersistence() {
-                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/mainPuJndiName")
+            protected void configurePersistence()
+            {
+                bindContainerManagedPersistenceUnitWithJndiName( "java:comp/env/foobar/mainPuJndiName" )
                     .annotatedWith(MainPU.class)
-                    .useGlobalTransactionWithJndiName("java:comp/env/UserTransaction");
+                    .useGlobalTransactionWithJndiName( "java:comp/env/UserTransaction" );
 
-                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/alternativePUJndiName")
+                bindContainerManagedPersistenceUnitWithJndiName( "java:comp/env/foobar/alternativePUJndiName" )
                     .annotatedWith(AlternativePU.class)
-                    .useGlobalTransactionWithJndiName("java:comp/env/UserTransaction");
+                    .useGlobalTransactionWithJndiName( "java:comp/env/UserTransaction" );
 
-                bindContainerManagedPersistenceUnitWithJndiName("java:comp/env/foobar/systemPuJndiName")
+                bindContainerManagedPersistenceUnitWithJndiName( "java:comp/env/foobar/systemPuJndiName" )
                     .annotatedWith(SystemPU.class)
                     .useLocalTransaction();
             }
+
         };
 
-        final ServletModule servletModule = new ServletModule() {
+        final ServletModule servletModule = new ServletModule()
+        {
             filter("/*").through(PersistenceFilter.class);
         };
 
-        return Guice.createInjector(servletModule, persistenceModule, getApplicationSpecificModules());
+        return Guice.createInjector( servletModule, persistenceModule, getApplicationSpecificModules() );
     }
+
+}
 +--------------------------------------+
 
 * web.xml
@@ -157,4 +167,3 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
 |    |    |    + guice.jar
 |    |    |    + onami-persist.jar
 +--------------------------------------+
-
