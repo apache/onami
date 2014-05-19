@@ -58,4 +58,5 @@ class JndiLookupHelper
                 "lookup for " + type.getSimpleName() + " with JNDI name '" + jndiName + "' failed", e );
         }
     }
+
 }

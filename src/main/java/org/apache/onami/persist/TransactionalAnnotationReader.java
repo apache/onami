@@ -30,6 +30,7 @@ import java.lang.reflect.Method;
 @Singleton
 class TransactionalAnnotationReader
 {
+
     /**
      * Constant holding a transactional instance with all default values.
      */
@@ -66,4 +67,5 @@ class TransactionalAnnotationReader
     private static class DefaultTransactional
     {
     }
+
 }

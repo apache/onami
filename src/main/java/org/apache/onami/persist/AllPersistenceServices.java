@@ -34,4 +34,5 @@ public interface AllPersistenceServices
      * Calls {@link PersistenceService#stop()} on all persistence services.
      */
     void stopAllPersistenceServices();
+
 }

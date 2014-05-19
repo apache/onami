@@ -39,6 +39,7 @@ import static org.mockito.Mockito.mock;
  */
 public class PersistenceUnitModuleConfigurationTest
 {
+
     private PersistenceUnitModuleConfiguration sut;
 
     @Before

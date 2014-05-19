@@ -61,4 +61,5 @@ public class InitialContextFactoryStub
     {
         THREAD_LOCAL_CONTEXT.set( context );
     }
+
 }

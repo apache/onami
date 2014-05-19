@@ -32,6 +32,7 @@ import static org.mockito.Mockito.*;
  */
 public class AllPersistenceUnitsTest
 {
+
     private AllPersistenceUnits sut;
 
     private PersistenceService ps1;
@@ -241,4 +242,5 @@ public class AllPersistenceUnitsTest
 
         fail( "must throw AggregatedException" );
     }
+
 }

@@ -65,4 +65,5 @@ public class EntityManagerFactoryFactoryTest
         assertThat( result.getProperties().get( PU_KEY ), is( (Object) PU_NAME ) );
         assertThat( result.getProperties().get( TEST_KEY ), is( (Object) TEST_VALUE ) );
     }
+
 }

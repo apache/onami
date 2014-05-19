@@ -34,4 +34,5 @@ public interface UnconfiguredPersistenceUnitBuilder
      * @param properties the properties to use for the persistence unit.
      */
     void setProperties( Properties properties );
+
 }

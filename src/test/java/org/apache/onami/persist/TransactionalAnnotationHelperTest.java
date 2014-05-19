@@ -110,6 +110,7 @@ public class TransactionalAnnotationHelperTest
             final boolean result = sut.persistenceUnitParticipatesInTransactionFor( invocation );
             assertThat( result, is( true ) );
         }
+
     }
 
     public class WithPuAnnotation
@@ -156,6 +157,7 @@ public class TransactionalAnnotationHelperTest
             final boolean result = sut.persistenceUnitParticipatesInTransactionFor( invocation );
             assertThat( result, is( false ) );
         }
+
     }
 
     public class RollbackOnIllegalArgumentExceptionIgnoreIllegalFormatException
@@ -222,7 +224,6 @@ public class TransactionalAnnotationHelperTest
             final boolean result = sut.isRollbackNecessaryFor( invocation, exc );
             assertThat( result, is( false ) );
         }
-
 
     }
 

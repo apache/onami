@@ -286,5 +286,4 @@ public class UserTransactionFacadeTest
         return new GreaterThan<Long>( expected );
     }
 
-
 }

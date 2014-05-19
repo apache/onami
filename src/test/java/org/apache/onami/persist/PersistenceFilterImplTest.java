@@ -35,6 +35,7 @@ import static org.mockito.Mockito.*;
  */
 public class PersistenceFilterImplTest
 {
+
     private PersistenceFilterImpl sut;
 
     private AllPersistenceUnits persistenceUnitsContainer;
@@ -108,4 +109,5 @@ public class PersistenceFilterImplTest
             inOrder.verify( persistenceUnitsContainer ).endAllUnitsOfWork();
         }
     }
+
 }

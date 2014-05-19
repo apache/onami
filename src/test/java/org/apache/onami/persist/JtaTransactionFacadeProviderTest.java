@@ -34,6 +34,7 @@ import static org.mockito.Mockito.*;
 @RunWith( HierarchicalContextRunner.class )
 public class JtaTransactionFacadeProviderTest
 {
+
     private JtaTransactionFacadeFactory sut;
 
     private UserTransactionFacade utFacade;
@@ -142,4 +143,5 @@ public class JtaTransactionFacadeProviderTest
             verify( utFacade ).rollback();
         }
     }
+
 }

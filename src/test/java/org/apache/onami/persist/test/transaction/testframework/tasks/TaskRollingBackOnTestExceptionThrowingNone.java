@@ -38,7 +38,7 @@ public class TaskRollingBackOnTestExceptionThrowingNone
      * {@inheritDoc}
      */
     @Override
-    @Transactional(rollbackOn = TestException.class)
+    @Transactional( rollbackOn = TestException.class )
     public void doTransactional()
         throws TestException, RuntimeTestException
     {

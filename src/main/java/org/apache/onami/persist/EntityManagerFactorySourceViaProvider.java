@@ -33,6 +33,7 @@ import javax.persistence.EntityManagerFactory;
 class EntityManagerFactorySourceViaProvider
     implements EntityManagerFactorySource
 {
+
     private final Provider<EntityManagerFactory> emfProvider;
 
     /**
@@ -54,4 +55,5 @@ class EntityManagerFactorySourceViaProvider
     {
         return emfProvider.get();
     }
+
 }

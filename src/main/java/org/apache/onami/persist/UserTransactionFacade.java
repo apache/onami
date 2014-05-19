@@ -34,7 +34,6 @@ import java.util.Set;
 
 import static org.apache.onami.persist.Preconditions.checkNotNull;
 
-
 /**
  * Facade to the {@link javax.transaction.UserTransaction} which wraps all checked exception into runtime exceptions.
  * Adds some convenience methods.
@@ -206,4 +205,5 @@ class UserTransactionFacade
             throw new RuntimeException( "unexpected error occurred", e );
         }
     }
+
 }

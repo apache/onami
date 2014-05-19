@@ -19,7 +19,6 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 

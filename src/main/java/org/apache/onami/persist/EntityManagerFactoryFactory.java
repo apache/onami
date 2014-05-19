@@ -69,4 +69,5 @@ class EntityManagerFactoryFactory
     {
         return Persistence.createEntityManagerFactory( puName, properties );
     }
+
 }

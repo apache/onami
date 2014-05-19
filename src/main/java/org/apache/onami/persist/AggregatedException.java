@@ -26,7 +26,6 @@ import java.util.List;
 
 import static org.apache.onami.persist.Preconditions.checkNotNull;
 
-
 /**
  * Exception holding an aggregation of multiple exceptions which were collected.
  */
@@ -35,7 +34,6 @@ class AggregatedException
 {
 
     private static final long serialVersionUID = 1L;
-
 
     /**
      * Builder for AggregatedException

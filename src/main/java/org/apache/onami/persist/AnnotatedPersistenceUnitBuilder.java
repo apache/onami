@@ -90,4 +90,5 @@ public interface AnnotatedPersistenceUnitBuilder
      */
     UnconfiguredPersistenceUnitBuilder useGlobalTransactionProvidedBy(
         Key<? extends Provider<UserTransaction>> utProviderKey );
+
 }

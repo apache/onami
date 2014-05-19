@@ -37,6 +37,7 @@ import static org.mockito.Mockito.*;
  */
 public class EntityManagerProviderImplTest
 {
+
     private EntityManagerProviderImpl sut;
 
     private EntityManagerFactoryProvider emfProvider;
@@ -176,4 +177,5 @@ public class EntityManagerProviderImplTest
 
         verify( emf ).createEntityManager();
     }
+
 }

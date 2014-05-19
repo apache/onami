@@ -31,4 +31,5 @@ interface TransactionFacadeFactory
      * @return the transaction facade
      */
     TransactionFacade createTransactionFacade();
+
 }

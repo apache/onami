@@ -37,6 +37,7 @@ import static org.mockito.Mockito.*;
 @RunWith( HierarchicalContextRunner.class )
 public class TxnInterceptorTest
 {
+
     private UnitOfWork unitOfWork;
 
     private TransactionalAnnotationHelper txnAnnotationHelper;
@@ -83,6 +84,7 @@ public class TxnInterceptorTest
 
             verify( invocation ).proceed();
         }
+
     }
 
     public class ParticipatingInTransaction
@@ -225,7 +227,6 @@ public class TxnInterceptorTest
                 verify( unitOfWork, never() ).end();
             }
 
-
             @Test
             public void invokeStartsTransactionIfParticipatingInTransaction()
                 throws Throwable
@@ -354,7 +355,8 @@ public class TxnInterceptorTest
                 fail( "expected RuntimeException to be thrown" );
             }
 
-
         }
+
     }
+
 }

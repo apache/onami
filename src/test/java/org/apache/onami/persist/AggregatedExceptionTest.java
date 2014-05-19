@@ -90,4 +90,5 @@ public class AggregatedExceptionTest
 
         fail( "must throw RuntimeException" );
     }
+
 }

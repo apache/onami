@@ -259,4 +259,5 @@ class PersistenceUnitModule
             throw new RuntimeException( "UserTransaction is improperly configured" );
         }
     }
+
 }

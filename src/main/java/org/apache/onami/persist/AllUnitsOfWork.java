@@ -34,4 +34,5 @@ public interface AllUnitsOfWork
      * Calls {@link UnitOfWork#end()} on all units of work.
      */
     void endAllUnitsOfWork();
+
 }

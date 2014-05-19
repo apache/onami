@@ -49,4 +49,5 @@ public final class TransactionTestEntity
     {
         this.id = id;
     }
+
 }

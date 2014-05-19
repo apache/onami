@@ -32,6 +32,7 @@ import java.lang.reflect.Method;
  */
 public class TransactionalAnnotationReaderTest
 {
+
     private TransactionalAnnotationReader sut;
 
     @Before
@@ -164,4 +165,5 @@ public class TransactionalAnnotationReaderTest
             throw new RuntimeException( e );
         }
     }
+
 }

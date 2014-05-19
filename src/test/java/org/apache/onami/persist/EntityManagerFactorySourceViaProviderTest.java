@@ -35,6 +35,7 @@ import static org.mockito.Mockito.mock;
  */
 public class EntityManagerFactorySourceViaProviderTest
 {
+
     private EntityManagerFactorySourceViaProvider sut;
 
     private Provider<EntityManagerFactory> emfProvider;
@@ -58,4 +59,5 @@ public class EntityManagerFactorySourceViaProviderTest
         // then
         assertThat(result, sameInstance(emfDummy));
     }
+
 }

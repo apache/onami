@@ -34,6 +34,7 @@ import static org.mockito.Mockito.*;
  */
 public class ContainerManagedEntityManagerFactoryProviderTest
 {
+
     private ContainerManagedEntityManagerFactoryProvider sut;
 
     private EntityManagerFactory emf;
@@ -125,4 +126,5 @@ public class ContainerManagedEntityManagerFactoryProviderTest
     {
         new ContainerManagedEntityManagerFactoryProvider( null );
     }
+
 }

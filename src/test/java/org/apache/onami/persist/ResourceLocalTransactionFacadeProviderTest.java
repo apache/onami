@@ -35,6 +35,7 @@ import static org.mockito.Mockito.*;
 @RunWith( HierarchicalContextRunner.class )
 public class ResourceLocalTransactionFacadeProviderTest
 {
+
     private ResourceLocalTransactionFacadeFactory sut;
 
     private EntityManagerProvider emProvider;
@@ -143,4 +144,5 @@ public class ResourceLocalTransactionFacadeProviderTest
             verify( txn ).rollback();
         }
     }
+
 }

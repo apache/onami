@@ -26,7 +26,6 @@ import javax.persistence.EntityManagerFactory;
 
 import static org.apache.onami.persist.Preconditions.checkNotNull;
 
-
 /**
  * Implementation of {@link PersistenceService} and {@link EntityManagerFactoryProvider} for
  * container managed persistence units.

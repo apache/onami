@@ -36,4 +36,5 @@ public interface UnannotatedPersistenceUnitBuilder
      * @return the next builder step.
      */
     AnnotatedPersistenceUnitBuilder annotatedWith( Class<? extends Annotation> annotation );
+
 }

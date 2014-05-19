@@ -39,6 +39,7 @@ import static org.mockito.Mockito.*;
  */
 public class EntityManagerProviderImplThreadingTest
 {
+
     private EntityManagerProviderImpl sut;
 
     private EntityManagerFactory emf;
@@ -116,4 +117,5 @@ public class EntityManagerProviderImplThreadingTest
         latch.await();
         verify( emf, times( numThreads ) ).createEntityManager();
     }
+
 }

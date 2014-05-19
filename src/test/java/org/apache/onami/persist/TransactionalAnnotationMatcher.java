@@ -33,6 +33,7 @@ import java.util.Set;
 public final class TransactionalAnnotationMatcher
     extends BaseMatcher<Transactional>
 {
+
     public static TransactionalAnnotationMatcher transactionalAnnotation( Class[] expectedUnits,
                                                                           Class[] expectedRollback,
                                                                           Class[] expectedIgnore )
@@ -86,4 +87,5 @@ public final class TransactionalAnnotationMatcher
             .appendText( ", ignore=" ).appendValueList( "[", ", ", "]", expectedIgnore )
             .appendText( ")>" );
     }
+
 }

@@ -73,4 +73,5 @@ public @interface Transactional
      * the exceptions defined in rollbackOn(). Default is none.
      */
     Class<? extends Exception>[] ignore() default { };
+
 }

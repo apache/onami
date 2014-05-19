@@ -34,6 +34,7 @@ import java.util.Properties;
 class PersistenceUnitModuleConfiguration
     implements UnannotatedPersistenceUnitBuilder, AnnotatedPersistenceUnitBuilder, UnconfiguredPersistenceUnitBuilder
 {
+
     private Class<? extends Annotation> annotation;
 
     private boolean isJta = false;
@@ -294,4 +295,5 @@ class PersistenceUnitModuleConfiguration
     {
         return annotation;
     }
+
 }

@@ -209,4 +209,5 @@ public abstract class PersistenceModule
         configurations.add( configurator );
         return configurator;
     }
+
 }
