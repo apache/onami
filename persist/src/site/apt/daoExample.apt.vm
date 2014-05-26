@@ -1,0 +1,56 @@
+                                    ------
+                                    DAO Example
+                                    ------
+                                    The Apache Onami developers team
+                                    ------
+                                     2014
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+DAO Example
+
+  The following code snippet is a little example on how to use Onami-Persist to access a persistence unit.
+
++--------------------------------------+
+public class FooDao
+{
+
+    private final EntityManagerProvider emProvider;
+
+    @Inject
+    public FooDao( EntityManagerProvider emProvider )
+    {
+        this.emProvider = emProvider;
+    }
+
+    @Transactional
+    public Foo getFooByName( String name )
+    {
+        final EntityManager em = emProvider.get();
+        return getFooByName(name, em);
+    }
+
+    private Foo getFooByName( String name, EntityManager em )
+    {
+        // retrieve foo from the DB using the entity manager...
+    }
+
+}
++--------------------------------------+

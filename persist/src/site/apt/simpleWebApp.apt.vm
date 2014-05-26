@@ -1,0 +1,145 @@
+                                    ------
+                                    Simple Web Application
+                                    ------
+                                    The Apache Onami developers team
+                                    ------
+                                     2014
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+Simple Web Application
+
+* java code
+
++--------------------------------------+
+public class BootstrapServletListener
+extends GuiceServletContextListener
+{
+
+    protected Injector getInjector()
+    {
+        final PersistenceModule persistenceModule = new PersistenceModule()
+        {
+
+            @Override
+            protected void configurePersistence()
+            {
+                bindContainerManagedPersistenceUnitWithJndiName( "java:comp/env/foobar/puJndiName" );
+            }
+
+        };
+
+        final ServletModule servletModule = new ServletModule()
+        {
+            filter( "/*" ).through( PersistenceFilter.class );
+        };
+
+        return Guice.createInjector( servletModule, persistenceModule, getApplicationSpecificModules() );
+    }
++--------------------------------------+
+
+* web.xml
+
++--------------------------------------+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name>FooBar App</display-name>
+
+    <filter>
+        <filter-name>guiceFilter</filter-name>
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>guiceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>foo.bar.BootstrapServletListener</listener-class>
+    </listener>
+
+    <!-- More config. -->
+
+</web-app>
++--------------------------------------+
+
+* persistence.xml
+
++--------------------------------------+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+
+    <persistence-unit name="puName" transaction-type="RESOURCE_LOCAL">
+        <!-- your configuration -->
+    </peristence-unit>
+
+</peristence>
++--------------------------------------+
+
+* JNDI Binding
+
+  In order to allow container managed persistence units the persistence unit must be bound in the JNDI framework.
+
+  If your container follows the J2EE Standard 5.0 add the following to your web.xml
+
++--------------------------------------+
+<peristence-unit-ref>
+    <peristence-unit-ref-name>foobar/puJndiName</peristence-unit-ref-name>
+    <peristence-unit-name>puName</peristence-unit-name>
+</peristence-unit-ref>
++--------------------------------------+
+
+  Important: JBoss AS7.x do not support placing the JNDI binding in the web.xml.
+  Instead add the following to your persistence.xml
+
++--------------------------------------+
+<property name="jboss.entity.manager.factory.jndi.name" value="java:comp/env/foobar/puJndiName" />
+<property name="jboss.as.jpa.managed" value="true" />
++--------------------------------------+
+
+  Important: JBoss AS 7.x makes all datasources defined in the standalone.xml JTA managed. If you want one or more of
+  the datasources to be resource local you must add the attribute "jta" to the datasource element.
+
++--------------------------------------+
+<datasource jndi-name="java:jboss/datasources/systemDS" pool-name="systemDS" enabled="true" use-java-context="true" jta="false">
+    ...
+</datasource>
++--------------------------------------+
+
+* Structure of the .war
+
++--------------------------------------+
++ app.war
+|    + META-INF
+|    |    + MANIFEST.MF
+|    |    + persistence.xml
+|    + WEB-INF
+|    |    + classes
+|    |    |    + META-INF
+|    |    |    |    + MANIFEST.MF
+|    |    |    + foo
+|    |    |    |    + bar
+|    |    |    |    |    + BootstrapServletListener.class
+|    |    + lib
+|    |    |    + guice.jar
+|    |    |    + onami-persist.jar
++--------------------------------------+

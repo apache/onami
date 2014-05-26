@@ -1,0 +1,84 @@
+                                    ------
+                                    EntityManagerProvider vs. Provider of EntityManager
+                                    ------
+                                    The Apache Onami developers team
+                                    ------
+                                     2014
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+EntityManagerProvider vs. Provider of EntityManager
+
+  In guice-persist the EntityManager is bound in the injector allowing to directly inject an EntityManager into your
+  classes. This causes for a lot of problems since the EntityManager has a life cycle. When a unit of work is started
+  a new EntityManager instance is created. The thread which started the unit of work must use this instance and this
+  instance alone to interact with the persistence unit. When the unit of work is ended the EntityManager is closed.
+  This ends the life cycle of the EntityManager. All calls to the closed instance will result in an Exception
+  (except isClosed() ).
+
+  People not familiar with the life cycle of the EntityManager tend to build a DAO or service like this:
+
++--------------------------------------+
+public class ExampleService
+{
+
+    private final EntityManager em;
+
+    @Inject
+    public ExamleService( EntityManager em )
+    {
+        this.em = em;
+    }
+
+    @Transactional
+    public Foo getFooByName( String name )
+    {
+        // retrieve foo from the DB using the EntityManager.
+    }
+
+}
++--------------------------------------+
+
+  The above implementation will always use the very same EntityManager for all threads and all calls to its methods.
+  This won't work. To prevent injection of the EntityManager into a field or constructor Onami-Persist does not
+  bind the EntityManager. Instead it binds an EntityManagerProvider. The EntityManagerProvider has only one method
+  get() which returns the EntityManager. This EntityManager should be used by the calling thread to access the
+  persistence unit.
+
+  EntityManagerProvider extends Provider\<EntityManager\>.
+  If you need the EntityManager to be bound in the injector you can do this as follows:
+
++--------------------------------------+
+public class MyPersistenceModule
+    extends PersistenceModule
+{
+
+    @Override
+    protected void configurePersistence()
+    {
+        addApplicationManagedPersistenceUnit( "main" ).annotatedWith( MainPU.class );
+
+        bind( EntityManager.class )
+            .annotatedWith( MainPU.class )
+            .toProvider( Key.get( EntityManagerProvider.class, MainPU.class ) );
+    }
+
+}
++--------------------------------------+
