@@ -43,6 +43,7 @@
     <module>guava</module>
     <module>lifecycle</module>
     <module>logging</module>
+    <module>persist</module>
     <module>scheduler</module>
     <module>scopes</module>
     <module>spi</module>
