@@ -39,12 +39,20 @@ import org.apache.onami.persist.test.transaction.testframework.tasks.TaskRolling
 import org.apache.onami.persist.test.transaction.testframework.tasks.TaskRollingBackOnTestExceptionThrowingTestException;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 /**
  * Tests running nested transactions.
- * The test make us of the testframework.
- * Since the test is running a loop only the injector is created directly in the test to ensure
+ * The test makes use of the test framework.
+ * Since the test is running a loop the injector is created directly in the test to ensure
  * that for every {@link TestVector} a new injector instance is used.
  */
 public class NestedTransactionTest
@@ -54,294 +62,189 @@ public class NestedTransactionTest
      * All possible combination of {@link org.apache.onami.persist.test.transaction.testframework.TransactionalTask}s
      * and if they should have been rolled back.
      */
-    private static final TestVector[] TEST_VECTORS =
-        { new TestVector( TaskRollingBackOnAnyThrowingNone.class, TaskRollingBackOnAnyThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class, TaskRollingBackOnAnyThrowingTestException.class,
-                            true ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class, TaskRollingBackOnNoneThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class, TaskRollingBackOnNoneThrowingTestException.class,
-                            true ), new TestVector( TaskRollingBackOnAnyThrowingNone.class,
-                                                    TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingNone.class, TaskRollingBackOnTestExceptionThrowingNone.class,
-                            false ), new TestVector( TaskRollingBackOnAnyThrowingNone.class,
-                                                     TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                                                     true ), new TestVector( TaskRollingBackOnAnyThrowingNone.class,
-                                                                             TaskRollingBackOnTestExceptionThrowingTestException.class,
-                                                                             true ),
+    private static final Collection<TestVector> TEST_VECTORS = buildTestVectors(
+        whenFirstTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //                                                  //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //                                  //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class, TaskRollingBackOnAnyThrowingNone.class,
-                            true ), new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                                                    TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class, TaskRollingBackOnNoneThrowingNone.class,
-                            true ), new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                                                    TaskRollingBackOnNoneThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnAnyThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //                                         //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class, TaskRollingBackOnAnyThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class, TaskRollingBackOnAnyThrowingTestException.class,
-                            true ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class, TaskRollingBackOnNoneThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class, TaskRollingBackOnNoneThrowingTestException.class,
-                            false ), new TestVector( TaskRollingBackOnNoneThrowingNone.class,
-                                                     TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingNone.class, TaskRollingBackOnTestExceptionThrowingNone.class,
-                            false ), new TestVector( TaskRollingBackOnNoneThrowingNone.class,
-                                                     TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                                                     false ), new TestVector( TaskRollingBackOnNoneThrowingNone.class,
-                                                                              TaskRollingBackOnTestExceptionThrowingTestException.class,
-                                                                              true ),
+        whenFirstTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //                                                 //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //                                 //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class, TaskRollingBackOnAnyThrowingNone.class,
-                            false ), new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                                                     TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class, TaskRollingBackOnNoneThrowingNone.class,
-                            false ), new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                                                     TaskRollingBackOnNoneThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnNoneThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //                                        //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnAnyThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnNoneThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //                                 //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class ) //                 //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //                        //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class, TaskRollingBackOnAnyThrowingNone.class,
-                            false ), new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                                                     TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class, TaskRollingBackOnNoneThrowingNone.class,
-                            false ), new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                                                     TaskRollingBackOnNoneThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingNone.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //                                        //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ),
+        whenFirstTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //                        //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ), //
 
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnAnyThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnNoneThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingNone.class, true ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class, false ),
-            new TestVector( TaskRollingBackOnTestExceptionThrowingTestException.class,
-                            TaskRollingBackOnTestExceptionThrowingTestException.class, true ), };
+        whenFirstTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ) //                               //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnAnyThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnNoneThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnNoneThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingNone.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException.class )//
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnRuntimeTestExceptionThrowingTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingNone.class ) //
+            .expectCommitWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingRuntimeTestException.class ) //
+            .expectRollbackWhenSecondTaskIs( TaskRollingBackOnTestExceptionThrowingTestException.class ) //
+    );
+
+
+    /**
+     * Test which ensures that all combinations of tasks are present.
+     */
+    @Test
+    public void testVectorShouldContainAllCombinations()
+    {
+        Set<TestVector> s = new HashSet<TestVector>();
+
+        s.addAll( TEST_VECTORS );
+
+        assertThat( s.size(), is( 12 * 12 ) );
+    }
 
     /**
      * Test which iterates over ALL possible combinations of inner and outer tasks.
@@ -376,23 +279,7 @@ public class NestedTransactionTest
         persistService.start();
         try
         {
-            // given
-            final TransactionalWorker worker = injector.getInstance( TransactionalWorker.class );
-            worker.scheduleTask( testVector.getOuterTask() );
-            worker.scheduleTask( testVector.getInnerTask() );
-
-            // when
-            worker.doTasks();
-
-            // then
-            if ( testVector.shouldRollBack() )
-            {
-                worker.assertNoEntityHasBeenPersisted();
-            }
-            else
-            {
-                worker.assertAllEntitiesHaveBeenPersisted();
-            }
+            doTestNestedTransaction( testVector, injector.getInstance( TransactionalWorker.class ) );
         }
         finally
         {
@@ -413,36 +300,139 @@ public class NestedTransactionTest
         };
     }
 
-    private static class TestVector
+    private void doTestNestedTransaction( TestVector testVector, TransactionalWorker worker )
+    {
+        // given
+        testVector.scheduleOuterTaskOn( worker );
+        testVector.scheduleInnerTaskOn( worker );
+
+        // when
+        worker.doTasks();
+
+        // then
+        testVector.assertExpectedOutcomeFor( worker );
+    }
+
+
+    private static Collection<TestVector> buildTestVectors( TestVectorsBuilder... factories )
+    {
+        final List<TestVector> result = new ArrayList<TestVector>();
+        for ( TestVectorsBuilder factory : factories )
+        {
+            result.addAll( factory.buildTestVectors() );
+        }
+        return result;
+    }
+
+    private static TestVectorsBuilder whenFirstTaskIs( Class<? extends TransactionalTask> firstTask )
+    {
+        return new TestVectorsBuilder( firstTask );
+    }
+
+    private abstract static class TestVector
     {
         private final Class<? extends TransactionalTask> outerTask;
 
         private final Class<? extends TransactionalTask> innerTask;
 
-        private final boolean shouldRollBack;
-
-        public TestVector( Class<? extends TransactionalTask> outerTask, Class<? extends TransactionalTask> innerTask,
-                           boolean shouldRollBack )
+        public TestVector( Class<? extends TransactionalTask> outerTask, Class<? extends TransactionalTask> innerTask )
         {
             this.outerTask = outerTask;
             this.innerTask = innerTask;
-            this.shouldRollBack = shouldRollBack;
         }
 
-        public Class<? extends TransactionalTask> getOuterTask()
+        public void scheduleOuterTaskOn( TransactionalWorker worker )
         {
-            return outerTask;
+            worker.scheduleTask( outerTask );
         }
 
-        public Class<? extends TransactionalTask> getInnerTask()
+        public void scheduleInnerTaskOn( TransactionalWorker worker )
         {
-            return innerTask;
+            worker.scheduleTask( innerTask );
         }
 
-        public boolean shouldRollBack()
+        public abstract void assertExpectedOutcomeFor( TransactionalWorker worker );
+
+        @Override
+        public boolean equals( Object obj )
         {
-            return shouldRollBack;
+            return obj instanceof TestVector && equalsTestVector( (TestVector) obj );
+        }
+
+        private boolean equalsTestVector( TestVector other )
+        {
+            return innerTask.equals( other.innerTask ) && outerTask.equals( other.outerTask );
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return 31 * outerTask.hashCode() + innerTask.hashCode();
         }
     }
 
+    private static class RollingBackTestVector
+        extends TestVector
+    {
+
+        public RollingBackTestVector( Class<? extends TransactionalTask> outerTask,
+                                      Class<? extends TransactionalTask> innerTask )
+        {
+            super( outerTask, innerTask );
+        }
+
+        @Override
+        public void assertExpectedOutcomeFor( TransactionalWorker worker )
+        {
+            worker.assertNoEntityHasBeenPersisted();
+        }
+    }
+
+    private static class CommittingTestVector
+        extends TestVector
+    {
+
+        public CommittingTestVector( Class<? extends TransactionalTask> outerTask,
+                                     Class<? extends TransactionalTask> innerTask )
+        {
+            super( outerTask, innerTask );
+        }
+
+        @Override
+        public void assertExpectedOutcomeFor( TransactionalWorker worker )
+        {
+            worker.assertAllEntitiesHaveBeenPersisted();
+        }
+    }
+
+    private static class TestVectorsBuilder
+    {
+
+        private final Class<? extends TransactionalTask> firstTask;
+
+        private final List<TestVector> result;
+
+        public TestVectorsBuilder( Class<? extends TransactionalTask> firstTask )
+        {
+            this.firstTask = firstTask;
+            this.result = new ArrayList<TestVector>();
+        }
+
+        public TestVectorsBuilder expectCommitWhenSecondTaskIs( Class<? extends TransactionalTask> secondTask )
+        {
+            result.add( new CommittingTestVector( firstTask, secondTask ) );
+            return this;
+        }
+
+        public TestVectorsBuilder expectRollbackWhenSecondTaskIs( Class<? extends TransactionalTask> secondTask )
+        {
+            result.add( new RollingBackTestVector( firstTask, secondTask ) );
+            return this;
+        }
+
+        public Collection<TestVector> buildTestVectors()
+        {
+            return result;
+        }
+    }
 }
