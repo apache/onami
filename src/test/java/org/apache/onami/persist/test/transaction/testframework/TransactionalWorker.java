@@ -25,6 +25,7 @@ import com.google.inject.Injector;
 import org.apache.onami.persist.EntityManagerProvider;
 import org.apache.onami.persist.Transactional;
 import org.apache.onami.persist.UnitOfWork;
+import org.apache.onami.persist.test.TestEntity;
 import org.apache.onami.persist.test.transaction.testframework.exceptions.RuntimeTestException;
 import org.apache.onami.persist.test.transaction.testframework.exceptions.TestException;
 
@@ -48,7 +49,7 @@ public class TransactionalWorker
 
     private final TransactionalTasks tasks = new TransactionalTasks();
 
-    private final List<TransactionTestEntity> storedEntities = new ArrayList<TransactionTestEntity>();
+    private final List<TestEntity> storedEntities = new ArrayList<TestEntity>();
 
     @Inject
     private Injector injector;
@@ -92,7 +93,7 @@ public class TransactionalWorker
 
     /**
      * Executes the previously specified tasks. All entities which were stored using
-     * {@link TransactionalTask#storeEntity(TransactionTestEntity)} are collected by the worker.<p/>
+     * {@link TransactionalTask#storeEntity(org.apache.onami.persist.test.TestEntity)} are collected by the worker.<p/>
      */
     public void doTasks()
     {
@@ -124,10 +125,10 @@ public class TransactionalWorker
     public void assertAllEntitiesHaveBeenPersisted()
     {
         checkState( !storedEntities.isEmpty(), "no entities to check" );
-        for ( TransactionTestEntity storedEntity : storedEntities )
+        for ( TestEntity storedEntity : storedEntities )
         {
             assertNotNull( "At least one entity which should have been persisted was NOT found in the DB. " + tasks,
-                           emProvider.get().find( TransactionTestEntity.class, storedEntity.getId() ) );
+                           emProvider.get().find( TestEntity.class, storedEntity.getId() ) );
         }
     }
 
@@ -138,10 +139,10 @@ public class TransactionalWorker
     public void assertNoEntityHasBeenPersisted()
     {
         checkState( !storedEntities.isEmpty(), "no entities to check" );
-        for ( TransactionTestEntity storedEntity : storedEntities )
+        for ( TestEntity storedEntity : storedEntities )
         {
             assertNull( "At least one entity which should NOT have been persisted was found in the DB. " + tasks,
-                        emProvider.get().find( TransactionTestEntity.class, storedEntity.getId() ) );
+                        emProvider.get().find( TestEntity.class, storedEntity.getId() ) );
         }
     }
 

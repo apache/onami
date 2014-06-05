@@ -33,23 +33,27 @@ class TxnInterceptor
     /**
      * Unit of work.
      */
-    @Inject
-    @VisibleForTesting
-    UnitOfWork unitOfWork;
+    private UnitOfWork unitOfWork;
 
     /**
      * Factory for {@link TransactionFacade}.
      */
-    @Inject
-    @VisibleForTesting
-    TransactionFacadeFactory tfProvider;
+    private TransactionFacadeFactory tfProvider;
 
     /**
      * Helper for working with the concrete transactional annotations on methods and classes.
      */
+    private TransactionalAnnotationHelper txnAnnotationHelper;
+
     @Inject
     @VisibleForTesting
-    TransactionalAnnotationHelper txnAnnotationHelper;
+    void init( UnitOfWork unitOfWork, TransactionFacadeFactory tfProvider,
+               TransactionalAnnotationHelper txnAnnotationHelper )
+    {
+        this.unitOfWork = unitOfWork;
+        this.tfProvider = tfProvider;
+        this.txnAnnotationHelper = txnAnnotationHelper;
+    }
 
     /**
      * {@inheritDoc}

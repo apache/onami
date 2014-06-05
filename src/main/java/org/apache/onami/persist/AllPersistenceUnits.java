@@ -20,9 +20,13 @@ package org.apache.onami.persist;
  */
 
 import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Key;
 import com.google.inject.Singleton;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.apache.onami.persist.Preconditions.checkNotNull;
@@ -38,26 +42,46 @@ class AllPersistenceUnits
     /**
      * Collection of all known persistence services.
      */
-    private final Set<PersistenceService> persistenceServices = new HashSet<PersistenceService>();
+    private final List<PersistenceService> persistenceServices = new ArrayList<PersistenceService>();
 
     /**
      * Collection of all known units of work.
      */
-    private final Set<UnitOfWork> unitsOfWork = new HashSet<UnitOfWork>();
+    private final List<UnitOfWork> unitsOfWork = new ArrayList<UnitOfWork>();
+
+    /**
+     * Collection of the keys of all known persistence services.
+     */
+    private final Set<Key<PersistenceService>> persistenceServiceKeys = new HashSet<Key<PersistenceService>>();
+
+    /**
+     * Collection of the keys of of all known units of work.
+     */
+    private final Set<Key<UnitOfWork>> unitOfWorkKeys = new HashSet<Key<UnitOfWork>>();
 
     /**
      * Adds a persistence service and a unit of work to this collection.
      *
-     * @param ps  the persistence service to add. Must not be {@code null}.
-     * @param uow the unit of work to add. Must not be {@code null}.
+     * @param psKey  the persistence service to add. Must not be {@code null}.
+     * @param uowKey the unit of work to add. Must not be {@code null}.
      */
-    @Inject
-    void add( PersistenceService ps, UnitOfWork uow )
+    void add( Key<PersistenceService> psKey, Key<UnitOfWork> uowKey )
     {
-        checkNotNull( ps );
-        checkNotNull( uow );
-        persistenceServices.add( ps );
-        unitsOfWork.add( uow );
+        persistenceServiceKeys.add( checkNotNull( psKey, "psKey is mandatory!" ) );
+        unitOfWorkKeys.add( checkNotNull( uowKey, "ouwKey is mandatory!" ) );
+    }
+
+    @Inject
+    private void init( Injector injector )
+    {
+        for ( Key<PersistenceService> persistenceServiceKey : persistenceServiceKeys )
+        {
+            persistenceServices.add( injector.getInstance( persistenceServiceKey ) );
+        }
+        for ( Key<UnitOfWork> unitOfWorkKey : unitOfWorkKeys )
+        {
+            unitsOfWork.add( injector.getInstance( unitOfWorkKey ) );
+        }
     }
 
     /**

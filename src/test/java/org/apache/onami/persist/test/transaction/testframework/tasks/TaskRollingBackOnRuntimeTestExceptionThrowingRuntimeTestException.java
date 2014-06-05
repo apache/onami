@@ -20,7 +20,7 @@ package org.apache.onami.persist.test.transaction.testframework.tasks;
  */
 
 import org.apache.onami.persist.Transactional;
-import org.apache.onami.persist.test.transaction.testframework.TransactionTestEntity;
+import org.apache.onami.persist.test.TestEntity;
 import org.apache.onami.persist.test.transaction.testframework.TransactionalTask;
 import org.apache.onami.persist.test.transaction.testframework.exceptions.RuntimeTestException;
 import org.apache.onami.persist.test.transaction.testframework.exceptions.TestException;
@@ -42,7 +42,7 @@ public class TaskRollingBackOnRuntimeTestExceptionThrowingRuntimeTestException
     public void doTransactional()
         throws TestException, RuntimeTestException
     {
-        storeEntity( new TransactionTestEntity() );
+        storeEntity( new TestEntity() );
         doOtherTasks();
         throw new RuntimeTestException( getClass().getSimpleName() );
     }
