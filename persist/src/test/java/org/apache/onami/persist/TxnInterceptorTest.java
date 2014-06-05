@@ -34,7 +34,7 @@ import static org.mockito.Mockito.*;
 /**
  * Test for {@link TxnInterceptor}
  */
-@RunWith( HierarchicalContextRunner.class )
+@RunWith(HierarchicalContextRunner.class)
 public class TxnInterceptorTest
 {
 
@@ -59,9 +59,7 @@ public class TxnInterceptorTest
         txnAnnotationHelper = mock( TransactionalAnnotationHelper.class );
 
         sut = new TxnInterceptor();
-        sut.unitOfWork = unitOfWork;
-        sut.tfProvider = tfProvider;
-        sut.txnAnnotationHelper = txnAnnotationHelper;
+        sut.init( unitOfWork, tfProvider, txnAnnotationHelper );
 
         invocation = mock( MethodInvocation.class );
     }

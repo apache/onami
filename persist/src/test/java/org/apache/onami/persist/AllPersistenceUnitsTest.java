@@ -19,9 +19,13 @@ package org.apache.onami.persist;
  * under the License.
  */
 
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Key;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.google.inject.name.Names.named;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -32,6 +36,14 @@ import static org.mockito.Mockito.*;
  */
 public class AllPersistenceUnitsTest
 {
+
+    private static final Key<PersistenceService> PS_KEY_1 = Key.get( PersistenceService.class, named( "1" ) );
+
+    private static final Key<PersistenceService> PS_KEY_2 = Key.get( PersistenceService.class, named( "2" ) );
+
+    private static final Key<UnitOfWork> UOW_KEY_1 = Key.get( UnitOfWork.class, named( "1" ) );
+
+    private static final Key<UnitOfWork> UOW_KEY_2 = Key.get( UnitOfWork.class, named( "2" ) );
 
     private AllPersistenceUnits sut;
 
@@ -47,16 +59,32 @@ public class AllPersistenceUnitsTest
     public void setUp()
         throws Exception
     {
-        sut = new AllPersistenceUnits();
-
+        // create mocks
         ps1 = mock( PersistenceService.class );
         ps2 = mock( PersistenceService.class );
 
         uow1 = mock( UnitOfWork.class );
         uow2 = mock( UnitOfWork.class );
 
-        sut.add( ps1, uow1 );
-        sut.add( ps2, uow2 );
+        // create subject under test
+        sut = new AllPersistenceUnits();
+
+        sut.add( PS_KEY_1, UOW_KEY_1 );
+        sut.add( PS_KEY_2, UOW_KEY_2 );
+
+        // use guice to trigger the init method of AllPersistenceUnits
+        Guice.createInjector( new AbstractModule()
+        {
+            @Override
+            protected void configure()
+            {
+                bind( PS_KEY_1 ).toInstance( ps1 );
+                bind( PS_KEY_2 ).toInstance( ps2 );
+                bind( UOW_KEY_1 ).toInstance( uow1 );
+                bind( UOW_KEY_2 ).toInstance( uow2 );
+                requestInjection( sut );
+            }
+        } );
     }
 
     @Test

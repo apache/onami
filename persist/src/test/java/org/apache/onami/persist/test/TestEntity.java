@@ -1,4 +1,4 @@
-package org.apache.onami.persist.test.transaction.testframework;
+package org.apache.onami.persist.test;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -29,7 +29,7 @@ import java.util.UUID;
  * The ID will be unique in every run of a test.
  */
 @Entity
-public final class TransactionTestEntity
+public final class TestEntity
     implements Serializable
 {
 
@@ -43,7 +43,7 @@ public final class TransactionTestEntity
         return id;
     }
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings( "unused" )
     // used by the persistence framework
     private void setId( UUID id )
     {

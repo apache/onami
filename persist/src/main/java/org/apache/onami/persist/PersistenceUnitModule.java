@@ -90,11 +90,7 @@ class PersistenceUnitModule
             requestInjection( transactionInterceptor );
         }
 
-        // request injection into allPersistenceUnits - this adds the current persistence unit to the allPersistenceUnits.
-        if ( allPersistenceUnits != null )
-        {
-            requestInjection( allPersistenceUnits );
-        }
+        allPersistenceUnits.add( getPersistenceKey(), getUnitOfWorkKey() );
     }
 
     /**
@@ -131,6 +127,31 @@ class PersistenceUnitModule
     {
         bind( type ).annotatedWith( config.getAnnotation() ).to( Key.get( type ) );
         expose( type ).annotatedWith( config.getAnnotation() );
+    }
+
+
+    private Key<PersistenceService> getPersistenceKey()
+    {
+        if ( config.isAnnotated() )
+        {
+            return Key.get( PersistenceService.class, config.getAnnotation() );
+        }
+        else
+        {
+            return Key.get( PersistenceService.class );
+        }
+    }
+
+    private Key<UnitOfWork> getUnitOfWorkKey()
+    {
+        if ( config.isAnnotated() )
+        {
+            return Key.get( UnitOfWork.class, config.getAnnotation() );
+        }
+        else
+        {
+            return Key.get( UnitOfWork.class );
+        }
     }
 
     private void bindPersistenceServiceAndEntityManagerFactoryProviderAndProperties()
