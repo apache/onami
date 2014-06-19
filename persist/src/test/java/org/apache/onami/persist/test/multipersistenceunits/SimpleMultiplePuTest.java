@@ -19,13 +19,6 @@ package org.apache.onami.persist.test.multipersistenceunits;
  * under the License.
  */
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Key;
-import org.apache.onami.persist.EntityManagerProvider;
-import org.apache.onami.persist.PersistenceModule;
-import org.apache.onami.persist.PersistenceService;
-import org.apache.onami.persist.UnitOfWork;
 import org.apache.onami.persist.test.TestEntity;
 import org.junit.After;
 import org.junit.Before;
@@ -35,56 +28,23 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class SimpleMultiplePuTest
+    extends BaseMultiplePuTest
 {
-
-    private Injector injector;
-
-    private EntityManagerProvider firstEmp;
-
-    private EntityManagerProvider secondEmp;
 
     @Before
     public void setUp()
     {
-        final PersistenceModule pm = createPersistenceModuleForTest();
-        injector = Guice.createInjector( pm );
-
-        //startup persistence
-        injector.getInstance( Key.get( PersistenceService.class, FirstPU.class ) ).start();
-        injector.getInstance( Key.get( PersistenceService.class, SecondPU.class ) ).start();
-
-        injector.getInstance( Key.get( UnitOfWork.class, FirstPU.class ) ).begin();
-        injector.getInstance( Key.get( UnitOfWork.class, SecondPU.class ) ).begin();
-
-        firstEmp = injector.getInstance( Key.get( EntityManagerProvider.class, FirstPU.class ) );
-        secondEmp = injector.getInstance( Key.get( EntityManagerProvider.class, SecondPU.class ) );
+        super.setUp();
+        beginUnitOfWork();
     }
 
     @After
     public void tearDown()
         throws Exception
     {
-        injector.getInstance( Key.get( UnitOfWork.class, FirstPU.class ) ).end();
-        injector.getInstance( Key.get( UnitOfWork.class, SecondPU.class ) ).end();
-
-        injector.getInstance( Key.get( PersistenceService.class, FirstPU.class ) ).stop();
-        injector.getInstance( Key.get( PersistenceService.class, SecondPU.class ) ).stop();
+        endUnitOfWork();
+        super.tearDown();
     }
-
-    private PersistenceModule createPersistenceModuleForTest()
-    {
-        return new PersistenceModule()
-        {
-
-            @Override
-            protected void configurePersistence()
-            {
-                bindApplicationManagedPersistenceUnit( "firstUnit" ).annotatedWith( FirstPU.class );
-                bindApplicationManagedPersistenceUnit( "secondUnit" ).annotatedWith( SecondPU.class );
-            }
-        };
-    }
-
 
     @Test
     public void storeUnitsInTwoPersistenceUnits()
