@@ -1,4 +1,4 @@
-package org.apache.onami.persist.test;
+package org.apache.onami.persist.test.multipersistenceunits;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,7 +19,6 @@ package org.apache.onami.persist.test;
  * under the License.
  */
 
-import com.google.inject.BindingAnnotation;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
@@ -27,19 +26,15 @@ import org.apache.onami.persist.EntityManagerProvider;
 import org.apache.onami.persist.PersistenceModule;
 import org.apache.onami.persist.PersistenceService;
 import org.apache.onami.persist.UnitOfWork;
+import org.apache.onami.persist.test.TestEntity;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class MultiplePuTest
+public class SimpleMultiplePuTest
 {
 
     private Injector injector;
@@ -110,17 +105,4 @@ public class MultiplePuTest
         assertNull( secondEmp.get().find( TestEntity.class, firstEntity.getId() ) );
     }
 
-    @Retention( RetentionPolicy.RUNTIME )
-    @Target( { FIELD, PARAMETER, METHOD } )
-    @BindingAnnotation
-    public static @interface FirstPU
-    {
-    }
-
-    @Retention( RetentionPolicy.RUNTIME )
-    @Target( { FIELD, PARAMETER, METHOD } )
-    @BindingAnnotation
-    public static @interface SecondPU
-    {
-    }
 }
