@@ -22,6 +22,7 @@ package org.apache.onami.lifecycle.standard;
 import com.google.inject.AbstractModule;
 import com.google.inject.CreationException;
 import com.google.inject.Provides;
+import org.apache.onami.lifecycle.core.DisposingStager;
 import org.apache.onami.lifecycle.core.StageHandler;
 import org.apache.onami.lifecycle.core.Stageable;
 import org.apache.onami.lifecycle.core.Stager;
@@ -97,28 +98,9 @@ public final class DisposeModuleTestCase
                 }
 
                 @Provides
-                public ExecutorService provideExecutorService( Stager<Dispose> stager )
+                public ExecutorService provideExecutorService( DisposingStager<Dispose> stager )
                 {
-                    final ExecutorService executorService = Executors.newCachedThreadPool();
-                    stager.register( new Stageable()
-                    {
-
-                        public void stage( StageHandler stageHandler )
-                        {
-                            executorService.shutdown();
-                            try
-                            {
-                                executorService.awaitTermination( 1, TimeUnit.MINUTES );
-                                stageHandler.onSuccess( executorService );
-                            }
-                            catch ( InterruptedException e )
-                            {
-                                stageHandler.onError( executorService, e );
-                            }
-                        }
-
-                    });
-                    return executorService;
+                    return stager.register( Executors.newCachedThreadPool() );
                 }
 
             } );

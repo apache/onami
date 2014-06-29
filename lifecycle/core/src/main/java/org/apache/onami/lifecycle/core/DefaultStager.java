@@ -19,16 +19,19 @@ package org.apache.onami.lifecycle.core;
  * under the License.
  */
 
+import java.io.Closeable;
 import java.lang.annotation.Annotation;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Default {@link Stager} implementation.
  */
 public class DefaultStager<A extends Annotation>
-    implements Stager<A>
+    implements DisposingStager<A>
 {
     private final Class<A> stage;
 
@@ -90,6 +93,26 @@ public class DefaultStager<A extends Annotation>
     /**
      * {@inheritDoc}
      */
+    @Override
+    public <T extends ExecutorService> T register( T executorService )
+    {
+        register( new ExecutorServiceStageable( executorService ) );
+        return executorService;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T extends Closeable> T register( T closeable )
+    {
+        register( new CloseableStageable( closeable ) );
+        return closeable;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void stage()
     {
         stage( null );
@@ -142,6 +165,50 @@ public class DefaultStager<A extends Annotation>
          * FILO/LIFO
          */
         FIRST_IN_LAST_OUT
+    }
+
+    private static class CloseableStageable extends AbstractStageable<Closeable>
+    {
+
+        public CloseableStageable( Closeable closeable )
+        {
+            super( closeable );
+        }
+
+        @Override
+        protected void doStage() throws Exception
+        {
+            object.close();
+        }
+
+    }
+
+    private static class ExecutorServiceStageable extends AbstractStageable<ExecutorService>
+    {
+
+        public ExecutorServiceStageable( ExecutorService executor )
+        {
+            super( executor );
+        }
+
+        @Override
+        protected void doStage() throws Exception
+        {
+            object.shutdown();
+            try
+            {
+                if ( !object.awaitTermination( 1, TimeUnit.MINUTES ) )
+                {
+                    object.shutdownNow();
+                }
+            }
+            catch ( InterruptedException e )
+            {
+                object.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
+        }
+
     }
 
 }

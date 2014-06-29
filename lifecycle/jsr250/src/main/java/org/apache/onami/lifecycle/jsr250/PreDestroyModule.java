@@ -19,9 +19,10 @@ package org.apache.onami.lifecycle.jsr250;
  * under the License.
  */
 
+import com.google.inject.TypeLiteral;
 import org.apache.onami.lifecycle.core.DefaultStager;
+import org.apache.onami.lifecycle.core.DisposingStager;
 import org.apache.onami.lifecycle.core.LifeCycleStageModule;
-import org.apache.onami.lifecycle.core.Stager;
 
 import javax.annotation.PreDestroy;
 
@@ -36,16 +37,17 @@ public class PreDestroyModule
     extends LifeCycleStageModule
 {
 
-    private final Stager<PreDestroy> stager = new DefaultStager<PreDestroy>(
+    private final DisposingStager<PreDestroy> stager = new DefaultStager<PreDestroy>(
         PreDestroy.class, DefaultStager.Order.FIRST_IN_LAST_OUT );
 
     @Override
     protected void configureBindings()
     {
         bindStager( stager );
+        bind( new TypeLiteral<DisposingStager<PreDestroy>>() {} ).toInstance( stager );
     }
 
-    public Stager<PreDestroy> getStager()
+    public DisposingStager<PreDestroy> getStager()
     {
         return stager;
     }

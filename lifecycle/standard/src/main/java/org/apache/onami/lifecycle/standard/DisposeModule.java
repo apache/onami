@@ -19,9 +19,10 @@ package org.apache.onami.lifecycle.standard;
  * under the License.
  */
 
+import com.google.inject.TypeLiteral;
 import org.apache.onami.lifecycle.core.DefaultStager;
+import org.apache.onami.lifecycle.core.DisposingStager;
 import org.apache.onami.lifecycle.core.LifeCycleStageModule;
-import org.apache.onami.lifecycle.core.Stager;
 
 /**
  * Guice module to register methods to be invoked when {@link org.apache.onami.lifecycle.core.Stager#stage()} is invoked.
@@ -32,16 +33,17 @@ public class DisposeModule
     extends LifeCycleStageModule
 {
 
-    private final Stager<Dispose> stager = new DefaultStager<Dispose>(
+    private final DisposingStager<Dispose> stager = new DefaultStager<Dispose>(
         Dispose.class, DefaultStager.Order.FIRST_IN_LAST_OUT );
 
     @Override
     protected void configureBindings()
     {
         bindStager( stager );
+        bind( new TypeLiteral<DisposingStager<Dispose>>() {} ).toInstance( stager );
     }
 
-    public Stager<Dispose> getStager()
+    public DisposingStager<Dispose> getStager()
     {
         return stager;
     }
