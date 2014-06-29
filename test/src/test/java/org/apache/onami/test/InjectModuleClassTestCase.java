@@ -34,6 +34,7 @@ public class InjectModuleClassTestCase
     extends AbstractModule
 {
 
+    @Override
     public void configure()
     {
         bind( Integer.class ).annotatedWith( Names.named( "numeber.version" ) ).toInstance( 10 );

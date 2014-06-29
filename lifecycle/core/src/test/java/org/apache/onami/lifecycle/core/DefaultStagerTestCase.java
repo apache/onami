@@ -35,10 +35,12 @@ public class DefaultStagerTestCase
         final AtomicBoolean staged = new AtomicBoolean();
         stager.register( new Stageable()
         {
+            @Override
             public void stage( StageHandler stageHandler )
             {
                 stager.register( new Stageable()
                 {
+                    @Override
                     public void stage( StageHandler stageHandler )
                     {
                         staged.set( true );
@@ -66,14 +68,17 @@ public class DefaultStagerTestCase
                 new DefaultStager<TestAnnotationA>( TestAnnotationA.class );
         stager.register( new Stageable()
         {
+            @Override
             public void stage( StageHandler stageHandler )
             {
                 Thread thread = new Thread( new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         stager.register( new Stageable()
                         {
+                            @Override
                             public void stage( StageHandler stageHandler )
                             {
                                 staged.set( true );

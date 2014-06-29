@@ -81,6 +81,7 @@ public abstract class LifeCycleModule
                 encounter.register( new InjectionListener<I>()
                 {
 
+                    @Override
                     public void afterInjection( I injectee )
                     {
                         try

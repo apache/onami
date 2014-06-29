@@ -67,12 +67,14 @@ public final class DisposeModuleTestCase
             disposeModule.getStager().stage( new StageHandler()
             {
 
+                @Override
                 public <I> void onSuccess( I injectee )
                 {
                     assertTrue( injectee instanceof DisposableObject );
                     assertTrue( ( (DisposableObject) injectee ).disposed );
                 }
 
+                @Override
                 public <I, E extends Throwable> void onError( I injectee, E error )
                 {
                     fail( error.toString() );
@@ -117,12 +119,14 @@ public final class DisposeModuleTestCase
             disposeModule.getStager().stage( new StageHandler()
             {
 
+                @Override
                 public <I> void onSuccess( I injectee )
                 {
                     assertTrue( injectee instanceof ExecutorService );
                     assertTrue( ( (ExecutorService) injectee ).isShutdown() );
                 }
 
+                @Override
                 public <I, E extends Throwable> void onError( I injectee, E error )
                 {
                     fail( error.toString() );

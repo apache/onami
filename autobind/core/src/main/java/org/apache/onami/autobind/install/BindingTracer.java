@@ -42,6 +42,7 @@ public class BindingTracer
         return jobs.contains( o );
     }
 
+    @Override
     public Iterator<BindingJob> iterator()
     {
         return jobs.iterator();

@@ -114,6 +114,7 @@ public abstract class LifeCycleStageModule
                 encounter.register( new InjectionListener<I>()
                 {
 
+                    @Override
                     public void afterInjection( I injectee )
                     {
                         Stageable stageable = new StageableMethod( stageMethod, injectee );

@@ -30,7 +30,8 @@ public class GuiceManagedFeature extends WebServiceFeature {
 		this.enabled = true;
 	}
 
-	public String getID() {
+	@Override
+    public String getID() {
 		return ID;
 	}
 }

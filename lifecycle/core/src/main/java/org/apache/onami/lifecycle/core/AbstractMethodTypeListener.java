@@ -57,6 +57,7 @@ abstract class AbstractMethodTypeListener
     /**
      * {@inheritDoc}
      */
+    @Override
     public final <I> void hear( TypeLiteral<I> type, TypeEncounter<I> encounter )
     {
         hear( type, type.getRawType(), encounter );

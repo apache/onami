@@ -35,6 +35,7 @@ public class InjectJSR330ModuleClassTestCase
     extends AbstractModule
 {
 
+    @Override
     public void configure()
     {
         bind( Integer.class ).annotatedWith( Names.named( "numeber.version" ) ).toInstance( 10 );

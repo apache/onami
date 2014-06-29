@@ -64,10 +64,12 @@ public class TestWarmUpManager
         final AtomicInteger errorCount = new AtomicInteger( 0 );
         StageHandler stageHandler = new StageHandler()
         {
+            @Override
             public <I> void onSuccess( I injectee )
             {
             }
 
+            @Override
             public <I, E extends Throwable> void onError( I injectee, E error )
             {
                 errorCount.incrementAndGet();

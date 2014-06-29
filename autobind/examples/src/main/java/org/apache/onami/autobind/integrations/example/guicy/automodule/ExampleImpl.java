@@ -30,7 +30,8 @@ import org.apache.onami.autobind.scanner.asm.ASMClasspathScanner;
  * 
  */
 public class ExampleImpl implements Example {
-	@PostConstruct
+	@Override
+    @PostConstruct
 	public void inform() {
 		System.out.println("inform about post construction!");
 	}

@@ -47,6 +47,7 @@ public final class URLConverterTestCase
     {
         return combine( new URLConverter(), new AbstractModule()
         {
+            @Override
             protected void configure()
             {
                 bindConstant().annotatedWith( named( "classpathResource" ) ).to( "classpath:///test.properties" );

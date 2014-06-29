@@ -81,6 +81,7 @@ public class WarmUper<A extends Annotation>
     /**
      * {@inheritDoc}
      */
+    @Override
     public <I> void registerType( Stageable stageable, TypeLiteral<I> parentType )
     {
         Set<Stageable> newList = Collections.newSetFromMap( new ConcurrentHashMap<Stageable, Boolean>() );
@@ -93,6 +94,7 @@ public class WarmUper<A extends Annotation>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void register( Stageable stageable )
     {
         // this is a NOP for warm up. Use registerType instead
@@ -101,6 +103,7 @@ public class WarmUper<A extends Annotation>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void stage()
     {
         stage( new NoOpStageHandler() );
@@ -109,6 +112,7 @@ public class WarmUper<A extends Annotation>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void stage( StageHandler stageHandler )
     {
         Map<TypeLiteral<?>, Set<Stageable>> localCopy = new HashMap<TypeLiteral<?>, Set<Stageable>>();
@@ -145,6 +149,7 @@ public class WarmUper<A extends Annotation>
     /**
      * {@inheritDoc}
      */
+    @Override
     public Class<A> getStage()
     {
         return stage;

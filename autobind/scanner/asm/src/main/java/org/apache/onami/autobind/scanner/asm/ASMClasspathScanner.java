@@ -180,6 +180,7 @@ public class ASMClasspathScanner
         // TODO Could use Predicate of Google
     }
 
+    @Override
     public void scan()
         throws IOException
     {
@@ -301,6 +302,7 @@ public class ASMClasspathScanner
         destroy();
     }
 
+    @Override
     public void destroy()
     {
         classPath = null;

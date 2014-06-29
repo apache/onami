@@ -88,11 +88,13 @@ public final class DisposeTestCase
         } ).getInstance( Key.get( new TypeLiteral<Stager<Dispose>>() {} ) ).stage( new StageHandler()
         {
 
+            @Override
             public <I> void onSuccess( I injectee )
             {
                 fail();
             }
 
+            @Override
             public <I, E extends Throwable> void onError( I injectee, E error )
             {
                 assertTrue( injectee instanceof ThrowingExceptionDisposeMethod );

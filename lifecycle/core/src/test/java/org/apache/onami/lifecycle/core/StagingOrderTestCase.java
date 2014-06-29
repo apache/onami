@@ -52,6 +52,7 @@ public class StagingOrderTestCase
     {
         Stageable stageable1 = new Stageable()
         {
+            @Override
             public void stage( StageHandler stageHandler )
             {
                 order.add( 1 );
@@ -59,6 +60,7 @@ public class StagingOrderTestCase
         };
         Stageable stageable2 = new Stageable()
         {
+            @Override
             public void stage( StageHandler stageHandler )
             {
                 order.add( 2 );
@@ -66,6 +68,7 @@ public class StagingOrderTestCase
         };
         Stageable stageable3 = new Stageable()
         {
+            @Override
             public void stage( StageHandler stageHandler )
             {
                 order.add( 3 );

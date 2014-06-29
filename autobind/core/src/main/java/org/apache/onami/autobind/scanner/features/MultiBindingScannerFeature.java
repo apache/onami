@@ -35,6 +35,7 @@ public abstract class MultiBindingScannerFeature
     extends BindingScannerFeature
 {
 
+    @Override
     protected <T, V extends T> void bindInstance( V impl, Class<T> interf, Annotation annotation,
                                                   Class<? extends Annotation> scope )
     {
@@ -54,6 +55,7 @@ public abstract class MultiBindingScannerFeature
         }
     }
 
+    @Override
     protected void bindConstant( String value, Annotation annotation )
     {
         Multibinder<String> builder;
@@ -64,6 +66,7 @@ public abstract class MultiBindingScannerFeature
         }
     }
 
+    @Override
     protected <T, V extends T> void bind( Class<V> impl, Class<T> interf, Annotation annotation,
                                           Class<? extends Annotation> scope )
     {

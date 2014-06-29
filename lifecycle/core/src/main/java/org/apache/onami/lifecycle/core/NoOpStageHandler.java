@@ -29,6 +29,7 @@ public final class NoOpStageHandler
     /**
      * {@inheritDoc}
      */
+    @Override
     public <I, E extends Throwable> void onError( I injectee, E error )
     {
         // do nothing
@@ -37,6 +38,7 @@ public final class NoOpStageHandler
     /**
      * {@inheritDoc}
      */
+    @Override
     public <I> void onSuccess( I injectee )
     {
         // do nothing

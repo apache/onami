@@ -50,6 +50,7 @@ final class StageableMethod
     /**
      * {@inheritDoc}
      */
+    @Override
     public final void stage( StageHandler stageHandler )
     {
         try

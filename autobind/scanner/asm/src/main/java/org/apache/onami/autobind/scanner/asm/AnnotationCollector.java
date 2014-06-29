@@ -100,6 +100,7 @@ final class AnnotationCollector
         }
     }
 
+    @Override
     @SuppressWarnings( "unchecked" )
     public AnnotationVisitor visitAnnotation( String sig, boolean visible )
     {

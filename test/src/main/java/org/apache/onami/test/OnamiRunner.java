@@ -209,6 +209,7 @@ public class OnamiRunner
     /**
      * {@inheritDoc}
      */
+    @Override
     public void run( final RunNotifier notifier )
     {
         if ( LOGGER.isLoggable( Level.FINER ) )

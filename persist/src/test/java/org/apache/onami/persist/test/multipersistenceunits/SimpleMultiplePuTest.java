@@ -31,6 +31,7 @@ public class SimpleMultiplePuTest
     extends BaseMultiplePuTest
 {
 
+    @Override
     @Before
     public void setUp()
     {
@@ -38,6 +39,7 @@ public class SimpleMultiplePuTest
         beginUnitOfWork();
     }
 
+    @Override
     @After
     public void tearDown()
         throws Exception

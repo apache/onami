@@ -25,6 +25,7 @@ class NoOpStageableTypeMapper
     implements StageableTypeMapper
 {
 
+    @Override
     public <I> void registerType( Stageable stageable, TypeLiteral<I> parentType )
     {
         // NOP

@@ -37,11 +37,13 @@ public abstract class GuiceContextListener implements ServletContextListener{
 		delegate.attributeReplaced(event);
 	}
 
-	public void contextDestroyed(ServletContextEvent event) {
+	@Override
+    public void contextDestroyed(ServletContextEvent event) {
 		delegate.contextDestroyed(event);
 	}
 
-	public void contextInitialized(ServletContextEvent event) {
+	@Override
+    public void contextInitialized(ServletContextEvent event) {
 		AutomaticGuiceManager.inject(getModule());
 		delegate.contextInitialized(event);
 	}
