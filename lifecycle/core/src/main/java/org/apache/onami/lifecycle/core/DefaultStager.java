@@ -21,8 +21,8 @@ package org.apache.onami.lifecycle.core;
 
 import java.io.Closeable;
 import java.lang.annotation.Annotation;
+import java.util.ArrayDeque;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -61,13 +61,13 @@ public class DefaultStager<A extends Annotation>
         {
             case FIRST_IN_FIRST_OUT:
             {
-                localStageables = new LinkedList<Stageable>();
+                localStageables = new ArrayDeque<Stageable>();
                 break;
             }
 
             case FIRST_IN_LAST_OUT:
             {
-                localStageables = Collections.asLifoQueue( new LinkedList<Stageable>() );
+                localStageables = Collections.asLifoQueue( new ArrayDeque<Stageable>() );
                 break;
             }
 
