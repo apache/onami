@@ -37,6 +37,7 @@ public class TransactionalMultiplePuTest
 
     private TestEntity secondEntity;
 
+    @Override
     @Before
     public void setUp()
     {
