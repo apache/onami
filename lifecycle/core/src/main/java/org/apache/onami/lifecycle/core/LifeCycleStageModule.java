@@ -29,68 +29,22 @@ import com.google.inject.util.Types;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.google.inject.matcher.Matchers.any;
+import static java.util.Arrays.asList;
 
 /**
  * Guice module to register methods to be invoked when {@link Stager#stage()} is invoked.
  * <p/>
  * Module instance have has so it must not be used to construct more than one {@link com.google.inject.Injector}.
  */
-public final class LifeCycleStageModule<A extends Annotation>
-    extends AbstractLifeCycleModule
+public abstract class LifeCycleStageModule
+    extends LifeCycleModule
 {
 
-    private final Stager<A> stager;
-
-    private final StageableTypeMapper<A> typeMapper;
-
-    /**
-     * Creates a new module which register methods annotated with input annotation on methods in any type.
-     *
-     * @param stager the annotation that represents this stage and the methods with this annotation
-     */
-    public LifeCycleStageModule( Stager<A> stager )
-    {
-        this( stager, any() );
-    }
-
-    /**
-     * Creates a new module which register methods annotated with input annotation on methods
-     * in types filtered by the input matcher.
-     *
-     * @param stager      the annotation that represents this stage and the methods with this annotation
-     * @param typeMatcher the filter for injectee types.
-     */
-    public LifeCycleStageModule( Stager<A> stager, Matcher<? super TypeLiteral<?>> typeMatcher )
-    {
-        super( stager.getStage(), typeMatcher );
-        this.stager = stager;
-        typeMapper = new NoOpStageableTypeMapper<A>();
-    }
-
-    /**
-     * Creates a new module from the supplied {@link Builder}.
-     *
-     * @param builder settings container.
-     */
-    LifeCycleStageModule( Builder<A> builder )
-    {
-        super( builder.stager.getStage(), builder.typeMatcher );
-        this.stager = builder.stager;
-        this.typeMapper = builder.typeMapper;
-    }
-
-    /**
-     * Allows one to create {@link LifeCycleStageModule} with builder pattern.
-     *
-     * @param stage the annotation that represents this stage and the methods with this annotation
-     * @return builder for {@link LifeCycleStageModule}.
-     */
-    public static <A extends Annotation> Builder<A> builder( Class<A> stage )
-    {
-        return new Builder<A>( stage );
-    }
+    private List<BindingBuilder<?>> bindings;
 
     /**
      * Convenience to generate the correct key for retrieving stagers from an injector.
@@ -122,11 +76,34 @@ public final class LifeCycleStageModule<A extends Annotation>
      * {@inheritDoc}
      */
     @Override
-    protected void configure()
+    protected final void configure()
     {
+        if ( bindings != null )
+        {
+            throw new IllegalStateException( "Re-entry is not allowed" );
+        }
+        bindings = new ArrayList<BindingBuilder<?>>();
+        try
+        {
+            configureBindings();
+            for ( BindingBuilder<?> binding : bindings )
+            {
+                bind( binding );
+            }
+        }
+        finally
+        {
+            bindings = null;
+        }
+    }
+
+    private <A extends Annotation> void bind( BindingBuilder<A> binding )
+    {
+        final Stager<A> stager = binding.stager;
+        final StageableTypeMapper typeMapper = binding.typeMapper;
         bind( type( stager.getStage() ) ).toInstance( stager );
 
-        bindListener( getTypeMatcher(), new AbstractMethodTypeListener( getAnnotationTypes() )
+        bindListener( binding.typeMatcher, new AbstractMethodTypeListener( asList( stager.getStage() ) )
         {
 
             @Override
@@ -150,78 +127,73 @@ public final class LifeCycleStageModule<A extends Annotation>
         } );
     }
 
-    /**
-     * Builder pattern helper.
-     */
-    public static final class Builder<A extends Annotation>
+    protected abstract void configureBindings();
+
+    protected final <A extends Annotation> MapperBinding bindStager( Stager<A> stager )
     {
+        BindingBuilder<A> builder = new BindingBuilder<A>( checkNotNull( stager, "Argument 'stager' must be not null" ) );
+        bindings.add( builder );
+        return builder;
+    }
 
-        private Matcher<? super TypeLiteral<?>> typeMatcher = any();
-
-        private Stager<A> stager;
-
-        private StageableTypeMapper<A> typeMapper = new NoOpStageableTypeMapper<A>();
-
-        Builder( Class<A> annotationClass )
-        {
-            stager = new DefaultStager<A>( annotationClass, DefaultStager.Order.FIRST_IN_FIRST_OUT );
-        }
-
-        private static <T> T checkNotNull( T object, String message )
-        {
-            if ( object == null )
-            {
-                throw new IllegalArgumentException( message );
-            }
-            return object;
-        }
-
-        /**
-         * Builds {@link LifeCycleStageModule} with given settings.
-         *
-         * @return {@link LifeCycleStageModule} with given settings.
-         */
-        public LifeCycleStageModule<A> build()
-        {
-            return new LifeCycleStageModule<A>( this );
-        }
-
+    protected interface MatcherBinding
+    {
         /**
          * Sets the filter for injectee types.
          *
          * @param typeMatcher the filter for injectee types.
-         * @return self
          */
-        public Builder<A> withTypeMatcher( Matcher<? super TypeLiteral<?>> typeMatcher )
-        {
-            this.typeMatcher = checkNotNull( typeMatcher, "Argument 'typeMatcher' must be not null." );
-            return this;
-        }
+        void matching( Matcher<? super TypeLiteral<?>> typeMatcher );
+    }
 
-        /**
-         * Sets the container to register disposable objects.
-         *
-         * @param stager container to register disposable objects.
-         * @return self
-         */
-        public Builder<A> withStager( Stager<A> stager )
-        {
-            this.stager = checkNotNull( stager, "Argument 'stager' must be not null." );
-            return this;
-        }
-
+    protected interface MapperBinding extends MatcherBinding
+    {
         /**
          * Sets the container to register mappings from {@link Stageable}s to the types that created them.
          *
-         * @param typeMapper container to map {@link Stageable}s to types
-         * @return self
+         * @param typeMapper container to map {@link Stageable}s to types.
          */
-        public Builder<A> withTypeMapper( StageableTypeMapper<A> typeMapper )
+        MatcherBinding mappingWith( StageableTypeMapper typeMapper );
+    }
+
+    /**
+     * Builder pattern helper.
+     */
+    private static class BindingBuilder<A extends Annotation> implements MapperBinding
+    {
+
+        private Matcher<? super TypeLiteral<?>> typeMatcher = any();
+
+        private final Stager<A> stager;
+
+        private StageableTypeMapper typeMapper = new NoOpStageableTypeMapper();
+
+        public BindingBuilder( Stager<A> stager )
+        {
+            this.stager = stager;
+        }
+
+        @Override
+        public MatcherBinding mappingWith( StageableTypeMapper typeMapper )
         {
             this.typeMapper = checkNotNull( typeMapper, "Argument 'typeMapper' must be not null." );
             return this;
         }
 
+        @Override
+        public void matching( Matcher<? super TypeLiteral<?>> typeMatcher )
+        {
+            this.typeMatcher = checkNotNull( typeMatcher, "Argument 'typeMatcher' must be not null" );
+        }
+
     }
 
+    private static <T> T checkNotNull( T object, String message )
+    {
+        if ( object == null )
+        {
+            throw new IllegalArgumentException( message );
+        }
+        return object;
+    }
 }

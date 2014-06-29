@@ -19,14 +19,9 @@ package org.apache.onami.lifecycle.standard;
  * under the License.
  */
 
-import com.google.inject.AbstractModule;
-import com.google.inject.TypeLiteral;
-import com.google.inject.matcher.Matcher;
+import org.apache.onami.lifecycle.core.DefaultStager;
 import org.apache.onami.lifecycle.core.LifeCycleStageModule;
-
-import java.lang.annotation.Annotation;
-
-import static com.google.inject.matcher.Matchers.any;
+import org.apache.onami.lifecycle.core.Stager;
 
 /**
  * Guice module to register methods to be invoked when {@link org.apache.onami.lifecycle.core.Stager#stage()} is invoked.
@@ -34,145 +29,21 @@ import static com.google.inject.matcher.Matchers.any;
  * Module instance have state so it must not be used to construct more than one {@link com.google.inject.Injector}.
  */
 public class DisposeModule
-    extends AbstractModule
+    extends LifeCycleStageModule
 {
-    private final LifeCycleStageModule<?> lifeCycleStageModule;
 
-    private final Disposer disposer;
-
-    public DisposeModule()
-    {
-        disposer = new DefaultDisposer();
-        lifeCycleStageModule = new LifeCycleStageModule<Dispose>( new StagerWrapper<Dispose>( disposer, Dispose.class ) );
-    }
-
-    /**
-     * Creates a new module which register methods annotated with input annotation on methods
-     * in types filtered by the input matcher.
-     *
-     * @param disposeAnnotationType the <i>Dispose</i> annotation to be searched.
-     * @param typeMatcher           the filter for injectee types.
-     */
-    public <A extends Annotation> DisposeModule( Class<A> disposeAnnotationType,
-                                                 Matcher<? super TypeLiteral<?>> typeMatcher )
-    {
-        disposer = new DefaultDisposer();
-        lifeCycleStageModule =
-            LifeCycleStageModule.builder( disposeAnnotationType )
-                .withTypeMatcher( typeMatcher )
-                .withStager( new StagerWrapper<A>( disposer, disposeAnnotationType ) )
-                .build();
-    }
-
-    protected DisposeModule( Builder builder )
-    {
-        disposer = builder.disposer;
-        lifeCycleStageModule = buildModule( builder.disposer, builder.disposeAnnotationType,
-                builder.typeMatcher );
-    }
-
-    // Wildcard capturing method. Bloch, item 28.
-    private static <A extends Annotation> LifeCycleStageModule<A> buildModule( Disposer disposer,
-    	    Class<A> stage, Matcher<? super TypeLiteral<?>> typeMatcher )
-    {
-    	StagerWrapper<A> wrapper = new StagerWrapper<A>( disposer, stage );
-    	return LifeCycleStageModule.builder( stage )
-                .withStager( wrapper )
-                .withTypeMatcher( typeMatcher )
-                .build();
-    }
-
-    public static Builder builder()
-    {
-        return new Builder();
-    }
+    private final Stager<Dispose> stager = new DefaultStager<Dispose>(
+        Dispose.class, DefaultStager.Order.FIRST_IN_LAST_OUT );
 
     @Override
-    protected void configure()
+    protected void configureBindings()
     {
-        bind( Disposer.class ).toInstance( disposer );
-        install( lifeCycleStageModule );
+        bindStager( stager );
     }
 
-    /**
-     * Builder pattern helper.
-     *
-     * @since 0.2.0
-     */
-    public static final class Builder
+    public Stager<Dispose> getStager()
     {
-
-        private Class<? extends Annotation> disposeAnnotationType = Dispose.class;
-
-        private Matcher<? super TypeLiteral<?>> typeMatcher = any();
-
-        private Disposer disposer = new DefaultDisposer();
-
-        /**
-         * Hidden constructor.
-         */
-        Builder()
-        {
-        }
-
-        private static <T> T checkNotNull( T object, String message )
-        {
-            if ( object == null )
-            {
-                throw new IllegalArgumentException( message );
-            }
-            return object;
-        }
-
-        /**
-         * Builds {@link org.apache.onami.lifecycle.standard.DisposeModule} with given settings.
-         *
-         * @return {@link org.apache.onami.lifecycle.standard.DisposeModule} with given settings.
-         * @since 0.2.0
-         */
-        public DisposeModule build()
-        {
-            return new DisposeModule( this );
-        }
-
-        /**
-         * Sets <i>Dispose</i> annotation to be searched.
-         *
-         * @param disposeAnnotationType <i>Dispose</i> annotation to be searched.
-         * @return self
-         * @since 0.2.0
-         */
-        public Builder withDisposeAnnotationType( Class<? extends Annotation> disposeAnnotationType )
-        {
-            this.disposeAnnotationType =
-                checkNotNull( disposeAnnotationType, "Argument 'disposeAnnotationType' must be not null." );
-            return this;
-        }
-
-        /**
-         * Sets the filter for injectee types.
-         *
-         * @param typeMatcher the filter for injectee types.
-         * @return self
-         * @since 0.2.0
-         */
-        public Builder withTypeMatcher( Matcher<? super TypeLiteral<?>> typeMatcher )
-        {
-            this.typeMatcher = checkNotNull( typeMatcher, "Argument 'typeMatcher' must be not null." );
-            return this;
-        }
-
-        /**
-         * Sets the container to register disposable objects.
-         *
-         * @param disposer container to register disposable objects.
-         * @return self
-         * @since 0.2.0
-         */
-        public Builder withDisposer( Disposer disposer )
-        {
-            this.disposer = checkNotNull( disposer, "Argument 'disposer' must be not null." );
-            return this;
-        }
+        return stager;
     }
+
 }

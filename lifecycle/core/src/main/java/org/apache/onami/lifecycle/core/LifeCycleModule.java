@@ -19,6 +19,7 @@ package org.apache.onami.lifecycle.core;
  * under the License.
  */
 
+import com.google.inject.AbstractModule;
 import com.google.inject.ProvisionException;
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matcher;
@@ -30,68 +31,47 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import static com.google.inject.matcher.Matchers.any;
 import static java.lang.String.format;
+import static java.util.Arrays.asList;
 
 /**
  * Guice module to register methods to be invoked after injection is complete.
  */
-public final class LifeCycleModule
-    extends AbstractLifeCycleModule
+public abstract class LifeCycleModule
+    extends AbstractModule
 {
 
     /**
-     * Creates a new module which looks for the input lifecycle annotation on methods in any type.
+     * Binds lifecycle listener.
      *
-     * @param annotationType the lifecycle annotation to be searched.
+     * @param annotation the lifecycle annotation to be searched.
      */
-    public <A extends Annotation> LifeCycleModule( Class<A> annotationType )
+    protected final void bindLifeCycle( Class<? extends Annotation> annotation )
     {
-        super( annotationType );
+        bindLifeCycle( annotation, any() );
     }
 
     /**
-     * Creates a new module which looks for the input lifecycle annotation on methods
-     * in types filtered by the input matcher.
+     * Binds lifecycle listener.
      *
-     * @param annotationType the lifecycle annotation to be searched.
-     * @param typeMatcher    the filter for injectee types.
+     * @param annotation  the lifecycle annotation to be searched.
+     * @param typeMatcher the filter for injectee types.
      */
-    public <A extends Annotation> LifeCycleModule( Class<A> annotationType,
-                                                   Matcher<? super TypeLiteral<?>> typeMatcher )
+    protected final void bindLifeCycle( Class<? extends Annotation> annotation, Matcher<? super TypeLiteral<?>> typeMatcher )
     {
-        super( annotationType, typeMatcher );
+        bindLifeCycle( asList( annotation ), typeMatcher );
     }
 
     /**
-     * Creates a new module which looks for the input lifecycle annotations on methods in any type.
+     * Binds lifecycle listener.
      *
-     * @param annotationTypes the lifecycle annotations to be searched in the order to be searched.
+     * @param annotations  the lifecycle annotations to be searched in the order to be searched.
+     * @param typeMatcher the filter for injectee types.
      */
-    public LifeCycleModule( List<Class<? extends Annotation>> annotationTypes )
+    protected final void bindLifeCycle( List<? extends Class<? extends Annotation>> annotations, Matcher<? super TypeLiteral<?>> typeMatcher )
     {
-        super( annotationTypes );
-    }
-
-    /**
-     * Creates a new module which looks for the input lifecycle annotations on methods
-     * in types filtered by the input matcher.
-     *
-     * @param annotationTypes the lifecycle annotations to be searched in the order to be searched.
-     * @param typeMatcher     the filter for injectee types.
-     */
-    public LifeCycleModule( List<Class<? extends Annotation>> annotationTypes,
-                            Matcher<? super TypeLiteral<?>> typeMatcher )
-    {
-        super( annotationTypes, typeMatcher );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void configure()
-    {
-        bindListener( getTypeMatcher(), new AbstractMethodTypeListener( getAnnotationTypes() )
+        bindListener( typeMatcher, new AbstractMethodTypeListener( annotations )
         {
 
             @Override

@@ -1,4 +1,4 @@
-package org.apache.onami.lifecycle.standard;
+package org.apache.onami.lifecycle.core;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -20,20 +20,41 @@ package org.apache.onami.lifecycle.standard;
  */
 
 /**
- * Object that knows how to dispose some resources.
+ * Base implementation for stageables.
  *
- * @since 0.2.0
+ * @author Mikhail Mazursky
  */
-public interface Disposable
+public abstract class AbstractStageable<S>
+    extends AbstractBasicStageable<S>
 {
 
-    /**
-     * Disposes allocated resources, tracking progresses in the
-     * input {@code DisposeHandler}.
-     *
-     * @param disposeHandler the handler to track dispose progresses.
-     * @since 0.2.0
-     */
-    void dispose( DisposeHandler disposeHandler );
+    protected AbstractStageable( S object )
+    {
+        super( object );
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void stage( StageHandler stageHandler )
+    {
+        try
+        {
+            doStage();
+        }
+        catch ( Throwable e )
+        {
+            stageHandler.onError( object, e );
+            return;
+        }
+        stageHandler.onSuccess( object );
+    }
+
+    /**
+     * Does actual object staging.
+     *
+     * @throws Exception
+     */
+    protected abstract void doStage() throws Exception;
 }

@@ -31,7 +31,7 @@ public class DefaultStagerTestCase
     public void stagerShouldStageObjectsRegisteredWhileStaging()
     {
         final Stager<TestAnnotationA> stager =
-                DefaultStager.newStager( TestAnnotationA.class );
+                new DefaultStager<TestAnnotationA>( TestAnnotationA.class );
         final AtomicBoolean staged = new AtomicBoolean();
         stager.register( new Stageable()
         {
@@ -63,7 +63,7 @@ public class DefaultStagerTestCase
     {
         final AtomicBoolean staged = new AtomicBoolean();
         final Stager<TestAnnotationA> stager =
-                DefaultStager.newStager( TestAnnotationA.class );
+                new DefaultStager<TestAnnotationA>( TestAnnotationA.class );
         stager.register( new Stageable()
         {
             public void stage( StageHandler stageHandler )

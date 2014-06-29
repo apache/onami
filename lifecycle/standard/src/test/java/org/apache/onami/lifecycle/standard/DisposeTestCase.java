@@ -3,6 +3,10 @@ package org.apache.onami.lifecycle.standard;
 import com.google.inject.AbstractModule;
 import com.google.inject.ConfigurationException;
 import com.google.inject.Inject;
+import com.google.inject.Key;
+import com.google.inject.TypeLiteral;
+import org.apache.onami.lifecycle.core.StageHandler;
+import org.apache.onami.lifecycle.core.Stager;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,13 +18,13 @@ public final class DisposeTestCase
 {
 
     @Inject
-    private Disposer disposer;
+    private Stager<Dispose> stager;
 
     private boolean disposeInvoked = false;
 
-    public void setDisposer( Disposer disposer )
+    public void setStager( Stager<Dispose> stager )
     {
-        this.disposer = disposer;
+        this.stager = stager;
     }
 
     @Dispose
@@ -40,7 +44,7 @@ public final class DisposeTestCase
     @Test
     public void disposeMethodInvoked()
     {
-        disposer.dispose();
+        stager.stage();
         assertTrue( disposeInvoked );
     }
 
@@ -62,7 +66,7 @@ public final class DisposeTestCase
                 bind( ThrowingExceptionDisposeMethod.class ).toInstance( new ThrowingExceptionDisposeMethod() );
             }
 
-        } ).getInstance( Disposer.class ).dispose( new DisposeHandler()
+        } ).getInstance( Key.get( new TypeLiteral<Stager<Dispose>>() {} ) ).stage( new StageHandler()
         {
 
             public <I> void onSuccess( I injectee )

@@ -21,13 +21,11 @@ package org.apache.onami.lifecycle.core;
 
 import com.google.inject.TypeLiteral;
 
-import java.lang.annotation.Annotation;
-
 /**
  * Container for mapping a {@link Stageable} to the parent type
  * that created it. Useful in specialty Stage containers.
  */
-public interface StageableTypeMapper<A extends Annotation>
+public interface StageableTypeMapper
 {
 
     /**

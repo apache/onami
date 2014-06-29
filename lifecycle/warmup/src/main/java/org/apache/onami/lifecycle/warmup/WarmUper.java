@@ -42,7 +42,7 @@ import java.util.concurrent.TimeoutException;
  * <strong>must</strong> use WarmUper.
  */
 public class WarmUper<A extends Annotation>
-    implements Stager<A>, StageableTypeMapper<A>
+    implements Stager<A>, StageableTypeMapper
 {
     private final ConcurrentMap<TypeLiteral<?>, Set<Stageable>> reverseLookup =
         new ConcurrentHashMap<TypeLiteral<?>, Set<Stageable>>();

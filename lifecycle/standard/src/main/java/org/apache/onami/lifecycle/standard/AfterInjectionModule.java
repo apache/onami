@@ -19,18 +19,19 @@ package org.apache.onami.lifecycle.standard;
  * under the License.
  */
 
-import com.google.inject.AbstractModule;
 import org.apache.onami.lifecycle.core.LifeCycleModule;
 
 /**
  * Guice module to register methods to be invoked after injection is complete.
  */
 public class AfterInjectionModule
-    extends AbstractModule
+    extends LifeCycleModule
 {
+
     @Override
     protected void configure()
     {
-        binder().install( new LifeCycleModule( AfterInjection.class ) );
+        bindLifeCycle( AfterInjection.class );
     }
+
 }

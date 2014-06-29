@@ -23,7 +23,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
@@ -36,6 +35,7 @@ import org.apache.onami.lifecycle.core.StageHandler;
 import org.apache.onami.lifecycle.core.Stager;
 import org.apache.onami.lifecycle.warmup.WarmUp;
 import org.apache.onami.lifecycle.warmup.WarmUpModule;
+import org.apache.onami.lifecycle.warmup.WarmUper;
 import org.junit.Test;
 
 import com.google.inject.AbstractModule;
@@ -59,7 +59,7 @@ public class TestWarmUpManager
                 bind( WarmUpWithException.class ).asEagerSingleton();
             }
         };
-        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule(), module );
+        Injector injector = Guice.createInjector( new WarmUpModule(), module );
 
         final AtomicInteger errorCount = new AtomicInteger( 0 );
         StageHandler stageHandler = new StageHandler()
@@ -89,7 +89,7 @@ public class TestWarmUpManager
                 bind( CountDownLatch.class ).toInstance( new CountDownLatch( 3 ) );
             }
         };
-        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule(), module );
+        Injector injector = Guice.createInjector( new WarmUpModule(), module );
         injector.getInstance( Dag1.A.class );
         injector.getInstance( LifeCycleStageModule.key( WarmUp.class ) ).stage();
         Recorder recorder = injector.getInstance( Recorder.class );
@@ -110,7 +110,7 @@ public class TestWarmUpManager
     public void testDag2()
         throws Exception
     {
-        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule() );
+        Injector injector = Guice.createInjector( new WarmUpModule() );
         injector.getInstance( Dag2.A1.class );
         injector.getInstance( Dag2.A2.class );
         injector.getInstance( Dag2.A3.class );
@@ -154,7 +154,7 @@ public class TestWarmUpManager
     public void testDag3()
         throws Exception
     {
-        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule() );
+        Injector injector = Guice.createInjector( new WarmUpModule() );
         injector.getInstance( Dag3.A.class );
         injector.getInstance( LifeCycleStageModule.key( WarmUp.class ) ).stage();
         Recorder recorder = injector.getInstance( Recorder.class );
@@ -191,7 +191,7 @@ public class TestWarmUpManager
                 bind( RecorderSleepSettings.class ).toInstance( recorderSleepSettings );
             }
         };
-        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule(), module );
+        Injector injector = Guice.createInjector( new WarmUpModule(), module );
         injector.getInstance( Dag4.A.class );
         injector.getInstance( LifeCycleStageModule.key( WarmUp.class ) ).stage();
         Recorder recorder = injector.getInstance( Recorder.class );
@@ -211,7 +211,7 @@ public class TestWarmUpManager
     public void testFlat()
         throws Exception
     {
-        Injector injector = Guice.createInjector( WarmUpModule.newWarmUpModule() );
+        Injector injector = Guice.createInjector( new WarmUpModule() );
         Recorder recorder = injector.getInstance( Recorder.class );
         injector.getInstance( Flat.A.class ).recorder = recorder;
         injector.getInstance( Flat.B.class ).recorder = recorder;
@@ -242,8 +242,7 @@ public class TestWarmUpManager
                 bind( CountDownLatch.class ).toInstance( latch );
             }
         };
-        LifeCycleStageModule<WarmUp> warmUpModule = WarmUpModule.builder().withMaxWait( 1, TimeUnit.SECONDS ).build();
-        Injector injector = Guice.createInjector( warmUpModule, module );
+        Injector injector = Guice.createInjector( new TestWarmUpModule(), module );
         injector.getInstance( Dag1.A.class );
         Stager<WarmUp> stager = injector.getInstance( LifeCycleStageModule.key( WarmUp.class ) );
 
@@ -304,6 +303,18 @@ public class TestWarmUpManager
             assertTrue( String.format( "Incorrect concurrency for %s and %s: %s", task1, task2, s ),
                                !s.contains( task1 ) || !s.contains( task2 ) );
         }
+    }
+
+    private static class TestWarmUpModule extends LifeCycleStageModule
+    {
+
+        @Override
+        protected void configureBindings()
+        {
+            WarmUper<WarmUp> stager = new WarmUper<WarmUp>( WarmUp.class, TimeUnit.SECONDS.toMillis( 1 ) );
+            bindStager( stager ).mappingWith( stager );
+        }
+
     }
 
 }

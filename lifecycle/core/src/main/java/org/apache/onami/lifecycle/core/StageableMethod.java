@@ -27,18 +27,13 @@ import java.lang.reflect.Method;
  * and related method to release resources.
  */
 final class StageableMethod
-    implements Stageable
+    extends AbstractBasicStageable<Object>
 {
 
     /**
      * The method to be invoked to stage resources.
      */
     private final Method stageMethod;
-
-    /**
-     * The target injectee has to stage the resources.
-     */
-    private final Object injectee;
 
     /**
      * Creates a new {@link StageableMethod} reference.
@@ -48,32 +43,34 @@ final class StageableMethod
      */
     StageableMethod( Method stageMethod, Object injectee )
     {
+        super( injectee );
         this.stageMethod = stageMethod;
-        this.injectee = injectee;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void stage( StageHandler stageHandler )
+    public final void stage( StageHandler stageHandler )
     {
         try
         {
-            stageMethod.invoke( injectee );
-            stageHandler.onSuccess( injectee );
-        }
-        catch ( IllegalArgumentException e )
-        {
-            stageHandler.onError( injectee, e );
-        }
-        catch ( IllegalAccessException e )
-        {
-            stageHandler.onError( injectee, e );
+            if ( !stageMethod.isAccessible() )
+            {
+                stageMethod.setAccessible( true );
+            }
+            stageMethod.invoke( object );
         }
         catch ( InvocationTargetException e )
         {
-            stageHandler.onError( injectee, e.getCause() );
+            stageHandler.onError( object, e.getCause() );
+            return;
         }
+        catch ( Throwable e )
+        {
+            stageHandler.onError( object, e );
+            return;
+        }
+        stageHandler.onSuccess( object );
     }
 
 }

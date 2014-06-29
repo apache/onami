@@ -1,4 +1,4 @@
-package org.apache.onami.lifecycle.standard;
+package org.apache.onami.lifecycle.core;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,12 +19,32 @@ package org.apache.onami.lifecycle.standard;
  * under the License.
  */
 
-import org.apache.onami.lifecycle.core.StageHandler;
-
 /**
- * Used to track dispose progresses. It's merely a synonym for
- * {@link StageHandler}
+ * Base implementation for stageables.
+ *
+ * @author Mikhail Mazursky
  */
-public interface DisposeHandler extends StageHandler
+public abstract class AbstractBasicStageable<S>
+    implements Stageable
 {
+
+    /**
+     * Object to stage.
+     */
+    protected final S object;
+
+    protected AbstractBasicStageable( S object )
+    {
+        this.object = object;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final String toString()
+    {
+        return object.toString();
+    }
+
 }

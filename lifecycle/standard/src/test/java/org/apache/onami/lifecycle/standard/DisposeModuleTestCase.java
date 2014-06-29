@@ -22,6 +22,9 @@ package org.apache.onami.lifecycle.standard;
 import com.google.inject.AbstractModule;
 import com.google.inject.CreationException;
 import com.google.inject.Provides;
+import org.apache.onami.lifecycle.core.StageHandler;
+import org.apache.onami.lifecycle.core.Stageable;
+import org.apache.onami.lifecycle.core.Stager;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
@@ -37,10 +40,10 @@ public final class DisposeModuleTestCase
     @Test
     public void disposeUsingModuleOnInjectorFailure()
     {
-        Disposer disposer = new DefaultDisposer();
+        DisposeModule disposeModule = new DisposeModule();
         try
         {
-            createInjector( DisposeModule.builder().withDisposer( disposer ).build(), new AbstractModule()
+            createInjector( disposeModule, new AbstractModule()
             {
 
                 @Override
@@ -60,7 +63,7 @@ public final class DisposeModuleTestCase
         }
         finally
         {
-            disposer.dispose( new DisposeHandler()
+            disposeModule.getStager().stage( new StageHandler()
             {
 
                 public <I> void onSuccess( I injectee )
@@ -81,10 +84,10 @@ public final class DisposeModuleTestCase
     @Test
     public void disposeUsingModuleWithProvidesMethodOnInjectorFailure()
     {
-        Disposer disposer = new DefaultDisposer();
+        DisposeModule disposeModule = new DisposeModule();
         try
         {
-            createInjector( DisposeModule.builder().withDisposer( disposer ).build(), new AbstractModule()
+            createInjector( disposeModule, new AbstractModule()
             {
 
                 @Override
@@ -94,23 +97,23 @@ public final class DisposeModuleTestCase
                 }
 
                 @Provides
-                public ExecutorService provideExecutorService( Disposer disposer )
+                public ExecutorService provideExecutorService( Stager<Dispose> stager )
                 {
                     final ExecutorService executorService = Executors.newCachedThreadPool();
-                    disposer.register( new Disposable()
+                    stager.register( new Stageable()
                     {
 
-                        public void dispose( DisposeHandler disposeHandler )
+                        public void stage( StageHandler stageHandler )
                         {
                             executorService.shutdown();
                             try
                             {
                                 executorService.awaitTermination( 1, TimeUnit.MINUTES );
-                                disposeHandler.onSuccess( executorService );
+                                stageHandler.onSuccess( executorService );
                             }
                             catch ( InterruptedException e )
                             {
-                                disposeHandler.onError( executorService, e );
+                                stageHandler.onError( executorService, e );
                             }
                         }
 
@@ -129,7 +132,7 @@ public final class DisposeModuleTestCase
         }
         finally
         {
-            disposer.dispose( new DisposeHandler()
+            disposeModule.getStager().stage( new StageHandler()
             {
 
                 public <I> void onSuccess( I injectee )

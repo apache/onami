@@ -19,6 +19,9 @@ package org.apache.onami.lifecycle.core;
  * under the License.
  */
 
+import static com.google.inject.matcher.Matchers.any;
+import static java.util.Arrays.asList;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -27,14 +30,16 @@ import com.google.inject.Module;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.annotation.Annotation;
+import java.util.List;
+
 public class MultiLifeCycleTestCase
 {
     @Test
     public void testOrdering()
     {
-        LifeCycleModule lifeCycleModule = new LifeCycleModule(
-            ListBuilder.builder().append( TestAnnotationA.class ).append( TestAnnotationB.class ).append(
-                TestAnnotationC.class ).build() );
+        Module lifeCycleModule = new TestLifeCycleModule(
+            asList( TestAnnotationA.class, TestAnnotationB.class, TestAnnotationC.class ) );
         MultiLifeCycleObject obj = Guice.createInjector( lifeCycleModule ).getInstance( MultiLifeCycleObject.class );
         Assert.assertEquals( "aaabbbc", obj.toString() );
     }
@@ -51,12 +56,12 @@ public class MultiLifeCycleTestCase
     @Test
     public void testStaging()
     {
-        LifeCycleStageModule<TestAnnotationA> moduleA =
-            new LifeCycleStageModule<TestAnnotationA>( DefaultStager.newStager( TestAnnotationA.class ) );
-        LifeCycleStageModule<TestAnnotationB> moduleB =
-            new LifeCycleStageModule<TestAnnotationB>( DefaultStager.newStager( TestAnnotationB.class ) );
-        LifeCycleStageModule<TestAnnotationC> moduleC =
-            new LifeCycleStageModule<TestAnnotationC>( DefaultStager.newStager( TestAnnotationC.class ) );
+        Module moduleA =
+            new TestLifeCycleStageModule( new DefaultStager<TestAnnotationA>( TestAnnotationA.class ) );
+        Module moduleB =
+            new TestLifeCycleStageModule( new DefaultStager<TestAnnotationB>( TestAnnotationB.class ) );
+        Module moduleC =
+            new TestLifeCycleStageModule( new DefaultStager<TestAnnotationC>( TestAnnotationC.class ) );
 
         Injector injector = Guice.createInjector( moduleA, moduleB, moduleC );
         MultiLifeCycleObject obj = injector.getInstance( MultiLifeCycleObject.class );
@@ -76,10 +81,10 @@ public class MultiLifeCycleTestCase
     @Test
     public void testStagingOrdering()
     {
-        LifeCycleStageModule<TestAnnotationA> moduleA =
-            new LifeCycleStageModule<TestAnnotationA>( DefaultStager.newStager( TestAnnotationA.class, DefaultStager.Order.FIRST_IN_FIRST_OUT ) );
-        LifeCycleStageModule<TestAnnotationB> moduleB =
-            new LifeCycleStageModule<TestAnnotationB>( DefaultStager.newStager( TestAnnotationB.class, DefaultStager.Order.FIRST_IN_LAST_OUT ) );
+        Module moduleA =
+            new TestLifeCycleStageModule( new DefaultStager<TestAnnotationA>( TestAnnotationA.class, DefaultStager.Order.FIRST_IN_FIRST_OUT ) );
+        Module moduleB =
+            new TestLifeCycleStageModule( new DefaultStager<TestAnnotationB>( TestAnnotationB.class, DefaultStager.Order.FIRST_IN_LAST_OUT ) );
 
         final StringBuilder str = new StringBuilder();
         Module m = new AbstractModule()
@@ -101,5 +106,39 @@ public class MultiLifeCycleTestCase
 
         injector.getInstance( LifeCycleStageModule.key( TestAnnotationB.class ) ).stage();
         Assert.assertEquals( "2b1b", str.toString() );
+    }
+
+    private static class TestLifeCycleModule extends LifeCycleModule
+    {
+
+        private final List<? extends Class<? extends Annotation>> annotations;
+
+        public TestLifeCycleModule( List<? extends Class<? extends Annotation>> annotations )
+        {
+            this.annotations = annotations;
+        }
+
+        @Override
+        protected void configure()
+        {
+            bindLifeCycle( annotations, any() );
+        }
+    }
+
+    private static class TestLifeCycleStageModule extends LifeCycleStageModule
+    {
+
+        private final Stager<?> stager;
+
+        public TestLifeCycleStageModule( Stager<?> stager )
+        {
+            this.stager = stager;
+        }
+
+        @Override
+        protected void configureBindings()
+        {
+            bindStager( stager );
+        }
     }
 }

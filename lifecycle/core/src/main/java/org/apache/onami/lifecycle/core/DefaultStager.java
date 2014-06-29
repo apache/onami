@@ -39,9 +39,17 @@ public class DefaultStager<A extends Annotation>
 
     /**
      * @param stage the annotation that specifies this stage
+     */
+    public DefaultStager( Class<A> stage )
+    {
+        this( stage, Order.FIRST_IN_FIRST_OUT );
+    }
+
+	/**
+     * @param stage the annotation that specifies this stage
      * @param mode  execution order
      */
-    protected DefaultStager( Class<A> stage, Order mode )
+    public DefaultStager( Class<A> stage, Order mode )
     {
         this.stage = stage;
 
@@ -66,29 +74,6 @@ public class DefaultStager<A extends Annotation>
             }
         }
         stageables = localStageables;
-    }
-
-    /**
-     * Allocate a new stager
-     *
-     * @param stage the stage annotation
-     * @return stager
-     */
-    public static <A extends Annotation> Stager<A> newStager( Class<A> stage )
-    {
-        return newStager( stage, Order.FIRST_IN_FIRST_OUT );
-    }
-
-    /**
-     * Allocate a new stager
-     *
-     * @param stage the stage annotation
-     * @param mode  execution order
-     * @return stager
-     */
-    public static <A extends Annotation> Stager<A> newStager( Class<A> stage, Order mode )
-    {
-        return new DefaultStager<A>( stage, mode );
     }
 
     /**

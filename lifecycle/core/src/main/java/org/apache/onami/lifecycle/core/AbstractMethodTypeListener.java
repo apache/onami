@@ -42,14 +42,14 @@ abstract class AbstractMethodTypeListener
     /**
      * The lifecycle annotations to search on methods in the order to be searched.
      */
-    private final List<Class<? extends Annotation>> annotationTypes;
+    protected final List<? extends Class<? extends Annotation>> annotationTypes;
 
     /**
      * Creates a new methods listener instance.
      *
      * @param annotationTypes the lifecycle annotations to search on methods in the order to be searched.
      */
-    public AbstractMethodTypeListener( List<Class<? extends Annotation>> annotationTypes )
+    public AbstractMethodTypeListener( List<? extends Class<? extends Annotation>> annotationTypes )
     {
         this.annotationTypes = annotationTypes;
     }
@@ -94,16 +94,6 @@ abstract class AbstractMethodTypeListener
         }
 
         hear( parentType, klass.getSuperclass(), encounter );
-    }
-
-    /**
-     * Returns the lifecycle annotation to search on methods.
-     *
-     * @return the lifecycle annotation to search on methods.
-     */
-    protected final List<Class<? extends Annotation>> getAnnotationTypes()
-    {
-        return annotationTypes;
     }
 
     /**

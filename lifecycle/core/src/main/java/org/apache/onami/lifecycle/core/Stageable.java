@@ -33,4 +33,9 @@ public interface Stageable
      */
     void stage( StageHandler stageHandler );
 
+    /**
+     * @return Description of a stageable resource.
+     */
+    @Override
+    String toString();
 }
