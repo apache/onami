@@ -72,7 +72,8 @@ abstract class AbstractMethodTypeListener
      */
     private <I> void hear( final TypeLiteral<I> parentType, Class<? super I> klass, TypeEncounter<I> encounter )
     {
-        if ( klass == null || klass.getPackage().getName().startsWith( JAVA_PACKAGE ) )
+        Package pkg;
+        if ( klass == null || ( ( pkg = klass.getPackage() ) != null && pkg.getName().startsWith( JAVA_PACKAGE ) ) )
         {
             return;
         }
