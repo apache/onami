@@ -104,7 +104,7 @@ public abstract class LifeCycleModule
                         {
                             throw new ProvisionException(
                                 format( "An error occurred while invoking @%s %s on %s", annotationType.getName(),
-                                        method, injectee ), e.getTargetException() );
+                                        method, injectee ), e.getCause() );
                         }
                     }
 
