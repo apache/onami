@@ -24,6 +24,7 @@
     <groupId>org.apache.onami</groupId>
     <artifactId>org.apache.onami.parent</artifactId>
     <version>5</version>
+    <relativePath>../parent</relativePath>
   </parent>
 
   <artifactId>org.apache.onami.persist</artifactId>
