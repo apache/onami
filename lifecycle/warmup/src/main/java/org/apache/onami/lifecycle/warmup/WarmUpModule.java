@@ -22,6 +22,7 @@ package org.apache.onami.lifecycle.warmup;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.onami.lifecycle.core.LifeCycleStageModule;
+import org.apache.onami.lifecycle.core.Stager;
 
 /**
  * The module for preparing for warm ups.
@@ -32,10 +33,16 @@ public class WarmUpModule
 
     private static final long DEFAULT_WAIT_MS = TimeUnit.DAYS.toMillis( Integer.MAX_VALUE );    // essentially forever
 
+    private final WarmUper<WarmUp> stager = new WarmUper<WarmUp>( WarmUp.class, DEFAULT_WAIT_MS );
+
     @Override
     protected void configureBindings()
     {
-        WarmUper<WarmUp> stager = new WarmUper<WarmUp>( WarmUp.class, DEFAULT_WAIT_MS );
         bindStager( stager ).mappingWith( stager );
+    }
+
+    public Stager<WarmUp> getStager()
+    {
+        return stager;
     }
 }
