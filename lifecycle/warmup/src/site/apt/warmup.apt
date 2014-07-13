@@ -30,9 +30,9 @@ User's Guide
  call the stage() method.
 
 +--------------------------------------+
-Injector injector = Guice.createInjector( WarmUpModule().newWarmUpModule() );
+Injector injector = Guice.createInjector( new WarmUpModule() );
 // ...
-Stager<WarmUp> warmUpStager = injector.get( LifeCycleStageModule.key(WarmUp.class) );
+Stager<WarmUp> warmUpStager = injector.get( LifeCycleStageModule.key( WarmUp.class ) );
 warmUpStager.stage(); // causes all injected object's @WarmUp methods to get called
 +--------------------------------------+
 
@@ -44,12 +44,12 @@ public class MyClass
     private final Stager<WarmUp> stager;
 
     @Inject
-    public MyClass(Stager<WarmUp> stager)
+    public MyClass( Stager<WarmUp> stager )
     {
         this.stager = stager;
     }
 
-    @AfterInjection
+    @PostConstruct
     public void start()
     {
         stager.stage();

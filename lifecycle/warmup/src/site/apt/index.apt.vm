@@ -26,7 +26,7 @@
 
 Welcome to Apache Onami-Lifecycle Warm Up!
 
- Methods annotated with @WarmUp will be called in parallel
+ Methods annotated with <<@WarmUp>> will be called in parallel
  (using the Java Fork-Join framework). Object
  dependencies are respected – i.e. given:
 
