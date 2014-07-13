@@ -19,10 +19,10 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Key;
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashSet;

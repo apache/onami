@@ -20,7 +20,7 @@ package org.apache.onami.persist;
  */
 
 import com.google.inject.Key;
-import com.google.inject.Provider;
+import javax.inject.Provider;
 import com.google.inject.TypeLiteral;
 
 import javax.transaction.UserTransaction;

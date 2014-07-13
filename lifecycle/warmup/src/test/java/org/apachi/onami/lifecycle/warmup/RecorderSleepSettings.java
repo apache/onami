@@ -19,7 +19,7 @@ package org.apachi.onami.lifecycle.warmup;
  * under the License.
  */
 
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 
 import java.util.HashMap;
 import java.util.Map;

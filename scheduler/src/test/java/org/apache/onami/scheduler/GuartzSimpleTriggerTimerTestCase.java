@@ -34,9 +34,9 @@ import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.Module;
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 
 @RunWith( OnamiRunner.class )
 public class GuartzSimpleTriggerTimerTestCase

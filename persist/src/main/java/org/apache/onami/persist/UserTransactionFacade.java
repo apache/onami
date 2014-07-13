@@ -19,7 +19,7 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;

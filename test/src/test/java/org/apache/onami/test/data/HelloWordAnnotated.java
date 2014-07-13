@@ -19,7 +19,7 @@ package org.apache.onami.test.data;
  * under the License.
  */
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.name.Named;
 
 public class HelloWordAnnotated

@@ -34,9 +34,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.Injector;
-import com.google.inject.Provider;
+import javax.inject.Provider;
 
 @RunWith(OnamiRunner.class)
 public class TestConcurrentLazySingleton

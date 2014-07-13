@@ -19,7 +19,7 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-import com.google.inject.Provider;
+import javax.inject.Provider;
 
 import javax.persistence.EntityManager;
 

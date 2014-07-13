@@ -22,7 +22,8 @@ package org.apache.onami.test.data;
 import java.util.List;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
+
+import javax.inject.Singleton;
 
 @Singleton
 public class HelloWorld

@@ -19,7 +19,7 @@ package org.apachi.onami.lifecycle.warmup;
  * under the License.
  */
 
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 import org.apache.onami.lifecycle.warmup.WarmUp;
 
 public class Flat

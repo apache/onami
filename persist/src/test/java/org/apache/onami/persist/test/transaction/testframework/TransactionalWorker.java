@@ -20,7 +20,7 @@ package org.apache.onami.persist.test.transaction.testframework;
  */
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.Injector;
 import org.apache.onami.persist.EntityManagerProvider;
 import org.apache.onami.persist.Transactional;

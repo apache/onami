@@ -26,9 +26,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import com.google.inject.BindingAnnotation;
+import javax.inject.Qualifier;
 
-@BindingAnnotation
+@Qualifier
 @Retention( RUNTIME )
 @Target( { FIELD, TYPE } )
 public @interface BarBindingAnnotation

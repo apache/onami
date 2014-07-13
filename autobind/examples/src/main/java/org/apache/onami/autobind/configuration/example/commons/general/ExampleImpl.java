@@ -20,7 +20,7 @@ import javax.inject.Named;
 import org.apache.commons.configuration.Configuration;
 import org.apache.onami.autobind.scanner.asm.ASMClasspathScanner;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 
 
 /**

@@ -22,7 +22,7 @@ package org.apache.onami.test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.name.Named;
 
 public class InjectFromSuperClassTestCase

@@ -21,8 +21,8 @@ package org.apachi.onami.lifecycle.warmup;
 
 import java.util.concurrent.CountDownLatch;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.apache.onami.lifecycle.warmup.WarmUp;
 
 public class Dag1

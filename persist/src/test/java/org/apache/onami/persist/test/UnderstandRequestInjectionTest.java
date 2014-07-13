@@ -20,7 +20,7 @@ package org.apache.onami.persist.test;
  */
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.PrivateModule;
 import org.junit.Test;
 

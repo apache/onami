@@ -19,7 +19,7 @@ package org.apache.onami.persist.test.multipersistenceunits;
  * under the License.
  */
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.apache.onami.persist.EntityManagerProvider;
 import org.apache.onami.persist.Transactional;
 import org.apache.onami.persist.test.TestEntity;

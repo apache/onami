@@ -19,7 +19,7 @@ package org.apache.onami.lifecycle.core;
  * under the License.
  */
 
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 
 @Singleton
 public class MultiLifeCycleObject

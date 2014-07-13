@@ -22,9 +22,9 @@ package org.apache.onami.test.data;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import com.google.inject.BindingAnnotation;
+import javax.inject.Qualifier;
 
-@BindingAnnotation
+@Qualifier
 @Retention( RetentionPolicy.RUNTIME )
 public @interface TestAnnotation
 {

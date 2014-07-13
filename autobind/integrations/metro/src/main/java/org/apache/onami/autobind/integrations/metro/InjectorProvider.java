@@ -16,7 +16,7 @@
 package org.apache.onami.autobind.integrations.metro;
 
 import com.google.inject.Injector;
-import com.google.inject.Provider;
+import javax.inject.Provider;
 
 public interface InjectorProvider extends Provider<Injector>{
 

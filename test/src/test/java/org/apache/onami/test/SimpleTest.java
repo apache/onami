@@ -28,7 +28,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 
 @RunWith( OnamiRunner.class )
 @GuiceModules( SimpleModule.class )

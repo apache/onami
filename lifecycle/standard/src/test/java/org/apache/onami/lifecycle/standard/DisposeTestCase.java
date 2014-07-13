@@ -21,7 +21,7 @@ package org.apache.onami.lifecycle.standard;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.ConfigurationException;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
 import org.apache.onami.lifecycle.core.StageHandler;

@@ -26,7 +26,7 @@ import org.apache.onami.test.annotation.GuiceProvidedModules;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import com.google.inject.Module;
 
 @RunWith( OnamiRunner.class )

@@ -19,7 +19,7 @@ package org.apache.onami.lifecycle.core;
  * under the License.
  */
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 
 public class StageObject2
 {

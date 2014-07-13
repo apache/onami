@@ -46,13 +46,11 @@ import org.apache.onami.test.reflection.ClassVisitor;
 import org.apache.onami.test.reflection.HandleException;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
-import org.junit.runners.Suite;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.matcher.Matchers;
@@ -360,7 +358,7 @@ public class OnamiRunner
             // Setup the handlers
             final GuiceProvidedModuleHandler guiceProvidedModuleHandler = new GuiceProvidedModuleHandler();
             final GuiceModuleHandler guiceModuleHandler = new GuiceModuleHandler();
-            final GuiceInjectableClassHandler<Inject> guiceInjectableClassHandler = new GuiceInjectableClassHandler<Inject>();
+            final GuiceInjectableClassHandler<com.google.inject.Inject> guiceInjectableClassHandler = new GuiceInjectableClassHandler<com.google.inject.Inject>();
             final GuiceInjectableClassHandler<javax.inject.Inject> jsr330InjectableClassHandler = new GuiceInjectableClassHandler<javax.inject.Inject>();
 
             final MockHandler mockHandler = new MockHandler();
@@ -372,7 +370,7 @@ public class OnamiRunner
             .registerHandler( GuiceModules.class, guiceModuleHandler )
             .registerHandler( Mock.class, mockHandler )
             .registerHandler( MockFramework.class, mockFrameworkHandler )
-            .registerHandler( Inject.class, guiceInjectableClassHandler )
+            .registerHandler( com.google.inject.Inject.class, guiceInjectableClassHandler )
             .registerHandler( javax.inject.Inject.class, jsr330InjectableClassHandler )
             .visit( clazz );
 

@@ -19,8 +19,8 @@ package org.apachi.onami.lifecycle.warmup;
  * under the License.
  */
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashSet;

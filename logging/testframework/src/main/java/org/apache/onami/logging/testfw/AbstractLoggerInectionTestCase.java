@@ -24,7 +24,7 @@ import static com.google.inject.Guice.createInjector;
 import org.apache.onami.logging.core.AbstractLoggingModule;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 
 /**
  *
