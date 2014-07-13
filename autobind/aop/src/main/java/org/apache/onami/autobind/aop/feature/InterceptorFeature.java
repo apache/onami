@@ -81,8 +81,7 @@ public class InterceptorFeature extends BindingScannerFeature {
 					Method method = methods.get(ClassMatcher.class);
 					Type genericReturnType = method.getGenericReturnType();
 					if (GuiceMethodInterceptor.CLASS_MATCHER_TYPE.equals(genericReturnType)) {
-						classMatcher = (Matcher<? super Class<?>>) method.invoke(
-							possibleInterceptor, new Object[0]);
+						classMatcher = (Matcher<? super Class<?>>) method.invoke( possibleInterceptor );
 					} else {
 						_logger.log(Level.WARNING,
 							"Return Type of the annotated @ClassMatcher-Method, does not return: "
@@ -95,8 +94,7 @@ public class InterceptorFeature extends BindingScannerFeature {
 					Method method = methods.get(MethodMatcher.class);
 					Type genericReturnType = method.getGenericReturnType();
 					if (GuiceMethodInterceptor.METHOD_MATCHER_TYPE.equals(genericReturnType)) {
-						methodMatcher = (Matcher<? super Method>) method.invoke(
-							possibleInterceptor, new Object[0]);
+						methodMatcher = (Matcher<? super Method>) method.invoke( possibleInterceptor );
 					} else {
 						_logger.log(Level.WARNING,
 							"Return Type of the annotated @MethodMatcher-Method, does not return: "

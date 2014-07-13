@@ -42,9 +42,9 @@ public abstract class GuiceMethodInterceptor
         try
         {
             CLASS_MATCHER_TYPE =
-                GuiceMethodInterceptor.class.getMethod( "getClassMatcher", new Class<?>[0] ).getGenericReturnType();
+                GuiceMethodInterceptor.class.getMethod( "getClassMatcher" ).getGenericReturnType();
             METHOD_MATCHER_TYPE =
-                GuiceMethodInterceptor.class.getMethod( "getMethodMatcher", new Class<?>[0] ).getGenericReturnType();
+                GuiceMethodInterceptor.class.getMethod( "getMethodMatcher" ).getGenericReturnType();
         }
         catch ( Exception e )
         {
