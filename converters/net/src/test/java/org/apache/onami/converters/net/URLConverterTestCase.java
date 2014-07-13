@@ -51,7 +51,7 @@ public final class URLConverterTestCase
             protected void configure()
             {
                 bindConstant().annotatedWith( named( "classpathResource" ) ).to( "classpath:///test.properties" );
-            };
+            }
         } );
     }
 
