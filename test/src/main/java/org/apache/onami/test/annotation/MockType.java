@@ -34,6 +34,6 @@ public enum MockType
     /**
      * Identify the Mockito framework
      */
-    MOCKITO;
+    MOCKITO
 
 }

@@ -23,6 +23,6 @@ public enum Mode
 {
 
     ALL,
-    UNKNOWN;
+    UNKNOWN
 
 }
