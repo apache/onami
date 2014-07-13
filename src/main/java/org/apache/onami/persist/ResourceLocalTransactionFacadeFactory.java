@@ -19,8 +19,8 @@ package org.apache.onami.persist;
  * under the License.
  */
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import javax.persistence.EntityTransaction;
 

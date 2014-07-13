@@ -221,7 +221,7 @@ class PersistenceUnitModule
         else if ( config.isEmfProvidedByProvider() )
         {
             bind( EntityManagerFactory.class ).annotatedWith( ForContainerManaged.class ).toProvider(
-                config.getEmfProvider() );
+                Providers.guicify( config.getEmfProvider() ) );
         }
         else if ( config.isEmfProvidedByProviderKey() )
         {
@@ -269,7 +269,7 @@ class PersistenceUnitModule
         }
         else if ( config.isUserTransactionProvidedByProvider() )
         {
-            bind( UserTransaction.class ).toProvider( config.getUtProvider() );
+            bind( UserTransaction.class ).toProvider( Providers.guicify( config.getUtProvider() ) );
         }
         else if ( config.isUserTransactionProvidedByProviderKey() )
         {
