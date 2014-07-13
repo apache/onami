@@ -19,7 +19,6 @@ package org.apache.onami.test;
  * under the License.
  */
 
-import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.Mock;
 import org.apache.onami.test.data.HelloWorld;
 import org.apache.onami.test.data.TelephonService;
@@ -36,7 +35,7 @@ public class MockitoFrameworkTestCase
 {
 
     /*
-     * Any NON-static filed will be injecteded before run each tests.
+     * Any NON-static filed will be injected before run each tests.
      */
     @Inject
     private HelloWorld helloWorldNotStatic;

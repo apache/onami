@@ -24,13 +24,10 @@ import com.google.inject.CreationException;
 import com.google.inject.Provides;
 import org.apache.onami.lifecycle.core.DisposingStager;
 import org.apache.onami.lifecycle.core.StageHandler;
-import org.apache.onami.lifecycle.core.Stageable;
-import org.apache.onami.lifecycle.core.Stager;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import static com.google.inject.Guice.createInjector;
 import static org.junit.Assert.*;
