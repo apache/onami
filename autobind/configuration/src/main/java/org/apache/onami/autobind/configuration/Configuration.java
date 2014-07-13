@@ -59,7 +59,7 @@ public @interface Configuration
      *
      * @return Class/Interface where the Configuration should be bound to.
      */
-    Class<? extends Object> to() default Properties.class;
+    Class<?> to() default Properties.class;
 
     /**
      * This does only make sense if you are using the Provider Interface. public class Service{

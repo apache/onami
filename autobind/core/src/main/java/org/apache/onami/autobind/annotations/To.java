@@ -27,7 +27,7 @@ public @interface To
 
     Type value() default INTERFACES;
 
-    Class<? extends Object>[] customs() default {};
+    Class<?>[] customs() default {};
 
     public static enum Type
     {

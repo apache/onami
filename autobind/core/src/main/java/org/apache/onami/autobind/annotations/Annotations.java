@@ -129,7 +129,7 @@ public class Annotations
             }
 
             @Override
-            public Class<? extends Object>[] customs()
+            public Class<?>[] customs()
             {
                 return new Class<?>[0];
             }
