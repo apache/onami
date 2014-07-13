@@ -99,15 +99,14 @@ public abstract class BindingScannerFeature
         {
             context.add( new StageableRequest()
             {
-                private Class<Object> _annotatedClass = annotatedClass;
 
-                private Map<String, Annotation> _annotations = new HashMap<String, Annotation>( annotations );
+                private final Map<String, Annotation> _annotations = new HashMap<String, Annotation>( annotations );
 
                 @Override
                 public Void call()
                     throws Exception
                 {
-                    process( _annotatedClass, _annotations );
+                    process( annotatedClass, _annotations );
                     return null;
                 }
 

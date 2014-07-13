@@ -35,9 +35,9 @@ public class PropertiesProvider
 
     private final Logger _logger = getLogger( getClass().getName() );
 
-    private URL url;
+    private final URL url;
 
-    private boolean isXML;
+    private final boolean isXML;
 
     public PropertiesProvider( URL url, boolean isXML )
     {

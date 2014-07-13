@@ -25,7 +25,7 @@ public class ComplexModule
     extends AbstractModule
 {
 
-    private String name;
+    private final String name;
 
     public ComplexModule( String name )
     {

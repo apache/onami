@@ -22,7 +22,7 @@ import java.util.Set;
 import javax.inject.Inject;
 
 public class ExampleContainer {
-	private List<Example> _examples;
+	private final List<Example> _examples;
 
 	@Inject
 	public ExampleContainer(Set<Example> example) {

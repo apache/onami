@@ -34,7 +34,7 @@ import com.google.inject.matcher.Matchers;
  */
 @Interceptor
 public class MethodCallingInterceptor {
-	private Logger _logger = Logger.getLogger(MethodCallingInterceptor.class.getName());
+	private static final Logger _logger = Logger.getLogger(MethodCallingInterceptor.class.getName());
 
 	@Invoke
 	public Object invoke(MethodInvocation invocation) throws Throwable {

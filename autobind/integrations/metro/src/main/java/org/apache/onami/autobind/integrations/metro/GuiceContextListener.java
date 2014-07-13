@@ -23,7 +23,7 @@ import com.google.inject.Module;
 import com.sun.xml.ws.transport.http.servlet.WSServletContextListener;
 
 public abstract class GuiceContextListener implements ServletContextListener{
-	private WSServletContextListener delegate = new WSServletContextListener();
+	private final WSServletContextListener delegate = new WSServletContextListener();
 
 	public void attributeAdded(ServletContextAttributeEvent event) {
 		delegate.attributeAdded(event);

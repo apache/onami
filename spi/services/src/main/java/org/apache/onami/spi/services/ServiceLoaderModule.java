@@ -44,7 +44,7 @@ public abstract class ServiceLoaderModule
     extends AbstractModule
 {
 
-    private List<ServiceInfo<?>> services = new LinkedList<ServiceInfo<?>>();
+    private final List<ServiceInfo<?>> services = new LinkedList<ServiceInfo<?>>();
 
     @Override
     protected final void configure()

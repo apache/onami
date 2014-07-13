@@ -43,7 +43,7 @@ import com.google.inject.matcher.Matchers;
 
 @Singleton
 public class InterceptorFeature extends BindingScannerFeature {
-	private Logger _logger = Logger.getLogger(InterceptorFeature.class.getName());
+	private static final Logger _logger = Logger.getLogger(InterceptorFeature.class.getName());
 
 	@Override
 	public BindingStage accept(Class<Object> annotatedClass, Map<String, Annotation> annotations) {

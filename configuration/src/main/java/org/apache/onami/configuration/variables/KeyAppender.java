@@ -35,10 +35,10 @@ final class KeyAppender
     private final Appender key;
 
     /** Appender which will resolve default value */
-    private Appender defaultValue;
+    private final Appender defaultValue;
 
     /** Parser to use if dynamic resolution is needed */
-    private Parser parser;
+    private final Parser parser;
 
     /**
      * Constructor for key without default value.

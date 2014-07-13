@@ -31,7 +31,7 @@ final class Tree<T>
 {
 
     /** Current tree node data */
-    private T data;
+    private final T data;
 
     /** Parent node */
     private Tree<T> parent = null;

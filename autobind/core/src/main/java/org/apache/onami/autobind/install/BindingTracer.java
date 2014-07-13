@@ -30,7 +30,7 @@ public class BindingTracer
     implements Iterable<BindingJob>
 {
 
-    private Set<BindingJob> jobs = new HashSet<BindingJob>();
+    private final Set<BindingJob> jobs = new HashSet<BindingJob>();
 
     public synchronized boolean add( BindingJob e )
     {

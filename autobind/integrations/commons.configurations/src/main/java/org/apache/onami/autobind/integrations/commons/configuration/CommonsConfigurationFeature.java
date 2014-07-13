@@ -45,7 +45,7 @@ import org.apache.onami.autobind.scanner.features.BindingScannerFeature;
  */
 @Singleton
 public class CommonsConfigurationFeature extends BindingScannerFeature {
-	private Logger _logger = Logger.getLogger(CommonsConfigurationFeature.class.getName());
+	private static final Logger _logger = Logger.getLogger(CommonsConfigurationFeature.class.getName());
 
 	@Override
 	public BindingStage accept(Class<Object> annotatedClass, Map<String, Annotation> annotations) {

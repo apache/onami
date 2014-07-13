@@ -46,7 +46,7 @@ import com.google.inject.matcher.Matchers;
 public class AnnoheritedInterceptorTests
 {
 
-    private static ThreadLocal<Boolean> called = new ThreadLocal<Boolean>();
+    private static final ThreadLocal<Boolean> called = new ThreadLocal<Boolean>();
 
     @Test
     public void createDynamicModule()

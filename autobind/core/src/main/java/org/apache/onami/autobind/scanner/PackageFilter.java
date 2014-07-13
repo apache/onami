@@ -20,9 +20,9 @@ package org.apache.onami.autobind.scanner;
 public class PackageFilter
 {
 
-    private String _package;
+    private final String _package;
 
-    private boolean deep;
+    private final boolean deep;
 
     public PackageFilter( String p, boolean deeper )
     {

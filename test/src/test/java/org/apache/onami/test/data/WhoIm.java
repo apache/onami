@@ -22,7 +22,7 @@ package org.apache.onami.test.data;
 public class WhoIm
 {
 
-    private String name;
+    private final String name;
 
     public WhoIm( String name )
     {

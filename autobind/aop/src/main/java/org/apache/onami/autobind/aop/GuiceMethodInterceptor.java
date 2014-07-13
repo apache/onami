@@ -33,9 +33,9 @@ public abstract class GuiceMethodInterceptor
     implements MethodInterceptor
 {
 
-    public static Type CLASS_MATCHER_TYPE;
+    public static final Type CLASS_MATCHER_TYPE;
 
-    public static Type METHOD_MATCHER_TYPE;
+    public static final Type METHOD_MATCHER_TYPE;
 
     static
     {
@@ -48,7 +48,7 @@ public abstract class GuiceMethodInterceptor
         }
         catch ( Exception e )
         {
-            // ignore
+            throw new AssertionError( e );
         }
     }
 

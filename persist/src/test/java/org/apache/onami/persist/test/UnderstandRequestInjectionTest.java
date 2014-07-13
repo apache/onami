@@ -82,7 +82,7 @@ public class UnderstandRequestInjectionTest
 
     private static class ObjectWithSetterInjection
     {
-        private Set<Integer> actuals = newHashSet();
+        private final Set<Integer> actuals = newHashSet();
 
         @Inject
         public void addFoo( Foo foo )

@@ -168,7 +168,7 @@ public class MultibindTests
 
     public static class FirstContainer
     {
-        private List<FirstInterface> implementations;
+        private final List<FirstInterface> implementations;
 
         @Inject
         public FirstContainer( Set<FirstInterface> implementations )
@@ -190,7 +190,7 @@ public class MultibindTests
 
     public static class SecondContainer
     {
-        private List<SecondInterface> implementations;
+        private final List<SecondInterface> implementations;
 
         @Inject
         public SecondContainer( Set<SecondInterface> implementations )
