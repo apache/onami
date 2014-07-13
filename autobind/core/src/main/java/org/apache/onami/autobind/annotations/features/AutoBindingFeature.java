@@ -173,12 +173,8 @@ public class AutoBindingFeature
                     others.add( key );
                     continue;
                 }
-                if ( annotation.isAnnotationPresent( Qualifier.class ) )
-                {
-                    qualifiers.add( key );
-                    continue;
-                }
-                if ( annotation.isAnnotationPresent( BindingAnnotation.class ) )
+                if ( annotation.isAnnotationPresent( Qualifier.class )
+                    || annotation.isAnnotationPresent( BindingAnnotation.class ) )
                 {
                     qualifiers.add( key );
                     continue;
