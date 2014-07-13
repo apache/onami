@@ -21,6 +21,8 @@ package org.apache.onami.lifecycle.core;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 /**
  * A {@link StageableMethod} is a reference to a stageable injectee
@@ -55,10 +57,17 @@ final class StageableMethod
     {
         try
         {
-            if ( !stageMethod.isAccessible() )
+            AccessController.doPrivileged( new PrivilegedAction<Void>()
             {
-                stageMethod.setAccessible( true );
-            }
+
+                @Override
+                public Void run()
+                {
+                    stageMethod.setAccessible( true );
+                    return null;
+                }
+
+            } );
             stageMethod.invoke( object );
         }
         catch ( InvocationTargetException e )

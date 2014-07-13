@@ -23,6 +23,8 @@ import static java.lang.String.format;
 import static java.lang.reflect.Modifier.isFinal;
 
 import java.lang.reflect.Field;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 import com.google.inject.MembersInjector;
 import com.google.inject.ProvisionException;
@@ -45,10 +47,19 @@ public abstract class AbstractLoggerInjector<L>
      *
      * @param field the logger field has to be injected.
      */
-    public AbstractLoggerInjector( Field field )
+    public AbstractLoggerInjector( final Field field )
     {
         this.field = field;
-        this.field.setAccessible(true);
+        AccessController.doPrivileged( new PrivilegedAction<Void>()
+        {
+
+            public Void run()
+            {
+                field.setAccessible( true );
+                return null;
+            }
+
+        } );
     }
 
     /**

@@ -20,6 +20,8 @@ package org.apache.onami.test.mock.guice;
  */
 
 import java.lang.reflect.Field;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Map;
 
 import com.google.inject.MembersInjector;
@@ -43,10 +45,20 @@ public class MockMembersInjector<T>
      * @param field the field that has to be injected.
      * @param mockedObjects  the map of mocked object.
      */
-    public MockMembersInjector( Field field, Map<Field, Object> mockedObjects )
+    public MockMembersInjector( final Field field, Map<Field, Object> mockedObjects )
     {
         this.field = field;
         this.mockedObjects = mockedObjects;
+        AccessController.doPrivileged( new PrivilegedAction<Void>()
+        {
+
+            public Void run()
+            {
+                field.setAccessible( true );
+                return null;
+            }
+
+        } );
     }
 
     /**
@@ -54,9 +66,6 @@ public class MockMembersInjector<T>
      */
     public void injectMembers( T t )
     {
-        boolean wasAccessible = field.isAccessible();
-        field.setAccessible( true );
-
         try
         {
             field.set( t, mockedObjects.get( field ) );
@@ -64,10 +73,6 @@ public class MockMembersInjector<T>
         catch ( IllegalAccessException e )
         {
             throw new RuntimeException( e );
-        }
-        finally
-        {
-            field.setAccessible( wasAccessible );
         }
     }
 

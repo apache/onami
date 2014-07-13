@@ -21,6 +21,8 @@ package org.apache.onami.test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -414,7 +416,16 @@ public class OnamiSuite
                             LOGGER.finer( "   inject static mock field: " + field.getName() );
                         }
 
-                        field.setAccessible( true );
+                        AccessController.doPrivileged( new PrivilegedAction<Void>()
+                        {
+
+                            public Void run()
+                            {
+                                field.setAccessible( true );
+                                return null;
+                            }
+
+                        } );
                         field.set( field.getDeclaringClass(), mock );
                     }
                 }
