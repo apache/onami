@@ -41,8 +41,6 @@ class AggregatedException
     static class Builder
     {
 
-        private static final Throwable[] EMPTY = new Throwable[0];
-
         /**
          * list of causes for the aggregated exception.
          */
@@ -94,7 +92,7 @@ class AggregatedException
                     return (RuntimeException) cause;
                 }
             }
-            return new AggregatedException( msg, causes.toArray( EMPTY ) );
+            return new AggregatedException( msg, causes.toArray( new Throwable[causes.size()] ) );
         }
     }
 

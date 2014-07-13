@@ -24,6 +24,7 @@ import static java.lang.String.format;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,9 +132,6 @@ public final class GuiceProvidedModuleHandler
 
     private void addModules( Module... modules )
     {
-        for ( Module module : modules )
-        {
-            this.modules.add( module );
-        }
+        Collections.addAll( this.modules, modules );
     }
 }

@@ -443,7 +443,7 @@ public class OnamiSuite
                     builder.append( "\n" );
                     for ( Module module : allModules )
                     {
-                        builder.append( "    " + module );
+                        builder.append( "    " ).append( module );
                         builder.append( "\n" );
                     }
                     LOGGER.finer( builder.toString() );
