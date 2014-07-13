@@ -321,6 +321,10 @@ public class ASMClasspathScanner
         }
 
         File[] files = folder.listFiles();
+        if ( files == null )
+        {
+            return;
+        }
         for ( File file : files )
         {
             if ( file.isDirectory() )
