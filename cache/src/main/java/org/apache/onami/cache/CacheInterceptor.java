@@ -279,7 +279,7 @@ abstract class CacheInterceptor<A extends Annotation>
         return false;
     }
 
-    private static final <T extends Throwable> boolean isEmpty( Class<? extends T>...types )
+    private static <T extends Throwable> boolean isEmpty( Class<? extends T>...types )
     {
         return types == null || types.length == 0;
     }
