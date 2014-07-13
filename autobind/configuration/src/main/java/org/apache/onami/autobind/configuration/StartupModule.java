@@ -81,8 +81,7 @@ public abstract class StartupModule extends AbstractModule {
 
 	protected boolean bindStartupConfiguration = true;
 
-	protected boolean verbose = (getProperty("org.apache.onami.autobind.verbose") != null ? true
-			: false);
+	protected boolean verbose = getProperty("org.apache.onami.autobind.verbose") != null;
 
 	public StartupModule(Class<? extends ClasspathScanner> scanner,
 			PackageFilter... filter) {
