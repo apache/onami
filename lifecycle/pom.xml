@@ -38,7 +38,6 @@
 
   <modules>
     <module>core</module>
-    <module>standard</module>
     <module>jsr250</module>
     <module>warmup</module>
   </modules>

@@ -1,0 +1,64 @@
+                                    ------
+                                    Home
+                                    ------
+                                    Post-construction callbacks
+                                    ------
+                                     2012
+
+~~
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+~~
+
+Post-construction callbacks
+
+  Let's start on defining an object type that requires dependency injection and that a callback
+  has to be invoked once injection is complete:
+
++--------------------------------------+
+import javax.annotation.PostConstruct;
+import javax.inject.Singleton;
+
+@Singleton // not necessary, but let's add some spice
+public class MyServiceImpl
+{
+
+    @Inject
+    private Dependency dependency;
+
+    // setter omitted for simplicity
+
+    @PostConstruct
+    public void init()
+    {
+        ...
+    }
+
+}
++--------------------------------------+
+
+  All users have to do, is adding the <<<PostConstructModule>>> when creating the <<<Injector>>>:
+
++--------------------------------------+
+import static com.google.inject.Guice.createInjector;
+
+import org.apache.onami.lifecycle.jsr250.PostConstructModule;
+
+...
+
+Injector injector = createInjector( new PostConstructModule(), ... );
++--------------------------------------+
