@@ -99,7 +99,7 @@ public abstract class ServiceLoaderModule
         AnnotatedBindingBuilder<S> annotatedBindingBuilder = bind( serviceType );
         LinkedBindingBuilder<S> linkedBindingBuilder = annotatedBindingBuilder;
 
-        dance: for ( Annotation annotation : serviceImplType.getAnnotations() )
+        for ( Annotation annotation : serviceImplType.getAnnotations() )
         {
             Class<? extends Annotation> annotationType = annotation.annotationType();
 
@@ -112,7 +112,7 @@ public abstract class ServiceLoaderModule
                  || annotationType.isAnnotationPresent( BindingAnnotation.class ) )
             {
                 linkedBindingBuilder = annotatedBindingBuilder.annotatedWith( annotation );
-                break dance;
+                break;
             }
         }
 
