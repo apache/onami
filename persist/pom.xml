@@ -37,9 +37,9 @@
   <inceptionYear>2013</inceptionYear>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/onami/branches/1.0.x</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/branches/1.0.x</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/branches/1.0.x</developerConnection>
+    <url>https://svn.apache.org/viewvc/onami/trunk/persist</url>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/persist</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/onami/trunk/persist</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
