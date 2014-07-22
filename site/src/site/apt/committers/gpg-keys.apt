@@ -166,4 +166,6 @@ dcC0KEtNPufKywDTzA==
  by copying the same you appended in the text field and submit.
  You can ensure by searching your email in key search engine.
 
+ Finally you should follow the FAQ "Public key not found? Where does the checker look for keys?" at {{http://people.apache.org/~henkp/checker/faq.html}Checker FAQ}
+
  You can read more about {{{http://www.apache.org/dev/release-signing.html#faq}Checksums And Signatures}} and {{{https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven} How to Generate PGP Signatures With Maven}}
