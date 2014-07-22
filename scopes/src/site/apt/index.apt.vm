@@ -26,7 +26,7 @@
 
 Welcome to ${project.name}!
 
-  ${project.name} adds useful Scopes to {{{http://code.google.com/p/google-guice/}Google Guice}}.
+  ${project.name} adds useful Scopes to {{{https://github.com/google/guice/wiki}Google Guice}}.
 
 Before starting
 

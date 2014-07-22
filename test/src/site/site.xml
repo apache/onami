@@ -27,7 +27,7 @@
     </head>
 
     <links>
-      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
+      <item name="Google Guice" href="https://github.com/google/guice/wiki" />
       <item name="JUnit" href="http://www.junit.org" />
       <item name="Easy-Mock" href="http://easymock.org/" />
       <item name="Mockito" href="http://mockito.org/" />

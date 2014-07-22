@@ -33,7 +33,7 @@
 
   <body>
     <links>
-      <item name="Google Guice" href="http://code.google.com/p/google-guice/" />
+      <item name="Google Guice" href="https://github.com/google/guice/wiki" />
     </links>
 
     <menu name="Community" inherit="bottom">
