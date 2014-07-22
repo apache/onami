@@ -123,6 +123,13 @@
             <p><a class="btn btn-primary pull-right" href="./scopes">Learn more</a></p>
           </div>
         </div>
+        <div class="item">
+          <div class="hero-unit">
+            <h1>Persist</h1>
+            <p>Extension for JPA and JTA</p>
+            <p><a class="btn btn-primary pull-right" href="./persist">Learn more</a></p>
+          </div>
+        </div>
       </div>
     </div>
 

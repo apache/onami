@@ -70,6 +70,7 @@
       <item name="Guava"          href="http://onami.apache.org/guava" />
       <item name="Lifecycle"      href="http://onami.apache.org/lifecycle" />
       <item name="Logging"        href="http://onami.apache.org/logging" />
+      <item name="Persist"        href="http://onami.apache.org/persist" />
       <item name="Scheduler"      href="http://onami.apache.org/scheduler" />
       <item name="Scopes"         href="http://onami.apache.org/scopes" />
       <item name="SPI"            href="http://onami.apache.org/spi" />
@@ -79,7 +80,6 @@
 
     <menu name="Sandbox">
       <item name="Factory Annotation"       href="http://onami.apache.org/factoryannotation" />
-      <item name="Persist"                  href="http://onami.apache.org/persist" />
     </menu>
 
     <menu ref="reports" />
